@@ -10,10 +10,10 @@ import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from modules.domain_enumeration import DomainEnumerator
 from modules.service_discovery import ServiceDiscoverer
-# from modules.web_crawling import WebCrawler
-# from modules.cloud_detection import CloudDetector
+# from src.modules.web_crawling import WebCrawler
+# from src.modules.cloud_detection import CloudDetector
 from modules.ai_integration import AIIntegration
-# from output.report_generator import ReportGenerator
+# from src.output.report_generator import ReportGenerator
 
 def setup_logging():
     """Configure logging for the application"""
@@ -52,10 +52,22 @@ def main():
     try:
         logging.info(f"Starting reconnaissance on {args.target}")
         
-        # Domain enumeration
-        results['subdomains'] = domain_enum.passive_enumeration()
+        # Domain enumeration - FIXED THIS PART
+        passive_results = domain_enum.passive_enumeration()
         if not args.passive_only:
-            results['subdomains'].update(domain_enum.active_enumeration())
+            active_results = domain_enum.active_enumeration()
+            # Combine passive and active results
+            results['subdomains'] = {
+                'passive': passive_results['passive'],
+                'active': active_results['active'],
+                'all': domain_enum.get_all_subdomains()
+            }
+        else:
+            results['subdomains'] = {
+                'passive': passive_results['passive'],
+                'active': [],
+                'all': passive_results['passive']
+            }
         
         # Service discovery
         results['services'] = service_disc.discover_services()
@@ -78,6 +90,8 @@ def main():
         logging.info("Scan interrupted by user")
     except Exception as e:
         logging.error(f"Scan failed: {str(e)}")
+        import traceback
+        logging.error(traceback.format_exc())
 
 if __name__ == "__main__":
     main()

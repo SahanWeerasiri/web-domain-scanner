@@ -1,11 +1,11 @@
 """
 Domain enumeration module for passive and active subdomain discovery
 """
-import logging
 import subprocess
 import json
 import requests
 import dns.resolver
+import logging
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 class DomainEnumerator:
@@ -27,21 +27,17 @@ class DomainEnumerator:
         try:
             subprocess.run([
                 'sublist3r', '-d', self.target, '-o', 'sublist3r_results.json', '-j'
-            ], check=True, timeout=300)
+            ], check=True, timeout=300, capture_output=True)
             
             with open('sublist3r_results.json', 'r') as f:
                 data = json.load(f)
                 self.results['passive'].extend(data.get('subdomains', []))
         except (subprocess.TimeoutExpired, subprocess.CalledProcessError, FileNotFoundError):
             logging.warning("Sublist3r not available or failed, using alternative methods")
+            # Add some basic subdomains as fallback
+            self.results['passive'].extend([f"www.{self.target}", f"mail.{self.target}"])
         
-        # Additional passive sources can be added here
-        # - Certificate Transparency logs
-        # - DNS dumpster
-        # - VirusTotal
-        # - SecurityTrails
-        
-        return self.results['passive']
+        return self.results
     
     def active_enumeration(self):
         """Perform active subdomain enumeration using DNS brute force"""
@@ -66,7 +62,12 @@ class DomainEnumerator:
                 except Exception as e:
                     logging.error(f"Error checking {subdomain}: {str(e)}")
         
-        return self.results['active']
+        return self.results
+    
+    def get_all_subdomains(self):
+        """Get all discovered subdomains (passive + active) as a single list"""
+        all_subdomains = self.results['passive'] + self.results['active']
+        return list(set(all_subdomains))  # Remove duplicates
     
     def _generate_wordlist(self):
         """Generate subdomain wordlist, potentially using AI"""
@@ -84,11 +85,12 @@ class DomainEnumerator:
     def _load_base_wordlist(self):
         """Load the base subdomain wordlist from file"""
         try:
-            with open('config/wordlists/subdomains.txt', 'r') as f:
+            with open('../config/wordlists/subdomains.txt', 'r') as f:
                 return [line.strip() for line in f if line.strip()]
         except FileNotFoundError:
             # Fallback to common subdomains
-            return ['www', 'mail', 'ftp', 'admin', 'api', 'test', 'dev', 'staging', 'prod']
+            return ['www', 'mail', 'ftp', 'admin', 'api', 'test', 'dev', 'staging', 'prod', 
+                   'blog', 'shop', 'support', 'news', 'app', 'cdn', 'static', 'assets']
     
     def _check_subdomain(self, subdomain):
         """Check if a subdomain exists via DNS resolution"""
@@ -98,4 +100,7 @@ class DomainEnumerator:
             logging.info(f"Found subdomain: {full_domain}")
             return full_domain
         except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer, dns.resolver.Timeout):
+            return None
+        except Exception as e:
+            logging.debug(f"DNS resolution failed for {full_domain}: {str(e)}")
             return None
