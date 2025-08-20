@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reconnaissance Report - {{ target }}</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --border-color: #dee2e6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header .timestamp {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+            margin-right: 0.75rem;
+            color: var(--primary-color);
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .card-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .card-description {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--light-bg);
+        }
+
+        .section-icon {
+            font-size: 1.5rem;
+            margin-right: 0.75rem;
+            color: var(--primary-color);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .table th,
+        .table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .table th {
+            background-color: var(--light-bg);
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .table tr:hover {
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .badge-warning {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        .badge-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .badge-info {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .port-open {
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .port-closed {
+            color: #666;
+        }
+
+        .subdomain-list {
+            list-style: none;
+        }
+
+        .subdomain-item {
+            padding: 0.5rem;
+            margin: 0.25rem 0;
+            background: var(--light-bg);
+            border-radius: 5px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-item {
+            background: linear-gradient(135deg, var(--primary-color), #2980b9);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .risk-level {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-left: 1rem;
+        }
+
+        .risk-low {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .risk-medium {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        .risk-high {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .collapsible {
+            cursor: pointer;
+        }
+
+        .content {
+            display: none;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            .summary-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛡️ Web Domain Reconnaissance Report</h1>
+            <p class="timestamp">Generated on: {{ timestamp }}</p>
+            <p>Target: <strong>{{ target }}</strong></p>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="summary-cards">
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🌐</span>
+                    <h3 class="card-title">Subdomains Found</h3>
+                </div>
+                <div class="card-value">{{ subdomains_count }}</div>
+                <p class="card-description">Total discovered subdomains including passive and active enumeration</p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🔍</span>
+                    <h3 class="card-title">Open Ports</h3>
+                </div>
+                <div class="card-value">{{ open_ports_count }}</div>
+                <p class="card-description">Services exposed to the network</p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📁</span>
+                    <h3 class="card-title">Directories</h3>
+                </div>
+                <div class="card-value">{{ directories_count }}</div>
+                <p class="card-description">Accessible directories discovered</p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🔌</span>
+                    <h3 class="card-title">API Endpoints</h3>
+                </div>
+                <div class="card-value">{{ api_endpoints_count }}</div>
+                <p class="card-description">API endpoints and interfaces found</p>
+            </div>
+        </div>
+
+        <!-- Subdomains Section -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🌐</span>
+                <h2 class="section-title">Subdomain Discovery</h2>
+            </div>
+
+            {% if subdomains.passive %}
+            <h3>Passive Enumeration ({{ passive_subdomains_count }})</h3>
+            <ul class="subdomain-list">
+                {% for subdomain in subdomains.passive %}
+                <li class="subdomain-item">{{ subdomain }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% if subdomains.active %}
+            <h3 style="margin-top: 1.5rem;">Active Enumeration ({{ active_subdomains_count }})</h3>
+            <ul class="subdomain-list">
+                {% for subdomain in subdomains.active %}
+                <li class="subdomain-item">{{ subdomain }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% if not subdomains.passive and not subdomains.active %}
+            <p>No subdomains discovered.</p>
+            {% endif %}
+        </div>
+
+        <!-- Service Discovery Section -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🔍</span>
+                <h2 class="section-title">Service Discovery</h2>
+            </div>
+
+            {% if services.open_ports %}
+            <h3>Open Ports</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Port</th>
+                        <th>Service</th>
+                        <th>Banner</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for port, info in services.service_versions.items() %}
+                    <tr>
+                        <td>{{ port }}</td>
+                        <td>{{ info.service }}</td>
+                        <td>{{ info.banner|truncate(50) }}</td>
+                        <td><span class="badge badge-success">OPEN</span></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No open ports found on common services.</p>
+            {% endif %}
+        </div>
+
+        <!-- Web Technologies Section -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🛠️</span>
+                <h2 class="section-title">Web Technologies</h2>
+            </div>
+
+            {% if web_technologies %}
+            <div class="tech-stack">
+                {% for url, tech in web_technologies.items() %}
+                {% if tech.server and tech.server != 'Not found' %}
+                <span class="tech-item">Server: {{ tech.server }}</span>
+                {% endif %}
+                {% if tech.x_powered_by and tech.x_powered_by != 'Not found' %}
+                <span class="tech-item">Powered By: {{ tech.x_powered_by }}</span>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <table class="table" style="margin-top: 1.5rem;">
+                <thead>
+                    <tr>
+                        <th>URL</th>
+                        <th>Status</th>
+                        <th>Server</th>
+                        <th>Technology</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for url, tech in web_technologies.items() %}
+                    <tr>
+                        <td>{{ url }}</td>
+                        <td>
+                            {% if tech.status_code == 200 %}
+                            <span class="badge badge-success">{{ tech.status_code }}</span>
+                            {% else %}
+                            <span class="badge badge-warning">{{ tech.status_code }}</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ tech.server }}</td>
+                        <td>{{ tech.x_powered_by }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No web technologies information available.</p>
+            {% endif %}
+        </div>
+
+        <!-- Directory Discovery Section -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">📁</span>
+                <h2 class="section-title">Directory Discovery</h2>
+            </div>
+
+            {% if directories %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>URL</th>
+                        <th>Status</th>
+                        <th>Size</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for directory in directories %}
+                    <tr>
+                        <td>{{ directory.url }}</td>
+                        <td>
+                            {% if directory.status == 200 %}
+                            <span class="badge badge-success">{{ directory.status }}</span>
+                            {% else %}
+                            <span class="badge badge-warning">{{ directory.status }}</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ directory.size }} bytes</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No directories discovered.</p>
+            {% endif %}
+        </div>
+
+        <!-- API Endpoints Section -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🔌</span>
+                <h2 class="section-title">API Endpoints</h2>
+            </div>
+
+            {% if api_endpoints %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Endpoint</th>
+                        <th>Status</th>
+                        <th>Content Type</th>
+                        <th>Source</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for endpoint in api_endpoints %}
+                    <tr>
+                        <td>{{ endpoint.url }}</td>
+                        <td>
+                            {% if endpoint.status == 200 %}
+                            <span class="badge badge-success">{{ endpoint.status }}</span>
+                            {% else %}
+                            <span class="badge badge-warning">{{ endpoint.status }}</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ endpoint.content_type }}</td>
+                        <td>
+                            <span class="badge badge-info">{{ endpoint.source }}</span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No API endpoints discovered.</p>
+            {% endif %}
+        </div>
+
+        <!-- Cloud Services Section -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">☁️</span>
+                <h2 class="section-title">Cloud Services Detection</h2>
+            </div>
+
+            {% if cloud_services %}
+            {% if cloud_services.aws_s3 %}
+            <h3>AWS S3 Buckets</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Bucket URL</th>
+                        <th>Status</th>
+                        <th>Access</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for bucket in cloud_services.aws_s3 %}
+                    <tr>
+                        <td>{{ bucket.url }}</td>
+                        <td>{{ bucket.status }}</td>
+                        <td>
+                            {% if bucket.public %}
+                            <span class="badge badge-danger">PUBLIC</span>
+                            {% else %}
+                            <span class="badge badge-warning">PRIVATE</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+
+            {% if cloud_services.cdn %}
+            <h3>Content Delivery Network</h3>
+            <p>Detected CDN: <strong>{{ cloud_services.cdn }}</strong></p>
+            {% endif %}
+
+            {% if not cloud_services.aws_s3 and not cloud_services.cdn %}
+            <p>No cloud services detected.</p>
+            {% endif %}
+            {% else %}
+            <p>No cloud services detected.</p>
+            {% endif %}
+        </div>
+
+        <!-- DNS Records Section -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">📝</span>
+                <h2 class="section-title">DNS Records</h2>
+            </div>
+
+            {% if dns_records %}
+            {% for record_type, records in dns_records.items() %}
+            {% if records %}
+            <h3>{{ record_type }} Records</h3>
+            <ul class="subdomain-list">
+                {% for record in records %}
+                <li class="subdomain-item">{{ record }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endfor %}
+            {% else %}
+            <p>No DNS records information available.</p>
+            {% endif %}
+        </div>
+
+        <!-- Security Assessment -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">⚠️</span>
+                <h2 class="section-title">Security Assessment</h2>
+            </div>
+
+            <div class="risk-assessment">
+                {% set risk_level = 'risk-medium' %}
+                {% if open_ports_count > 5 or directories_count > 10 or api_endpoints_count > 5 %}
+                {% set risk_level = 'risk-high' %}
+                {% elif open_ports_count <= 2 and directories_count <=3 and api_endpoints_count <=2 %} {% set
+                    risk_level='risk-low' %} {% endif %} <h3>Overall Risk Level: <span
+                        class="risk-level {{ risk_level }}">
+                        {% if risk_level == 'risk-high' %}High
+                        {% elif risk_level == 'risk-medium' %}Medium
+                        {% else %}Low
+                        {% endif %}
+                    </span></h3>
+
+                    <h4 style="margin-top: 1.5rem;">Findings:</h4>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        {% if open_ports_count > 3 %}
+                        <li>Multiple services ({{ open_ports_count }}) exposed to the network</li>
+                        {% endif %}
+                        {% if directories_count > 0 %}
+                        <li>{{ directories_count }} sensitive directories accessible</li>
+                        {% endif %}
+                        {% if api_endpoints_count > 0 %}
+                        <li>{{ api_endpoints_count }} API endpoints discovered that may require authentication</li>
+                        {% endif %}
+                        {% if cloud_services.aws_s3 %}
+                        <li>AWS S3 buckets detected (potential data exposure risk)</li>
+                        {% endif %}
+                    </ul>
+
+                    <h4 style="margin-top: 1.5rem;">Recommendations:</h4>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>Review exposed services and close unnecessary ports</li>
+                        <li>Implement proper access controls for sensitive directories</li>
+                        <li>Secure API endpoints with authentication and rate limiting</li>
+                        <li>Regularly update and patch all services</li>
+                        <li>Conduct regular security assessments and penetration testing</li>
+                    </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Generated by Web Domain Scanner & Service Discovery Module</p>
+            <p>This report is for educational and authorized security assessment purposes only.</p>
+            <p>© 2025 Security Research Team</p>
+        </div>
+    </div>
+
+    <script>
+        // Simple collapsible functionality
+        document.querySelectorAll('.collapsible').forEach(button => {
+            button.addEventListener('click', function () {
+                this.classList.toggle('active');
+                const content = this.nextElementSibling;
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                } else {
+                    content.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

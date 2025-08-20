@@ -1,0 +1,121 @@
+{
+    "metadata": {
+        "scan_id": "{{ scan_id }}",
+        "target": "{{ target }}",
+        "timestamp": "{{ timestamp }}",
+        "tool_version": "1.0",
+        "scan_duration": "{{ scan_duration }}",
+        "scan_type": "comprehensive"
+    },
+    "summary": {
+        "subdomains_found": {
+            "count": "{{ subdomains_count }}"
+        },
+        "open_ports": {
+            "count": "{{ open_ports_count }}"
+        },
+        "web_technologies": {
+            "count": "{{ web_technologies_count }}"
+        },
+        "directories_found": {
+            "count": "{{ directories_count }}"
+        },
+        "api_endpoints": {
+            "count": "{{ api_endpoints_count }}"
+        },
+        "cloud_services": {
+            "count": "{{ cloud_services_count }}"
+        }
+    },
+    "subdomains": {
+        "passive": {
+            "count": "{{ subdomains.passive | length }}"
+        },
+        "active": {
+            "count": "{{ subdomains.active | length }}"
+        },
+        "all": {
+            "count": "{{ subdomains.all | length }}"
+        }
+    },
+    "dns_records": {
+        "A": [
+            "192.248.8.68"
+        ],
+        "AAAA": [
+            "2401:dd00:10:1::68"
+        ],
+        "MX": [],
+        "NS": [],
+        "TXT": [],
+        "CNAME": [],
+        "SOA": []
+    },
+    "services": {
+        "open_ports": {
+            "count": "{{ services.open_ports | length }}"
+        },
+        "service_versions": {
+            "count": "{{ services.service_versions | length }}"
+        }
+    },
+    "web_technologies": {
+        "count": "{{ web_technologies | length }}"
+    },
+    "directories": {
+        "count": "{{ directories | length }}"
+    },
+    "api_endpoints": {
+        "count": "{{ api_endpoints | length }}"
+    },
+    "cloud_services": {
+        "count": "{{ cloud_services | length }}"
+    },
+    "security_assessment": {
+        "risk_level": "medium",
+        "findings": [
+            {
+                "id": "FINDING-001",
+                "title": "Multiple services exposed",
+                "description": "Several network services are exposed to the internet",
+                "severity": "medium",
+                "affected_components": [
+                    "network_services"
+                ],
+                "recommendation": "Review and secure exposed services, implement firewall rules"
+            },
+            {
+                "id": "FINDING-002",
+                "title": "Sensitive directories accessible",
+                "description": "Potentially sensitive directories are accessible without authentication",
+                "severity": "high",
+                "affected_components": [
+                    "web_application"
+                ],
+                "recommendation": "Implement access controls and authentication for sensitive paths"
+            }
+        ],
+        "recommendations": [
+            "Conduct regular vulnerability assessments",
+            "Implement web application firewall",
+            "Enable security headers",
+            "Regularly update and patch all components",
+            "Implement proper logging and monitoring"
+        ]
+    },
+    "scan_parameters": {
+        "threads": 10,
+        "rate_limit": 5,
+        "timeout": 10,
+        "wordlists_used": [
+            "common_directories.txt",
+            "api_endpoints.txt",
+            "subdomains.txt"
+        ],
+        "tools_used": [
+            "socket",
+            "requests",
+            "dns.resolver"
+        ]
+    }
+}
