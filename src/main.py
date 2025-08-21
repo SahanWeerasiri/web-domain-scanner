@@ -8,7 +8,13 @@ import re
 import requests
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# Add project root to path for imports
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(current_dir)
+sys.path.insert(0, project_root)
+sys.path.insert(0, current_dir)
+
 # Import modules
 from modules.domain_enumeration import DomainEnumeration
 from modules.service_discovery import ServiceDiscovery

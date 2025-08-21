@@ -3,3 +3,7 @@
 src/*.log
 results/
 src/recon_results_*/
+recon_results_*/
+**/recon_results_*/
+reconnaissance.log
+*.log
