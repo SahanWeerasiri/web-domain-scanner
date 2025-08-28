@@ -1,9 +1,11 @@
 import os
 import logging
 import json
+import asyncio
 from datetime import datetime
 from urllib.parse import urlparse
 import re
+from pathlib import Path
 
 import requests
 import sys
@@ -27,7 +29,8 @@ from output.report_generator import ReportGenerator
 # Import config
 from config.settings import (
     COMMON_PORTS, COMMON_SUBDOMAINS, REQUEST_HEADERS,
-    CDN_INDICATORS, COMMON_S3_BUCKETS, GEMINI_API_KEY
+    CDN_INDICATORS, COMMON_S3_BUCKETS, GEMINI_API_KEY,
+    OPENAI_API_KEY, ANTHROPIC_API_KEY
 )
 
 # Configure logging
@@ -41,19 +44,35 @@ logging.basicConfig(
 )
 
 class DomainRecon:
-    def __init__(self, domain_or_url, gemini_api_key=None):
+    def __init__(self, domain_or_url, gemini_api_key=None, openai_api_key=None, anthropic_api_key=None, use_async=False):
         # Extract domain from URL if provided
         self.domain, self.sanitized_domain = sanitize_domain(domain_or_url)
         
         self.results = {}
         self.timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         self.output_dir = create_output_directory(self.domain, self.timestamp)
+        self.use_async = use_async
+        
+        # Setup feedback database path
+        self.feedback_db_path = os.path.join(project_root, "data", "endpoint_feedback.json")
+        Path(os.path.join(project_root, "data")).mkdir(exist_ok=True)
+        
+        # Use provided keys or fall back to environment variables
+        gemini_key = gemini_api_key or GEMINI_API_KEY
+        openai_key = openai_api_key or OPENAI_API_KEY
+        anthropic_key = anthropic_api_key or ANTHROPIC_API_KEY
         
         # Initialize modules
         self.domain_enum = DomainEnumeration(self.domain)
         self.service_disc = ServiceDiscovery(self.domain)
         self.web_crawler = WebCrawler(self.domain)
-        self.ai_integration = AIIntegration(gemini_api_key or GEMINI_API_KEY)
+        self.ai_integration = AIIntegration(
+            gemini_api_key=gemini_key,
+            openai_api_key=openai_key,
+            anthropic_api_key=anthropic_key,
+            cache_size=128,
+            feedback_db_path=self.feedback_db_path
+        )
         self.cloud_detector = CloudDetector(self.domain)
         
     def run_all(self):
@@ -87,8 +106,34 @@ class DomainRecon:
         self.results['services'] = self.service_disc.discover_services(COMMON_PORTS)
     
     def web_fingerprinting(self):
-        """Fingerprint web technologies"""
-        self.results['web_technologies'] = self.web_crawler.web_fingerprinting()
+        """Fingerprint web technologies with AI enhancement"""
+        logging.info("Starting web technology fingerprinting")
+        
+        # Get basic fingerprinting results from web crawler
+        basic_tech = self.web_crawler.web_fingerprinting()
+        
+        # Try to enhance with AI technology detection
+        enhanced_tech = set(basic_tech)
+        
+        # Attempt to get page content for AI-powered detection
+        base_urls = [
+            f"https://{self.domain}",
+            f"http://{self.domain}",
+            f"https://www.{self.domain}",
+            f"http://www.{self.domain}"
+        ]
+        
+        for base_url in base_urls:
+            page_content = self.web_crawler.scrape_page_content(base_url, headers=REQUEST_HEADERS)
+            if page_content:
+                # Use AI integration to detect technologies
+                ai_detected_tech = self.ai_integration.detect_technology(page_content)
+                if ai_detected_tech:
+                    logging.info(f"AI detected additional technologies: {', '.join(ai_detected_tech)}")
+                    enhanced_tech.update(ai_detected_tech)
+                break
+        
+        self.results['web_technologies'] = list(enhanced_tech)
     
     def directory_bruteforce(self):
         """Brute force common web directories"""
@@ -96,7 +141,7 @@ class DomainRecon:
         self.results['directories'] = self.web_crawler.directory_bruteforce(wordlist_path)
     
     def api_discovery(self):
-        """Discover common API endpoints"""
+        """Discover common API endpoints using multiple AI providers with fallback"""
         logging.info("Starting API discovery")
         self.results['api_endpoints'] = []
         
@@ -118,21 +163,44 @@ class DomainRecon:
         ai_endpoints = []
         successful_scrape = False
         
-        if self.ai_integration.gemini_api_key:
+        if self.ai_integration.available_providers:
+            # Log available providers
+            providers_str = ", ".join(self.ai_integration.available_providers)
+            logging.info(f"Using AI providers for endpoint discovery: {providers_str}")
+            
             for base_url in base_urls:
                 page_content = self.web_crawler.scrape_page_content(base_url, headers=REQUEST_HEADERS)
                 if page_content:
                     successful_scrape = True
-                    ai_endpoints = self.ai_integration.generate_ai_endpoints(page_content, self.domain)
+                    
+                    # Use async or sync method based on configuration
+                    if self.use_async:
+                        # Run async endpoint generation in a sync context
+                        try:
+                            loop = asyncio.get_event_loop()
+                        except RuntimeError:
+                            # Create new event loop if none exists
+                            loop = asyncio.new_event_loop()
+                            asyncio.set_event_loop(loop)
+                            
+                        ai_endpoints = loop.run_until_complete(
+                            self.ai_integration.generate_ai_endpoints_async(page_content, self.domain)
+                        )
+                        logging.info(f"Generated endpoints using async AI integration")
+                    else:
+                        # Use synchronous endpoint generation
+                        ai_endpoints = self.ai_integration.generate_ai_endpoints(page_content, self.domain)
+                    
                     if ai_endpoints:
-                        logging.info(f"Generated {len(ai_endpoints)} endpoints from {base_url} (AI or fallback analysis)")
+                        logging.info(f"Generated {len(ai_endpoints)} endpoints from {base_url} using AI analysis")
                         break
                     else:
                         logging.warning(f"No endpoints generated from {base_url}")
                 else:
                     logging.warning(f"Failed to scrape {base_url}")
         else:
-            # Even without API key, try intelligent fallback analysis
+            # Even without API keys, try intelligent fallback analysis
+            logging.info("No AI providers configured. Using fallback content analysis for endpoint discovery")
             for base_url in base_urls:
                 page_content = self.web_crawler.scrape_page_content(base_url, headers=REQUEST_HEADERS)
                 if page_content:
@@ -171,7 +239,14 @@ class DomainRecon:
                         found_endpoints.append(endpoint_info)
                         source_type = 'analyzed' if endpoint in ai_endpoints else 'default'
                         logging.info(f"Found {source_type} endpoint: {url} ({response.status_code})")
+                        
+                        # Record successful endpoint discovery for learning
+                        if endpoint in ai_endpoints:
+                            self.ai_integration.save_feedback(self.domain, endpoint, True)
                 except requests.RequestException:
+                    # Record unsuccessful endpoint prediction for learning
+                    if endpoint in ai_endpoints:
+                        self.ai_integration.save_feedback(self.domain, endpoint, False)
                     continue
         
         self.results['api_endpoints'] = found_endpoints
@@ -204,8 +279,21 @@ if __name__ == "__main__":
     
     parser = argparse.ArgumentParser(description="Comprehensive Domain Reconnaissance Tool")
     parser.add_argument("domain", help="Domain to investigate")
-    parser.add_argument("--gemini-key", help="Gemini API key for AI-powered endpoint discovery")
+    
+    # AI provider arguments
+    ai_group = parser.add_argument_group('AI Integration Options')
+    ai_group.add_argument("--gemini-key", help="Gemini API key for AI-powered endpoint discovery")
+    ai_group.add_argument("--openai-key", help="OpenAI API key for AI-powered endpoint discovery")
+    ai_group.add_argument("--anthropic-key", help="Anthropic Claude API key for AI-powered endpoint discovery")
+    ai_group.add_argument("--async", dest="use_async", action="store_true", help="Use asynchronous processing for AI endpoint generation")
+    
     args = parser.parse_args()
     
-    recon = DomainRecon(args.domain, args.gemini_key)
+    recon = DomainRecon(
+        args.domain, 
+        gemini_api_key=args.gemini_key,
+        openai_api_key=args.openai_key,
+        anthropic_api_key=args.anthropic_key,
+        use_async=args.use_async
+    )
     recon.run_all()
