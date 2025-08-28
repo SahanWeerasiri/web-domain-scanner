@@ -120,7 +120,7 @@ class WebCrawler:
         return results
 
     def directory_bruteforce(self, wordlist_path: str, extensions: List[str] = None, 
-                            recursive: bool = False, depth: int = 2, max_urls: int = 1000, visited: set = None) -> List[Dict[str, Any]]:
+                            recursive: bool = False, depth: int = 2, max_urls: int = None, visited: set = None) -> List[Dict[str, Any]]:
         """
         Brute force common web directories with extensions and recursive scanning
         
@@ -133,7 +133,6 @@ class WebCrawler:
         """
         logging.info("Starting directory brute-forcing")
         found_dirs = []
-        tested_urls = 0
         if visited is None:
             visited = set()
 
@@ -169,10 +168,7 @@ class WebCrawler:
                         urls_to_try.append(f"{base_url}/{directory}.{ext}")
 
                     for url in urls_to_try:
-                        if tested_urls >= max_urls:
-                            logging.info(f"Reached maximum URL limit ({max_urls}), stopping directory bruteforce")
-                            return found_dirs
-
+                        # Remove URL limit: do not check tested_urls or max_urls
                         # Avoid revisiting the same URL
                         if url in visited:
                             continue
@@ -185,8 +181,6 @@ class WebCrawler:
                                 timeout=3, 
                                 verify=verify_ssl
                             )
-
-                            tested_urls += 1
 
                             if response.status_code < 400:
                                 found_item = {
@@ -209,7 +203,7 @@ class WebCrawler:
                                         extensions, 
                                         recursive=True, 
                                         depth=depth-1,
-                                        max_urls=max_urls - tested_urls,
+                                        max_urls=max_urls,
                                         visited=visited
                                     )
                                     found_dirs.extend(recursive_dirs)
@@ -942,7 +936,7 @@ if __name__ == "__main__":
     
     try:
         # Choose crawl level: 'quick', 'smart', or 'deep'
-        crawl_level = 'deep'  # Change as needed
+        crawl_level = 'smart'  # Change as needed
         wordlist_path = "../../config/wordlists/common_directories.txt"  # Or set a custom wordlist path for 'deep'
 
         results = crawler.run_crawl_level(crawl_level, wordlist_path)
