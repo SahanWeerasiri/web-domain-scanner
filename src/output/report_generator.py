@@ -19,46 +19,86 @@ class ReportGenerator:
         return report_path
     
     def generate_html_report(self):
-        """Generate HTML report using the template"""
+        """Generate HTML report using the template, embedding all JSON data for portability"""
         # Prepare data for the template
         template_data = self._prepare_template_data()
-        
+
         # Load HTML template
         template_path = os.path.join(os.path.dirname(__file__), 'templates', 'html_report.html')
-        
+
         try:
             with open(template_path, 'r', encoding='utf-8') as f:
                 template_content = f.read()
         except FileNotFoundError:
-            # Use fallback template if file doesn't exist
             template_content = self._get_fallback_template()
             logging.warning("HTML template file not found, using fallback template")
-        
-        # Render template with data
+
+        # Embed the full JSON data as a <script> tag for the JS to use
+        json_data = json.dumps(self.results, ensure_ascii=False)
+        # Replace or inject the reportData variable in the template
+        if 'const reportData =' in template_content:
+            import re
+            template_content = re.sub(
+                r'const reportData = [^;]+;',
+                f'const reportData = {json_data};',
+                template_content
+            )
+        else:
+            # Try to inject at the top of the first <script> tag
+            if '<script>' in template_content:
+                template_content = template_content.replace(
+                    '<script>',
+                    f'<script>\nconst reportData = {json_data};\n',
+                    1
+                )
+            elif '</body>' in template_content:
+                # If no <script> tag, inject before </body>
+                template_content = template_content.replace(
+                    '</body>',
+                    f'<script>const reportData = {json_data};</script>\n</body>'
+                )
+            else:
+                # As a last resort, append at the end
+                template_content += f'\n<script>const reportData = {json_data};</script>'
+
+        # Render template with data (for Jinja2 variables)
         template = Template(template_content)
         html_content = template.render(**template_data)
-        
+
         # Save HTML report
         html_report_path = os.path.join(self.output_dir, 'recon_report.html')
         with open(html_report_path, 'w', encoding='utf-8') as f:
             f.write(html_content)
-        
+
         logging.info(f"HTML report generated: {html_report_path}")
         return html_report_path
     
     def _prepare_template_data(self):
-        """Prepare data for the HTML template"""
-        # Calculate summary counts
-        subdomains_count = sum(len(subdomains) for subdomains in self.results.get('subdomains', {}).values())
+        """Prepare data for the HTML template, including all new web-crawler fields"""
+        # Legacy fields
+        subdomains_obj = self.results.get('subdomains', {})
+        if isinstance(subdomains_obj, dict):
+            subdomains_count = sum(len(subdomains) for subdomains in subdomains_obj.values())
+        elif isinstance(subdomains_obj, list):
+            subdomains_count = len(subdomains_obj)
+        else:
+            subdomains_count = 0
         open_ports_count = len(self.results.get('services', {}).get('open_ports', {}))
         directories_count = len(self.results.get('directories', []))
         api_endpoints_count = len(self.results.get('api_endpoints', []))
-        
+
         # Prepare subdomain data
         subdomains = self.results.get('subdomains', {})
-        passive_subdomains = subdomains.get('passive', [])
-        active_subdomains = subdomains.get('bruteforce', [])
-        
+        if isinstance(subdomains, dict):
+            passive_subdomains = subdomains.get('passive', [])
+            active_subdomains = subdomains.get('bruteforce', [])
+        elif isinstance(subdomains, list):
+            passive_subdomains = subdomains
+            active_subdomains = []
+        else:
+            passive_subdomains = []
+            active_subdomains = []
+
         # Prepare services data with better structure
         services_data = {}
         open_ports = self.results.get('services', {}).get('open_ports', {})
@@ -67,7 +107,23 @@ class ReportGenerator:
                 'service': info.get('service', 'Unknown'),
                 'banner': info.get('banner', 'No banner')
             }
-        
+
+        # --- Web Crawler Results ---
+        web_crawl = self.results.get('web_crawl', {})
+        # Web fingerprinting
+        fingerprinting = web_crawl.get('fingerprinting', {})
+        # Directory bruteforce
+        directory_bruteforce = web_crawl.get('directory_bruteforce', [])
+        # API discovery
+        api_discovery = web_crawl.get('api_discovery', {})
+        # Site crawl
+        crawl = web_crawl.get('crawl', {})
+        crawl_pages = crawl.get('pages', [])
+        crawl_apis = crawl.get('apis', [])
+        # Target-specific wordlist
+        target_specific_terms = web_crawl.get('target_specific_terms', [])
+
+        # For backward compatibility, keep legacy fields, but add all new fields for template
         return {
             'target': self.target_domain,
             'timestamp': self.timestamp,
@@ -89,16 +145,25 @@ class ReportGenerator:
             'directories': self.results.get('directories', []),
             'api_endpoints': self.results.get('api_endpoints', []),
             'cloud_services': self.results.get('cloud_services', {}),
-            'dns_records': self.results.get('dns_records', {})
+            'dns_records': self.results.get('dns_records', {}),
+            # --- Web Crawler fields ---
+            'web_crawl': web_crawl,
+            'fingerprinting': fingerprinting,
+            'directory_bruteforce': directory_bruteforce,
+            'api_discovery': api_discovery,
+            'crawl': crawl,
+            'crawl_pages': crawl_pages,
+            'crawl_apis': crawl_apis,
+            'target_specific_terms': target_specific_terms,
         }
     
     def _get_fallback_template(self):
         """Return fallback HTML template if file is missing"""
         return """<!DOCTYPE html>
-<html lang="en">
+<html lang=\"en\">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset=\"UTF-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
     <title>Reconnaissance Report - {{ target }}</title>
     <style>
         :root {
@@ -154,7 +219,93 @@ class ReportGenerator:
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class=\"container\">
+        <!-- Web Crawler Results Section -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🤖</span>
+                <h2 class="section-title">Web Crawler Results</h2>
+            </div>
+            <!-- Web Fingerprinting -->
+            <h3>Web Fingerprinting</h3>
+            {% if fingerprinting %}
+            <table class="table">
+                <thead>
+                    <tr><th>URL</th><th>Server</th><th>X-Powered-By</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                {% for url, info in fingerprinting.items() %}
+                    <tr>
+                        <td>{{ url }}</td>
+                        <td>{{ info.server }}</td>
+                        <td>{{ info.x_powered_by }}</td>
+                        <td>{{ info.status_code }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% else %}<p>No web fingerprinting data.</p>{% endif %}
+
+            <!-- Directory Bruteforce -->
+            <h3 style="margin-top:2rem;">Directory Bruteforce</h3>
+            {% if directory_bruteforce %}
+            <table class="table">
+                <thead><tr><th>URL</th><th>Status</th><th>Size</th></tr></thead>
+                <tbody>
+                {% for entry in directory_bruteforce %}
+                    <tr>
+                        <td>{{ entry.url }}</td>
+                        <td>{{ entry.status }}</td>
+                        <td>{{ entry.size }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% else %}<p>No directory bruteforce results.</p>{% endif %}
+
+            <!-- API Discovery -->
+            <h3 style="margin-top:2rem;">API Discovery</h3>
+            {% if api_discovery %}
+            {% for category, endpoints in api_discovery.items() %}
+                <h4>{{ category|capitalize }}</h4>
+                {% if endpoints %}
+                <ul>
+                    {% for endpoint in endpoints %}
+                    <li>{{ endpoint.url }} (Status: {{ endpoint.status }})</li>
+                    {% endfor %}
+                </ul>
+                {% else %}<p>No endpoints found for {{ category }}.</p>{% endif %}
+            {% endfor %}
+            {% else %}<p>No API discovery results.</p>{% endif %}
+
+            <!-- Site Crawl -->
+            <h3 style="margin-top:2rem;">Site Crawl</h3>
+            {% if crawl_pages %}
+            <ul>
+                {% for page in crawl_pages %}
+                <li>{{ page.url }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}<p>No crawl pages found.</p>{% endif %}
+            {% if crawl_apis %}
+            <h4>APIs found during crawl:</h4>
+            <ul>
+                {% for api in crawl_apis %}
+                <li>{{ api }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <!-- Target-Specific Wordlist -->
+            <h3 style="margin-top:2rem;">Target-Specific Wordlist</h3>
+            {% if target_specific_terms %}
+            <ul>
+                {% for term in target_specific_terms %}
+                <li>{{ term }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}<p>No target-specific wordlist generated.</p>{% endif %}
+        </div>
         <div class="header">
             <h1>🛡️ Web Domain Reconnaissance Report</h1>
             <p class="timestamp">Generated on: {{ timestamp }}</p>
@@ -539,10 +690,17 @@ class ReportGenerator:
     
     def generate_summary(self):
         """Generate a summary of findings"""
+        subdomains_obj = self.results.get('subdomains', {})
+        if isinstance(subdomains_obj, dict):
+            subdomains_found = sum(len(subdomains) for subdomains in subdomains_obj.values())
+        elif isinstance(subdomains_obj, list):
+            subdomains_found = len(subdomains_obj)
+        else:
+            subdomains_found = 0
         summary = {
             'timestamp': datetime.now().isoformat(),
             'domain': self.target_domain,
-            'subdomains_found': sum(len(subdomains) for subdomains in self.results.get('subdomains', {}).values()),
+            'subdomains_found': subdomains_found,
             'open_ports': len(self.results.get('services', {}).get('open_ports', {})),
             'directories_found': len(self.results.get('directories', [])),
             'api_endpoints_found': len(self.results.get('api_endpoints', [])),

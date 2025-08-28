@@ -105,6 +105,11 @@ class DomainRecon:
         """Discover open ports and services"""
         self.results['services'] = self.service_disc.discover_services(COMMON_PORTS)
     
+    def web_crawl(self, crawl_level: str = 'smart', wordlist_path: str = None):
+        """Run web crawling, directory bruteforce, and API discovery using WebCrawler.run_crawl_level"""
+        logging.info(f"Starting web crawl for {self.domain} (level: {crawl_level})")
+        crawl_results = self.web_crawler.run_crawl_level(crawl_level, wordlist_path)
+        self.results['web_crawl'] = crawl_results
     def web_fingerprinting(self):
         """Fingerprint web technologies with AI enhancement"""
         logging.info("Starting web technology fingerprinting")
