@@ -3,3 +3,5 @@
 src/*.log
 results/
 src/recon_results_*/
+*/**/crawler_results.json
+*/**/web_crawler.log
