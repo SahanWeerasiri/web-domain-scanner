@@ -7,7 +7,11 @@ from urllib.parse import urlparse, urljoin
 import urllib3
 import json
 from typing import List, Dict, Any, Optional
-from ai_integration import AIIntegration
+
+import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from modules.ai_integration import AIIntegration
 
 # Disable SSL warnings
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -391,16 +395,19 @@ class WebCrawler:
         
         return results
 
-    def scrape_page_content(self, url: str, max_content_length: int = 5000) -> Optional[Dict[str, Any]]:
+    def scrape_page_content(self, url: str, max_content_length: int = 5000, headers: dict = None) -> Optional[Dict[str, Any]]:
         """Scrape and extract meaningful content from a webpage"""
         try:
             verify_ssl = self._should_verify_ssl(url)
-            
+            req_headers = self.session.headers.copy()
+            if headers:
+                req_headers.update(headers)
             response = self.session.get(
                 url, 
                 timeout=10, 
                 allow_redirects=True, 
-                verify=verify_ssl
+                verify=verify_ssl,
+                headers=req_headers
             )
             response.raise_for_status()
             
@@ -890,8 +897,8 @@ class WebCrawler:
         
         # Adjust API discovery based on level
         max_endpoints = 100 if level == 'quick' else 300 if level == 'smart' else 1000
-        api_wordlist_path = None if level == 'quick' else wordlist_path
-        
+        api_wordlist_path = None if level == 'quick' else '../config/wordlists/api_endpoints.txt'
+
         api_results = self.api_discovery(
             wordlist_path=api_wordlist_path,
             max_endpoints=max_endpoints

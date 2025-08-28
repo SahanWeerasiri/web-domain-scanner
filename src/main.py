@@ -80,95 +80,11 @@ class DomainRecon:
         """Discover open ports and services"""
         self.results['services'] = self.service_disc.discover_services(COMMON_PORTS)
     
-    def web_fingerprinting(self):
-        """Fingerprint web technologies"""
-        self.results['web_technologies'] = self.web_crawler.web_fingerprinting()
-    
-    def directory_bruteforce(self):
-        """Brute force common web directories"""
-        wordlist_path = create_web_wordlist(self.output_dir)
-        self.results['directories'] = self.web_crawler.directory_bruteforce(wordlist_path)
-    
-    def api_discovery(self):
-        """Discover common API endpoints"""
-        logging.info("Starting API discovery")
-        self.results['api_endpoints'] = []
-        
-        # Default common endpoints
-        common_endpoints = [
-            'api', 'api/v1', 'rest', 'graphql', 
-            'swagger', 'swagger.json', 'api-docs',
-            'graphiql', 'v1', 'v2', 'oauth', 'calculator'
-        ]
-        
-        base_urls = [
-            f"http://{self.domain}",
-            f"https://{self.domain}",
-            f"http://www.{self.domain}",
-            f"https://www.{self.domain}"
-        ]
-        
-        # Try to scrape content and generate AI-powered endpoints
-        ai_endpoints = []
-        successful_scrape = False
-        
-        if self.ai_integration.gemini_api_key:
-            for base_url in base_urls:
-                page_content = self.web_crawler.scrape_page_content(base_url, headers=REQUEST_HEADERS)
-                if page_content:
-                    successful_scrape = True
-                    ai_endpoints = self.ai_integration.generate_ai_endpoints(page_content, self.domain)
-                    if ai_endpoints:
-                        logging.info(f"Generated {len(ai_endpoints)} endpoints from {base_url} (AI or fallback analysis)")
-                        break
-                    else:
-                        logging.warning(f"No endpoints generated from {base_url}")
-                else:
-                    logging.warning(f"Failed to scrape {base_url}")
-        else:
-            # Even without API key, try intelligent fallback analysis
-            for base_url in base_urls:
-                page_content = self.web_crawler.scrape_page_content(base_url, headers=REQUEST_HEADERS)
-                if page_content:
-                    successful_scrape = True
-                    ai_endpoints = self.ai_integration.generate_intelligent_fallback_endpoints(page_content)
-                    if ai_endpoints:
-                        logging.info(f"Generated {len(ai_endpoints)} endpoints from {base_url} using content analysis")
-                        break
-                else:
-                    logging.warning(f"Failed to scrape {base_url}")
-            
-            if not successful_scrape:
-                logging.info("No content could be scraped for intelligent endpoint generation")
-        
-        # Combine default and AI-generated endpoints
-        all_endpoints = list(set(common_endpoints + ai_endpoints))
-        ai_count = len(ai_endpoints)
-        default_count = len(common_endpoints)
-        total_count = len(all_endpoints)
-        
-        logging.info(f"Testing {total_count} total endpoints ({ai_count} from analysis, {default_count} default)")
-        
-        found_endpoints = []
-        for base_url in base_urls:
-            for endpoint in all_endpoints:
-                url = f"{base_url}/{endpoint}"
-                try:
-                    response = requests.get(url, timeout=3, verify=False if 'netlify.app' in url else True)
-                    if response.status_code < 400:
-                        endpoint_info = {
-                            'url': url,
-                            'status': response.status_code,
-                            'content_type': response.headers.get('Content-Type'),
-                            'source': 'content_analysis' if endpoint in ai_endpoints else 'default'
-                        }
-                        found_endpoints.append(endpoint_info)
-                        source_type = 'analyzed' if endpoint in ai_endpoints else 'default'
-                        logging.info(f"Found {source_type} endpoint: {url} ({response.status_code})")
-                except requests.RequestException:
-                    continue
-        
-        self.results['api_endpoints'] = found_endpoints
+    def web_crawl(self, crawl_level: str = 'smart', wordlist_path: str = None):
+        """Run web crawling, directory bruteforce, and API discovery using WebCrawler.run_crawl_level"""
+        logging.info(f"Starting web crawl for {self.domain} (level: {crawl_level})")
+        crawl_results = self.web_crawler.run_crawl_level(crawl_level, wordlist_path)
+        self.results['web_crawl'] = crawl_results
     
     def cloud_detection(self):
         """Detect cloud services and CDNs"""

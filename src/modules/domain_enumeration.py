@@ -7,7 +7,10 @@ import time
 from typing import List, Dict, Set
 import random
 
-import utils
+import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+import modules.utils as utils
 
 class EnumerationConfig:
     """Configuration management for enumeration parameters"""
@@ -21,7 +24,26 @@ class EnumerationConfig:
         self.thread_count = 10
         self.rate_limiting_enabled = True
 
-class EnhancedDomainEnumeration:
+class DomainEnumeration:
+    def subdomain_discovery(self, wordlist=None):
+        """
+        Public method to perform subdomain discovery and store results in self.results['subdomains'].
+        Optionally accepts a wordlist for brute force.
+        """
+        # Use enhanced_active_enumeration if wordlist is provided, else passive + active
+        discovered = set()
+        if wordlist:
+            discovered.update(self.enhanced_active_enumeration(wordlist))
+        else:
+            # Combine passive and active
+            self.passive_enumeration()
+            discovered.update(self._extract_subdomains_from_passive())
+            discovered.update(self._extract_subdomains_from_active())
+            discovered.update(self._extract_subdomains_from_dns())
+        # Verify subdomains
+        verified = self._verify_subdomains(discovered)
+        self.results['subdomains'] = verified
+        return verified
     def __init__(self, domain, config=None):
         self.domain = domain
         self.config = config or EnumerationConfig()
@@ -460,7 +482,7 @@ class RateLimiter:
 # === USAGE EXAMPLE ===
 if __name__ == "__main__":
     domain = "online.uom.lk"
-    enumerator = EnhancedDomainEnumeration(domain)
+    enumerator = DomainEnumeration(domain)
     
     # Run comprehensive enumeration
     enumerator.passive_enumeration()
