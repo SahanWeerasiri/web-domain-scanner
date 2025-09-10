@@ -9,9 +9,15 @@ import time
 from typing import List, Dict, Set
 import random
 import json
+import base64
 
 import os
 import sys
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import modules.utils as utils
 
@@ -247,6 +253,17 @@ class DomainEnumeration:
             'shodan': self._query_shodan(),
             'virustotal': self._query_virustotal_certs()
         }
+        
+        # Aggregate all subdomains from SSL certificate sources
+        all_ssl_subdomains = set()
+        for api_name, subdomains in apis.items():
+            if isinstance(subdomains, list):
+                all_ssl_subdomains.update(subdomains)
+                logging.info(f"{api_name} contributed {len(subdomains)} subdomains")
+        
+        apis['aggregated_subdomains'] = list(all_ssl_subdomains)
+        logging.info(f"Total SSL certificate subdomains: {len(all_ssl_subdomains)}")
+        
         return apis
 
     def _query_censys(self) -> List[str]:
@@ -264,8 +281,107 @@ class DomainEnumeration:
     def _query_virustotal_certs(self) -> List[str]:
         """Query VirusTotal certificates"""
         logging.info("Querying VirusTotal")
-        # Implementation for VirusTotal API
-        return []
+        
+        api_key = os.getenv('VIRUSTOTAL_API_KEY')
+        
+        if not api_key:
+            logging.warning("VirusTotal API key not found in environment variables")
+            return []
+        
+        try:
+            url = f"https://www.virustotal.com/vtapi/v2/domain/report"
+            params = {
+                'apikey': api_key,
+                'domain': self.domain
+            }
+            
+            response = requests.get(url, params=params, timeout=self.config.timeout)
+            
+            if response.status_code == 200:
+                data = response.json()
+                subdomains = set()
+                
+                # Extract subdomains from various fields
+                subdomain_count_before = len(subdomains)
+                if 'subdomains' in data and isinstance(data['subdomains'], list):
+                    logging.info(f"VirusTotal: Processing {len(data['subdomains'])} subdomains from 'subdomains' field")
+                    for subdomain in data['subdomains']:
+                        if isinstance(subdomain, str) and self.domain in subdomain.lower():
+                            subdomains.add(subdomain.lower())
+                            logging.debug(f"VirusTotal: Added subdomain from 'subdomains': {subdomain.lower()}")
+                
+                subdomain_count_after_subdomains = len(subdomains)
+                logging.info(f"VirusTotal: Found {subdomain_count_after_subdomains - subdomain_count_before} valid subdomains from 'subdomains' field")
+                
+                # Extract from detected URLs if available
+                if 'detected_urls' in data and isinstance(data['detected_urls'], list):
+                    logging.info(f"VirusTotal: Processing {len(data['detected_urls'])} detected URLs")
+                    url_subdomains_count = 0
+                    for url_data in data['detected_urls'][:50]:  # Limit to avoid too much data
+                        if isinstance(url_data, dict) and 'url' in url_data:
+                            url = url_data['url']
+                            if '://' in url:
+                                domain_part = url.split('://')[1].split('/')[0]
+                                if self.domain in domain_part.lower() and domain_part.endswith(self.domain):
+                                    if domain_part.lower() not in subdomains:  # Only log new ones
+                                        logging.debug(f"VirusTotal: Added subdomain from URL: {domain_part.lower()}")
+                                        url_subdomains_count += 1
+                                    subdomains.add(domain_part.lower())
+                    logging.info(f"VirusTotal: Found {url_subdomains_count} new subdomains from detected URLs")
+                
+                # Extract from detected samples if available
+                if 'detected_communicating_samples' in data and isinstance(data['detected_communicating_samples'], list):
+                    logging.info(f"VirusTotal: Processing {len(data['detected_communicating_samples'])} detected samples")
+                    for sample in data['detected_communicating_samples'][:20]:  # Limit to avoid too much data
+                        if isinstance(sample, dict) and 'sha256' in sample:
+                            # Additional parsing could be done here for sample metadata
+                            pass
+                
+                # Log all discovered subdomains
+                subdomain_list = sorted(list(subdomains))
+                logging.info(f"VirusTotal: Total found {len(subdomain_list)} subdomains")
+                
+                if len(subdomain_list) <= 20:
+                    logging.info("VirusTotal: Discovered subdomains:")
+                    for i, subdomain in enumerate(subdomain_list, 1):
+                        logging.info(f"  {i:3d}. {subdomain}")
+                else:
+                    logging.info("VirusTotal: Discovered subdomains (showing first 20):")
+                    for i, subdomain in enumerate(subdomain_list[:20], 1):
+                        logging.info(f"  {i:3d}. {subdomain}")
+                    logging.info(f"  ... and {len(subdomain_list) - 20} more subdomains")
+                    
+                    # Optionally show all if debug level is enabled
+                    if logging.getLogger().isEnabledFor(logging.DEBUG):
+                        logging.debug("VirusTotal: Complete subdomain list:")
+                        for i, subdomain in enumerate(subdomain_list, 1):
+                            logging.debug(f"  {i:3d}. {subdomain}")
+                
+                if len(subdomain_list) > 20:
+                    logging.info(f"VirusTotal: Showing first 20 of {len(subdomain_list)} total subdomains")
+                return list(subdomains)
+            elif response.status_code == 204:
+                logging.info("VirusTotal: No information available for this domain")
+                return []
+            elif response.status_code == 403:
+                logging.error("VirusTotal: API key is invalid or access denied")
+                return []
+            elif response.status_code == 429:
+                logging.warning("VirusTotal: Rate limit exceeded")
+                return []
+            else:
+                logging.warning(f"VirusTotal API returned status {response.status_code}")
+                return []
+                
+        except requests.exceptions.Timeout:
+            logging.warning("VirusTotal request timed out")
+            return []
+        except requests.exceptions.RequestException as e:
+            logging.error(f"VirusTotal request failed: {str(e)}")
+            return []
+        except Exception as e:
+            logging.error(f"Error querying VirusTotal: {str(e)}")
+            return []
 
     def _query_wayback_machine(self) -> Dict:
         """Extract historical subdomains from Wayback Machine"""
@@ -624,6 +740,18 @@ class DomainEnumeration:
         wayback_data = self.results.get('passive_data', {}).get('wayback_machine', {})
         if isinstance(wayback_data, dict) and 'subdomains' in wayback_data:
             subdomains.update(wayback_data['subdomains'])
+        
+        # From SSL certificate APIs
+        ssl_data = self.results.get('passive_data', {}).get('ssl_certificates', {})
+        if isinstance(ssl_data, dict) and 'aggregated_subdomains' in ssl_data:
+            subdomains.update(ssl_data['aggregated_subdomains'])
+        
+        # Also extract from individual SSL sources if available
+        if isinstance(ssl_data, dict):
+            for source_name in ['virustotal', 'censys', 'shodan']:
+                source_data = ssl_data.get(source_name, [])
+                if isinstance(source_data, list):
+                    subdomains.update(source_data)
         
         logging.info(f"Extracted {len(subdomains)} subdomains from passive sources")
         return subdomains
