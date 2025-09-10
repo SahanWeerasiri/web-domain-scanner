@@ -1,14 +1,17 @@
 import socket
 import dns.resolver
+import dns.zone
+import dns.query
 import logging
 import requests
 from concurrent.futures import ThreadPoolExecutor
 import time
 from typing import List, Dict, Set
 import random
+import json
 
+# from . import utils
 import utils
-
 class EnumerationConfig:
     """Configuration management for enumeration parameters"""
     
@@ -21,7 +24,7 @@ class EnumerationConfig:
         self.thread_count = 10
         self.rate_limiting_enabled = True
 
-class EnhancedDomainEnumeration:
+class DomainEnumeration:
     def __init__(self, domain, config=None):
         self.domain = domain
         self.config = config or EnumerationConfig()
@@ -59,50 +62,161 @@ class EnhancedDomainEnumeration:
         }
         return sources
 
-    def _query_crtsh(self) -> List[str]:
+    def _query_crtsh(self) -> Dict:
         """Query crt.sh certificate transparency logs"""
         logging.info("Querying crt.sh")
         result = {}
-        url_ca = f"https://crt.sh/?ca={self.domain}"
-        url_identity = f"https://crt.sh/?identity={self.domain}"
-
-        print("<===============CA data===============>")
-
-        response = requests.get(url_ca)
-
-        if response.status_code == 200:
-            result['ca'] = utils.html_to_json(response.text, self.domain)
-            logging.info(f"Found {len(result['ca'])} CAs in crt.sh for {self.domain}")
-            logging.info(f"Found {len(result['ca'])} CAs in crt.sh for {self.domain}")
-        else:
-            result['ca'] = {"error": "Failed to retrieve data"}
-            logging.error(f"Failed to retrieve CA data from crt.sh for {self.domain}")
-
-        print("<===============Identity data===============>")
-
-        response = requests.get(url_identity)
-
-        if response.status_code == 200:
-            result['identity'] = utils.html_to_json(response.text, self.domain)
-            logging.info(f"Found {len(result['identity'])} identities in crt.sh for {self.domain}")
-            logging.info(f"Found {len(result['identity'])} identities in crt.sh for {self.domain}")
-        else:
-            result['identity'] = {"error": "Failed to retrieve data"}
-            logging.error(f"Failed to retrieve identity data from crt.sh for {self.domain}")
-
+        
+        # Try multiple approaches
+        approaches = [
+            f"https://crt.sh/?q=%25.{self.domain}&output=json",  # Subdomains
+            f"https://crt.sh/?q={self.domain}&output=json",      # Main domain
+            f"https://crt.sh/?q=%.{self.domain}&output=json"     # Alternative wildcard
+        ]
+        
+        subdomains = set()
+        
+        for url in approaches:
+            try:
+                response = requests.get(url, timeout=15)
+                if response.status_code == 200:
+                    data = response.json()
+                    
+                    for entry in data:
+                        # Extract common name and alternative names
+                        common_name = entry.get('common_name', '').strip()
+                        name_value = entry.get('name_value', '').strip()
+                        
+                        # Process common name
+                        if common_name and self.domain in common_name.lower():
+                            clean_name = common_name.lower().replace('*.', '')
+                            if clean_name.endswith(self.domain):
+                                subdomains.add(clean_name)
+                        
+                        # Process alternative names
+                        if name_value:
+                            for name in name_value.split('\n'):
+                                name = name.strip().lower().replace('*.', '')
+                                if name and name.endswith(self.domain):
+                                    subdomains.add(name)
+                    
+                    logging.info(f"Found {len(subdomains)} subdomains from crt.sh approach: {url}")
+                    break  # Stop on first successful request
+                    
+            except requests.exceptions.Timeout:
+                logging.warning(f"Timeout for crt.sh query: {url}")
+                continue
+            except Exception as e:
+                logging.error(f"Error querying crt.sh with {url}: {str(e)}")
+                continue
+        
+        result['subdomains'] = list(subdomains)
+        logging.info(f"Total found {len(result['subdomains'])} unique subdomains from crt.sh")
         return result
 
-    def _query_google_ct(self) -> List[str]:
+    def _query_google_ct(self) -> Dict:
         """Query Google Certificate Transparency"""
         logging.info("Querying Google CT")
-        # Implementation for Google CT
-        return []
+        # Implementation for Google CT via ct.googleapis.com
+        url = f"https://ct.googleapis.com/logs/ct_log_list"
+        # For now, return empty but could implement full CT log querying
+        return {'subdomains': []}
 
-    def _query_certspotter(self) -> List[str]:
+    # def _query_google_ct(self) -> Dict:
+    #     """Query Google Certificate Transparency with detailed logging"""
+    #     logging.info("=== Starting Google CT query for domain: %s ===", self.domain)
+        
+    #     result = {'subdomains': []}
+        
+    #     try:
+    #         url = (
+    #             f"https://transparencyreport.google.com/transparencyreport/api/v3/httpsreport/ct/certsearch"
+    #             f"?include_expired=true&include_subdomains=true&domain={self.domain}"
+    #         )
+    #         logging.info("[Google CT] Sending request to URL: %s", url)
+            
+    #         response = requests.get(url, timeout=self.config.timeout)
+    #         logging.info("[Google CT] Received response with status code: %s", response.status_code)
+            
+    #         if response.status_code != 200:
+    #             logging.warning("[Google CT] Non-200 response. Cannot fetch data.")
+    #             return result
+            
+    #         content = response.text
+            
+    #         # Remove Google API anti-JSON prefix
+    #         if content.startswith(")]}'\n"):
+    #             content = content[5:]
+    #             logging.debug("[Google CT] Removed anti-JSON prefix from response")
+            
+    #         try:
+    #             data = json.loads(content)
+    #             logging.info("[Google CT] JSON parsed successfully")
+                
+    #             if data and isinstance(data, list) and len(data) > 0 and isinstance(data[0], list) and len(data[0]) > 1:
+    #                 entries = data[0][1]
+    #                 logging.info("[Google CT] Found %d entries in response", len(entries))
+                    
+    #                 subdomains = set()
+    #                 for i, entry in enumerate(entries, start=1):
+    #                     if isinstance(entry, list) and len(entry) > 0:
+    #                         domain_name = entry[0]
+    #                         logging.debug("[Google CT] Entry %d: %s", i, domain_name)
+    #                         if self.domain in domain_name and domain_name.endswith(self.domain):
+    #                             subdomains.add(domain_name.lower())
+                    
+    #                 result['subdomains'] = list(subdomains)
+    #                 logging.info("[Google CT] Total unique subdomains found: %d", len(result['subdomains']))
+                    
+    #                 if len(result['subdomains']) == 0:
+    #                     logging.info("[Google CT] No subdomains matched the target domain in entries")
+    #             else:
+    #                 logging.info("[Google CT] Response structure does not contain entries")
+            
+    #         except json.JSONDecodeError as e:
+    #             logging.error("[Google CT] JSON parsing failed: %s", str(e))
+        
+    #     except requests.exceptions.Timeout:
+    #         logging.warning("[Google CT] Request timed out")
+    #     except requests.exceptions.RequestException as e:
+    #         logging.error("[Google CT] Request failed: %s", str(e))
+    #     except Exception as e:
+    #         logging.error("[Google CT] Unexpected error: %s", str(e))
+        
+    #     logging.info("=== Finished Google CT query for domain: %s ===", self.domain)
+    #     logging.info("[Google CT] Subdomains returned: %s", result['subdomains'])
+        
+    #     return result
+
+
+        
+
+    def _query_certspotter(self) -> Dict:
         """Query CertSpotter API"""
         logging.info("Querying CertSpotter")
-        # Implementation for CertSpotter
-        return []
+        # CertSpotter API requires authentication for detailed data
+        # Using their free endpoint for basic subdomain enumeration
+        url = f"https://api.certspotter.com/v1/issuances?domain={self.domain}&include_subdomains=true&expand=dns_names"
+        
+        try:
+            response = requests.get(url, timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                subdomains = set()
+                
+                for entry in data:
+                    dns_names = entry.get('dns_names', [])
+                    for name in dns_names:
+                        if self.domain in name.lower() and not name.startswith('*.'):
+                            subdomains.add(name.lower())
+                
+                return {'subdomains': list(subdomains)}
+            else:
+                logging.warning(f"CertSpotter returned status {response.status_code}")
+                return {'subdomains': []}
+        except Exception as e:
+            logging.error(f"Error querying CertSpotter: {str(e)}")
+            return {'subdomains': []}
 
     def _query_ssl_certificates(self) -> Dict:
         """Query SSL certificate databases"""
@@ -131,11 +245,31 @@ class EnhancedDomainEnumeration:
         # Implementation for VirusTotal API
         return []
 
-    def _query_wayback_machine(self) -> List[str]:
+    def _query_wayback_machine(self) -> Dict:
         """Extract historical subdomains from Wayback Machine"""
         logging.info("Querying Wayback Machine")
-        # Implementation for Wayback Machine API
-        return []
+        
+        try:
+            # Query Wayback Machine for URLs
+            url = f"http://web.archive.org/cdx/search/cdx?url=*.{self.domain}&output=json&fl=original&collapse=urlkey"
+            response = requests.get(url, timeout=10)
+            
+            subdomains = set()
+            if response.status_code == 200:
+                data = response.json()
+                for entry in data[1:]:  # Skip header row
+                    if entry and len(entry) > 0:
+                        original_url = entry[0]
+                        if '://' in original_url:
+                            domain_part = original_url.split('://')[1].split('/')[0]
+                            if self.domain in domain_part and domain_part.endswith(self.domain):
+                                subdomains.add(domain_part.lower())
+            
+            return {'subdomains': list(subdomains)}
+            
+        except Exception as e:
+            logging.error(f"Error querying Wayback Machine: {str(e)}")
+            return {'subdomains': []}
 
     def _query_threat_intel_apis(self) -> Dict:
         """Query threat intelligence APIs"""
@@ -199,13 +333,17 @@ class EnhancedDomainEnumeration:
         
         try:
             # Traditional DNS lookup
-            socket.gethostbyname(full_domain)
-            logging.info(f"Found subdomain: {full_domain}")
+            result = socket.gethostbyname(full_domain)
+            logging.info(f"Found subdomain: {full_domain} -> {result}")
             return full_domain
         except socket.gaierror:
             # Fallback to DNS-over-HTTPS
             if self.config.doh_fallback:
-                return self._doh_query(full_domain)
+                doh_result = self._doh_query(full_domain)
+                if doh_result:
+                    return full_domain
+        except Exception as e:
+            logging.debug(f"Error checking {full_domain}: {e}")
         return None
 
     def _dns_permutation_attack(self) -> List[str]:
@@ -293,8 +431,37 @@ class EnhancedDomainEnumeration:
 
     def _generate_target_specific_terms(self) -> List[str]:
         """Generate target-specific terms based on domain analysis"""
-        # Implementation for target-specific term generation
-        return []
+        target_terms = []
+        
+        # Extract meaningful parts from domain
+        domain_parts = self.domain.split('.')
+        if len(domain_parts) >= 2:
+            organization = domain_parts[0]  # e.g., 'uom' from 'online.uom.lk'
+            
+            # Generate variations based on organization name
+            variations = [
+                f"www{organization}",
+                f"{organization}www",
+                f"mail{organization}",
+                f"{organization}mail",
+                f"test{organization}",
+                f"{organization}test",
+                f"dev{organization}",
+                f"{organization}dev",
+                f"staging{organization}",
+                f"{organization}staging"
+            ]
+            target_terms.extend(variations)
+            
+            # Add common organizational subdomains
+            org_subdomains = [
+                'admin', 'portal', 'intranet', 'extranet', 'vpn',
+                'remote', 'access', 'login', 'auth', 'sso',
+                'ldap', 'directory', 'hr', 'finance', 'it'
+            ]
+            target_terms.extend(org_subdomains)
+        
+        return target_terms
 
     def _generate_llm_based_terms(self) -> List[str]:
         """Generate terms using LLM-based approaches"""
@@ -356,14 +523,30 @@ class EnhancedDomainEnumeration:
         self.results['dns_records'] = {}
         
         record_types = ['A', 'AAAA', 'MX', 'NS', 'TXT', 'CNAME', 'SOA']
-        for record in record_types:
-            try:
-                answers = dns.resolver.resolve(self.domain, record)
-                records = [rdata.to_text() for rdata in answers]
-                self.results['dns_records'][record] = records
-                logging.info(f"Found {len(records)} {record} records")
-            except Exception as e:
-                logging.warning(f"Failed to get {record} records: {str(e)}")
+        
+        # Try to get records for both the target domain and its parent domain
+        domains_to_check = [self.domain]
+        
+        # Add parent domain if current domain has subdomain structure
+        domain_parts = self.domain.split('.')
+        if len(domain_parts) > 2:
+            parent_domain = '.'.join(domain_parts[1:])
+            domains_to_check.append(parent_domain)
+            logging.info(f"Also checking parent domain: {parent_domain}")
+        
+        for check_domain in domains_to_check:
+            for record in record_types:
+                try:
+                    answers = dns.resolver.resolve(check_domain, record)
+                    records = [rdata.to_text() for rdata in answers]
+                    
+                    # Store with domain prefix to distinguish
+                    key = f"{record}_{check_domain}" if check_domain != self.domain else record
+                    self.results['dns_records'][key] = records
+                    logging.info(f"Found {len(records)} {record} records for {check_domain}")
+                    
+                except Exception as e:
+                    logging.debug(f"Failed to get {record} records for {check_domain}: {str(e)}")
         
         return self.results['dns_records']
 
@@ -396,30 +579,105 @@ class EnhancedDomainEnumeration:
     def _extract_subdomains_from_passive(self) -> Set[str]:
         """Extract subdomains from passive data"""
         subdomains = set()
-        # Implementation to parse passive data results
+        
+        # Extract from certificate transparency logs
+        ct_data = self.results.get('passive_data', {}).get('certificate_transparency', {})
+        
+        # From crt.sh results
+        crtsh_data = ct_data.get('crt_sh', {})
+        if isinstance(crtsh_data, dict) and 'subdomains' in crtsh_data:
+            subdomains.update(crtsh_data['subdomains'])
+        
+        # From CertSpotter results
+        certspotter_data = ct_data.get('certspotter', {})
+        if isinstance(certspotter_data, dict) and 'subdomains' in certspotter_data:
+            subdomains.update(certspotter_data['subdomains'])
+        
+        # From Google CT results
+        google_ct_data = ct_data.get('google_ct', {})
+        if isinstance(google_ct_data, dict) and 'subdomains' in google_ct_data:
+            subdomains.update(google_ct_data['subdomains'])
+        
+        # From Wayback Machine results
+        wayback_data = self.results.get('passive_data', {}).get('wayback_machine', {})
+        if isinstance(wayback_data, dict) and 'subdomains' in wayback_data:
+            subdomains.update(wayback_data['subdomains'])
+        
+        logging.info(f"Extracted {len(subdomains)} subdomains from passive sources")
         return subdomains
 
     def _extract_subdomains_from_active(self) -> Set[str]:
         """Extract subdomains from active discovery"""
         subdomains = set()
-        # Implementation to parse active discovery results
+        
+        active_data = self.results.get('active_discovery', {})
+        
+        # From brute force results
+        bruteforce_results = active_data.get('bruteforce', [])
+        if isinstance(bruteforce_results, list):
+            subdomains.update(bruteforce_results)
+        
+        # From zone transfer results
+        zone_transfer_results = active_data.get('dns_zone_transfer', [])
+        if isinstance(zone_transfer_results, list):
+            for domain in zone_transfer_results:
+                if isinstance(domain, str) and self.domain in domain:
+                    subdomains.add(f"{domain}.{self.domain}")
+        
+        logging.info(f"Extracted {len(subdomains)} subdomains from active discovery")
         return subdomains
 
     def _extract_subdomains_from_dns(self) -> Set[str]:
         """Extract subdomains from DNS records"""
         subdomains = set()
-        # Implementation to parse DNS records
+        
+        dns_records = self.results.get('dns_records', {})
+        
+        # Extract from CNAME records
+        cname_records = dns_records.get('CNAME', [])
+        for cname in cname_records:
+            if isinstance(cname, str) and self.domain in cname:
+                subdomains.add(cname)
+        
+        # Extract from MX records (mail servers often reveal subdomains)
+        mx_records = dns_records.get('MX', [])
+        for mx in mx_records:
+            if isinstance(mx, str):
+                # MX records format: "priority domain"
+                parts = mx.split()
+                if len(parts) > 1 and self.domain in parts[1]:
+                    subdomains.add(parts[1])
+        
+        # Extract from NS records
+        ns_records = dns_records.get('NS', [])
+        for ns in ns_records:
+            if isinstance(ns, str) and self.domain in ns:
+                subdomains.add(ns)
+        
+        logging.info(f"Extracted {len(subdomains)} subdomains from DNS records")
         return subdomains
 
     def _verify_subdomains(self, subdomains: Set[str]) -> List[str]:
         """Verify subdomains are actually resolvable"""
         verified = []
+        
+        logging.info(f"Verifying {len(subdomains)} discovered subdomains...")
+        
         for subdomain in subdomains:
             try:
-                socket.gethostbyname(subdomain)
+                # Try to resolve the domain
+                result = socket.gethostbyname(subdomain)
                 verified.append(subdomain)
+                logging.info(f"Verified subdomain: {subdomain} -> {result}")
             except socket.gaierror:
+                # Try with DoH as fallback
+                if self.config.doh_fallback:
+                    doh_result = self._doh_query(subdomain)
+                    if doh_result:
+                        verified.append(subdomain)
+                        logging.info(f"Verified subdomain via DoH: {subdomain}")
                 continue
+        
         return verified
 
     # === ERROR HANDLING ===
@@ -460,7 +718,7 @@ class RateLimiter:
 # === USAGE EXAMPLE ===
 if __name__ == "__main__":
     domain = "online.uom.lk"
-    enumerator = EnhancedDomainEnumeration(domain)
+    enumerator = DomainEnumeration(domain)
     
     # Run comprehensive enumeration
     enumerator.passive_enumeration()
