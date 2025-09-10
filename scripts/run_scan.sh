@@ -26,16 +26,65 @@ print_warning() {
     echo -e "${YELLOW}[WARNING]${NC} $1"
 }
 
+# Function to print usage
+print_usage() {
+    echo "Usage: $0 <domain> [options]"
+    echo ""
+    echo "Options:"
+    echo "  --gemini-key <key>     Specify Gemini API key"
+    echo "  --openai-key <key>     Specify OpenAI API key"
+    echo "  --anthropic-key <key>  Specify Anthropic API key"
+    echo "  --async                Use asynchronous processing"
+    echo ""
+    echo "Examples:"
+    echo "  $0 example.com"
+    echo "  $0 example.com --gemini-key YOURKEY"
+    echo "  $0 example.com --openai-key YOURKEY --async"
+    echo "  $0 example.com --gemini-key YOURKEY --openai-key YOURKEY --anthropic-key YOURKEY"
+}
+
 # Check if domain is provided
 if [ $# -eq 0 ]; then
-    echo "Usage: $0 <domain> [gemini-api-key]"
-    echo "Example: $0 example.com"
-    echo "Example: $0 example.com AIzaSyXXXXXXXXXXXX"
+    print_usage
     exit 1
 fi
 
+# Parse arguments
 DOMAIN=$1
-GEMINI_KEY=${2:-""}
+shift
+
+# Default values
+GEMINI_KEY=""
+OPENAI_KEY=""
+ANTHROPIC_KEY=""
+ASYNC_FLAG=""
+
+# Parse options
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --gemini-key)
+            GEMINI_KEY="$2"
+            shift 2
+            ;;
+        --openai-key)
+            OPENAI_KEY="$2"
+            shift 2
+            ;;
+        --anthropic-key)
+            ANTHROPIC_KEY="$2"
+            shift 2
+            ;;
+        --async)
+            ASYNC_FLAG="--async"
+            shift
+            ;;
+        *)
+            print_error "Unknown option: $1"
+            print_usage
+            exit 1
+            ;;
+    esac
+done
 
 # Check if virtual environment exists
 if [ ! -d "$VENV_DIR" ]; then
@@ -50,12 +99,23 @@ source "$VENV_DIR/bin/activate"
 # Change to project directory
 cd "$PROJECT_DIR"
 
+# Build command
+COMMAND="python src/main.py \"$DOMAIN\""
+if [ -n "$GEMINI_KEY" ]; then
+    COMMAND="$COMMAND --gemini-key \"$GEMINI_KEY\""
+fi
+if [ -n "$OPENAI_KEY" ]; then
+    COMMAND="$COMMAND --openai-key \"$OPENAI_KEY\""
+fi
+if [ -n "$ANTHROPIC_KEY" ]; then
+    COMMAND="$COMMAND --anthropic-key \"$ANTHROPIC_KEY\""
+fi
+if [ -n "$ASYNC_FLAG" ]; then
+    COMMAND="$COMMAND $ASYNC_FLAG"
+fi
+
 # Run the scanner
 print_status "Starting domain reconnaissance for: $DOMAIN"
-if [ -n "$GEMINI_KEY" ]; then
-    python src/main.py "$DOMAIN" --gemini-key "$GEMINI_KEY"
-else
-    python src/main.py "$DOMAIN"
-fi
+eval $COMMAND
 
 print_status "Scan completed! Check the generated output directory for results."

@@ -1,6 +1,6 @@
 # Web Domain Scanner
 
-A comprehensive Python-based web domain reconnaissance tool that performs security scanning including subdomain discovery, service enumeration, web crawling, API endpoint discovery, and cloud service detection with AI-powered endpoint discovery.
+A comprehensive Python-based web domain reconnaissance tool that performs security scanning including subdomain discovery, service enumeration, web crawling, API endpoint discovery, and cloud service detection with advanced multi-provider AI-powered endpoint discovery.
 
 ## 🚀 Quick Start
 
@@ -12,8 +12,8 @@ cd web-domain-scanner
 # 2. Run automated setup
 ./scripts/setup_environment.sh
 
-# 3. Configure API key (optional)
-nano .env  # Add your Gemini API key
+# 3. Configure API keys (optional)
+nano .env  # Add your AI provider API keys
 
 # 4. Run a scan
 ./scripts/run_scan.sh example.com
@@ -23,18 +23,27 @@ nano .env  # Add your Gemini API key
 
 - **🔍 Subdomain Discovery** - DNS brute force enumeration
 - **🌐 Service Discovery** - Port scanning and service identification
-- **🛠️ Web Fingerprinting** - Technology stack detection
+- **🛠️ Web Fingerprinting** - AI-enhanced technology stack detection
 - **📁 Directory Brute Force** - Common directory discovery
-- **🤖 AI-Powered API Discovery** - Intelligent endpoint detection
+- **🤖 Multi-Provider AI API Discovery** - Intelligent endpoint detection with multiple AI models
+  - Supports Google Gemini
+  - Supports OpenAI GPT models
+  - Supports Anthropic Claude
+  - Includes feedback-based learning system
+  - Fallback to rule-based discovery when AI is unavailable
 - **☁️ Cloud Service Detection** - AWS S3 buckets and CDN identification
 - **📊 Professional Reports** - HTML and JSON output with security assessment
+- **⚡ Asynchronous Processing** - Optional async API for improved performance
 
 ## 📋 Prerequisites
 
 - Python 3.7+
 - nmap and dnsutils
 - Internet connection
-- Gemini API key (optional, for AI features)
+- API keys (optional, for enhanced AI features):
+  - Google Gemini API key
+  - OpenAI API key
+  - Anthropic API key
 
 ## 🛠️ Installation
 
@@ -77,8 +86,13 @@ source .venv/bin/activate
 # Basic scan
 python src/main.py example.com
 
-# With AI-powered endpoint discovery
-python src/main.py example.com --gemini-key YOUR_API_KEY
+# With AI-powered endpoint discovery (multiple options)
+python src/main.py example.com --gemini-key YOUR_GEMINI_KEY
+python src/main.py example.com --openai-key YOUR_OPENAI_KEY
+python src/main.py example.com --anthropic-key YOUR_CLAUDE_KEY
+
+# Use multiple AI providers with asynchronous processing
+python src/main.py example.com --gemini-key YOUR_GEMINI_KEY --openai-key YOUR_OPENAI_KEY --async
 ```
 
 ### Quick Start Scripts
@@ -87,8 +101,8 @@ python src/main.py example.com --gemini-key YOUR_API_KEY
 # Complete scan with environment setup
 ./scripts/run_scan.sh example.com
 
-# With Gemini API key
-./scripts/run_scan.sh example.com YOUR_GEMINI_API_KEY
+# With specific API key
+./scripts/run_scan.sh example.com --gemini-key YOUR_GEMINI_KEY
 ```
 
 ## 📊 Sample Output
@@ -114,8 +128,10 @@ The scanner performs comprehensive reconnaissance:
 ### Environment Variables (.env)
 
 ```env
-# Gemini AI API Key (for AI-powered endpoint discovery)
+# AI Provider API Keys
 GEMINI_API_KEY=your_gemini_api_key_here
+OPENAI_API_KEY=your_openai_api_key_here
+ANTHROPIC_API_KEY=your_anthropic_api_key_here
 
 # Scanner Configuration
 MAX_THREADS=15
@@ -130,11 +146,12 @@ LOG_LEVEL=INFO
 VERIFY_SSL=true
 ```
 
-### Get Gemini API Key
+### Get AI Provider API Keys
 
-1. Visit [Google AI Studio](https://aistudio.google.com/apikey)
-2. Create a new API key
-3. Add to your `.env` file
+1. **Google Gemini API Key**: Visit [Google AI Studio](https://aistudio.google.com/apikey)
+2. **OpenAI API Key**: Get from [OpenAI Platform](https://platform.openai.com/api-keys)
+3. **Anthropic Claude API Key**: Get from [Anthropic Console](https://console.anthropic.com/keys)
+4. Add to your `.env` file
 
 ## 🛡️ Security Notice
 
