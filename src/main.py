@@ -75,14 +75,14 @@ class DomainRecon:
         )
         self.cloud_detector = CloudDetector(self.domain)
         
-    def run_all(self):
+    def run_all(self, scan_mode='quick'):
         """Run all reconnaissance modules"""
         logging.info(f"Starting comprehensive reconnaissance for {self.domain}")
         
         try:
             self.subdomain_discovery()
             self.dns_enumeration()
-            self.service_discovery()
+            self.service_discovery(scan_mode)
             self.web_fingerprinting()
             # self.directory_bruteforce()
             # self.api_discovery()
@@ -101,9 +101,14 @@ class DomainRecon:
         """Enumerate DNS records"""
         self.results['dns_records'] = self.domain_enum.dns_enumeration()
     
-    def service_discovery(self):
-        """Discover open ports and services"""
-        self.results['services'] = self.service_disc.discover_services(COMMON_PORTS)
+    def service_discovery(self, scan_mode='quick'):
+        """
+        Discover open ports and services with different scanning modes
+        
+        Args:
+            scan_mode (str): 'quick', 'smart', or 'deep'
+        """
+        self.results['services'] = self.service_disc.discover_services(COMMON_PORTS, scan_mode)
     
     def web_crawl(self, crawl_level: str = 'smart', wordlist_path: str = None):
         """Run web crawling, directory bruteforce, and API discovery using WebCrawler.run_crawl_level"""
@@ -286,6 +291,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Comprehensive Domain Reconnaissance Tool")
     parser.add_argument("domain", help="Domain to investigate")
     
+    # Scan mode arguments
+    scan_group = parser.add_argument_group('Port Scanning Options')
+    scan_group.add_argument("--scan-mode", choices=['quick', 'smart', 'deep'], 
+                           default='quick', help="Port scanning mode: 'quick' (common ports), 'smart' (fuzzing), 'deep' (nmap/rustscan)")
+    
     # AI provider arguments
     ai_group = parser.add_argument_group('AI Integration Options')
     ai_group.add_argument("--gemini-key", help="Gemini API key for AI-powered endpoint discovery")
@@ -295,6 +305,16 @@ if __name__ == "__main__":
     
     args = parser.parse_args()
     
+    print(f"🎯 Starting reconnaissance for {args.domain}")
+    print(f"📊 Port scan mode: {args.scan_mode.upper()}")
+    if args.scan_mode == 'quick':
+        print("   - Scanning common ports only (fastest)")
+    elif args.scan_mode == 'smart':
+        print("   - Intelligent fuzzing and extended port discovery")
+    elif args.scan_mode == 'deep':
+        print("   - Comprehensive scan using external tools (nmap/rustscan)")
+    print()
+    
     recon = DomainRecon(
         args.domain, 
         gemini_api_key=args.gemini_key,
@@ -302,4 +322,4 @@ if __name__ == "__main__":
         anthropic_api_key=args.anthropic_key,
         use_async=args.use_async
     )
-    recon.run_all()
+    recon.run_all(args.scan_mode)
