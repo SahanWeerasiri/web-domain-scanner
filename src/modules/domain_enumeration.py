@@ -425,19 +425,76 @@ class DomainEnumeration:
 
     def enhanced_active_enumeration(self, wordlist=None):
         """Advanced active enumeration with multiple techniques"""
-        logging.info("Starting enhanced active enumeration")
+        logging.info("=== Starting Enhanced Active Enumeration ===")
+        logging.info(f"Target domain: {self.domain}")
+        logging.info(f"Rate limit: {self.config.rate_limit} requests/sec")
+        logging.info(f"Timeout: {self.config.timeout} seconds")
+        logging.info(f"Thread count: {self.config.thread_count}")
+        
+        start_time = time.time()
         
         # Dynamic wordlist generation
         if not wordlist:
+            logging.info("No wordlist provided, generating dynamic wordlist")
             wordlist = self._generate_dynamic_wordlist()
+        else:
+            logging.info(f"Using provided wordlist with {len(wordlist)} entries")
         
         # Multi-method discovery
-        methods = {
-            'bruteforce': self._bruteforce_with_rate_limiting(wordlist),
-            'dns_permutations': self._dns_permutation_attack(),
-            'dns_zone_transfer': self._attempt_zone_transfer(),
-            'dns_cache_snooping': self._dns_cache_snooping()
-        }
+        methods = {}
+        
+        try:
+            logging.info("--- Starting Brute Force Attack ---")
+            bf_start = time.time()
+            methods['bruteforce'] = self._bruteforce_with_rate_limiting(wordlist)
+            bf_duration = time.time() - bf_start
+            logging.info(f"Brute force completed in {bf_duration:.2f}s, found {len(methods['bruteforce'])} subdomains")
+            
+        except Exception as e:
+            logging.error(f"Brute force attack failed: {e}")
+            methods['bruteforce'] = []
+        
+        try:
+            logging.info("--- Starting DNS Permutation Attack ---")
+            perm_start = time.time()
+            methods['dns_permutations'] = self._dns_permutation_attack()
+            perm_duration = time.time() - perm_start
+            logging.info(f"DNS permutations completed in {perm_duration:.2f}s, found {len(methods['dns_permutations'])} subdomains")
+            
+        except Exception as e:
+            logging.error(f"DNS permutation attack failed: {e}")
+            methods['dns_permutations'] = []
+        
+        try:
+            logging.info("--- Attempting DNS Zone Transfer ---")
+            zt_start = time.time()
+            methods['dns_zone_transfer'] = self._attempt_zone_transfer()
+            zt_duration = time.time() - zt_start
+            logging.info(f"Zone transfer attempt completed in {zt_duration:.2f}s, found {len(methods['dns_zone_transfer'])} subdomains")
+            
+        except Exception as e:
+            logging.error(f"DNS zone transfer failed: {e}")
+            methods['dns_zone_transfer'] = []
+        
+        try:
+            logging.info("--- Starting DNS Cache Snooping ---")
+            cs_start = time.time()
+            methods['dns_cache_snooping'] = self._dns_cache_snooping()
+            cs_duration = time.time() - cs_start
+            logging.info(f"DNS cache snooping completed in {cs_duration:.2f}s, found {len(methods['dns_cache_snooping'])} subdomains")
+            
+        except Exception as e:
+            logging.error(f"DNS cache snooping failed: {e}")
+            methods['dns_cache_snooping'] = []
+        
+        total_duration = time.time() - start_time
+        total_found = sum(len(results) for results in methods.values())
+        
+        logging.info("=== Active Enumeration Summary ===")
+        logging.info(f"Total execution time: {total_duration:.2f} seconds")
+        logging.info(f"Total subdomains found: {total_found}")
+        for method, results in methods.items():
+            logging.info(f"  {method}: {len(results)} subdomains")
         
         self.results['active_discovery'] = methods
         return self.results['active_discovery']
@@ -465,6 +522,37 @@ class DomainEnumeration:
         
         return results
 
+    def _handle_enumeration_errors(self, method: str, error: Exception):
+        """Centralized error handling for enumeration methods"""
+        error_msg = f"Error in {method}: {str(error)}"
+        
+        # Log based on error type
+        if isinstance(error, socket.timeout) or "timeout" in str(error).lower():
+            logging.warning(f"Timeout in {method}: {error}")
+        elif isinstance(error, ConnectionError) or "connection" in str(error).lower():
+            logging.warning(f"Connection error in {method}: {error}")
+        elif isinstance(error, dns.resolver.NXDOMAIN):
+            logging.debug(f"Domain not found in {method}: {error}")
+        elif isinstance(error, dns.resolver.NoAnswer):
+            logging.debug(f"No answer in {method}: {error}")
+        else:
+            logging.error(error_msg)
+            
+        # Store error for analysis
+        if 'errors' not in self.results:
+            self.results['errors'] = {}
+        if method not in self.results['errors']:
+            self.results['errors'][method] = []
+        self.results['errors'][method].append(str(error))
+        
+        # Implement specific error recovery strategies
+        if "rate limit" in str(error).lower():
+            logging.warning("Rate limit detected, implementing backoff")
+            time.sleep(random.randint(5, 15))
+        elif "quota" in str(error).lower():
+            logging.warning("API quota exceeded, pausing operations")
+            time.sleep(60)
+
     def _check_subdomain(self, subdomain: str) -> str:
         """Check if subdomain exists with fallback to DoH"""
         full_domain = f"{subdomain}.{self.domain}"
@@ -487,8 +575,50 @@ class DomainEnumeration:
     def _dns_permutation_attack(self) -> List[str]:
         """Generate and check DNS permutations"""
         logging.info("Starting DNS permutation attack")
-        # Implementation for various permutation techniques
-        return []
+        
+        results = []
+        domain_parts = self.domain.split('.')
+        base_name = domain_parts[0] if len(domain_parts) > 1 else self.domain
+        
+        # Common permutation patterns
+        permutation_patterns = [
+            # Character substitutions
+            f"{base_name}1", f"{base_name}2", f"{base_name}01", f"{base_name}02",
+            f"{base_name}-1", f"{base_name}-2", f"{base_name}_1", f"{base_name}_2",
+            # Common prefixes/suffixes
+            f"new-{base_name}", f"old-{base_name}", f"{base_name}-new", f"{base_name}-old",
+            f"test-{base_name}", f"{base_name}-test", f"dev-{base_name}", f"{base_name}-dev",
+            f"prod-{base_name}", f"{base_name}-prod", f"stage-{base_name}", f"{base_name}-stage",
+            # Environment variations
+            f"{base_name}-staging", f"{base_name}-production", f"{base_name}-development",
+            # Regional variations
+            f"{base_name}-us", f"{base_name}-eu", f"{base_name}-asia", f"{base_name}-uk",
+            # Service variations
+            f"api-{base_name}", f"{base_name}-api", f"app-{base_name}", f"{base_name}-app"
+        ]
+        
+        logging.info(f"Generated {len(permutation_patterns)} permutation patterns")
+        
+        # Check each permutation
+        with ThreadPoolExecutor(max_workers=self.config.thread_count) as executor:
+            futures = []
+            for pattern in permutation_patterns:
+                if self.config.rate_limiting_enabled:
+                    self.rate_limiter.acquire()
+                future = executor.submit(self._check_subdomain, pattern)
+                futures.append(future)
+            
+            for future in futures:
+                try:
+                    result = future.result()
+                    if result:
+                        results.append(result)
+                        logging.info(f"Found valid permutation: {result}")
+                except Exception as e:
+                    logging.debug(f"Error in permutation check: {e}")
+        
+        logging.info(f"DNS permutation attack found {len(results)} valid subdomains")
+        return results
 
     def _attempt_zone_transfer(self) -> List[str]:
         """Attempt DNS zone transfer"""
@@ -511,8 +641,60 @@ class DomainEnumeration:
     def _dns_cache_snooping(self) -> List[str]:
         """DNS cache snooping techniques"""
         logging.info("Attempting DNS cache snooping")
-        # Implementation for cache snooping
-        return []
+        
+        results = []
+        
+        # Common public DNS servers to check
+        public_dns_servers = [
+            '8.8.8.8',      # Google
+            '1.1.1.1',      # Cloudflare
+            '208.67.222.222',  # OpenDNS
+            '9.9.9.9'       # Quad9
+        ]
+        
+        # Common subdomains to snoop for
+        common_subdomains = [
+            'www', 'mail', 'ftp', 'admin', 'api', 'test', 'dev', 'staging',
+            'blog', 'shop', 'support', 'vpn', 'remote', 'portal'
+        ]
+        
+        for dns_server in public_dns_servers:
+            try:
+                # Create a custom resolver for this DNS server
+                resolver = dns.resolver.Resolver()
+                resolver.nameservers = [dns_server]
+                resolver.timeout = 2
+                resolver.lifetime = 5
+                
+                logging.info(f"Checking DNS cache on server: {dns_server}")
+                
+                for subdomain in common_subdomains:
+                    full_domain = f"{subdomain}.{self.domain}"
+                    try:
+                        # Attempt to resolve without recursion (cache only)
+                        # Note: This is a simplified approach as true cache snooping 
+                        # requires more sophisticated techniques
+                        answer = resolver.resolve(full_domain, 'A')
+                        if answer:
+                            results.append(full_domain)
+                            logging.info(f"Cache snooping found: {full_domain} via {dns_server}")
+                    except dns.resolver.NXDOMAIN:
+                        # Domain doesn't exist
+                        pass
+                    except dns.resolver.NoAnswer:
+                        # No A record but domain exists
+                        pass
+                    except Exception as e:
+                        logging.debug(f"Cache snooping error for {full_domain} via {dns_server}: {e}")
+                        
+            except Exception as e:
+                logging.warning(f"Failed to setup resolver for {dns_server}: {e}")
+                continue
+        
+        # Remove duplicates
+        results = list(set(results))
+        logging.info(f"DNS cache snooping found {len(results)} potential subdomains")
+        return results
 
     # === DNS-OVER-HTTPS INTEGRATION ===
 
@@ -603,13 +785,121 @@ class DomainEnumeration:
 
     def _generate_llm_based_terms(self) -> List[str]:
         """Generate terms using LLM-based approaches"""
-        # Implementation for LLM integration
-        return []
+        logging.info("Generating LLM-based subdomain terms")
+        
+        # For now, implement a smart term generation based on domain analysis
+        # In a production environment, this could integrate with actual LLM APIs
+        llm_terms = []
+        
+        domain_parts = self.domain.split('.')
+        if len(domain_parts) >= 2:
+            organization = domain_parts[0]
+            tld_context = domain_parts[-1]
+            
+            # Context-aware term generation based on domain characteristics
+            if 'edu' in tld_context or 'university' in organization.lower() or 'college' in organization.lower():
+                # Educational institution terms
+                edu_terms = [
+                    'student', 'faculty', 'library', 'research', 'academics', 'admissions',
+                    'registrar', 'alumni', 'course', 'exam', 'grade', 'scholarship',
+                    'campus', 'dorm', 'housing', 'dining', 'sports', 'clubs'
+                ]
+                llm_terms.extend(edu_terms)
+                logging.info("Generated educational institution terms")
+                
+            elif 'gov' in tld_context or 'government' in organization.lower():
+                # Government terms
+                gov_terms = [
+                    'citizen', 'service', 'department', 'ministry', 'office', 'public',
+                    'policy', 'legislation', 'court', 'justice', 'tax', 'welfare'
+                ]
+                llm_terms.extend(gov_terms)
+                logging.info("Generated government terms")
+                
+            elif 'com' in tld_context or 'business' in organization.lower():
+                # Business terms
+                business_terms = [
+                    'customer', 'client', 'product', 'service', 'sales', 'marketing',
+                    'support', 'billing', 'invoice', 'order', 'payment', 'checkout',
+                    'dashboard', 'account', 'profile', 'settings'
+                ]
+                llm_terms.extend(business_terms)
+                logging.info("Generated business terms")
+            
+            # Technology-related terms (common for most domains)
+            tech_terms = [
+                'api', 'rest', 'graphql', 'webhook', 'oauth', 'sso', 'auth',
+                'cdn', 'cache', 'redis', 'db', 'database', 'backup',
+                'monitor', 'status', 'health', 'metrics', 'logs'
+            ]
+            llm_terms.extend(tech_terms)
+            
+        logging.info(f"Generated {len(llm_terms)} LLM-based terms")
+        return llm_terms
 
     def _generate_permutations(self) -> List[str]:
         """Generate subdomain permutations"""
-        # Implementation for various permutation techniques
-        return []
+        logging.info("Generating subdomain permutations")
+        
+        permutations = []
+        domain_parts = self.domain.split('.')
+        base_name = domain_parts[0] if len(domain_parts) > 1 else self.domain
+        
+        # Character manipulation permutations
+        char_permutations = []
+        
+        # Add/remove characters
+        if len(base_name) > 3:
+            # Remove last character
+            char_permutations.append(base_name[:-1])
+            # Remove first character
+            char_permutations.append(base_name[1:])
+            
+        # Add common characters
+        for char in ['1', '2', '0', '-', '_']:
+            char_permutations.extend([
+                f"{base_name}{char}",
+                f"{char}{base_name}",
+                f"{base_name}{char}{base_name}"
+            ])
+        
+        # Letter substitutions (common typos/variations)
+        substitutions = {
+            'o': '0', '0': 'o', 'i': '1', '1': 'i', 'l': '1', 
+            's': '5', '5': 's', 'e': '3', '3': 'e'
+        }
+        
+        for original, replacement in substitutions.items():
+            if original in base_name:
+                substituted = base_name.replace(original, replacement)
+                char_permutations.append(substituted)
+        
+        # Double letters
+        for i in range(len(base_name)):
+            doubled = base_name[:i] + base_name[i] + base_name[i:]
+            char_permutations.append(doubled)
+        
+        # Common prefix/suffix combinations
+        prefixes = ['new', 'old', 'beta', 'alpha', 'test', 'demo', 'temp']
+        suffixes = ['new', 'old', 'beta', 'test', 'demo', 'backup', 'temp']
+        
+        for prefix in prefixes:
+            char_permutations.append(f"{prefix}{base_name}")
+            char_permutations.append(f"{prefix}-{base_name}")
+            char_permutations.append(f"{prefix}_{base_name}")
+            
+        for suffix in suffixes:
+            char_permutations.append(f"{base_name}{suffix}")
+            char_permutations.append(f"{base_name}-{suffix}")
+            char_permutations.append(f"{base_name}_{suffix}")
+        
+        # Remove duplicates and invalid entries
+        char_permutations = list(set([p for p in char_permutations if p and len(p) > 1]))
+        
+        permutations.extend(char_permutations)
+        
+        logging.info(f"Generated {len(permutations)} character-based permutations")
+        return permutations
 
     def _merge_wordlists(self, wordlist_sources: Dict) -> List[str]:
         """Merge and deduplicate wordlists"""
@@ -832,18 +1122,6 @@ class DomainEnumeration:
 
     # === ERROR HANDLING ===
 
-    def _handle_enumeration_errors(self, method_name: str, exception: Exception):
-        """Centralized error handling with appropriate logging"""
-        logging.error(f"Error in {method_name}: {str(exception)}")
-        
-        # Implement specific error recovery strategies
-        if "rate limit" in str(exception).lower():
-            logging.warning("Rate limit detected, implementing backoff")
-            time.sleep(random.randint(5, 15))
-        elif "quota" in str(exception).lower():
-            logging.warning("API quota exceeded, pausing operations")
-            time.sleep(60)
-
 class RateLimiter:
     """Token bucket rate limiter implementation"""
     
@@ -867,7 +1145,7 @@ class RateLimiter:
 
 # === USAGE EXAMPLE ===
 if __name__ == "__main__":
-    domain = "online.uom.lk"
+    domain = "cse.mrt.ac.lk"
     enumerator = DomainEnumeration(domain)
     
     # Run comprehensive enumeration
