@@ -1,17 +1,20 @@
 import time
 import requests
 import logging
-from bs4 import BeautifulSoup
 import re
-from urllib.parse import urlparse, urljoin
-import urllib3
 import json
-from typing import List, Dict, Any, Optional
-
 import os
 import sys
+from bs4 import BeautifulSoup
+from urllib.parse import urlparse, urljoin
+from typing import List, Dict, Any, Optional
+import urllib3
+
+# Add project root to path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from modules.ai_integration import AIIntegration
+from common.network_utils import NetworkUtils
+from common.constants import SSL_VERIFY_EXCEPTIONS, WEB_EXTENSIONS, COMMON_API_ENDPOINTS
 
 # Disable SSL warnings
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -19,21 +22,12 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 class WebCrawler:
     def __init__(self, domain: str):
         self.domain = domain
-        self.session = requests.Session()
-        self.session.headers.update({
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-        })
+        self.session = NetworkUtils.create_session()
         self.discovered_urls = set()
         self.discovered_apis = set()
 
         # Initialize AI integration
         self.ai_integration = AIIntegration()
-        
-        # SSL verification exceptions
-        self.ssl_verify_exceptions = [
-            'netlify.app', 'herokuapp.com', 'github.io', 
-            'gitlab.io', 'firebaseapp.com'
-        ]
         
         # Define crawl levels
         self.crawl_levels = {
@@ -66,45 +60,14 @@ class WebCrawler:
             f"https://www.{self.domain}"
         ]
     
-    def _should_verify_ssl(self, url: str) -> bool:
-        """
-        Determine if SSL should be verified for a given URL.
-        Tries with SSL verification first, then falls back if needed.
-        """
-        # First, try with a simple domain check
-        problematic_domains = [
-            'netlify.app', 'herokuapp.com', 'github.io', 
-            'gitlab.io', 'firebaseapp.com'
-        ]
-        
-        if any(domain in url for domain in problematic_domains):
-            return False
-        
-        # For other domains, we can try a quick test
-        try:
-            # Try a HEAD request with SSL verification
-            response = requests.head(url, timeout=2, verify=True)
-            return True  # SSL verification worked
-        except requests.exceptions.SSLError:
-            return False  # SSL verification failed
-        except:
-            return True  # Other error, default to verification
-
     def web_fingerprinting(self) -> Dict[str, Any]:
         """Fingerprint web technologies"""
         logging.info("Starting web fingerprinting")
         results = {}
         
         for url in self._get_base_urls():
-            try:
-                verify_ssl = self._should_verify_ssl(url)
-                response = self.session.get(
-                    url, 
-                    timeout=5, 
-                    allow_redirects=True,
-                    verify=verify_ssl
-                )
-                
+            response = NetworkUtils.safe_request(url, session=self.session)
+            if response:
                 server = response.headers.get('Server', 'Not found')
                 tech = response.headers.get('X-Powered-By', 'Not found')
                 
@@ -117,9 +80,8 @@ class WebCrawler:
                 }
                 
                 logging.info(f"Web fingerprint for {url}: Server={server}, Tech={tech}")
-                
-            except requests.RequestException as e:
-                logging.warning(f"Failed to fingerprint {url}: {str(e)}")
+            else:
+                logging.warning(f"Failed to fingerprint {url}")
         
         return results
 
@@ -179,14 +141,13 @@ class WebCrawler:
                         visited.add(url)
 
                         try:
-                            verify_ssl = self._should_verify_ssl(url)
-                            response = self.session.get(
+                            response = NetworkUtils.safe_request(
                                 url, 
-                                timeout=3, 
-                                verify=verify_ssl
+                                timeout=3,
+                                session=self.session
                             )
 
-                            if response.status_code < 400:
+                            if response and response.status_code < 400:
                                 found_item = {
                                     'url': url,
                                     'status': response.status_code,
@@ -286,14 +247,13 @@ class WebCrawler:
             for endpoint in api_endpoints:
                 url = f"{base_url}{endpoint}"
                 try:
-                    verify_ssl = self._should_verify_ssl(url)
-                    response = self.session.get(
+                    response = NetworkUtils.safe_request(
                         url, 
-                        timeout=3, 
-                        verify=verify_ssl
+                        timeout=3,
+                        session=self.session
                     )
                     
-                    if response.status_code < 400:
+                    if response and response.status_code < 400:
                         endpoint_info = {
                             'url': url,
                             'status': response.status_code,
@@ -318,13 +278,14 @@ class WebCrawler:
                             
                             for i, query in enumerate(introspection_queries):
                                 try:
-                                    introspection_response = self.session.post(
+                                    introspection_response = NetworkUtils.safe_request(
                                         url,
+                                        method='POST',
                                         json=query,
                                         timeout=3,
-                                        verify=verify_ssl
+                                        session=self.session
                                     )
-                                    if introspection_response.status_code == 200:
+                                    if introspection_response and introspection_response.status_code == 200:
                                         # Check if response contains GraphQL schema data
                                         intro_content = introspection_response.text.lower()
                                         if ('__schema' in intro_content or 
@@ -347,8 +308,8 @@ class WebCrawler:
                             for swagger_path in swagger_paths:
                                 swagger_url = f"{base_url}{swagger_path}"
                                 try:
-                                    swagger_response = self.session.get(swagger_url, timeout=2, verify=verify_ssl)
-                                    if swagger_response.status_code == 200:
+                                    swagger_response = NetworkUtils.safe_request(swagger_url, timeout=2, session=self.session)
+                                    if swagger_response and swagger_response.status_code == 200:
                                         endpoint_info['swagger_files'] = endpoint_info.get('swagger_files', [])
                                         endpoint_info['swagger_files'].append({
                                             'url': swagger_url,
@@ -372,10 +333,10 @@ class WebCrawler:
                             
                             for method in http_methods:
                                 try:
-                                    method_response = self.session.request(
-                                        method, url, timeout=2, verify=verify_ssl
+                                    method_response = NetworkUtils.safe_request(
+                                        url, method=method, timeout=2, session=self.session
                                     )
-                                    if method_response.status_code != 405:  # Method Not Allowed
+                                    if method_response and method_response.status_code != 405:  # Method Not Allowed
                                         endpoint_info['supported_methods'].append(method)
                                 except:
                                     pass
@@ -398,19 +359,19 @@ class WebCrawler:
     def scrape_page_content(self, url: str, max_content_length: int = 5000, headers: dict = None) -> Optional[Dict[str, Any]]:
         """Scrape and extract meaningful content from a webpage"""
         try:
-            verify_ssl = self._should_verify_ssl(url)
             req_headers = self.session.headers.copy()
             if headers:
                 req_headers.update(headers)
-            response = self.session.get(
+            response = NetworkUtils.safe_request(
                 url, 
-                timeout=10, 
-                allow_redirects=True, 
-                verify=verify_ssl,
-                headers=req_headers
+                timeout=10,
+                headers=req_headers,
+                session=self.session
             )
-            response.raise_for_status()
             
+            if not response:
+                return None
+                
             soup = BeautifulSoup(response.content, 'html.parser')
             
             # Extract various elements

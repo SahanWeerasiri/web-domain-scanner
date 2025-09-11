@@ -1,5 +1,14 @@
 import requests
 import logging
+import time
+import argparse
+import os
+import sys
+
+# Add project root to path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from common.network_utils import NetworkUtils
+from common.constants import CDN_BLOCK_PHRASES
 
 class CloudDetector:
     def __init__(self, domain):

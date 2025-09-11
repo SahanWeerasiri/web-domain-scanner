@@ -2,14 +2,17 @@ import socket
 import dns.resolver
 import logging
 import requests
-from concurrent.futures import ThreadPoolExecutor
 import time
-from typing import List, Dict, Set
 import random
-
 import os
 import sys
+from concurrent.futures import ThreadPoolExecutor
+from typing import List, Dict, Set
+
+# Add project root to path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from common.network_utils import NetworkUtils, RateLimiter
+from common.constants import DEFAULT_TIMEOUT
 import modules.utils as utils
 import modules.fingerprinting_wapplyzer as fingerprinting_wapplyzer
 
@@ -18,7 +21,7 @@ class EnumerationConfig:
     
     def __init__(self):
         self.rate_limit = 10  # requests per second
-        self.timeout = 5      # seconds per request
+        self.timeout = DEFAULT_TIMEOUT
         self.retry_attempts = 3
         self.doh_fallback = True
         self.cdn_bypass = True

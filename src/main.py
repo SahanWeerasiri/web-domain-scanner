@@ -1,15 +1,10 @@
 import os
 import logging
-import json
 import asyncio
-from datetime import datetime
-from urllib.parse import urlparse
-import re
-from pathlib import Path
-
 import requests
+from datetime import datetime
+from pathlib import Path
 import sys
-import os
 
 # Add project root to path for imports
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -25,6 +20,7 @@ from modules.ai_integration import AIIntegration
 from modules.cloud_detection import CloudDetector
 from modules.utils import sanitize_domain, create_output_directory, create_web_wordlist
 from output.report_generator import ReportGenerator
+from common.network_utils import NetworkUtils
 
 # Import config
 from config.settings import (

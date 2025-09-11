@@ -5,21 +5,26 @@ import threading
 import time
 import os
 import sys
+import argparse
+import json
 from concurrent.futures import ThreadPoolExecutor, as_completed
+
+# Add project root to path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from common.network_utils import NetworkUtils
+from common.constants import COMMON_SERVICES
 
 class ServiceDiscovery:
     def __init__(self, domain):
         self.domain = domain
         self.results = {}
-        self.target_ip = None
+        self.target_ip = NetworkUtils.resolve_domain(domain)
         
-        # Resolve domain to IP
-        try:
-            self.target_ip = socket.gethostbyname(self.domain)
-            logging.info(f"[+] Resolved {self.domain} to IP: {self.target_ip}")
-        except socket.gaierror as e:
-            logging.error(f"[-] Failed to resolve domain {self.domain}: {e}")
-            raise
+        if not self.target_ip:
+            logging.error(f"[-] Failed to resolve domain {domain}")
+            raise ValueError(f"Could not resolve domain: {domain}")
+        
+        logging.info(f"[+] Resolved {domain} to IP: {self.target_ip}")
 
     def discover_services(self, common_ports, scan_mode='quick'):
         """
@@ -56,19 +61,10 @@ class ServiceDiscovery:
         }
         
         def check_port(port):
-            try:
-                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-                    sock.settimeout(2)
-                    result = sock.connect_ex((self.target_ip, port))
-                    if result == 0:
-                        try:
-                            banner = sock.recv(1024).decode().strip()
-                            return port, banner
-                        except:
-                            return port, "No banner"
-            except Exception as e:
-                logging.debug(f"Error checking port {port}: {e}")
-                return None
+            if NetworkUtils.check_port(self.target_ip, port):
+                banner = NetworkUtils.get_banner(self.target_ip, port)
+                return port, banner
+            return None
         
         start_time = time.time()
         with ThreadPoolExecutor(max_workers=20) as executor:
@@ -261,15 +257,7 @@ class ServiceDiscovery:
 
     def _identify_service(self, port, banner):
         """Identify service based on port and banner"""
-        common_services = {
-            20: 'FTP-DATA', 21: 'FTP', 22: 'SSH', 23: 'TELNET',
-            25: 'SMTP', 53: 'DNS', 80: 'HTTP', 110: 'POP3',
-            143: 'IMAP', 443: 'HTTPS', 993: 'IMAPS', 995: 'POP3S',
-            1433: 'MSSQL', 1521: 'ORACLE', 3306: 'MYSQL', 3389: 'RDP',
-            5432: 'POSTGRESQL', 5900: 'VNC', 6379: 'REDIS', 27017: 'MONGODB'
-        }
-        
-        service = common_services.get(port, 'Unknown')
+        service = COMMON_SERVICES.get(port, 'Unknown')
         
         # Enhance identification using banner
         if banner and banner != "No banner":
