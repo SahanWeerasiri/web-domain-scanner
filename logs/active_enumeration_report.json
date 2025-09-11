@@ -1,0 +1,192 @@
+{
+  "timestamp": "2025-09-10 21:32:24",
+  "summary": {
+    "total_scenarios": 2,
+    "successful_scenarios": 2,
+    "success_rate": 100.0
+  },
+  "detailed_results": {
+    "example.com": {
+      "wordlist_generation": {
+        "count": 172,
+        "duration": 0.0002741813659667969,
+        "sample": [
+          "extranet",
+          "customer",
+          "static",
+          "remote",
+          "example-",
+          "settings",
+          "cache",
+          "service",
+          "profile",
+          "oldexample"
+        ]
+      },
+      "target-specific_terms": {
+        "count": 25,
+        "duration": 3.814697265625e-06,
+        "sample": [
+          "wwwexample",
+          "examplewww",
+          "mailexample",
+          "examplemail",
+          "testexample"
+        ]
+      },
+      "llm-based_terms": {
+        "count": 34,
+        "duration": 7.796287536621094e-05,
+        "sample": [
+          "customer",
+          "client",
+          "product",
+          "service",
+          "sales"
+        ]
+      },
+      "permutations": {
+        "count": 68,
+        "duration": 7.963180541992188e-05,
+        "sample": [
+          "example-old",
+          "example_backup",
+          "examp1e",
+          "example-",
+          "examplenew"
+        ]
+      },
+      "zone_transfer": {
+        "count": 0,
+        "duration": 0.19273924827575684,
+        "sample": []
+      },
+      "cache_snooping": {
+        "count": 1,
+        "duration": 8.189556121826172,
+        "sample": [
+          "www.example.com"
+        ]
+      },
+      "active_enumeration": {
+        "total_found": 2,
+        "duration": 24.947238206863403,
+        "methods": {
+          "bruteforce": {
+            "count": 1,
+            "subdomains": [
+              "www.example.com"
+            ]
+          },
+          "dns_permutations": {
+            "count": 0,
+            "subdomains": []
+          },
+          "dns_zone_transfer": {
+            "count": 0,
+            "subdomains": []
+          },
+          "dns_cache_snooping": {
+            "count": 1,
+            "subdomains": [
+              "www.example.com"
+            ]
+          }
+        }
+      },
+      "error_handling": "success",
+      "total_duration": 33.330960512161255
+    },
+    "university.edu": {
+      "wordlist_generation": {
+        "count": 179,
+        "duration": 0.0011398792266845703,
+        "sample": [
+          "extranet",
+          "static",
+          "scholarship",
+          "remote",
+          "univer5ity",
+          "cache",
+          "university-",
+          "university_demo",
+          "universityy",
+          "housing"
+        ]
+      },
+      "target-specific_terms": {
+        "count": 25,
+        "duration": 1.239776611328125e-05,
+        "sample": [
+          "wwwuniversity",
+          "universitywww",
+          "mailuniversity",
+          "universitymail",
+          "testuniversity"
+        ]
+      },
+      "llm-based_terms": {
+        "count": 36,
+        "duration": 0.00039386749267578125,
+        "sample": [
+          "student",
+          "faculty",
+          "library",
+          "research",
+          "academics"
+        ]
+      },
+      "permutations": {
+        "count": 72,
+        "duration": 0.00043082237243652344,
+        "sample": [
+          "new-university",
+          "universitydemo",
+          "univer5ity",
+          "university-",
+          "university_demo"
+        ]
+      },
+      "zone_transfer": {
+        "count": 0,
+        "duration": 0.16836094856262207,
+        "sample": []
+      },
+      "cache_snooping": {
+        "count": 1,
+        "duration": 7.477870225906372,
+        "sample": [
+          "www.university.edu"
+        ]
+      },
+      "active_enumeration": {
+        "total_found": 2,
+        "duration": 39.63020658493042,
+        "methods": {
+          "bruteforce": {
+            "count": 1,
+            "subdomains": [
+              "www.university.edu"
+            ]
+          },
+          "dns_permutations": {
+            "count": 0,
+            "subdomains": []
+          },
+          "dns_zone_transfer": {
+            "count": 0,
+            "subdomains": []
+          },
+          "dns_cache_snooping": {
+            "count": 1,
+            "subdomains": [
+              "www.university.edu"
+            ]
+          }
+        }
+      },
+      "error_handling": "success",
+      "total_duration": 47.28895950317383
+    }
+  }
+}
