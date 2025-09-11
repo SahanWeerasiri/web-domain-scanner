@@ -84,9 +84,9 @@ class DomainRecon:
             self.dns_enumeration()
             self.service_discovery()
             self.web_fingerprinting()
-            self.directory_bruteforce()
-            self.api_discovery()
-            self.cloud_detection()
+            # self.directory_bruteforce()
+            # self.api_discovery()
+            # self.cloud_detection()
             
             logging.info(f"Reconnaissance completed. Results saved in {self.output_dir}")
             self.save_final_report()
@@ -113,32 +113,33 @@ class DomainRecon:
     def web_fingerprinting(self):
         """Fingerprint web technologies with AI enhancement"""
         logging.info("Starting web technology fingerprinting")
-        
-        # Get basic fingerprinting results from web crawler
-        basic_tech = self.web_crawler.web_fingerprinting()
-        
-        # Try to enhance with AI technology detection
-        enhanced_tech = set(basic_tech)
-        
-        # Attempt to get page content for AI-powered detection
+
+        # Run web fingerprinting and assign results correctly
+        self.domain_enum.web_fingerprinting()
+        self.results['web_technologies'] = self.domain_enum.results.get('web_technologies', {})
+
+        # Try to enhance with AI technology detection for additional insights
         base_urls = [
-            f"https://{self.domain}",
+            # f"https://{self.domain}",
             f"http://{self.domain}",
-            f"https://www.{self.domain}",
-            f"http://www.{self.domain}"
+            # f"https://www.{self.domain}",
+            # f"http://www.{self.domain}"
         ]
-        
+
+        ai_detected_tech = []
         for base_url in base_urls:
             page_content = self.web_crawler.scrape_page_content(base_url, headers=REQUEST_HEADERS)
             if page_content:
                 # Use AI integration to detect technologies
-                ai_detected_tech = self.ai_integration.detect_technology(page_content)
-                if ai_detected_tech:
-                    logging.info(f"AI detected additional technologies: {', '.join(ai_detected_tech)}")
-                    enhanced_tech.update(ai_detected_tech)
+                ai_tech = self.ai_integration.detect_technology(page_content)
+                if ai_tech:
+                    logging.info(f"AI detected additional technologies: {', '.join(ai_tech)}")
+                    ai_detected_tech.extend(ai_tech)
                 break
-        
-        self.results['web_technologies'] = list(enhanced_tech)
+
+        # Add AI-detected technologies as additional metadata if found
+        if ai_detected_tech:
+            self.results['ai_detected_technologies'] = list(set(ai_detected_tech))
     
     def directory_bruteforce(self):
         """Brute force common web directories"""
@@ -158,10 +159,10 @@ class DomainRecon:
         ]
         
         base_urls = [
-            f"http://{self.domain}",
+            # f"http://{self.domain}",
             f"https://{self.domain}",
-            f"http://www.{self.domain}",
-            f"https://www.{self.domain}"
+            # f"http://www.{self.domain}",
+            # f"https://www.{self.domain}"
         ]
         
         # Try to scrape content and generate AI-powered endpoints

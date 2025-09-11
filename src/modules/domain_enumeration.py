@@ -11,6 +11,7 @@ import os
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import modules.utils as utils
+import modules.fingerprinting_wapplyzer as fingerprinting_wapplyzer
 
 class EnumerationConfig:
     """Configuration management for enumeration parameters"""
@@ -25,6 +26,38 @@ class EnumerationConfig:
         self.rate_limiting_enabled = True
 
 class DomainEnumeration:
+    def web_fingerprinting(self):
+        """Fingerprint web technologies and store in self.results['web_technologies']"""
+        logging.info("Starting web fingerprinting")
+        self.results['web_technologies'] = {}
+
+        urls_to_check = [
+            # f"http://{self.domain}",
+            f"https://{self.domain}",
+            # f"http://www.{self.domain}",
+            # f"https://www.{self.domain}"
+        ]
+
+        for url in urls_to_check:
+            try:
+                response = self.session.get(url, timeout=5, allow_redirects=True)
+                server = response.headers.get('Server', 'Not found')
+                x_powered_by = response.headers.get('X-Powered-By', 'Not found')
+                wappalyzer_tech = fingerprinting_wapplyzer.fingerprint_technology(url)
+                # Ensure wappalyzer_tech is a list for JSON serialization
+                wappalyzer_tech_list = list(wappalyzer_tech) if wappalyzer_tech else []
+                logging.info(f"Technologies for {url}: {wappalyzer_tech_list}")
+                self.results['web_technologies'][url] = {
+                    'server': server,
+                    'x_powered_by': x_powered_by,
+                    'wappalyzer_technologies': wappalyzer_tech_list,
+                    'status_code': response.status_code,
+                    'content_type': response.headers.get('Content-Type')
+                }
+                logging.info(f"Web fingerprint for {url}: Server={server}, X-Powered-By={x_powered_by}")
+            except requests.RequestException as e:
+                logging.warning(f"Failed to fingerprint {url}: {str(e)}")
+
     def subdomain_discovery(self, wordlist=None):
         """
         Public method to perform subdomain discovery and store results in self.results['subdomains'].
@@ -488,6 +521,7 @@ if __name__ == "__main__":
     enumerator.passive_enumeration()
     enumerator.dns_enumeration()
     enumerator.enhanced_active_enumeration()
+    enumerator.web_fingerprinting()
     
     # Get final results
     final_subdomains = enumerator.correlate_results()

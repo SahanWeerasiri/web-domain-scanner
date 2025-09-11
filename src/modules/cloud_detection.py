@@ -47,7 +47,7 @@ class CloudDetector:
                 direct_response = requests.get(direct_url, timeout=8)
                 direct_content = direct_response.text
                 safe_domain = self.domain.replace('https://', '').replace('http://', '').replace('/', '_')
-                direct_html_filename = f"direct_{safe_domain}.html"
+                direct_html_filename = f"results/direct_{safe_domain}.html"
                 print(f"[STEP] Saving direct web content to: {direct_html_filename}")
                 with open(direct_html_filename, "w", encoding="utf-8") as f:
                     f.write(direct_content)
@@ -134,7 +134,7 @@ class CloudDetector:
                 "enable javascript and cookies", "cf-ray", "__cf_chl_"
             ]
             safe_domain = self.domain.replace('https://', '').replace('http://', '').replace('/', '_')
-            html_filename = f"downloaded_{safe_domain}.html"
+            html_filename = f"results/downloaded_{safe_domain}.html"
             print(f"[BYPASS] Saving bypassed HTML to {html_filename}")
             try:
                 with open(html_filename, "w", encoding="utf-8") as f:
@@ -146,7 +146,7 @@ class CloudDetector:
             if any(phrase in page_source.lower() for phrase in block_phrases):
                 print("[BYPASS] CDN challenge detected in bypassed content, unable to bypass fully.")
                 logging.warning("CDN challenge detected in bypassed content, unable to bypass fully.")
-                failed_filename = f"bypass_failed_{safe_domain}.html"
+                failed_filename = f"results/bypass_failed_{safe_domain}.html"
                 print(f"[BYPASS] Saving failed bypass HTML to {failed_filename}")
                 try:
                     with open(failed_filename, "w", encoding="utf-8") as f:
