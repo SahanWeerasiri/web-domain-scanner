@@ -1,4 +1,6 @@
+from concurrent.futures import ThreadPoolExecutor
 import socket
+from typing import Dict, List, Set
 import dns.resolver
 import dns.zone
 import dns.query
