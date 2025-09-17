@@ -41,7 +41,7 @@ try:
     
     # Add the path where fingerprinting_wapplyzer module might be located
     sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
-    import fingerprinting_wapplyzer
+    import modules.domain_enumeration.utils.fingerprinting_wapplyzer as fingerprinting_wapplyzer
     WAPPALYZER_AVAILABLE = True
 except ImportError:
     WAPPALYZER_AVAILABLE = False
