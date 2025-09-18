@@ -1,0 +1,47 @@
+services:
+  web-domain-scanner:
+    build: .
+    container_name: web-domain-scanner
+    ports:
+      - "8000:8000"
+    environment:
+      # API Configuration
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      # AI API Keys (set these in .env file or pass as environment variables)
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      # Scanner Configuration
+      - MAX_THREADS=10
+      - REQUEST_TIMEOUT=30
+      - DEFAULT_SCAN_MODE=quick
+    volumes:
+      # Mount logs and output directories for persistence
+      - ./logs:/app/logs
+      - ./output:/app/output
+      # Mount config for easy configuration changes
+      - ./config:/app/config:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    # Security settings
+    security_opt:
+      - no-new-privileges:true
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
+
+networks:
+  default:
+    name: web-domain-scanner-network

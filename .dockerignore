@@ -1,0 +1,83 @@
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Documentation
+*.md
+docs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+test_env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs (keep the directory structure but ignore log files)
+*.log
+logs/*.log
+logs/*.json
+
+# Test files
+tests/
+pytest.ini
+.pytest_cache/
+
+# Temporary files
+*.tmp
+temp/
+.temp/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Environment files (sensitive data)
+.env
+.env.local
+.env.production
+
+# Scripts that are not needed in container
+scripts/setup_environment.sh
+scripts/setup_demo_environment.sh
+scripts/deploy.sh
+
+# Backup files
+*.bak
+*.backup
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+
+# MyPy
+.mypy_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Reconnaissance output (runtime data)
+reconnaissance.log
+recon_states.json
+recon_states.json.bak
