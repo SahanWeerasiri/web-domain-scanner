@@ -15,22 +15,33 @@ class CloudDetector:
         self.domain = domain
         self.results = {}
 
-    def detect_cloud_services(self, common_buckets_patterns, cdn_indicators):
-        """Detect cloud services and CDNs"""
+    def detect_cloud_services(self, common_buckets_patterns, cdn_indicators, **kwargs):
+        """Detect cloud services and CDNs with configurable parameters"""
         logging.info("Starting cloud/CDN detection")
         print("[STEP] Initializing cloud/CDN detection...")
         self.results['cloud_services'] = {}
+        
+        # Extract additional configuration parameters
+        request_timeout = kwargs.get('timeout', 3)
+        max_buckets = kwargs.get('max_buckets', None)
+        
         print("[STEP] Generating common bucket patterns...")
         common_buckets = [
             pattern.format(domain=self.domain) for pattern in common_buckets_patterns
         ]
+        
+        # Limit buckets if max_buckets is specified
+        if max_buckets and len(common_buckets) > max_buckets:
+            common_buckets = common_buckets[:max_buckets]
+            print(f"[STEP] Limited bucket testing to {max_buckets} buckets")
+            
         print(f"[STEP] Common buckets generated: {common_buckets}")
         s3_buckets = []
         for bucket in common_buckets:
             url = f"http://{bucket}.s3.amazonaws.com"
             print(f"[STEP] Checking S3 bucket: {url}")
             try:
-                response = requests.head(url, timeout=3)
+                response = requests.head(url, timeout=request_timeout)
                 print(f"[STEP] S3 response for {url}: {response.status_code}")
                 if response.status_code in [200, 403]:
                     s3_buckets.append({
@@ -53,7 +64,7 @@ class CloudDetector:
             try:
                 direct_url = f"https://{self.domain}" if not self.domain.startswith("http") else self.domain
                 print(f"[STEP] Getting direct web content from: {direct_url}")
-                direct_response = requests.get(direct_url, timeout=8)
+                direct_response = requests.get(direct_url, timeout=request_timeout + 5)  # Longer timeout for content retrieval
                 direct_content = direct_response.text
                 safe_domain = self.domain.replace('https://', '').replace('http://', '').replace('/', '_')
                 direct_html_filename = f"results/direct_{safe_domain}.html"
@@ -87,7 +98,7 @@ class CloudDetector:
                 print(f"[STEP] Exception getting/saving direct web content: {str(direct_err)}")
 
             print(f"[STEP] Checking CDN via headers for: https://{self.domain}")
-            response = requests.head(f"https://{self.domain}", timeout=3)
+            response = requests.head(f"https://{self.domain}", timeout=request_timeout)
             server = response.headers.get('Server', '').lower()
             via = response.headers.get('Via', '').lower()
             print(f"[STEP] Server header: {server}")
@@ -122,9 +133,20 @@ class CloudDetector:
 
         return self.results['cloud_services']
     def bypass_cdn_and_get_content(self):
-        """Use SeleniumBase to bypass CDN and get real web content."""
+        """
+        Use SeleniumBase to bypass CDN and get real web content.
+        
+        This method uses the proven working approach:
+        - SeleniumBase with undetected Chrome (uc=True)
+        - Headless mode for efficiency
+        - 8-second wait (proven timing)
+        - Clean driver management
+        """
         try:
             print("[BYPASS] Importing SeleniumBase and initializing driver...")
+            
+            # ============= PROVEN WORKING METHOD =============
+            # This exact approach works reliably for CDN bypass
             from seleniumbase import Driver
             driver = Driver(uc=True, headless=True)
             url = f"https://{self.domain}" if not self.domain.startswith("http") else self.domain
@@ -132,11 +154,12 @@ class CloudDetector:
             driver.get(url)
             print("[BYPASS] Waiting for page to load and CDN challenge to pass...")
             import time
-            time.sleep(8)
+            time.sleep(8)  # Proven timing - don't change this
             print("[BYPASS] Fetching page source...")
             page_source = driver.page_source
             print("[BYPASS] Quitting driver...")
             driver.quit()
+            # ============= END PROVEN METHOD =============
             block_phrases = [
                 "just a moment", "checking your browser", "cloudflare",
                 "attention required", "security check", "challenge platform",

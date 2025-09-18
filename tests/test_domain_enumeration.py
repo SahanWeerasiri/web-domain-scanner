@@ -4,6 +4,7 @@ import unittest
 import logging
 import sys
 import os
+import time
 from unittest.mock import patch, MagicMock, Mock
 import socket
 import dns.resolver
@@ -26,7 +27,7 @@ class TestDomainEnumeration(unittest.TestCase):
     
     def setUp(self):
         """Set up test fixtures"""
-        self.test_domain = "example.com"
+        self.test_domain = "online.uom.lk"
         self.config = EnumerationConfig()
         self.config.rate_limit = 100  # Faster for testing
         self.config.timeout = 1
@@ -80,7 +81,7 @@ class TestDomainEnumeration(unittest.TestCase):
         mock_gethostbyname.assert_called_once_with(f'www.{self.test_domain}')
         
         # Check logging
-        self.assertTrue(any('Found subdomain: www.example.com' in msg for msg in self.log_messages))
+        self.assertTrue(any(f'Found subdomain: www.{self.test_domain}' in msg for msg in self.log_messages))
     
     @patch('socket.gethostbyname')
     @patch.object(DomainEnumeration, '_doh_query')
@@ -127,7 +128,7 @@ class TestDomainEnumeration(unittest.TestCase):
         self.assertGreater(len(terms), 0)
         
         # Should contain organization-specific terms
-        org_name = self.test_domain.split('.')[0]  # 'example'
+        org_name = self.test_domain.split('.')[0] 
         self.assertTrue(any(org_name in term for term in terms))
     
     def test_generate_llm_based_terms(self):
@@ -162,7 +163,7 @@ class TestDomainEnumeration(unittest.TestCase):
         self.assertGreater(len(permutations), 0)
         
         # Check for expected permutation patterns
-        base_name = self.test_domain.split('.')[0]  # 'example'
+        base_name = self.test_domain.split('.')[0] 
         expected_patterns = [f'{base_name}1', f'new{base_name}', f'{base_name}-test']
         
         # At least some expected patterns should be present
@@ -179,14 +180,14 @@ class TestDomainEnumeration(unittest.TestCase):
         
         self.assertIsInstance(results, list)
         # Should have found some permutations ending with '1'
-        self.assertTrue(any('1.example.com' in result for result in results))
+        self.assertTrue(any(f'1.{self.test_domain}' in result for result in results))
     
     @patch('dns.resolver.resolve')
     def test_attempt_zone_transfer(self, mock_resolve):
         """Test DNS zone transfer attempt"""
         # Mock nameserver discovery
         mock_ns_record = Mock()
-        mock_ns_record.__str__ = Mock(return_value='ns1.example.com')
+        mock_ns_record.__str__ = Mock(return_value=f'ns1.{self.test_domain}')
         mock_resolve.return_value = [mock_ns_record]
         
         # Mock zone transfer failure (expected behavior)
@@ -226,10 +227,10 @@ class TestDomainEnumeration(unittest.TestCase):
         """Test complete enhanced active enumeration"""
         # Mock all methods
         mock_wordlist.return_value = ['www', 'mail', 'api']
-        mock_bruteforce.return_value = ['www.example.com', 'mail.example.com']
-        mock_permutation.return_value = ['example1.example.com']
+        mock_bruteforce.return_value = [f'www.{self.test_domain}', f'mail.{self.test_domain}']
+        mock_permutation.return_value = [f'{self.test_domain.split('.')[0]}1.{self.test_domain}']
         mock_zone_transfer.return_value = []
-        mock_cache_snoop.return_value = ['api.example.com']
+        mock_cache_snoop.return_value = [f'api.{self.test_domain}']
         
         results = self.enumerator.enhanced_active_enumeration()
         
@@ -261,8 +262,8 @@ class TestDomainEnumeration(unittest.TestCase):
         
         self.assertIsInstance(results, list)
         self.assertEqual(len(results), 2)  # www and mail
-        self.assertIn('www.example.com', results)
-        self.assertIn('mail.example.com', results)
+        self.assertIn(f'www.{self.test_domain}', results)
+        self.assertIn(f'mail.{self.test_domain}', results)
     
     def test_error_handling(self):
         """Test error handling functionality"""
@@ -275,8 +276,7 @@ class TestDomainEnumeration(unittest.TestCase):
         self.assertIn('test_method', self.enumerator.results['errors'])
         self.assertIn('Test error', self.enumerator.results['errors']['test_method'])
     
-    @patch('requests.get')
-    def test_doh_query(self, mock_get):
+    def test_doh_query(self):
         """Test DNS-over-HTTPS query"""
         # Mock successful DoH response
         mock_response = Mock()
@@ -284,12 +284,15 @@ class TestDomainEnumeration(unittest.TestCase):
         mock_response.json.return_value = {
             'Answer': [{'data': '1.2.3.4'}]
         }
-        mock_get.return_value = mock_response
         
-        result = self.enumerator._doh_query('test.example.com')
-        
-        self.assertEqual(result, 'test.example.com')
-        mock_get.assert_called()
+        # Mock the session on the instance
+        with patch.object(self.enumerator, 'session') as mock_session:
+            mock_session.get.return_value = mock_response
+            
+            result = self.enumerator._doh_query(f'test.{self.test_domain}')
+            
+            self.assertEqual(result, f'test.{self.test_domain}')
+            mock_session.get.assert_called()
     
     def test_merge_wordlists(self):
         """Test wordlist merging functionality"""
@@ -313,7 +316,7 @@ class TestIntegration(unittest.TestCase):
     def setUp(self):
         """Set up for integration tests"""
         # Use a real domain for integration testing, but with safe methods only
-        self.test_domain = "example.com"
+        self.test_domain = "online.uom.lk"
         self.config = EnumerationConfig()
         self.config.rate_limit = 5  # Be conservative with real requests
         self.config.timeout = 3
@@ -336,14 +339,14 @@ class TestIntegration(unittest.TestCase):
     
     @unittest.skipIf(os.getenv('SKIP_NETWORK_TESTS') == '1', "Network tests disabled")
     def test_real_domain_enumeration(self):
-        """Test enumeration against a real domain (example.com)"""
+        """Test enumeration against a real domain"""
         # Only test safe methods that don't cause load
         config = EnumerationConfig()
         config.rate_limit = 1  # Very conservative
         config.timeout = 5
         config.thread_count = 1
         
-        enumerator = DomainEnumeration("example.com", config)
+        enumerator = DomainEnumeration("online.uom.lk", config)
         
         # Test DNS enumeration (safe)
         dns_results = enumerator.dns_enumeration()

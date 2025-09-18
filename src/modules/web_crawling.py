@@ -60,6 +60,52 @@ class WebCrawler:
             f"https://www.{self.domain}"
         ]
     
+    def _scrape_single_page(self, url: str) -> Dict[str, Any]:
+        """
+        Scrape content from a single page for AI analysis
+        
+        Args:
+            url: URL to scrape
+            
+        Returns:
+            Dict containing page content
+        """
+        try:
+            response = NetworkUtils.safe_request(url, session=self.session)
+            if response and response.status_code == 200:
+                soup = BeautifulSoup(response.content, 'html.parser')
+                
+                # Extract meaningful content
+                title = soup.find('title')
+                title_text = title.get_text().strip() if title else ""
+                
+                # Remove script and style elements
+                for script in soup(["script", "style"]):
+                    script.decompose()
+                
+                # Get text content
+                text_content = soup.get_text()
+                
+                # Clean up text
+                lines = (line.strip() for line in text_content.splitlines())
+                chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
+                text = ' '.join(chunk for chunk in chunks if chunk)
+                
+                # Limit text length for AI processing
+                if len(text) > 5000:
+                    text = text[:5000] + "..."
+                
+                return {
+                    'url': url,
+                    'title': title_text,
+                    'content': text,
+                    'headers': dict(response.headers) if response else {}
+                }
+        except Exception as e:
+            logging.warning(f"Failed to scrape {url}: {str(e)}")
+        
+        return None
+    
     def web_fingerprinting(self) -> Dict[str, Any]:
         """Fingerprint web technologies"""
         logging.info("Starting web fingerprinting")
@@ -182,7 +228,7 @@ class WebCrawler:
         return found_dirs
 
     def api_discovery(self, custom_paths: List[str] = None, wordlist_path: str = None, 
-                     max_endpoints: int = 500) -> Dict[str, Any]:
+                     max_endpoints: int = 500, crawl_level: str = "smart") -> Dict[str, Any]:
         """
         Discover APIs and web endpoints including GraphQL and Swagger
         
@@ -190,6 +236,7 @@ class WebCrawler:
             custom_paths: Additional custom paths to check for APIs
             wordlist_path: Path to API endpoints wordlist file
             max_endpoints: Maximum number of endpoints to test
+            crawl_level: Crawl level ("quick", "smart", "deep") - affects endpoint generation
         """
         logging.info("Starting API discovery")
         results = {
@@ -209,6 +256,48 @@ class WebCrawler:
         # Add custom paths if provided
         if custom_paths:
             api_endpoints.extend(custom_paths)
+        
+        # For smart and deep modes, generate intelligent API endpoints
+        if crawl_level in ['smart', 'deep'] and hasattr(self, 'ai_integration') and self.ai_integration:
+            logging.info(f"Generating intelligent API endpoints for {crawl_level} mode")
+            try:
+                # Get scraped content for AI-enhanced generation
+                scraped_content = None
+                try:
+                    scraped_content = self._scrape_single_page(f"https://{self.domain}")
+                except:
+                    try:
+                        scraped_content = self._scrape_single_page(f"http://{self.domain}")
+                    except:
+                        scraped_content = None
+                
+                # Generate intelligent API endpoints using AI
+                if scraped_content:
+                    try:
+                        # Use the AI integration's target-specific wordlist for API endpoints
+                        ai_endpoints = self.ai_integration.generate_target_specific_wordlist(
+                            page_content=scraped_content,
+                            domain=self.domain,
+                            context="API endpoint discovery",
+                            num_terms=30 if crawl_level == 'smart' else 50
+                        )
+                        if ai_endpoints:
+                            # Convert to API-style paths and add leading slash if needed
+                            api_style_endpoints = []
+                            for ep in ai_endpoints:
+                                # Add API-specific prefixes
+                                api_style_endpoints.extend([
+                                    f"/api/{ep}", f"/api/v1/{ep}", f"/{ep}",
+                                    f"/rest/{ep}", f"/services/{ep}"
+                                ])
+                            
+                            limit = 30 if crawl_level == 'smart' else 50
+                            api_endpoints.extend(api_style_endpoints[:limit])
+                            logging.info(f"Generated {len(api_style_endpoints[:limit])} intelligent API endpoints from content analysis")
+                    except Exception as e:
+                        logging.warning(f"AI endpoint generation failed: {str(e)}")
+            except Exception as e:
+                logging.warning(f"Intelligent API endpoint generation failed: {str(e)}")
         
         # Load API endpoints from wordlist file if provided
         wordlist_endpoints = []
@@ -862,7 +951,8 @@ class WebCrawler:
 
         api_results = self.api_discovery(
             wordlist_path=api_wordlist_path,
-            max_endpoints=max_endpoints
+            max_endpoints=max_endpoints,
+            crawl_level=level
         )
         results['api_discovery'] = api_results
         
