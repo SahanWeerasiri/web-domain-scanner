@@ -30,13 +30,32 @@ try:
     from .dns_enumeration_module.dns_enumeration import DNSEnumerator
     from .web_fingerprinting.web_fingerprinting import WebFingerprinter
 except ImportError:
-    # Fallback to absolute imports (when run directly)
-    from config import EnumerationConfig
-    from base import ResultsManager, SubdomainValidator, EnumerationErrorHandler
-    from passive.passive_enumeration import PassiveEnumerator
-    from active.active_enumeration import ActiveEnumerator
-    from dns_enumeration_module.dns_enumeration import DNSEnumerator
-    from web_fingerprinting.web_fingerprinting import WebFingerprinter
+    # Fallback to absolute imports (when run directly or when package context differs)
+    # Prefer the full package path to avoid colliding with the top-level `config` package
+    try:
+        from modules.domain_enumeration.config import EnumerationConfig
+        from modules.domain_enumeration.base import ResultsManager, SubdomainValidator, EnumerationErrorHandler
+        from modules.domain_enumeration.passive.passive_enumeration import PassiveEnumerator
+        from modules.domain_enumeration.active.active_enumeration import ActiveEnumerator
+        from modules.domain_enumeration.dns_enumeration_module.dns_enumeration import DNSEnumerator
+        from modules.domain_enumeration.web_fingerprinting.web_fingerprinting import WebFingerprinter
+    except ImportError:
+        # Last-resort: try the plain module paths (useful for some execution contexts)
+        try:
+            from modules.domain_enumeration.config import EnumerationConfig
+            from modules.domain_enumeration.base import ResultsManager, SubdomainValidator, EnumerationErrorHandler
+            from modules.domain_enumeration.passive.passive_enumeration import PassiveEnumerator
+            from modules.domain_enumeration.active.active_enumeration import ActiveEnumerator
+            from modules.domain_enumeration.dns_enumeration_module.dns_enumeration import DNSEnumerator
+            from modules.domain_enumeration.web_fingerprinting.web_fingerprinting import WebFingerprinter
+        except ImportError:
+            # Fallback to plain imports for alternate execution contexts
+            from config import EnumerationConfig
+            from base import ResultsManager, SubdomainValidator, EnumerationErrorHandler
+            from passive.passive_enumeration import PassiveEnumerator
+            from active.active_enumeration import ActiveEnumerator
+            from dns_enumeration_module.dns_enumeration import DNSEnumerator
+            from web_fingerprinting.web_fingerprinting import WebFingerprinter
 
 # Import AI Integration module for enhanced enumeration
 if TYPE_CHECKING:

@@ -32,8 +32,14 @@ load_dotenv()
 # Add parent directories to path for imports
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from config import EnumerationConfig
-from base import EnumerationErrorHandler, SubdomainValidator
+try:
+    # Prefer package-qualified imports to avoid ambiguity with top-level `config`
+    from modules.domain_enumeration.config import EnumerationConfig
+    from modules.domain_enumeration.base import EnumerationErrorHandler, SubdomainValidator
+except ImportError:
+    # Fallback to relative imports for other execution contexts
+    from config import EnumerationConfig
+    from base import EnumerationErrorHandler, SubdomainValidator
 
 # Import AI Integration module for intelligent subdomain prediction
 if TYPE_CHECKING:

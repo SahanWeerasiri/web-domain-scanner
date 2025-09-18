@@ -33,8 +33,12 @@ from typing import Dict, List, Set, Optional, TYPE_CHECKING
 # Add parent directories to path for imports
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from config import EnumerationConfig
-from base import EnumerationErrorHandler, RateLimiter, SubdomainValidator
+try:
+    from modules.domain_enumeration.config import EnumerationConfig
+    from modules.domain_enumeration.base import EnumerationErrorHandler, RateLimiter, SubdomainValidator
+except ImportError:
+    from config import EnumerationConfig
+    from base import EnumerationErrorHandler, RateLimiter, SubdomainValidator
 
 logger = logging.getLogger(__name__)
 
