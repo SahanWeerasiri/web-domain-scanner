@@ -1,16 +1,21 @@
 import os
 import time
-from typing import List
 import requests
 import logging
 import re
 import ast
 import hashlib
-from functools import lru_cache
 import json
 import aiohttp
 import asyncio
+import sys
+from typing import List
+from functools import lru_cache
 from pathlib import Path
+
+# Add project root to path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from common.constants import TECH_PATTERNS, BASE_ENDPOINTS
 
 class AIIntegration:
     def __init__(self, gemini_api_key=None, openai_api_key=None, anthropic_api_key=None, cache_size=128, feedback_db_path=None):
@@ -80,24 +85,8 @@ class AIIntegration:
         # Analyze HTML content
         html_content = str(page_content.get('html', ''))
         
-        # Framework detection patterns
-        tech_patterns = {
-            'wordpress': ['wp-content', 'wp-includes', 'wordpress'],
-            'drupal': ['drupal.org', 'Drupal.settings'],
-            'joomla': ['joomla', 'Joomla!'],
-            'magento': ['magento', 'Mage.'],
-            'laravel': ['laravel', 'csrf-token'],
-            'django': ['csrfmiddlewaretoken', 'django'],
-            'react': ['react', 'reactjs', 'createElement'],
-            'angular': ['ng-', 'angular'],
-            'vue': ['vue.js', 'Vue.'],
-            'bootstrap': ['bootstrap'],
-            'jquery': ['jquery'],
-            'shopify': ['shopify', 'Shopify'],
-            'woocommerce': ['woocommerce']
-        }
-        
-        for tech, patterns in tech_patterns.items():
+        # Use shared technology patterns
+        for tech, patterns in TECH_PATTERNS.items():
             if any(pattern.lower() in html_content.lower() for pattern in patterns):
                 detected.add(tech)
         
@@ -259,18 +248,11 @@ class AIIntegration:
         previous_year = str(int(current_year) - 1)
         two_years_ago = str(int(current_year) - 2)
         
-        # Base technology-specific endpoints
-        base_endpoints = [
-            'admin', 'api', 'dashboard', 'console', 'backend', 'portal',
-            'secure', 'private', 'internal', 'system', 'control', 'manage',
-            'auth', 'oauth', 'token', 'session', 'user', 'users', 'account',
-            'config', 'settings', 'health', 'status', 'ping', 'test', 'debug',
-            'log', 'logs', 'monitor', 'metrics', 'stats', 'statistics'
-        ]
-        endpoints.update(base_endpoints)
+        # Use shared base endpoints
+        endpoints.update(BASE_ENDPOINTS)
         
         # Year-based terms
-        for term in base_endpoints:
+        for term in BASE_ENDPOINTS:
             endpoints.update([
                 f"{term}-{current_year}", f"{term}{current_year}",
                 f"{term}-{previous_year}", f"{term}{previous_year}",
@@ -282,7 +264,7 @@ class AIIntegration:
             domain_parts = domain.split('.')
             domain_name = domain_parts[0] if len(domain_parts) > 1 else domain
             
-            for term in base_endpoints:
+            for term in BASE_ENDPOINTS:
                 endpoints.update([
                     f"{term}-{domain_name}", f"{domain_name}-{term}",
                     f"{term}_{domain_name}", f"{domain_name}_{term}"
@@ -333,7 +315,7 @@ class AIIntegration:
             if context:
                 keywords = re.findall(r'\b[a-zA-Z]{4,}\b', context.lower())
                 for keyword in keywords[:8]:  # Use top keywords
-                    for term in base_endpoints:
+                    for term in BASE_ENDPOINTS:
                         endpoints.update([
                             f"{term}-{keyword}", f"{keyword}-{term}",
                             f"{term}_{keyword}", f"{keyword}_{term}"
@@ -533,163 +515,163 @@ class AIIntegration:
         
         return self.generate_intelligent_fallback_endpoints(page_content)
         
-    def _generate_with_openai(self, page_content, domain, content_hash=None):
-        """Generate endpoints using OpenAI"""
-        if not self.openai_api_key:
-            return None
+    # def _generate_with_openai(self, page_content, domain, content_hash=None):
+    #     """Generate endpoints using OpenAI"""
+    #     if not self.openai_api_key:
+    #         return None
             
-        try:
-            import openai  # Import here to make it optional
+    #     try:
+    #         import openai  # Import here to make it optional
             
-            # Set the API key
-            openai.api_key = self.openai_api_key
+    #         # Set the API key
+    #         openai.api_key = self.openai_api_key
             
-            # Prepare the prompt
-            prompt = f"""
-            Analyze the following website content and suggest potential API endpoints, admin panels, and interesting directories 
-            that might exist on this domain ({domain}).
+    #         # Prepare the prompt
+    #         prompt = f"""
+    #         Analyze the following website content and suggest potential API endpoints, admin panels, and interesting directories 
+    #         that might exist on this domain ({domain}).
 
-            Website Title: {page_content.get('title', 'N/A')}
-            Meta Description: {page_content.get('meta_description', 'N/A')}
+    #         Website Title: {page_content.get('title', 'N/A')}
+    #         Meta Description: {page_content.get('meta_description', 'N/A')}
             
-            Found Links: {page_content.get('links', [])[:20]}
-            Form Actions: {page_content.get('forms', [])}
-            Detected API References: {page_content.get('api_references', [])}
-            JavaScript Files: {page_content.get('javascript_files', [])[:10]}
+    #         Found Links: {page_content.get('links', [])[:20]}
+    #         Form Actions: {page_content.get('forms', [])}
+    #         Detected API References: {page_content.get('api_references', [])}
+    #         JavaScript Files: {page_content.get('javascript_files', [])[:10]}
             
-            Sample Content: {page_content.get('text_content', '')[:1000]}
+    #         Sample Content: {page_content.get('text_content', '')[:1000]}
 
-            Based on this analysis, suggest 15-25 potential endpoints that might exist on this domain.
-            Return ONLY a Python list of strings, no explanations.
-            Example format: ['api/v1', 'admin', 'login', 'dashboard', 'api/users', 'rest/auth']
-            """
+    #         Based on this analysis, suggest 15-25 potential endpoints that might exist on this domain.
+    #         Return ONLY a Python list of strings, no explanations.
+    #         Example format: ['api/v1', 'admin', 'login', 'dashboard', 'api/users', 'rest/auth']
+    #         """
             
-            # Make the request to OpenAI
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": "You are a cybersecurity tool that suggests potential endpoints for reconnaissance."},
-                    {"role": "user", "content": prompt}
-                ],
-                temperature=0.7,
-                max_tokens=1000
-            )
+    #         # Make the request to OpenAI
+    #         response = openai.ChatCompletion.create(
+    #             model="gpt-3.5-turbo",
+    #             messages=[
+    #                 {"role": "system", "content": "You are a cybersecurity tool that suggests potential endpoints for reconnaissance."},
+    #                 {"role": "user", "content": prompt}
+    #             ],
+    #             temperature=0.7,
+    #             max_tokens=1000
+    #         )
             
-            # Extract and parse response
-            response_text = response.choices[0].message.content.strip()
+    #         # Extract and parse response
+    #         response_text = response.choices[0].message.content.strip()
             
-            try:
-                if response_text.startswith('[') and response_text.endswith(']'):
-                    endpoints = ast.literal_eval(response_text)
-                else:
-                    list_match = re.search(r'\[(.*?)\]', response_text, re.DOTALL)
-                    if list_match:
-                        list_content = '[' + list_match.group(1) + ']'
-                        endpoints = ast.literal_eval(list_content)
-                    else:
-                        lines = response_text.split('\n')
-                        endpoints = []
-                        for line in lines:
-                            line = line.strip().strip("'\"").strip(',')
-                            if line and not line.startswith('#') and len(line) < 100:
-                                endpoints.append(line)
+    #         try:
+    #             if response_text.startswith('[') and response_text.endswith(']'):
+    #                 endpoints = ast.literal_eval(response_text)
+    #             else:
+    #                 list_match = re.search(r'\[(.*?)\]', response_text, re.DOTALL)
+    #                 if list_match:
+    #                     list_content = '[' + list_match.group(1) + ']'
+    #                     endpoints = ast.literal_eval(list_content)
+    #                 else:
+    #                     lines = response_text.split('\n')
+    #                     endpoints = []
+    #                     for line in lines:
+    #                         line = line.strip().strip("'\"").strip(',')
+    #                         if line and not line.startswith('#') and len(line) < 100:
+    #                             endpoints.append(line)
                 
-                # Clean up the endpoints
-                cleaned_endpoints = []
-                for endpoint in endpoints:
-                    if isinstance(endpoint, str):
-                        endpoint = endpoint.strip().strip("'\"").strip('/')
-                        if endpoint and len(endpoint) > 0 and len(endpoint) < 100:
-                            cleaned_endpoints.append(endpoint)
+    #             # Clean up the endpoints
+    #             cleaned_endpoints = []
+    #             for endpoint in endpoints:
+    #                 if isinstance(endpoint, str):
+    #                     endpoint = endpoint.strip().strip("'\"").strip('/')
+    #                     if endpoint and len(endpoint) > 0 and len(endpoint) < 100:
+    #                         cleaned_endpoints.append(endpoint)
                 
-                logging.info(f"Generated {len(cleaned_endpoints)} OpenAI-powered endpoints")
-                return cleaned_endpoints[:25]
+    #             logging.info(f"Generated {len(cleaned_endpoints)} OpenAI-powered endpoints")
+    #             return cleaned_endpoints[:25]
                 
-            except (ValueError, SyntaxError) as e:
-                logging.warning(f"Failed to parse OpenAI response: {str(e)}")
-                return None
+    #         except (ValueError, SyntaxError) as e:
+    #             logging.warning(f"Failed to parse OpenAI response: {str(e)}")
+    #             return None
                 
-        except Exception as e:
-            logging.warning(f"OpenAI API error: {str(e)}")
-            return None
+    #     except Exception as e:
+    #         logging.warning(f"OpenAI API error: {str(e)}")
+    #         return None
         
-    def _generate_with_anthropic(self, page_content, domain, content_hash=None):
-        """Generate endpoints using Anthropic Claude"""
-        if not self.anthropic_api_key:
-            return None
+    # def _generate_with_anthropic(self, page_content, domain, content_hash=None):
+    #     """Generate endpoints using Anthropic Claude"""
+    #     if not self.anthropic_api_key:
+    #         return None
             
-        try:
-            import anthropic  # Import here to make it optional
+    #     try:
+    #         import anthropic  # Import here to make it optional
             
-            # Initialize the Anthropic client
-            client = anthropic.Anthropic(api_key=self.anthropic_api_key)
+    #         # Initialize the Anthropic client
+    #         client = anthropic.Anthropic(api_key=self.anthropic_api_key)
             
-            # Prepare the prompt
-            prompt = f"""
-            Analyze the following website content and suggest potential API endpoints, admin panels, and interesting directories 
-            that might exist on this domain ({domain}).
+    #         # Prepare the prompt
+    #         prompt = f"""
+    #         Analyze the following website content and suggest potential API endpoints, admin panels, and interesting directories 
+    #         that might exist on this domain ({domain}).
 
-            Website Title: {page_content.get('title', 'N/A')}
-            Meta Description: {page_content.get('meta_description', 'N/A')}
+    #         Website Title: {page_content.get('title', 'N/A')}
+    #         Meta Description: {page_content.get('meta_description', 'N/A')}
             
-            Found Links: {page_content.get('links', [])[:20]}
-            Form Actions: {page_content.get('forms', [])}
-            Detected API References: {page_content.get('api_references', [])}
-            JavaScript Files: {page_content.get('javascript_files', [])[:10]}
+    #         Found Links: {page_content.get('links', [])[:20]}
+    #         Form Actions: {page_content.get('forms', [])}
+    #         Detected API References: {page_content.get('api_references', [])}
+    #         JavaScript Files: {page_content.get('javascript_files', [])[:10]}
             
-            Sample Content: {page_content.get('text_content', '')[:1000]}
+    #         Sample Content: {page_content.get('text_content', '')[:1000]}
 
-            Based on this analysis, suggest 15-25 potential endpoints that might exist on this domain.
-            Return ONLY a Python list of strings, no explanations.
-            Example format: ['api/v1', 'admin', 'login', 'dashboard', 'api/users', 'rest/auth']
-            """
+    #         Based on this analysis, suggest 15-25 potential endpoints that might exist on this domain.
+    #         Return ONLY a Python list of strings, no explanations.
+    #         Example format: ['api/v1', 'admin', 'login', 'dashboard', 'api/users', 'rest/auth']
+    #         """
             
-            # Make the request to Anthropic
-            response = client.messages.create(
-                model="claude-3-opus-20240229",
-                max_tokens=1000,
-                messages=[
-                    {"role": "user", "content": prompt}
-                ]
-            )
+    #         # Make the request to Anthropic
+    #         response = client.messages.create(
+    #             model="claude-3-opus-20240229",
+    #             max_tokens=1000,
+    #             messages=[
+    #                 {"role": "user", "content": prompt}
+    #             ]
+    #         )
             
-            # Extract and parse response
-            response_text = response.content[0].text
+    #         # Extract and parse response
+    #         response_text = response.content[0].text
             
-            try:
-                if response_text.startswith('[') and response_text.endswith(']'):
-                    endpoints = ast.literal_eval(response_text)
-                else:
-                    list_match = re.search(r'\[(.*?)\]', response_text, re.DOTALL)
-                    if list_match:
-                        list_content = '[' + list_match.group(1) + ']'
-                        endpoints = ast.literal_eval(list_content)
-                    else:
-                        lines = response_text.split('\n')
-                        endpoints = []
-                        for line in lines:
-                            line = line.strip().strip("'\"").strip(',')
-                            if line and not line.startswith('#') and len(line) < 100:
-                                endpoints.append(line)
+    #         try:
+    #             if response_text.startswith('[') and response_text.endswith(']'):
+    #                 endpoints = ast.literal_eval(response_text)
+    #             else:
+    #                 list_match = re.search(r'\[(.*?)\]', response_text, re.DOTALL)
+    #                 if list_match:
+    #                     list_content = '[' + list_match.group(1) + ']'
+    #                     endpoints = ast.literal_eval(list_content)
+    #                 else:
+    #                     lines = response_text.split('\n')
+    #                     endpoints = []
+    #                     for line in lines:
+    #                         line = line.strip().strip("'\"").strip(',')
+    #                         if line and not line.startswith('#') and len(line) < 100:
+    #                             endpoints.append(line)
                 
-                # Clean up the endpoints
-                cleaned_endpoints = []
-                for endpoint in endpoints:
-                    if isinstance(endpoint, str):
-                        endpoint = endpoint.strip().strip("'\"").strip('/')
-                        if endpoint and len(endpoint) > 0 and len(endpoint) < 100:
-                            cleaned_endpoints.append(endpoint)
+    #             # Clean up the endpoints
+    #             cleaned_endpoints = []
+    #             for endpoint in endpoints:
+    #                 if isinstance(endpoint, str):
+    #                     endpoint = endpoint.strip().strip("'\"").strip('/')
+    #                     if endpoint and len(endpoint) > 0 and len(endpoint) < 100:
+    #                         cleaned_endpoints.append(endpoint)
                 
-                logging.info(f"Generated {len(cleaned_endpoints)} Anthropic-powered endpoints")
-                return cleaned_endpoints[:25]
+    #             logging.info(f"Generated {len(cleaned_endpoints)} Anthropic-powered endpoints")
+    #             return cleaned_endpoints[:25]
                 
-            except (ValueError, SyntaxError) as e:
-                logging.warning(f"Failed to parse Anthropic response: {str(e)}")
-                return None
+    #         except (ValueError, SyntaxError) as e:
+    #             logging.warning(f"Failed to parse Anthropic response: {str(e)}")
+    #             return None
                 
-        except Exception as e:
-            logging.warning(f"Anthropic API error: {str(e)}")
-            return None
+    #     except Exception as e:
+    #         logging.warning(f"Anthropic API error: {str(e)}")
+    #         return None
             
     async def generate_ai_endpoints_async(self, page_content, domain):
         """Asynchronous version of endpoint generation using all available providers"""
@@ -824,176 +806,176 @@ class AIIntegration:
             
         return self.generate_intelligent_fallback_endpoints(page_content)
         
-    async def _generate_with_openai_async(self, page_content, domain, content_hash=None):
-        """Asynchronous version of OpenAI endpoint generation"""
-        if not self.openai_api_key:
-            return None
+    # async def _generate_with_openai_async(self, page_content, domain, content_hash=None):
+    #     """Asynchronous version of OpenAI endpoint generation"""
+    #     if not self.openai_api_key:
+    #         return None
             
-        try:
-            import openai  # Import here to make it optional
+    #     try:
+    #         import openai  # Import here to make it optional
             
-            # Set the API key
-            openai.api_key = self.openai_api_key
+    #         # Set the API key
+    #         openai.api_key = self.openai_api_key
             
-            # Prepare the prompt
-            prompt = f"""
-            Analyze the following website content and suggest potential API endpoints, admin panels, and interesting directories 
-            that might exist on this domain ({domain}).
+    #         # Prepare the prompt
+    #         prompt = f"""
+    #         Analyze the following website content and suggest potential API endpoints, admin panels, and interesting directories 
+    #         that might exist on this domain ({domain}).
 
-            Website Title: {page_content.get('title', 'N/A')}
-            Meta Description: {page_content.get('meta_description', 'N/A')}
+    #         Website Title: {page_content.get('title', 'N/A')}
+    #         Meta Description: {page_content.get('meta_description', 'N/A')}
             
-            Found Links: {page_content.get('links', [])[:20]}
-            Form Actions: {page_content.get('forms', [])}
-            Detected API References: {page_content.get('api_references', [])}
-            JavaScript Files: {page_content.get('javascript_files', [])[:10]}
+    #         Found Links: {page_content.get('links', [])[:20]}
+    #         Form Actions: {page_content.get('forms', [])}
+    #         Detected API References: {page_content.get('api_references', [])}
+    #         JavaScript Files: {page_content.get('javascript_files', [])[:10]}
             
-            Sample Content: {page_content.get('text_content', '')[:1000]}
+    #         Sample Content: {page_content.get('text_content', '')[:1000]}
 
-            Based on this analysis, suggest 15-25 potential endpoints that might exist on this domain.
-            Return ONLY a Python list of strings, no explanations.
-            Example format: ['api/v1', 'admin', 'login', 'dashboard', 'api/users', 'rest/auth']
-            """
+    #         Based on this analysis, suggest 15-25 potential endpoints that might exist on this domain.
+    #         Return ONLY a Python list of strings, no explanations.
+    #         Example format: ['api/v1', 'admin', 'login', 'dashboard', 'api/users', 'rest/auth']
+    #         """
             
-            # Make the request to OpenAI asynchronously if available (depends on OpenAI library version)
-            try:
-                # Try using the async client if available
-                response = await openai.ChatCompletion.acreate(
-                    model="gpt-3.5-turbo",
-                    messages=[
-                        {"role": "system", "content": "You are a cybersecurity tool that suggests potential endpoints for reconnaissance."},
-                        {"role": "user", "content": prompt}
-                    ],
-                    temperature=0.7,
-                    max_tokens=1000
-                )
-                response_text = response.choices[0].message.content.strip()
-            except AttributeError:
-                # Fall back to sync version if async not available
-                response = openai.ChatCompletion.create(
-                    model="gpt-3.5-turbo",
-                    messages=[
-                        {"role": "system", "content": "You are a cybersecurity tool that suggests potential endpoints for reconnaissance."},
-                        {"role": "user", "content": prompt}
-                    ],
-                    temperature=0.7,
-                    max_tokens=1000
-                )
-                response_text = response.choices[0].message.content.strip()
+    #         # Make the request to OpenAI asynchronously if available (depends on OpenAI library version)
+    #         try:
+    #             # Try using the async client if available
+    #             response = await openai.ChatCompletion.acreate(
+    #                 model="gpt-3.5-turbo",
+    #                 messages=[
+    #                     {"role": "system", "content": "You are a cybersecurity tool that suggests potential endpoints for reconnaissance."},
+    #                     {"role": "user", "content": prompt}
+    #                 ],
+    #                 temperature=0.7,
+    #                 max_tokens=1000
+    #             )
+    #             response_text = response.choices[0].message.content.strip()
+    #         except AttributeError:
+    #             # Fall back to sync version if async not available
+    #             response = openai.ChatCompletion.create(
+    #                 model="gpt-3.5-turbo",
+    #                 messages=[
+    #                     {"role": "system", "content": "You are a cybersecurity tool that suggests potential endpoints for reconnaissance."},
+    #                     {"role": "user", "content": prompt}
+    #                 ],
+    #                 temperature=0.7,
+    #                 max_tokens=1000
+    #             )
+    #             response_text = response.choices[0].message.content.strip()
             
-            # Parse the response
-            try:
-                if response_text.startswith('[') and response_text.endswith(']'):
-                    endpoints = ast.literal_eval(response_text)
-                else:
-                    list_match = re.search(r'\[(.*?)\]', response_text, re.DOTALL)
-                    if list_match:
-                        list_content = '[' + list_match.group(1) + ']'
-                        endpoints = ast.literal_eval(list_content)
-                    else:
-                        lines = response_text.split('\n')
-                        endpoints = []
-                        for line in lines:
-                            line = line.strip().strip("'\"").strip(',')
-                            if line and not line.startswith('#') and len(line) < 100:
-                                endpoints.append(line)
+    #         # Parse the response
+    #         try:
+    #             if response_text.startswith('[') and response_text.endswith(']'):
+    #                 endpoints = ast.literal_eval(response_text)
+    #             else:
+    #                 list_match = re.search(r'\[(.*?)\]', response_text, re.DOTALL)
+    #                 if list_match:
+    #                     list_content = '[' + list_match.group(1) + ']'
+    #                     endpoints = ast.literal_eval(list_content)
+    #                 else:
+    #                     lines = response_text.split('\n')
+    #                     endpoints = []
+    #                     for line in lines:
+    #                         line = line.strip().strip("'\"").strip(',')
+    #                         if line and not line.startswith('#') and len(line) < 100:
+    #                             endpoints.append(line)
                 
-                # Clean up the endpoints
-                cleaned_endpoints = []
-                for endpoint in endpoints:
-                    if isinstance(endpoint, str):
-                        endpoint = endpoint.strip().strip("'\"").strip('/')
-                        if endpoint and len(endpoint) > 0 and len(endpoint) < 100:
-                            cleaned_endpoints.append(endpoint)
+    #             # Clean up the endpoints
+    #             cleaned_endpoints = []
+    #             for endpoint in endpoints:
+    #                 if isinstance(endpoint, str):
+    #                     endpoint = endpoint.strip().strip("'\"").strip('/')
+    #                     if endpoint and len(endpoint) > 0 and len(endpoint) < 100:
+    #                         cleaned_endpoints.append(endpoint)
                 
-                logging.info(f"Generated {len(cleaned_endpoints)} OpenAI-powered endpoints (async)")
-                return cleaned_endpoints[:25]
+    #             logging.info(f"Generated {len(cleaned_endpoints)} OpenAI-powered endpoints (async)")
+    #             return cleaned_endpoints[:25]
                 
-            except (ValueError, SyntaxError) as e:
-                logging.warning(f"Failed to parse OpenAI response: {str(e)}")
-                return None
+    #         except (ValueError, SyntaxError) as e:
+    #             logging.warning(f"Failed to parse OpenAI response: {str(e)}")
+    #             return None
                 
-        except Exception as e:
-            logging.warning(f"OpenAI API error: {str(e)}")
-            return None
+    #     except Exception as e:
+    #         logging.warning(f"OpenAI API error: {str(e)}")
+    #         return None
             
-    async def _generate_with_anthropic_async(self, page_content, domain, content_hash=None):
-        """Asynchronous version of Anthropic endpoint generation"""
-        if not self.anthropic_api_key:
-            return None
+    # async def _generate_with_anthropic_async(self, page_content, domain, content_hash=None):
+    #     """Asynchronous version of Anthropic endpoint generation"""
+    #     if not self.anthropic_api_key:
+    #         return None
             
-        try:
-            import anthropic  # Import here to make it optional
+    #     try:
+    #         import anthropic  # Import here to make it optional
             
-            # Initialize the Anthropic client
-            client = anthropic.Anthropic(api_key=self.anthropic_api_key)
+    #         # Initialize the Anthropic client
+    #         client = anthropic.Anthropic(api_key=self.anthropic_api_key)
             
-            # Prepare the prompt
-            prompt = f"""
-            Analyze the following website content and suggest potential API endpoints, admin panels, and interesting directories 
-            that might exist on this domain ({domain}).
+    #         # Prepare the prompt
+    #         prompt = f"""
+    #         Analyze the following website content and suggest potential API endpoints, admin panels, and interesting directories 
+    #         that might exist on this domain ({domain}).
 
-            Website Title: {page_content.get('title', 'N/A')}
-            Meta Description: {page_content.get('meta_description', 'N/A')}
+    #         Website Title: {page_content.get('title', 'N/A')}
+    #         Meta Description: {page_content.get('meta_description', 'N/A')}
             
-            Found Links: {page_content.get('links', [])[:20]}
-            Form Actions: {page_content.get('forms', [])}
-            Detected API References: {page_content.get('api_references', [])}
-            JavaScript Files: {page_content.get('javascript_files', [])[:10]}
+    #         Found Links: {page_content.get('links', [])[:20]}
+    #         Form Actions: {page_content.get('forms', [])}
+    #         Detected API References: {page_content.get('api_references', [])}
+    #         JavaScript Files: {page_content.get('javascript_files', [])[:10]}
             
-            Sample Content: {page_content.get('text_content', '')[:1000]}
+    #         Sample Content: {page_content.get('text_content', '')[:1000]}
 
-            Based on this analysis, suggest 15-25 potential endpoints that might exist on this domain.
-            Return ONLY a Python list of strings, no explanations.
-            Example format: ['api/v1', 'admin', 'login', 'dashboard', 'api/users', 'rest/auth']
-            """
+    #         Based on this analysis, suggest 15-25 potential endpoints that might exist on this domain.
+    #         Return ONLY a Python list of strings, no explanations.
+    #         Example format: ['api/v1', 'admin', 'login', 'dashboard', 'api/users', 'rest/auth']
+    #         """
             
-            # Make the request to Anthropic (synchronous since their Python library doesn't currently support async)
-            response = client.messages.create(
-                model="claude-3-opus-20240229",
-                max_tokens=1000,
-                messages=[
-                    {"role": "user", "content": prompt}
-                ]
-            )
+    #         # Make the request to Anthropic (synchronous since their Python library doesn't currently support async)
+    #         response = client.messages.create(
+    #             model="claude-3-opus-20240229",
+    #             max_tokens=1000,
+    #             messages=[
+    #                 {"role": "user", "content": prompt}
+    #             ]
+    #         )
             
-            # Extract and parse response
-            response_text = response.content[0].text
+    #         # Extract and parse response
+    #         response_text = response.content[0].text
             
-            try:
-                if response_text.startswith('[') and response_text.endswith(']'):
-                    endpoints = ast.literal_eval(response_text)
-                else:
-                    list_match = re.search(r'\[(.*?)\]', response_text, re.DOTALL)
-                    if list_match:
-                        list_content = '[' + list_match.group(1) + ']'
-                        endpoints = ast.literal_eval(list_content)
-                    else:
-                        lines = response_text.split('\n')
-                        endpoints = []
-                        for line in lines:
-                            line = line.strip().strip("'\"").strip(',')
-                            if line and not line.startswith('#') and len(line) < 100:
-                                endpoints.append(line)
+    #         try:
+    #             if response_text.startswith('[') and response_text.endswith(']'):
+    #                 endpoints = ast.literal_eval(response_text)
+    #             else:
+    #                 list_match = re.search(r'\[(.*?)\]', response_text, re.DOTALL)
+    #                 if list_match:
+    #                     list_content = '[' + list_match.group(1) + ']'
+    #                     endpoints = ast.literal_eval(list_content)
+    #                 else:
+    #                     lines = response_text.split('\n')
+    #                     endpoints = []
+    #                     for line in lines:
+    #                         line = line.strip().strip("'\"").strip(',')
+    #                         if line and not line.startswith('#') and len(line) < 100:
+    #                             endpoints.append(line)
                 
-                # Clean up the endpoints
-                cleaned_endpoints = []
-                for endpoint in endpoints:
-                    if isinstance(endpoint, str):
-                        endpoint = endpoint.strip().strip("'\"").strip('/')
-                        if endpoint and len(endpoint) > 0 and len(endpoint) < 100:
-                            cleaned_endpoints.append(endpoint)
+    #             # Clean up the endpoints
+    #             cleaned_endpoints = []
+    #             for endpoint in endpoints:
+    #                 if isinstance(endpoint, str):
+    #                     endpoint = endpoint.strip().strip("'\"").strip('/')
+    #                     if endpoint and len(endpoint) > 0 and len(endpoint) < 100:
+    #                         cleaned_endpoints.append(endpoint)
                 
-                logging.info(f"Generated {len(cleaned_endpoints)} Anthropic-powered endpoints (async)")
-                return cleaned_endpoints[:25]
+    #             logging.info(f"Generated {len(cleaned_endpoints)} Anthropic-powered endpoints (async)")
+    #             return cleaned_endpoints[:25]
                 
-            except (ValueError, SyntaxError) as e:
-                logging.warning(f"Failed to parse Anthropic response: {str(e)}")
-                return None
+    #         except (ValueError, SyntaxError) as e:
+    #             logging.warning(f"Failed to parse Anthropic response: {str(e)}")
+    #             return None
                 
-        except Exception as e:
-            logging.warning(f"Anthropic API error: {str(e)}")
-            return None
+    #     except Exception as e:
+    #         logging.warning(f"Anthropic API error: {str(e)}")
+    #         return None
 
     def generate_intelligent_fallback_endpoints(self, page_content):
         """Generate intelligent endpoint suggestions based on scraped content analysis"""

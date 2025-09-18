@@ -11,13 +11,28 @@ ANTHROPIC_API_KEY = os.getenv('ANTHROPIC_API_KEY')
 
 # Common ports for service discovery
 COMMON_PORTS = {
+    20: 'FTP-DATA',
     21: 'FTP',
     22: 'SSH',
+    23: 'TELNET',
+    25: 'SMTP',
+    53: 'DNS',
     80: 'HTTP',
+    110: 'POP3',
+    143: 'IMAP',
     443: 'HTTPS',
+    993: 'IMAPS',
+    995: 'POP3S',
+    1433: 'MSSQL',
+    1521: 'ORACLE',
     3306: 'MySQL',
     3389: 'RDP',
-    8080: 'HTTP-Alt'
+    5432: 'PostgreSQL',
+    5900: 'VNC',
+    6379: 'Redis',
+    8080: 'HTTP-Alt',
+    8443: 'HTTPS-Alt',
+    27017: 'MongoDB'
 }
 
 # Common subdomains for brute force

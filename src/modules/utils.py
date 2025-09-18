@@ -24,7 +24,7 @@ def sanitize_domain(domain_or_url):
 def create_output_directory(domain, timestamp):
     """Create output directory for results"""
     sanitized_domain = re.sub(r'[^a-zA-Z0-9-]', '_', domain)
-    output_dir = f"recon_results_{sanitized_domain}_{timestamp}"
+    output_dir = f"results/recon_results_{sanitized_domain}_{timestamp}"
     os.makedirs(output_dir, exist_ok=True)
     return output_dir
 

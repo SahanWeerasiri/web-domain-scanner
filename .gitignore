@@ -10,3 +10,5 @@ reconnaissance.log
 data
 */**/crawler_results.json
 */**/web_crawler.log
+*/**/downloaded_files/
+*/**/examples/
