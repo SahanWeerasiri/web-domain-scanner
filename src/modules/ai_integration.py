@@ -336,7 +336,7 @@ class AIIntegration:
         unique_endpoints.sort(key=lambda x: (len(x), x))
         
         result = unique_endpoints[:num_terms]
-        logging.info(f"Generated {len(result)} intelligent target-specific terms")
+        logging.info(f"Generated {len(result)} rule-based target-specific terms (no AI)")
         return result
 
     def generate_ai_endpoints(self, page_content, domain):

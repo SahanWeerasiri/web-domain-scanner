@@ -11,9 +11,12 @@ import requests
 import logging
 import re
 import json
+import asyncio
+import os
 from typing import Dict, Any, List, Optional
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse, urljoin
+from dotenv import load_dotenv
 import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
@@ -27,9 +30,35 @@ class WebCrawler:
         self.discovered_urls = set()
         self.discovered_apis = set()
         self.browser_manager = BrowserManager()
+        self.bypass_driver = None  # CDN bypass driver
         
-        # Initialize AI integration
-        self.ai_integration = AIIntegration()
+        # Load environment variables from .env file
+        # Find the .env file by looking up the directory tree
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        env_path = None
+        for _ in range(5):  # Look up to 5 levels up
+            potential_env = os.path.join(current_dir, '.env')
+            if os.path.exists(potential_env):
+                env_path = potential_env
+                break
+            current_dir = os.path.dirname(current_dir)
+        
+        if env_path:
+            load_dotenv(env_path)
+            logging.info(f"Loaded environment variables from {env_path}")
+        else:
+            logging.warning("No .env file found, trying system environment variables")
+        
+        # Initialize AI integration with API keys from environment
+        gemini_key = os.getenv('GEMINI_API_KEY')
+        openai_key = os.getenv('OPENAI_API_KEY')
+        anthropic_key = os.getenv('ANTHROPIC_API_KEY')
+        
+        self.ai_integration = AIIntegration(
+            gemini_api_key=gemini_key,
+            openai_api_key=openai_key,
+            anthropic_api_key=anthropic_key
+        )
         
         # Define crawl levels similar to web_crawling.py
         self.crawl_levels = {
@@ -49,6 +78,78 @@ class WebCrawler:
                 'use_ai': True
             }
         }
+        
+    def set_bypass_driver(self, driver):
+        """Set the bypass driver for CDN-bypassed endpoint testing"""
+        self.bypass_driver = driver
+        
+    def test_endpoint_with_bypass_driver(self, endpoint_url: str) -> Dict[str, Any]:
+        """
+        Test an endpoint using the bypass driver
+        
+        Args:
+            endpoint_url: Full URL to test
+            
+        Returns:
+            Dictionary with test results
+        """
+        if not self.bypass_driver:
+            return None
+            
+        try:
+            print(f"[BYPASS ENDPOINT TEST] Navigating to: {endpoint_url}")
+            self.bypass_driver.get(endpoint_url)
+            
+            # Get page source to analyze content
+            page_source = self.bypass_driver.page_source
+            
+            # Check if we got meaningful content (not just error pages)
+            if page_source and len(page_source) > 100:  # Basic content check
+                # Check for API-like content indicators
+                is_api_content = any([
+                    '{"' in page_source,  # JSON response
+                    '"error"' in page_source.lower(),
+                    '"message"' in page_source.lower(),
+                    '"data"' in page_source.lower(),
+                    'application/json' in page_source.lower(),
+                    'content-type' in page_source.lower() and 'json' in page_source.lower(),
+                    '<xml' in page_source.lower(),
+                    'swagger' in page_source.lower(),
+                    'openapi' in page_source.lower()
+                ])
+                
+                # Simulate a successful response for analysis
+                return {
+                    'url': endpoint_url,
+                    'status_code': 200 if is_api_content else 404,
+                    'headers': {'Content-Type': 'application/json' if is_api_content else 'text/html'},
+                    'content_type': 'application/json' if is_api_content else 'text/html',
+                    'server': 'bypass-driver',
+                    'has_content': True,
+                    'content_length': len(page_source)
+                }
+            else:
+                return {
+                    'url': endpoint_url,
+                    'status_code': 404,
+                    'headers': {},
+                    'content_type': 'text/html',
+                    'server': 'bypass-driver',
+                    'has_content': False,
+                    'content_length': 0
+                }
+                
+        except Exception as e:
+            logging.debug(f"Error testing endpoint {endpoint_url} with bypass driver: {str(e)}")
+            return {
+                'url': endpoint_url,
+                'status_code': 500,
+                'headers': {},
+                'content_type': 'text/html',
+                'server': 'bypass-driver',
+                'error': str(e),
+                'has_content': False
+            }
         
     def crawl_with_cdn_bypass(self, content: str = None, crawl_level: str = 'smart') -> Dict[str, Any]:
         """
@@ -91,7 +192,10 @@ class WebCrawler:
         
         # Perform AI-enhanced API discovery
         logging.info(f"Starting AI-enhanced API discovery with {crawl_level} level")
-        api_discovery_results = self.discover_api_endpoints(crawl_level=crawl_level)
+        api_discovery_results = asyncio.run(self.discover_api_endpoints_async(
+            crawl_level=crawl_level, 
+            content_for_ai=content if content else None
+        ))
         results['api_discovery'] = api_discovery_results
         
         # Combine all discovered APIs
@@ -219,7 +323,186 @@ class WebCrawler:
             logging.warning(f"Error analyzing content from {url}: {str(e)}")
             return None
     
-    def discover_api_endpoints(self, crawl_level: str = 'smart', custom_endpoints: List[str] = None) -> Dict[str, Any]:
+    async def discover_api_endpoints_async(self, crawl_level: str = 'smart', custom_endpoints: List[str] = None, content_for_ai: str = None) -> Dict[str, Any]:
+        """
+        Discover API endpoints using AI-generated suggestions and common patterns (async version)
+        
+        Args:
+            crawl_level: Level of crawling ('quick', 'smart', 'deep')
+            custom_endpoints: Additional custom endpoints to test
+            content_for_ai: Pre-obtained content for AI analysis
+            
+        Returns:
+            Dictionary containing discovered API endpoints
+        """
+        logging.info(f"Starting async API endpoint discovery with {crawl_level} level")
+        
+        results = {
+            'rest_apis': [],
+            'graphql_endpoints': [],
+            'swagger_endpoints': [],
+            'other_apis': []
+        }
+        
+        # Common API endpoints to check
+        api_endpoints = [
+            '/api', '/api/v1', '/api/v2', '/api/v3',
+            '/graphql', '/graphiql', 
+            '/swagger', '/swagger-ui.html', '/swagger.json', 
+            '/openapi', '/openapi.json', '/api-docs', 
+            '/rest', '/soap', '/rpc'
+        ]
+        
+        # Add custom endpoints if provided
+        if custom_endpoints:
+            api_endpoints.extend(custom_endpoints)
+        
+        # For smart and deep modes, generate intelligent API endpoints using AI
+        if crawl_level in ['smart', 'deep'] and hasattr(self, 'ai_integration') and self.ai_integration:
+            logging.info(f"Generating intelligent API endpoints for {crawl_level} mode")
+            try:
+                # Use provided content if available, otherwise scrape
+                scraped_content = None
+                if content_for_ai:
+                    # Use the provided content for AI analysis
+                    logging.info("Using provided content for AI endpoint generation")
+                    from bs4 import BeautifulSoup
+                    soup = BeautifulSoup(content_for_ai, 'html.parser')
+                    scraped_content = {
+                        'url': f"https://{self.domain}",
+                        'title': soup.title.string if soup.title else '',
+                        'text_content': soup.get_text(separator=' ', strip=True)[:5000],
+                        'links': [link.get('href') for link in soup.find_all('a', href=True)][:20],
+                        'forms': [form.get('action') for form in soup.find_all('form', action=True)][:10],
+                        'api_references': [],
+                        'javascript_files': [script.get('src') for script in soup.find_all('script', src=True)][:10]
+                    }
+                else:
+                    # Fallback to scraping if no content provided
+                    logging.info("No content provided, scraping for AI analysis")
+                    url = f"https://{self.domain}"
+                    try:
+                        scraped_content = self._scrape_single_page(url)
+                    except:
+                        try:
+                            url = f"http://{self.domain}"
+                            scraped_content = self._scrape_single_page(url)
+                        except:
+                            logging.warning("Could not scrape content for AI analysis")
+                            scraped_content = None
+                
+                # Generate intelligent API endpoints using AI (async)
+                if scraped_content:
+                    try:
+                        # Use the async AI integration method
+                        ai_endpoints = await self.ai_integration.generate_ai_endpoints_async(
+                            page_content=scraped_content,
+                            domain=self.domain
+                        )
+                        if ai_endpoints:
+                            # Convert to API-style paths and add leading slash if needed
+                            api_style_endpoints = []
+                            for ep in ai_endpoints:
+                                # Clean the endpoint and ensure proper formatting
+                                clean_ep = ep.strip('/')
+                                # Add API-specific prefixes
+                                api_style_endpoints.extend([
+                                    f"/api/{clean_ep}",
+                                    f"/api/v1/{clean_ep}",
+                                    f"/api/v2/{clean_ep}",
+                                    f"/{clean_ep}",
+                                    f"/rest/{clean_ep}",
+                                    f"/services/{clean_ep}"
+                                ])
+                            
+                            limit = 30 if crawl_level == 'smart' else 50
+                            api_endpoints.extend(api_style_endpoints[:limit])
+                            
+                            # Check if AI was actually used or fallback was used
+                            if self.ai_integration.available_providers:
+                                logging.info(f"Generated {len(api_style_endpoints[:limit])} AI-powered API endpoints from content analysis")
+                            else:
+                                logging.info(f"Generated {len(api_style_endpoints[:limit])} rule-based API endpoints from content analysis (no AI)")
+                    except Exception as e:
+                        logging.warning(f"AI endpoint generation failed: {str(e)}")
+            except Exception as e:
+                logging.warning(f"API endpoint generation failed: {str(e)}")
+        
+        # Test each endpoint
+        max_endpoints = self.crawl_levels[crawl_level]['max_api_endpoints']
+        endpoints_to_test = list(set(api_endpoints))[:max_endpoints]  # Remove duplicates and limit
+        
+        logging.info(f"Testing {len(endpoints_to_test)} API endpoints")
+        
+        # Debug: Show first few endpoints being tested
+        if logging.getLogger().isEnabledFor(logging.DEBUG):
+            logging.debug(f"Sample endpoints to test: {endpoints_to_test[:10]}")
+        
+        tested_count = 0
+        found_count = 0
+        
+        for base_url in [f"https://{self.domain}", f"http://{self.domain}"]:
+            for endpoint in endpoints_to_test:
+                full_url = f"{base_url}{endpoint}"
+                tested_count += 1
+                try:
+                    response = requests.head(full_url, timeout=5, allow_redirects=True)
+                    
+                    # Log response for debugging (only for non-404s or if debug enabled)
+                    if response.status_code != 404 or logging.getLogger().isEnabledFor(logging.DEBUG):
+                        logging.debug(f"Tested {full_url} -> Status: {response.status_code}")
+                    
+                    # Check for successful responses or specific status codes that indicate API presence
+                    if response.status_code in [200, 401, 403, 405, 429]:  # API-like responses
+                        found_count += 1
+                        endpoint_info = {
+                            'url': full_url,
+                            'status_code': response.status_code,
+                            'headers': dict(response.headers),
+                            'content_type': response.headers.get('Content-Type', ''),
+                            'server': response.headers.get('Server', '')
+                        }
+                        
+                        # Enhanced categorization logic for better endpoint classification
+                        content_type = response.headers.get('Content-Type', '').lower()
+                        endpoint_path = endpoint.lower()
+                        
+                        # Check for GraphQL endpoints
+                        if 'graphql' in endpoint_path or 'graphiql' in endpoint_path:
+                            results['graphql_endpoints'].append(endpoint_info)
+                        # Check for API documentation endpoints
+                        elif any(term in endpoint_path for term in ['swagger', 'openapi', 'api-docs']):
+                            results['swagger_endpoints'].append(endpoint_info)
+                        # Enhanced REST API detection
+                        elif (any(term in endpoint_path for term in ['api', 'rest']) or
+                              # Common REST API endpoints without explicit 'api' keyword
+                              any(term in endpoint_path for term in ['auth', 'login', 'oauth', 'token', 'user', 'users', 'admin']) or
+                              # JSON response indicates likely API
+                              'application/json' in content_type or
+                              # XML response indicates likely API
+                              'application/xml' in content_type or 'text/xml' in content_type):
+                            results['rest_apis'].append(endpoint_info)
+                        else:
+                            results['other_apis'].append(endpoint_info)
+                        
+                        # Add to discovered APIs
+                        self.discovered_apis.add(full_url)
+                        logging.info(f"Found API endpoint: {full_url} (Status: {response.status_code})")
+                        
+                except requests.RequestException:
+                    # Skip failed requests silently
+                    continue
+                except Exception as e:
+                    logging.debug(f"Error testing endpoint {full_url}: {str(e)}")
+                    continue
+        
+        total_found = len(results['rest_apis']) + len(results['graphql_endpoints']) + len(results['swagger_endpoints']) + len(results['other_apis'])
+        logging.info(f"API discovery completed. Found {total_found} endpoints out of {tested_count} tested")
+        logging.info(f"Endpoint breakdown - REST: {len(results['rest_apis'])}, GraphQL: {len(results['graphql_endpoints'])}, Swagger: {len(results['swagger_endpoints'])}, Other: {len(results['other_apis'])}")
+        
+        return results
+        
+    def discover_api_endpoints(self, crawl_level: str = 'smart', custom_endpoints: List[str] = None, content_for_ai: str = None) -> Dict[str, Any]:
         """
         Discover API endpoints using AI-generated suggestions and common patterns
         
@@ -256,18 +539,31 @@ class WebCrawler:
         if crawl_level in ['smart', 'deep'] and hasattr(self, 'ai_integration') and self.ai_integration:
             logging.info(f"Generating intelligent API endpoints for {crawl_level} mode")
             try:
-                # Get scraped content for AI-enhanced generation
+                # Use provided content if available, otherwise scrape
                 scraped_content = None
-                url = f"https://{self.domain}"
-                try:
-                    scraped_content = self._scrape_single_page(url)
-                except:
+                if content_for_ai:
+                    # Use the provided content for AI analysis
+                    logging.info("Using provided content for AI endpoint generation")
+                    from bs4 import BeautifulSoup
+                    soup = BeautifulSoup(content_for_ai, 'html.parser')
+                    scraped_content = {
+                        'url': f"https://{self.domain}",
+                        'title': soup.title.string if soup.title else '',
+                        'text_content': soup.get_text(separator=' ', strip=True)[:5000]
+                    }
+                else:
+                    # Fallback to scraping if no content provided
+                    logging.info("No content provided, scraping for AI analysis")
+                    url = f"https://{self.domain}"
                     try:
-                        url = f"http://{self.domain}"
                         scraped_content = self._scrape_single_page(url)
                     except:
-                        logging.warning("Could not scrape content for AI analysis")
-                        scraped_content = None
+                        try:
+                            url = f"http://{self.domain}"
+                            scraped_content = self._scrape_single_page(url)
+                        except:
+                            logging.warning("Could not scrape content for AI analysis")
+                            scraped_content = None
                 
                 # Generate intelligent API endpoints using AI
                 if scraped_content:
@@ -297,11 +593,16 @@ class WebCrawler:
                             
                             limit = 30 if crawl_level == 'smart' else 50
                             api_endpoints.extend(api_style_endpoints[:limit])
-                            logging.info(f"Generated {len(api_style_endpoints[:limit])} intelligent API endpoints from content analysis")
+                            
+                            # Check if AI was actually used or fallback was used
+                            if self.ai_integration.available_providers:
+                                logging.info(f"Generated {len(api_style_endpoints[:limit])} AI-powered API endpoints from content analysis")
+                            else:
+                                logging.info(f"Generated {len(api_style_endpoints[:limit])} rule-based API endpoints from content analysis (no AI)")
                     except Exception as e:
                         logging.warning(f"AI endpoint generation failed: {str(e)}")
             except Exception as e:
-                logging.warning(f"Intelligent API endpoint generation failed: {str(e)}")
+                logging.warning(f"API endpoint generation failed: {str(e)}")
         
         # Test each endpoint
         max_endpoints = self.crawl_levels[crawl_level]['max_api_endpoints']

@@ -335,7 +335,7 @@ class ExternalToolsManager:
         elif scan_mode == 'smart':
             cmd.extend(['--top-ports', '1000', '-sV'])  # Top 1000 ports with version detection
         elif scan_mode == 'deep':
-            cmd.extend(['-p-', '-sV', '-sC', '-O'])  # Full port range with scripts and OS detection
+            cmd.extend(['-p-', '-sV', '-sC', '-O', '-A'])  # Full port range with scripts and OS detection
         
         # Common options
         cmd.extend(['-T4', '--open'])  # Aggressive timing, only show open ports
