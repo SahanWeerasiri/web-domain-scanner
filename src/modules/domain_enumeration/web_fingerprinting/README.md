@@ -1,146 +1,318 @@
 # Web Technology Fingerprinting Module
 
-This module provides comprehensive web technology fingerprinting to identify web technologies, frameworks, servers, and security configurations by analyzing HTTP responses and content.
+## Overview
+This module provides comprehensive web technology fingerprinting with full pre-execution configuration. It identifies web technologies, frameworks, servers, and security configurations through multi-method analysis including HTTP headers, content analysis, URL patterns, Wappalyzer integration, and AI-enhanced detection.
 
 ## Features
+- **Multi-Method Detection**: Headers, content analysis, URL patterns, Wappalyzer, and AI integration
+- **DNS Validation**: Intelligent target validation to avoid resolution errors
+- **Security Analysis**: Comprehensive security headers and SSL configuration assessment
+- **Performance Metrics**: Response time analysis and content size monitoring
+- **Technology Insights**: Categorized technology stack analysis with security implications
+- **Configurable Sources**: Enable/disable specific detection methods
+- **Multiple Output Formats**: Detailed, summary, and minimal reporting options
+- **Programmatic Interface**: Function-based configuration without command line dependency
+- **Error Handling**: Robust failure management with detailed logging
+- **Concurrent Processing**: Multi-threaded requests with rate limiting
 
-- **HTTP Header Analysis**: Server identification and framework detection
-- **Content Analysis**: Technology detection from page content and scripts
-- **URL Pattern Analysis**: Technology identification from resource URLs
-- **Wappalyzer Integration**: Advanced technology detection (when available)
-- **Security Assessment**: Security headers and SSL configuration analysis
-- **Performance Metrics**: Response times and content analysis
+## Installation
+
+### Prerequisites
+- Python 3.7+
+- requests library
+- urllib3
+- Optional: Wappalyzer for enhanced detection
+
+### Installation Steps
+1. Clone the repository
+2. Install dependencies: `pip install requests urllib3`
+3. Install optional Wappalyzer: `pip install python-Wappalyzer`
 
 ## Usage
 
-### Basic Web Fingerprinting
+### Basic Usage
 ```python
-from web_fingerprinting import WebFingerprinter
+from web_fingerprinting import execute_fingerprinting
 
-# Create fingerprinter instance
-fingerprinter = WebFingerprinter("example.com")
+# Simple fingerprinting with defaults
+results = execute_fingerprinting("example.com")
+```
 
-# Run fingerprinting on default targets
-results = fingerprinter.run_web_fingerprinting()
+### Advanced Usage
+```python
+# Advanced configuration with custom settings
+results = execute_fingerprinting(
+    domain="example.com",
+    include_www=True,
+    detection_methods=['headers', 'content', 'wappalyzer'],
+    timeout=45,
+    verbose=True,
+    output_format='summary'
+)
+```
 
-# Display results
-for target, result in results.items():
-    print(f"Target: {target}")
+### Programmatic Usage
+```python
+from web_fingerprinting import ConfigurableWebFingerprinter, WebFingerprintingConfig
+
+# Create custom configuration
+config = WebFingerprintingConfig()
+config.detection_methods = ['headers', 'content', 'url_patterns', 'wappalyzer']
+config.enable_security_analysis = True
+config.request_timeout = 30
+config.verbose_output = True
+
+# Initialize fingerprinter
+fingerprinter = ConfigurableWebFingerprinter("example.com", config)
+
+# Run comprehensive fingerprinting
+results = fingerprinter.run_comprehensive_fingerprinting()
+
+# Access detailed results
+for target, result in results['targets'].items():
     if 'error' not in result:
+        print(f"Target: {target}")
         technologies = result['technology_detection']
-        print(f"Technologies: {technologies}")
-```
-
-### Custom Target Fingerprinting
-```python
-# Define custom targets
-targets = [
-    "https://example.com",
-    "https://api.example.com",
-    "https://admin.example.com"
-]
-
-fingerprinter = WebFingerprinter("example.com")
-results = fingerprinter.run_web_fingerprinting(targets)
-```
-
-### Generate Summary Report
-```python
-# Generate comprehensive summary
-summary = fingerprinter.generate_fingerprint_summary(results)
-
-print(f"Total targets: {summary['total_targets']}")
-print(f"Unique technologies: {summary['unique_technologies']}")
-print(f"Average security score: {summary['security_score_avg']}")
-```
-
-### Command Line Usage
-```bash
-# Basic fingerprinting
-python web_fingerprinting.py example.com
-
-# Custom targets
-python web_fingerprinting.py example.com --targets https://api.example.com
-
-# With summary report
-python web_fingerprinting.py example.com --summary
+        security = result['security_analysis']
+        print(f"Technologies detected: {len(technologies)}")
+        print(f"Security score: {security.get('security_score', 0)}%")
 ```
 
 ## Configuration
 
-### Basic Configuration
-```python
-from config import EnumerationConfig
+### Configuration Options
+- **detection_methods**: Technology detection methods (default: ['headers', 'content', 'url_patterns', 'wappalyzer'])
+- **enable_wappalyzer**: Enable Wappalyzer detection (default: True)
+- **enable_ai_analysis**: Enable AI-enhanced analysis (default: True)
+- **enable_security_analysis**: Enable security assessment (default: True)
+- **request_timeout**: Request timeout in seconds (default: 30)
+- **concurrent_requests**: Maximum concurrent requests (default: 3)
+- **include_www_variant**: Include www subdomain (default: False)
+- **include_http**: Include HTTP targets (default: False)
+- **output_format**: Output format - 'detailed', 'summary', 'minimal' (default: 'detailed')
 
-config = EnumerationConfig()
-config.timeout = 15         # Request timeout
-config.rate_limit = 5       # Requests per second
-config.rate_limiting_enabled = True
+### Configuration File
+```python
+from web_fingerprinting import WebFingerprintingConfig
+
+config = WebFingerprintingConfig()
+config.detection_methods = ['headers', 'content', 'wappalyzer', 'ai']
+config.enable_security_analysis = True
+config.enable_technology_insights = True
+config.request_timeout = 45
+config.concurrent_requests = 5
+config.include_www_variant = True
+config.verbose_output = True
+config.output_format = 'detailed'
 ```
 
-### Available Settings
-- `timeout`: Request timeout in seconds (default: 15)
-- `rate_limit`: Requests per second (default: 10)
-- `rate_limiting_enabled`: Enable/disable rate limiting (default: True)
+## Methods
 
-## Results Structure
+### execute_fingerprinting
+Enhanced function with direct parameter configuration for programmatic use
 
+### ConfigurableWebFingerprinter.run_comprehensive_fingerprinting
+Main fingerprinting method that executes all configured detection methods
+
+### _detect_technologies
+Multi-method technology detection using headers, content, URL patterns, Wappalyzer, and AI
+
+## Output
+
+### Output Format
 ```python
 {
-    'target_url': {
-        'url': 'https://example.com',
-        'timestamp': 1234567890.123,
-        'response_analysis': {
-            'status_code': 200,
-            'content_type': 'text/html',
-            'content_length': 1024,
-            'redirect_chain': []
-        },
-        'header_analysis': {
-            'server': 'nginx/1.18.0',
-            'security_headers': {
-                'x_frame_options': 'DENY',
-                'content_security_policy': 'default-src self'
+    'domain': 'example.com',
+    'timestamp': 1695551234.567,
+    'configuration': {...},
+    'targets': {
+        'https://example.com': {
+            'url': 'https://example.com',
+            'timestamp': 1695551234.567,
+            'response_analysis': {
+                'status_code': 200,
+                'content_type': 'text/html; charset=UTF-8',
+                'content_length': 15234,
+                'title': 'Example Website',
+                'has_html': True,
+                'redirect_chain': []
+            },
+            'header_analysis': {
+                'server': 'Apache/2.4.62 (Rocky Linux) OpenSSL/3.2.2',
+                'server_info': {
+                    'name': 'Apache',
+                    'components': ['Apache/2.4.62', '(Rocky', 'Linux)', 'OpenSSL/3.2.2']
+                },
+                'framework_info': {'framework': 'PHP'},
+                'x_powered_by': 'PHP/8.1.29'
+            },
+            'technology_detection': {
+                'wappalyzer_detected': ['Apache', 'PHP'],
+                'header_detected': ['Apache', 'PHP'],
+                'content_detected': ['Font Awesome', 'Google Services'],
+                'url_patterns': ['CDN', 'Google Services']
+            },
+            'security_analysis': {
+                'security_score': 0.0,
+                'missing_headers': ['X-Frame-Options', 'Content-Security-Policy', ...],
+                'ssl_info': {'uses_ssl': True, 'ssl_grade': 'Needs Improvement'}
+            },
+            'performance_metrics': {
+                'response_time': 0.65,
+                'content_length': 15234,
+                'redirect_count': 1
             }
-        },
-        'technology_detection': {
-            'wappalyzer_detected': ['Nginx', 'PHP', 'jQuery'],
-            'header_detected': ['Nginx'],
-            'content_detected': ['WordPress', 'jQuery'],
-            'url_patterns': ['Google Analytics']
-        },
-        'security_analysis': {
-            'security_score': 75,
-            'ssl_enabled': True
-        },
-        'performance_metrics': {
-            'response_time': 0.234,
-            'content_size': 1024
         }
+    },
+    'summary': {
+        'total_targets': 1,
+        'successful_scans': 1,
+        'unique_technologies': ['Apache', 'PHP', 'Font Awesome', 'CDN'],
+        'security_score_avg': 0.0
+    },
+    'statistics': {
+        'total_duration': 0.65,
+        'success_rate': 100.0
     }
 }
 ```
+
+### Results Interpretation
+- **targets**: Individual results for each fingerprinted URL
+- **technology_detection**: Technologies detected by different methods
+- **security_analysis**: Security score and missing security headers
+- **performance_metrics**: Response time and content analysis
+- **summary**: Aggregated statistics across all targets
+
+## Examples
+
+### Example 1: Basic Fingerprinting
+```python
+from web_fingerprinting import execute_fingerprinting
+
+# Simple domain fingerprinting
+results = execute_fingerprinting("online.uom.lk")
+print(f"Fingerprinted {len(results['targets'])} targets")
+```
+
+### Example 2: Advanced Configuration
+```python
+# Custom configuration with specific methods
+results = execute_fingerprinting(
+    domain="example.com",
+    detection_methods=['headers', 'content', 'wappalyzer'],
+    include_www=True,
+    timeout=45,
+    verbose=True,
+    output_format='summary'
+)
+
+# Access technology insights
+for target, result in results['targets'].items():
+    if 'technology_insights' in result:
+        stack = result['technology_insights']['technology_stack']
+        print(f"Web Server: {stack.get('web_server', [])}")
+        print(f"Programming Language: {stack.get('programming_language', [])}")
+```
+
+### Example 3: Command Line Usage
+```bash
+# Basic fingerprinting
+python web_fingerprinting.py example.com
+
+# With verbose output and custom timeout
+python web_fingerprinting.py example.com --verbose --timeout 45
+
+# Custom detection methods
+python web_fingerprinting.py example.com --detection-methods headers content wappalyzer
+```
+
+## Technology Detection
+
+### ✅ Currently Implemented
+- **Header Analysis**: Server identification from HTTP headers (Server, X-Powered-By)
+- **Content Analysis**: Technology detection from HTML content and JavaScript
+- **URL Pattern Analysis**: Technology identification from resource URLs and CDNs
+- **Wappalyzer Integration**: Advanced technology detection when available
+- **AI-Enhanced Analysis**: AI-powered technology detection (when configured)
+
+### Detection Categories
+- **Web Servers**: Apache, Nginx, IIS, Cloudflare
+- **Programming Languages**: PHP, Python, Java, ASP.NET, Node.js
+- **Frameworks**: Django, Laravel, Express, Rails
+- **CMS**: WordPress, Drupal, Joomla, Moodle
+- **JavaScript Libraries**: jQuery, React, Angular, Vue.js
+- **CDN Services**: Cloudflare, AWS CloudFront, Azure CDN
+- **Analytics**: Google Analytics, Google Tag Manager
+
+## Security Analysis
+
+### Security Headers Checked
+- X-Frame-Options (Clickjacking protection)
+- Content-Security-Policy (XSS prevention)
+- Strict-Transport-Security (HTTPS enforcement)
+- X-Content-Type-Options (MIME type protection)
+- X-XSS-Protection (XSS filtering)
+- Referrer-Policy (Referrer information control)
+- Permissions-Policy (Feature permissions)
+
+### SSL Analysis
+- HTTPS usage detection
+- SSL certificate validation
+- Security grade assessment
+- Recommendations for improvement
 
 ## Error Handling
 
 ```python
 # Get errors encountered during fingerprinting
-errors = fingerprinter.get_errors()
-for method, error_list in errors.items():
-    print(f"{method}: {len(error_list)} errors")
+fingerprinter = ConfigurableWebFingerprinter("example.com")
+results = fingerprinter.run_comprehensive_fingerprinting()
+errors = results.get('errors', {})
+
+for source, error_list in errors.items():
+    print(f"{source}: {len(error_list)} errors")
 ```
 
 Common error types handled:
+- DNS resolution failures (automatically skipped)
 - Connection timeouts and HTTP errors
-- SSL certificate and protocol errors
+- SSL certificate verification failures
 - Content encoding and parsing errors
 - Large content memory management
+- Wappalyzer integration errors
 
 ## Dependencies
 
 Required packages:
-- `requests`: HTTP client library
-- `urllib.parse`: URL parsing utilities
+- `requests`: HTTP client with session management
+- `urllib3`: Advanced HTTP features and retry strategies
+- `socket`: DNS resolution validation
+- `re`: Regular expression processing
+- `time`: Performance timing
+- `logging`: Comprehensive error tracking
 
 Optional dependencies:
 - `fingerprinting_wapplyzer`: Enhanced technology detection
+- AI integration libraries (for AI-enhanced analysis)
+
+## Troubleshooting
+
+### If you get DNS resolution errors:
+1. **Domain validation**: Ensure the domain exists and is accessible
+2. **www subdomain**: Disable `include_www` if www subdomain doesn't exist
+3. **Network connectivity**: Check internet connection and DNS settings
+4. **Firewall issues**: Verify outbound HTTPS connections are allowed
+
+### Common Error Messages:
+- `"Skipping www.example.com - DNS resolution failed"`: www subdomain doesn't exist (automatically handled)
+- `"Request failed for https://example.com"`: Connection or HTTP error
+- `"Wappalyzer detection failed"`: Wappalyzer integration issue (falls back to other methods)
+- `"HTTPSConnectionPool... Max retries exceeded"`: Network connectivity problems
+
+### Performance Tips:
+- Use `verbose=True` for detailed debugging information
+- Reduce `concurrent` requests if experiencing rate limiting
+- Increase `timeout` for slow network connections
+- Use `output_format='minimal'` for faster processing
+- Disable unused detection methods to improve speed
