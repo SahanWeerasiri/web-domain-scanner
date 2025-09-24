@@ -1,694 +1,866 @@
 #!/usr/bin/env python3
 """
-Main Domain Enumeration Orchestrator
+Main Domain Enumeration Module
 
-This module coordinates all domain enumeration sub-modules and provides a unified
-interface for comprehensive domain reconnaissance. It combines passive enumeration,
-active enumeration, DNS analysis, and web fingerprinting.
-
-Author: Web Domain Scanner Project
-License: See LICENSE file in project root
+This module orchestrates all domain enumeration techniques including:
+- Passive enumeration (Certificate Transparency, SSL certificates)
+- Active enumeration (Brute force, DNS permutations, zone transfers)
+- DNS record enumeration (A, AAAA, MX, NS, TXT, CNAME, SOA)
+- Web fingerprinting (Technology detection, security analysis)
 """
 
-import logging
-import time
 import sys
 import os
-from typing import Dict, List, Set, Optional, TYPE_CHECKING
+import argparse
+import logging
+import json
+import time
+from typing import Dict, List, Set, Any, Optional
+from datetime import datetime
 
 # Add parent directories to path for imports
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '.')))
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(current_dir)
+sys.path.append(os.path.join(current_dir, 'passive'))
+sys.path.append(os.path.join(current_dir, 'active'))
+sys.path.append(os.path.join(current_dir, 'dns_enumeration_module'))
+sys.path.append(os.path.join(current_dir, 'web_fingerprinting'))
 
-# Import sub-modules with fallback for both relative and absolute imports
+# Import execute functions from each module
 try:
-    # Try relative imports first (when used as module)
-    from .config import EnumerationConfig
-    from .base import ResultsManager, SubdomainValidator, EnumerationErrorHandler
-    from .passive.passive_enumeration import PassiveEnumerator
-    from .active.active_enumeration import ActiveEnumerator
-    from .dns_enumeration_module.dns_enumeration import DNSEnumerator
-    from .web_fingerprinting.web_fingerprinting import WebFingerprinter
-except ImportError:
-    # Fallback to absolute imports (when run directly or when package context differs)
-    # Prefer the full package path to avoid colliding with the top-level `config` package
-    try:
-        from modules.domain_enumeration.config import EnumerationConfig
-        from modules.domain_enumeration.base import ResultsManager, SubdomainValidator, EnumerationErrorHandler
-        from modules.domain_enumeration.passive.passive_enumeration import PassiveEnumerator
-        from modules.domain_enumeration.active.active_enumeration import ActiveEnumerator
-        from modules.domain_enumeration.dns_enumeration_module.dns_enumeration import DNSEnumerator
-        from modules.domain_enumeration.web_fingerprinting.web_fingerprinting import WebFingerprinter
-    except ImportError:
-        # Last-resort: try the plain module paths (useful for some execution contexts)
-        try:
-            from modules.domain_enumeration.config import EnumerationConfig
-            from modules.domain_enumeration.base import ResultsManager, SubdomainValidator, EnumerationErrorHandler
-            from modules.domain_enumeration.passive.passive_enumeration import PassiveEnumerator
-            from modules.domain_enumeration.active.active_enumeration import ActiveEnumerator
-            from modules.domain_enumeration.dns_enumeration_module.dns_enumeration import DNSEnumerator
-            from modules.domain_enumeration.web_fingerprinting.web_fingerprinting import WebFingerprinter
-        except ImportError:
-            # Fallback to plain imports for alternate execution contexts
-            from config import EnumerationConfig
-            from base import ResultsManager, SubdomainValidator, EnumerationErrorHandler
-            from passive.passive_enumeration import PassiveEnumerator
-            from active.active_enumeration import ActiveEnumerator
-            from dns_enumeration_module.dns_enumeration import DNSEnumerator
-            from web_fingerprinting.web_fingerprinting import WebFingerprinter
-
-# Import AI Integration module for enhanced enumeration
-if TYPE_CHECKING:
-    from ai_integration import AIIntegration
+    from passive.passive_enumeration import execute_passive_enumeration
+    PASSIVE_AVAILABLE = True
+except ImportError as e:
+    print(f"Warning: Passive enumeration not available: {e}")
+    PASSIVE_AVAILABLE = False
 
 try:
-    # Try different paths for AI integration
-    try:
-        sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-        from ai_integration import AIIntegration
-    except ImportError:
-        # Try alternative path
-        sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../modules')))
-        from ai_integration import AIIntegration
-    AI_AVAILABLE = True
-except ImportError:
-    AI_AVAILABLE = False
-    AIIntegration = None
+    from active.active_enumeration import execute_active_enumeration
+    ACTIVE_AVAILABLE = True
+except ImportError as e:
+    print(f"Warning: Active enumeration not available: {e}")
+    ACTIVE_AVAILABLE = False
 
+try:
+    from dns_enumeration_module.dns_enumeration import execute_dns_enumeration
+    DNS_AVAILABLE = True
+except ImportError as e:
+    print(f"Warning: DNS enumeration not available: {e}")
+    DNS_AVAILABLE = False
+
+try:
+    from web_fingerprinting.web_fingerprinting import execute_fingerprinting
+    FINGERPRINTING_AVAILABLE = True
+except ImportError as e:
+    print(f"Warning: Web fingerprinting not available: {e}")
+    FINGERPRINTING_AVAILABLE = False
+
+# Set up logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 
-class DomainEnumeration:
-    """
-    Comprehensive domain enumeration orchestrator.
+class DomainEnumerationConfig:
+    """Comprehensive configuration for all enumeration methods"""
     
-    This class provides advanced subdomain discovery capabilities using multiple
-    enumeration techniques including passive data collection, active probing,
-    DNS enumeration, and web technology fingerprinting.
+    def __init__(self):
+        # Global settings
+        self.domain = None
+        self.verbose = False
+        self.output_file = None
+        self.enabled_modules = ['passive', 'active', 'dns', 'fingerprinting']
+        
+        # Passive enumeration configuration
+        self.passive_config = {
+            'sources': ['certificate_transparency'],
+            'ct_sources': ['crt_sh'],
+            'concurrent_requests': 5,
+            'request_delay': 0.5,
+            'timeout': 10,
+            'verbose': False
+        }
+        
+        # Active enumeration configuration
+        self.active_config = {
+            'threads': 10,
+            'rate_limit': 10,
+            'timeout': 5,
+            'bruteforce_retries': 2,
+            'permutation_depth': 3,
+            'dns_servers': None,
+            'methods': ['bruteforce', 'dns_permutations', 'zone_transfer', 'cache_snooping'],
+            'wordlist_file': None,
+            'enable_ai': True
+        }
+        
+        # DNS enumeration configuration
+        self.dns_config = {
+            'dns_servers': None,
+            'timeout': 5,
+            'retries': 2,
+            'record_types': ['A', 'AAAA', 'MX', 'NS', 'TXT', 'CNAME', 'SOA'],
+            'include_parent_domain': True,
+            'perform_analysis': True,
+            'query_additional_records': False,
+            'verbose': False,
+            'txt_analysis_depth': 'basic'
+        }
+        
+        # Web fingerprinting configuration
+        self.fingerprinting_config = {
+            'targets': None,
+            'include_http': False,
+            'include_www': False,
+            'detection_methods': ['headers', 'content', 'url_patterns', 'wappalyzer'],
+            'disable_wappalyzer': False,
+            'disable_ai': False,
+            'disable_security': False,
+            'timeout': 30,
+            'concurrent': 3,
+            'verbose': False,
+            'output_format': 'detailed'
+        }
+
+
+class DomainEnumerationOrchestrator:
+    """Main orchestrator for domain enumeration"""
     
-    Key Features:
-    - Passive enumeration via Certificate Transparency logs
-    - Active enumeration with intelligent wordlist generation
-    - DNS enumeration with multiple record types
-    - Web technology fingerprinting
-    - Rate limiting and error handling
-    - Results correlation and validation
+    def __init__(self, config: DomainEnumerationConfig):
+        self.config = config
+        self.results = {}
+        self.start_time = time.time()
+        
+    def run_comprehensive_enumeration(self) -> Dict[str, Any]:
+        """Execute all enabled enumeration modules"""
+        logger.info(f"Starting comprehensive enumeration for domain: {self.config.domain}")
+        
+        self.results = {
+            'domain': self.config.domain,
+            'timestamp': datetime.now().isoformat(),
+            'modules': {},
+            'summary': {},
+            'all_subdomains': set(),
+            'statistics': {}
+        }
+        
+        # Execute each module if enabled and available
+        if 'passive' in self.config.enabled_modules and PASSIVE_AVAILABLE:
+            self._run_passive_enumeration()
+            
+        if 'active' in self.config.enabled_modules and ACTIVE_AVAILABLE:
+            self._run_active_enumeration()
+            
+        if 'dns' in self.config.enabled_modules and DNS_AVAILABLE:
+            self._run_dns_enumeration()
+            
+        if 'fingerprinting' in self.config.enabled_modules and FINGERPRINTING_AVAILABLE:
+            self._run_fingerprinting()
+        
+        # Compile final results
+        self._compile_final_results()
+        
+        return self.results
     
-    Example:
-        >>> config = EnumerationConfig()
-        >>> enumerator = DomainEnumeration("example.com", config)
-        >>> results = enumerator.correlate_results()
-    """
-    
-    def __init__(self, domain: str, config: Optional[EnumerationConfig] = None, ai_integration = None):
-        """
-        Initialize DomainEnumeration instance with target domain and configuration.
-        
-        Args:
-            domain (str): Target domain to enumerate (e.g., "example.com")
-            config (EnumerationConfig, optional): Configuration object.
-                                                If None, uses default configuration.
-            ai_integration (AIIntegration, optional): AI integration instance for enhanced enumeration.
-        
-        Raises:
-            ValueError: If domain is invalid.
-        """
-        # Validate domain input
-        if not domain or not isinstance(domain, str):
-            raise ValueError("Domain must be a non-empty string")
-        
-        self.domain = domain.lower().strip()
-        logger.info(f"Initializing DomainEnumeration for domain: {self.domain}")
-        
-        # Handle config
-        self.config = config or EnumerationConfig()
-        
-        # Initialize AI integration if available
-        self.ai_integration = ai_integration
-        if AI_AVAILABLE and not self.ai_integration:
-            # Try to create AI integration with environment variables
-            api_keys = {
-                'gemini_api_key': os.getenv('GEMINI_API_KEY'),
-                'openai_api_key': os.getenv('OPENAI_API_KEY'),
-                'anthropic_api_key': os.getenv('ANTHROPIC_API_KEY')
+    def _run_passive_enumeration(self):
+        """Execute passive enumeration with comprehensive data collection"""
+        try:
+            logger.info("Running passive enumeration...")
+            passive_results = execute_passive_enumeration(
+                domain=self.config.domain,
+                **self.config.passive_config
+            )
+            
+            # Extract comprehensive certificate data
+            certificates = {}
+            ct_logs_processed = 0
+            if 'sources' in passive_results and 'certificate_transparency' in passive_results['sources']:
+                ct_data = passive_results['sources']['certificate_transparency']
+                if 'crt_sh' in ct_data and 'certificates' in ct_data['crt_sh']:
+                    certificates = ct_data['crt_sh']['certificates']
+                if 'crt_sh' in ct_data and 'total_certificates' in ct_data['crt_sh']:
+                    ct_logs_processed = ct_data['crt_sh']['total_certificates']
+            
+            # Structure comprehensive passive results
+            structured_result = {
+                "domain": self.config.domain,
+                "timestamp": time.time(),
+                "configuration": {
+                    "enabled_sources": self.config.passive_config.get('sources', ['certificate_transparency']),
+                    "ct_sources": self.config.passive_config.get('ct_sources', ['crt_sh']),
+                    "concurrent_requests": self.config.passive_config.get('concurrent_requests', 5),
+                    "timeout": self.config.passive_config.get('timeout', 10)
+                },
+                "sources": passive_results.get('sources', {}),
+                "certificates": certificates,
+                "subdomains": list(passive_results.get('subdomains', [])),
+                "statistics": {
+                    "total_duration": passive_results.get('statistics', {}).get('total_duration', 0),
+                    "total_subdomains": len(passive_results.get('subdomains', [])),
+                    "certificates_analyzed": len(certificates),
+                    "ct_logs_processed": ct_logs_processed,
+                    "successful_sources": len([s for s in passive_results.get('sources', {}) 
+                                             if passive_results['sources'][s].get('success', True)]),
+                    "success_rate": passive_results.get('statistics', {}).get('success_rate', 100.0)
+                },
+                "errors": passive_results.get('errors', {})
             }
-            if any(api_keys.values()):
-                self.ai_integration = AIIntegration(**{k: v for k, v in api_keys.items() if v})
-                logger.info("AI integration initialized for enhanced domain enumeration")
-        
-        # Initialize results manager
-        self.results_manager = ResultsManager()
-        self.error_handler = EnumerationErrorHandler()
-        
-        # Initialize sub-modules with AI integration
-        self.passive_enumerator = PassiveEnumerator(self.domain, self.config, self.ai_integration)
-        self.active_enumerator = ActiveEnumerator(self.domain, self.config, self.ai_integration)
-        self.dns_enumerator = DNSEnumerator(self.domain, self.config)  # DNS enumeration doesn't need AI for now
-        self.web_fingerprinter = WebFingerprinter(self.domain, self.config, self.ai_integration)
-        
-        logger.info(f"DomainEnumeration initialized successfully for {self.domain}")
-    
-    def passive_enumeration(self) -> Dict:
-        """
-        Run passive enumeration using external sources.
-        
-        Returns:
-            Dict: Passive enumeration results
-        """
-        logger.info("Starting passive enumeration")
-        try:
-            results = self.passive_enumerator.run_passive_enumeration()
-            self.results_manager.add_passive_results(results)
             
-            # Collect errors
-            errors = self.passive_enumerator.get_errors()
-            if errors:
-                self.results_manager.add_errors({'passive': errors})
+            self.results['modules']['passive'] = structured_result
             
-            logger.info("Passive enumeration completed successfully")
-            return results
+            # Extract subdomains
+            if 'subdomains' in passive_results:
+                self.results['all_subdomains'].update(passive_results['subdomains'])
+                
+            logger.info(f"Passive enumeration completed. Found {len(passive_results.get('subdomains', []))} subdomains, "
+                       f"analyzed {len(passive_results.get('certificates', {}))} certificates")
+            
         except Exception as e:
-            logger.error(f"Passive enumeration failed: {e}")
-            self.error_handler.handle_error("passive_enumeration", e)
-            return {}
+            logger.error(f"Passive enumeration failed: {str(e)}")
+            self.results['modules']['passive'] = {
+                'status': 'failed',
+                'error': str(e),
+                'subdomains': [],
+                'certificates': {},
+                'statistics': {'total_duration': 0, 'total_subdomains': 0, 'certificates_analyzed': 0}
+            }
     
-    def enhanced_active_enumeration(self, wordlist: Optional[List[str]] = None, page_content: Optional[Dict] = None) -> Dict:
-        """
-        Run active enumeration with brute force and intelligent techniques.
-        
-        Args:
-            wordlist: Custom wordlist for brute force. If None, generates dynamic wordlist.
-            page_content: Page content from web crawling for AI-enhanced wordlist generation.
-            
-        Returns:
-            Dict: Active enumeration results
-        """
-        logger.info("Starting active enumeration")
+    def _run_active_enumeration(self):
+        """Execute active enumeration with comprehensive data collection"""
         try:
-            # If AI integration is available and no page content provided, try to collect it
-            if self.ai_integration and not page_content:
-                try:
-                    # Quick web probe to get page content for AI analysis
-                    import requests
-                    session = requests.Session()
-                    session.headers.update({
-                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+            logger.info("Running active enumeration...")
+            active_results = execute_active_enumeration(
+                domain=self.config.domain,
+                **self.config.active_config
+            )
+            
+            # Structure comprehensive active results
+            structured_result = {
+                "domain": self.config.domain,
+                "timestamp": time.time(),
+                "configuration": {
+                    "enabled_methods": self.config.active_config.get('methods', ['bruteforce', 'dns_permutations', 'zone_transfer', 'cache_snooping']),
+                    "thread_count": self.config.active_config.get('threads', 10),
+                    "rate_limit": self.config.active_config.get('rate_limit', 10),
+                    "timeout": self.config.active_config.get('timeout', 5),
+                    "ai_enabled": self.config.active_config.get('enable_ai', True)
+                },
+                "methods": active_results.get('methods', {}),
+                "statistics": {
+                    "total_duration": active_results.get('statistics', {}).get('total_duration', 0),
+                    "total_subdomains": active_results.get('statistics', {}).get('total_subdomains', 0),
+                    "methods_breakdown": active_results.get('statistics', {}).get('methods_breakdown', {}),
+                    "queries_attempted": active_results.get('statistics', {}).get('queries_attempted', 0),
+                    "success_rate": active_results.get('statistics', {}).get('success_rate', 0),
+                    "ai_wordlist_generated": active_results.get('statistics', {}).get('ai_wordlist_generated', 0)
+                },
+                "errors": active_results.get('errors', {})
+            }
+            
+            self.results['modules']['active'] = structured_result
+            
+            # Extract subdomains from different methods
+            if 'methods' in active_results:
+                for method, method_results in active_results['methods'].items():
+                    if isinstance(method_results, list):
+                        self.results['all_subdomains'].update(method_results)
+                    elif isinstance(method_results, dict) and 'subdomains' in method_results:
+                        self.results['all_subdomains'].update(method_results['subdomains'])
+            
+            total_found = sum(len(method_results) if isinstance(method_results, list) else 
+                             len(method_results.get('subdomains', [])) if isinstance(method_results, dict) else 0
+                             for method_results in active_results.get('methods', {}).values())
+            
+            logger.info(f"Active enumeration completed. Found {total_found} subdomains, "
+                       f"attempted {active_results.get('statistics', {}).get('queries_attempted', 0)} queries")
+            
+        except Exception as e:
+            logger.error(f"Active enumeration failed: {str(e)}")
+            self.results['modules']['active'] = {
+                'status': 'failed',
+                'error': str(e),
+                'methods': {},
+                'statistics': {'total_duration': 0, 'total_subdomains': 0, 'queries_attempted': 0, 'success_rate': 0}
+            }
+    
+    def _run_dns_enumeration(self):
+        """Execute DNS enumeration with comprehensive data collection"""
+        try:
+            logger.info("Running DNS enumeration...")
+            dns_results = execute_dns_enumeration(
+                domain=self.config.domain,
+                **self.config.dns_config
+            )
+            
+            # Structure comprehensive DNS results
+            structured_result = {
+                "domain": self.config.domain,
+                "timestamp": time.time(),
+                "configuration": {
+                    "dns_servers": self.config.dns_config.get('dns_servers', ['8.8.8.8', '1.1.1.1']),
+                    "timeout": self.config.dns_config.get('timeout', 5),
+                    "record_types": self.config.dns_config.get('record_types', ['A', 'AAAA', 'MX', 'NS', 'TXT', 'CNAME', 'SOA']),
+                    "analysis_enabled": self.config.dns_config.get('perform_analysis', True)
+                },
+                "dns_records": dns_results.get('dns_records', {}),
+                "subdomains": list(dns_results.get('subdomains', [])),
+                "analysis": {
+                    "infrastructure": dns_results.get('analysis', {}).get('infrastructure', {}),
+                    "security_records": dns_results.get('analysis', {}).get('security_records', {}),
+                    "txt_analysis": dns_results.get('analysis', {}).get('txt_analysis', {})
+                },
+                "statistics": {
+                    "total_duration": dns_results.get('statistics', {}).get('total_duration', 0),
+                    "total_records": dns_results.get('statistics', {}).get('total_records', 0),
+                    "total_subdomains": len(dns_results.get('subdomains', [])),
+                    "queries_performed": dns_results.get('statistics', {}).get('queries_performed', 0),
+                    "successful_queries": dns_results.get('statistics', {}).get('successful_queries', 0),
+                    "failed_queries": dns_results.get('statistics', {}).get('failed_queries', 0)
+                },
+                "errors": dns_results.get('errors', {})
+            }
+            
+            self.results['modules']['dns'] = structured_result
+            
+            # Extract subdomains
+            if 'subdomains' in dns_results:
+                self.results['all_subdomains'].update(dns_results['subdomains'])
+                
+            total_records = sum(len(records) for records in dns_results.get('dns_records', {}).values())
+            logger.info(f"DNS enumeration completed. Found {len(dns_results.get('subdomains', []))} subdomains, "
+                       f"{total_records} DNS records")
+            
+        except Exception as e:
+            logger.error(f"DNS enumeration failed: {str(e)}")
+            self.results['modules']['dns'] = {
+                'status': 'failed',
+                'error': str(e),
+                'dns_records': {},
+                'subdomains': [],
+                'analysis': {},
+                'statistics': {'total_duration': 0, 'total_records': 0, 'total_subdomains': 0, 'queries_performed': 0}
+            }
+    
+    def _run_fingerprinting(self):
+        """Execute web fingerprinting with comprehensive data collection"""
+        try:
+            logger.info("Running web fingerprinting...")
+            fingerprinting_results = execute_fingerprinting(
+                domain=self.config.domain,
+                **self.config.fingerprinting_config
+            )
+            
+            # Structure comprehensive fingerprinting results
+            structured_result = {
+                "domain": self.config.domain,
+                "timestamp": time.time(),
+                "configuration": {
+                    "detection_methods": self.config.fingerprinting_config.get('detection_methods', ['headers', 'content', 'url_patterns', 'wappalyzer']),
+                    "timeout": self.config.fingerprinting_config.get('timeout', 30),
+                    "include_www": self.config.fingerprinting_config.get('include_www', False),
+                    "security_analysis": not self.config.fingerprinting_config.get('disable_security', False)
+                },
+                "targets": fingerprinting_results.get('targets', {}),
+                "summary": {
+                    "total_targets": len(fingerprinting_results.get('targets', {})),
+                    "successful_scans": len([t for t in fingerprinting_results.get('targets', {}).values() 
+                                           if 'error' not in t]),
+                    "unique_technologies": list(set([
+                        tech for target in fingerprinting_results.get('targets', {}).values()
+                        if 'technology_detection' in target
+                        for tech_list in target['technology_detection'].values()
+                        if isinstance(tech_list, list)
+                        for tech in tech_list
+                    ])),
+                    "security_score_avg": sum([
+                        target.get('security_analysis', {}).get('security_score', 0)
+                        for target in fingerprinting_results.get('targets', {}).values()
+                        if 'security_analysis' in target
+                    ]) / max(len(fingerprinting_results.get('targets', {})), 1),
+                    "common_issues": list(set([
+                        header for target in fingerprinting_results.get('targets', {}).values()
+                        if 'security_analysis' in target and 'missing_headers' in target['security_analysis']
+                        for header in target['security_analysis']['missing_headers']
+                    ]))
+                },
+                "statistics": {
+                    "total_duration": fingerprinting_results.get('statistics', {}).get('total_duration', 0),
+                    "success_rate": fingerprinting_results.get('statistics', {}).get('success_rate', 0)
+                },
+                "errors": fingerprinting_results.get('errors', {})
+            }
+            
+            self.results['modules']['fingerprinting'] = structured_result
+            
+            # Extract any additional subdomains discovered during fingerprinting
+            if 'targets' in fingerprinting_results:
+                for target_url in fingerprinting_results['targets'].keys():
+                    # Extract domain from URL for potential subdomain discovery
+                    from urllib.parse import urlparse
+                    parsed = urlparse(target_url)
+                    if parsed.hostname and parsed.hostname != self.config.domain:
+                        self.results['all_subdomains'].add(parsed.hostname)
+            
+            technologies_count = len(structured_result['summary']['unique_technologies'])
+            logger.info(f"Web fingerprinting completed. Analyzed {len(fingerprinting_results.get('targets', {}))} targets, "
+                       f"detected {technologies_count} unique technologies")
+            
+        except Exception as e:
+            logger.error(f"Web fingerprinting failed: {str(e)}")
+            self.results['modules']['fingerprinting'] = {
+                'status': 'failed',
+                'error': str(e),
+                'targets': {},
+                'summary': {'total_targets': 0, 'successful_scans': 0, 'unique_technologies': [], 'security_score_avg': 0},
+                'statistics': {'total_duration': 0, 'success_rate': 0}
+            }
+    
+    def _compile_final_results(self):
+        """Compile comprehensive final results and statistics"""
+        # Convert set to sorted list
+        self.results['all_subdomains'] = sorted(list(self.results['all_subdomains']))
+        
+        # Calculate comprehensive statistics
+        total_time = time.time() - self.start_time
+        total_certificates = 0
+        total_technologies = 0
+        total_dns_records = 0
+        total_security_issues = 0
+        total_queries = 0
+        total_http_requests = 0
+        
+        # Extract detailed metrics from each module
+        if 'passive' in self.results['modules']:
+            passive_stats = self.results['modules']['passive'].get('statistics', {})
+            total_certificates = passive_stats.get('certificates_analyzed', 0)
+        
+        if 'active' in self.results['modules']:
+            active_stats = self.results['modules']['active'].get('statistics', {})
+            total_queries += active_stats.get('queries_attempted', 0)
+        
+        if 'dns' in self.results['modules']:
+            dns_stats = self.results['modules']['dns'].get('statistics', {})
+            total_dns_records = dns_stats.get('total_records', 0)
+            total_queries += dns_stats.get('queries_performed', 0)
+        
+        if 'fingerprinting' in self.results['modules']:
+            fingerprint_module = self.results['modules']['fingerprinting']
+            if 'targets' in fingerprint_module:
+                total_technologies = len(fingerprint_module.get('summary', {}).get('unique_technologies', []))
+                total_security_issues = len(fingerprint_module.get('summary', {}).get('common_issues', []))
+                total_http_requests += len(fingerprint_module.get('targets', {}))
+        
+        self.results['statistics'] = {
+            'total_subdomains': len(self.results['all_subdomains']),
+            'unique_subdomains': len(self.results['all_subdomains']),
+            'modules_executed': len([m for m in self.results['modules'] if self.results['modules'][m].get('status') != 'failed']),
+            'modules_failed': len([m for m in self.results['modules'] if self.results['modules'][m].get('status') == 'failed']),
+            'total_execution_time': round(total_time, 2),
+            'certificates_analyzed': total_certificates,
+            'dns_queries': total_queries,
+            'http_requests': total_http_requests,
+            'technologies_detected': total_technologies,
+            'security_issues_found': total_security_issues,
+            'enabled_modules': self.config.enabled_modules
+        }
+        
+        # Create enhanced summary by module
+        self.results['summary'] = {}
+        for module_name, module_results in self.results['modules'].items():
+            if module_results.get('status') != 'failed':
+                base_summary = {
+                    'status': 'success',
+                    'subdomains_found': len(module_results.get('subdomains', [])),
+                }
+                
+                # Add module-specific summary data
+                if module_name == 'passive':
+                    base_summary.update({
+                        'certificates_analyzed': module_results.get('statistics', {}).get('certificates_analyzed', 0),
+                        'ct_logs_processed': module_results.get('statistics', {}).get('ct_logs_processed', 0)
                     })
+                elif module_name == 'active':
+                    base_summary.update({
+                        'queries_attempted': module_results.get('statistics', {}).get('queries_attempted', 0),
+                        'success_rate': module_results.get('statistics', {}).get('success_rate', 0)
+                    })
+                elif module_name == 'dns':
+                    base_summary.update({
+                        'records_found': module_results.get('statistics', {}).get('total_records', 0),
+                        'queries_performed': module_results.get('statistics', {}).get('queries_performed', 0)
+                    })
+                elif module_name == 'fingerprinting':
+                    base_summary.update({
+                        'targets_analyzed': module_results.get('summary', {}).get('total_targets', 0),
+                        'technologies_identified': len(module_results.get('summary', {}).get('unique_technologies', []))
+                    })
+                
+                self.results['summary'][module_name] = base_summary
+            else:
+                self.results['summary'][module_name] = {
+                    'status': 'failed',
+                    'error': module_results.get('error', 'Unknown error'),
+                    'subdomains_found': 0
+                }
+
+
+def display_results(results: Dict[str, Any], verbose: bool = False):
+    """Display enumeration results in a formatted manner"""
+    
+    print("\n" + "="*80)
+    print(f"DOMAIN ENUMERATION RESULTS FOR: {results['domain']}")
+    print("="*80)
+    
+    # Display summary statistics
+    stats = results.get('statistics', {})
+    print(f"\n📊 SUMMARY STATISTICS:")
+    print(f"   • Total Subdomains Found: {stats.get('total_subdomains', 0)}")
+    print(f"   • Modules Executed: {stats.get('modules_executed', 0)}")
+    print(f"   • Modules Failed: {stats.get('modules_failed', 0)}")
+    print(f"   • Total Execution Time: {stats.get('total_execution_time', 0)} seconds")
+    
+    # Display module-wise summary
+    print(f"\n🔍 MODULE SUMMARY:")
+    summary = results.get('summary', {})
+    for module_name, module_summary in summary.items():
+        status_icon = "✅" if module_summary['status'] == 'success' else "❌"
+        print(f"   {status_icon} {module_name.upper()}: {module_summary['subdomains_found']} subdomains")
+        if module_summary['status'] == 'failed':
+            print(f"      Error: {module_summary['error']}")
+    
+    # Display all discovered subdomains
+    all_subdomains = results.get('all_subdomains', [])
+    if all_subdomains:
+        print(f"\n🎯 ALL DISCOVERED SUBDOMAINS ({len(all_subdomains)}):")
+        for i, subdomain in enumerate(all_subdomains, 1):
+            print(f"   {i:3d}. {subdomain}")
+    
+    # Display detailed results if verbose
+    if verbose:
+        print(f"\n📋 DETAILED RESULTS:")
+        
+        # Passive enumeration details
+        if 'passive' in results['modules'] and results['modules']['passive'].get('status') != 'failed':
+            passive_results = results['modules']['passive']
+            print(f"\n   🔍 PASSIVE ENUMERATION:")
+            print(f"      • Certificate Transparency (crt.sh): {len(passive_results.get('subdomains', []))} subdomains from {passive_results.get('statistics', {}).get('certificates_analyzed', 0)} certificates")
+            if 'certificates' in passive_results and passive_results['certificates']:
+                print(f"      • Certificate Analysis:")
+                print(f"        - SHA256 Fingerprints: {len(passive_results['certificates'])} unique certificates analyzed")
+                print(f"        - CT Log Entries: {passive_results.get('statistics', {}).get('ct_logs_processed', 0)} CT log entries processed")
+            sources = passive_results.get('configuration', {}).get('enabled_sources', ['certificate_transparency'])
+            print(f"      • Sources: {', '.join(sources)}")
+            print(f"      • Total Duration: {passive_results.get('statistics', {}).get('total_duration', 0):.2f} seconds")
+        
+        # Active enumeration details  
+        if 'active' in results['modules'] and results['modules']['active'].get('status') != 'failed':
+            active_results = results['modules']['active']
+            print(f"\n   ⚡ ACTIVE ENUMERATION:")
+            methods_breakdown = active_results.get('statistics', {}).get('methods_breakdown', {})
+            for method, count in methods_breakdown.items():
+                method_name = method.replace('_', ' ').title()
+                if method == 'bruteforce':
+                    success_rate = active_results.get('statistics', {}).get('success_rate', 0)
+                    queries = active_results.get('statistics', {}).get('queries_attempted', 0)
+                    print(f"      • {method_name}: {count} subdomains discovered ({queries} attempts, {success_rate:.1f}% success rate)")
+                else:
+                    print(f"      • {method_name}: {count} subdomains")
+            
+            ai_wordlist = active_results.get('statistics', {}).get('ai_wordlist_generated', 0)
+            if ai_wordlist > 0:
+                print(f"      • AI-Enhanced Wordlist: Generated {ai_wordlist} context-aware subdomains")
+            print(f"      • Total Duration: {active_results.get('statistics', {}).get('total_duration', 0):.2f} seconds")
+        
+        # DNS enumeration details
+        if 'dns' in results['modules'] and results['modules']['dns'].get('status') != 'failed':
+            dns_results = results['modules']['dns']
+            print(f"\n   🌐 DNS ENUMERATION:")
+            print(f"      • DNS Records Found:")
+            dns_records = dns_results.get('dns_records', {})
+            for record_type, records in dns_records.items():
+                if isinstance(records, list) and records:
+                    print(f"        - {record_type} Records: {len(records)} {record_type.lower()} addresses" if record_type in ['A', 'AAAA'] else f"        - {record_type} Records: {len(records)} {record_type.lower()} records")
+            
+            analysis = dns_results.get('analysis', {})
+            if 'infrastructure' in analysis:
+                infra = analysis['infrastructure']
+                if 'nameservers' in infra and infra['nameservers']:
+                    print(f"      • Infrastructure Analysis:")
+                    print(f"        - Nameservers: {', '.join(infra['nameservers'][:2])}{'...' if len(infra['nameservers']) > 2 else ''}")
+                if 'mail_servers' in infra and infra['mail_servers']:
+                    print(f"        - Mail Servers: {', '.join(infra['mail_servers'][:2])}{'...' if len(infra['mail_servers']) > 2 else ''}")
+            
+            if 'security_records' in analysis:
+                security = analysis['security_records']
+                spf_enabled = security.get('spf_enabled', False)
+                dmarc_enabled = security.get('dmarc_enabled', False)
+                dmarc_policy = security.get('dmarc_policy', 'none')
+                print(f"        - Security Records: SPF {'enabled' if spf_enabled else 'disabled'}, DMARC {'policy=' + dmarc_policy if dmarc_enabled else 'disabled'}")
+            
+            print(f"      • Total Duration: {dns_results.get('statistics', {}).get('total_duration', 0):.2f} seconds")
+        
+        # Web fingerprinting details
+        if 'fingerprinting' in results['modules'] and results['modules']['fingerprinting'].get('status') != 'failed':
+            fingerprinting_results = results['modules']['fingerprinting']
+            print(f"\n   🔧 WEB FINGERPRINTING:")
+            targets = fingerprinting_results.get('targets', {})
+            for target_url, target_data in targets.items():
+                if 'error' not in target_data:
+                    status_code = target_data.get('response_analysis', {}).get('status_code', 'N/A')
+                    server = target_data.get('header_analysis', {}).get('server', 'Unknown')
+                    technologies = target_data.get('technology_detection', {}).get('wappalyzer_detected', [])
+                    security_score = target_data.get('security_analysis', {}).get('security_score', 0)
+                    response_time = target_data.get('performance_metrics', {}).get('response_time', 0)
                     
-                    for protocol in ['https', 'http']:
-                        try:
-                            response = session.get(f"{protocol}://{self.domain}", timeout=10)
-                            if response.status_code == 200:
-                                page_content = {
-                                    'html': response.text,
-                                    'headers': dict(response.headers),
-                                    'status_code': response.status_code,
-                                    'url': response.url
-                                }
-                                logger.info(f"Collected page content from {protocol}://{self.domain} for AI analysis")
-                                break
-                        except:
-                            continue
-                except Exception as e:
-                    logger.debug(f"Could not collect page content for AI analysis: {e}")
+                    print(f"      • Target: {target_url}")
+                    print(f"        - Status Code: {status_code}")
+                    print(f"        - Server: {server}")
+                    print(f"        - Technologies: {', '.join(technologies[:5])}{'...' if len(technologies) > 5 else ''}")
+                    print(f"        - Security Score: {security_score:.0f}%")
+                    print(f"        - Response Time: {response_time:.2f} seconds")
             
-            results = self.active_enumerator.run_active_enumeration(wordlist, page_content)
-            self.results_manager.add_active_results(results)
-            
-            # Collect errors
-            errors = self.active_enumerator.get_errors()
-            if errors:
-                self.results_manager.add_errors({'active': errors})
-            
-            logger.info("Active enumeration completed successfully")
-            return results
-        except Exception as e:
-            logger.error(f"Active enumeration failed: {e}")
-            self.error_handler.handle_error("active_enumeration", e)
-            return {}
-    
-    def dns_enumeration(self) -> Dict:
-        """
-        Run DNS record enumeration and analysis.
-        
-        Returns:
-            Dict: DNS enumeration results
-        """
-        logger.info("Starting DNS enumeration")
-        try:
-            results = self.dns_enumerator.run_dns_enumeration()
-            self.results_manager.add_dns_results(results)
-            
-            # Collect errors
-            errors = self.dns_enumerator.get_errors()
-            if errors:
-                self.results_manager.add_errors({'dns': errors})
-            
-            logger.info("DNS enumeration completed successfully")
-            return results
-        except Exception as e:
-            logger.error(f"DNS enumeration failed: {e}")
-            self.error_handler.handle_error("dns_enumeration", e)
-            return {}
-    
-    def web_fingerprinting(self, targets: Optional[List[str]] = None) -> Dict:
-        """
-        Run web technology fingerprinting.
-        
-        Args:
-            targets: List of URLs to fingerprint. If None, uses default targets.
-            
-        Returns:
-            Dict: Web fingerprinting results
-        """
-        logger.info("Starting web fingerprinting")
-        try:
-            results = self.web_fingerprinter.run_web_fingerprinting(targets)
-            self.results_manager.add_web_tech_results(results)
-            
-            # Collect errors
-            errors = self.web_fingerprinter.get_errors()
-            if errors:
-                self.results_manager.add_errors({'web_fingerprinting': errors})
-            
-            logger.info("Web fingerprinting completed successfully")
-            return results
-        except Exception as e:
-            logger.error(f"Web fingerprinting failed: {e}")
-            self.error_handler.handle_error("web_fingerprinting", e)
-            return {}
-    
-    def subdomain_discovery(self, wordlist: Optional[List[str]] = None) -> List[str]:
-        """
-        Comprehensive subdomain discovery combining all techniques.
-        
-        Args:
-            wordlist: Custom wordlist for active enumeration.
-            
-        Returns:
-            List[str]: Verified subdomains discovered through enumeration.
-        """
-        logger.info(f"Starting comprehensive subdomain discovery for domain: {self.domain}")
-        start_time = time.time()
-        
-        # Step 1: Passive enumeration (stealth)
-        logger.info("Phase 1: Passive enumeration")
-        self.passive_enumeration()
-        
-        # Step 2: DNS enumeration
-        logger.info("Phase 2: DNS enumeration")
-        self.dns_enumeration()
-        
-        # Step 3: Active enumeration
-        logger.info("Phase 3: Active enumeration")
-        self.enhanced_active_enumeration(wordlist)
-        
-        # Step 4: Correlate and verify results
-        logger.info("Phase 4: Results correlation and verification")
-        verified_subdomains = self.correlate_results()
-        
-        duration = time.time() - start_time
-        logger.info(f"Subdomain discovery completed in {duration:.2f} seconds")
-        logger.info(f"Found {len(verified_subdomains)} verified subdomains")
-        
-        return verified_subdomains
-    
-    def correlate_results(self) -> List[str]:
-        """
-        Correlate findings from all sources and return verified subdomains.
-        
-        Returns:
-            List[str]: Verified and deduplicated subdomains
-        """
-        logger.info("Correlating results from all enumeration sources")
-        
-        # Extract all subdomains from results manager
-        all_subdomains = self.results_manager.extract_all_subdomains(self.domain)
-        
-        # Verify subdomains
-        verified_subdomains = self._verify_subdomains(all_subdomains)
-        
-        # Update results with verified subdomains
-        self.results_manager.results['subdomains'] = {
-            'verified': verified_subdomains,
-            'total_discovered': len(all_subdomains),
-            'verification_rate': len(verified_subdomains) / len(all_subdomains) if all_subdomains else 0
-        }
-        
-        logger.info(f"Correlation complete: {len(verified_subdomains)} verified from {len(all_subdomains)} discovered")
-        return verified_subdomains
-    
-    def _verify_subdomains(self, subdomains: Set[str]) -> List[str]:
-        """
-        Verify that subdomains are actually resolvable.
-        
-        Args:
-            subdomains: Set of subdomains to verify
-            
-        Returns:
-            List of verified subdomains
-        """
-        verified = []
-        
-        logger.info(f"Verifying {len(subdomains)} discovered subdomains...")
-        
-        for subdomain in subdomains:
-            if SubdomainValidator.verify_subdomain_dns(subdomain):
-                verified.append(subdomain)
-                logger.debug(f"Verified subdomain: {subdomain}")
-        
-        logger.info(f"Verification complete: {len(verified)}/{len(subdomains)} subdomains verified")
-        return sorted(verified)
-    
-    def get_comprehensive_results(self) -> Dict:
-        """
-        Get all results from all enumeration methods.
-        
-        Returns:
-            Dict: Complete results from all enumeration techniques
-        """
-        return self.results_manager.get_all_results()
-    
-    def get_errors(self) -> Dict:
-        """
-        Get all errors encountered during enumeration.
-        
-        Returns:
-            Dict: Error information from all modules
-        """
-        all_errors = self.error_handler.get_errors()
-        
-        # Add errors from results manager
-        results_errors = self.results_manager.get_all_results().get('errors', {})
-        if results_errors:
-            all_errors.update(results_errors)
-        
-        return all_errors
-    
-    def generate_report(self) -> Dict:
-        """
-        Generate a comprehensive enumeration report.
-        
-        Returns:
-            Dict: Detailed report with statistics and findings
-        """
-        results = self.get_comprehensive_results()
-        
-        # Extract subdomains from each method
-        passive_subdomains = len(self.results_manager.extract_all_subdomains(self.domain))
-        verified_subdomains = results.get('subdomains', {}).get('verified', [])
-        
-        # Generate statistics
-        report = {
-            'domain': self.domain,
-            'timestamp': time.time(),
-            'summary': {
-                'total_verified_subdomains': len(verified_subdomains),
-                'total_discovered_subdomains': passive_subdomains,
-                'verification_rate': results.get('subdomains', {}).get('verification_rate', 0),
-                'methods_used': []
-            },
-            'subdomains': verified_subdomains,
-            'detailed_results': results,
-            'errors': self.get_errors()
-        }
-        
-        # Determine which methods were used
-        if results.get('passive_data'):
-            report['summary']['methods_used'].append('passive_enumeration')
-        if results.get('active_discovery'):
-            report['summary']['methods_used'].append('active_enumeration')
-        if results.get('dns_records'):
-            report['summary']['methods_used'].append('dns_enumeration')
-        if results.get('web_technologies'):
-            report['summary']['methods_used'].append('web_fingerprinting')
-        
-        logger.info(f"Generated comprehensive report for {self.domain}")
-        return report
+            summary = fingerprinting_results.get('summary', {})
+            unique_techs = len(summary.get('unique_technologies', []))
+            print(f"      • Total Duration: {fingerprinting_results.get('statistics', {}).get('total_duration', 0):.2f} seconds")
+            if unique_techs > 0:
+                print(f"      • Unique Technologies Detected: {unique_techs}")
 
 
-# Backward compatibility - maintain the original class structure
-# Note: This is not needed since we import EnumerationConfig directly above
+def save_results(results: Dict[str, Any], output_file: str):
+    """Save results to JSON file"""
+    try:
+        # Convert sets to lists for JSON serialization
+        results_copy = json.loads(json.dumps(results, default=str))
+        
+        with open(output_file, 'w') as f:
+            json.dump(results_copy, f, indent=2, default=str)
+        
+        print(f"\n💾 Results saved to: {output_file}")
+        
+    except Exception as e:
+        logger.error(f"Failed to save results: {str(e)}")
 
 
-# Main function for command-line usage
+def create_config_from_args(args) -> DomainEnumerationConfig:
+    """Create configuration from command line arguments"""
+    config = DomainEnumerationConfig()
+    
+    # Global settings
+    config.domain = args.domain
+    config.verbose = args.verbose
+    config.output_file = args.output
+    
+    if args.modules:
+        config.enabled_modules = args.modules
+    
+    # Passive configuration
+    if args.passive_timeout:
+        config.passive_config['timeout'] = args.passive_timeout
+    if args.passive_concurrent:
+        config.passive_config['concurrent_requests'] = args.passive_concurrent
+    
+    # Active configuration
+    if args.active_threads:
+        config.active_config['threads'] = args.active_threads
+    if args.active_rate_limit:
+        config.active_config['rate_limit'] = args.active_rate_limit
+    if args.active_timeout:
+        config.active_config['timeout'] = args.active_timeout
+    if args.wordlist:
+        config.active_config['wordlist_file'] = args.wordlist
+    if args.no_ai:
+        config.active_config['enable_ai'] = False
+    
+    # DNS configuration
+    if args.dns_timeout:
+        config.dns_config['timeout'] = args.dns_timeout
+    if args.dns_retries:
+        config.dns_config['retries'] = args.dns_retries
+    if args.record_types:
+        config.dns_config['record_types'] = args.record_types
+    
+    # Fingerprinting configuration
+    if args.fingerprint_timeout:
+        config.fingerprinting_config['timeout'] = args.fingerprint_timeout
+    if args.fingerprint_concurrent:
+        config.fingerprinting_config['concurrent'] = args.fingerprint_concurrent
+    if args.include_http:
+        config.fingerprinting_config['include_http'] = True
+    if args.include_www:
+        config.fingerprinting_config['include_www'] = True
+    
+    # Apply verbose to all modules
+    if args.verbose:
+        config.passive_config['verbose'] = True
+        config.dns_config['verbose'] = True
+        config.fingerprinting_config['verbose'] = True
+    
+    return config
+
+def execute_domain_enumeration(config: DomainEnumerationConfig) -> Dict[str, Any]:
+    """
+    Execute domain enumeration with provided configuration.
+    
+    Args:
+        config: DomainEnumerationConfig object with all settings
+        
+    Returns:
+        Dict containing enumeration results
+    """
+    # Validate configuration
+    if not config.domain:
+        raise ValueError("Domain must be specified in configuration")
+    
+    # Check if any modules are available
+    available_modules = []
+    if PASSIVE_AVAILABLE:
+        available_modules.append('passive')
+    if ACTIVE_AVAILABLE:
+        available_modules.append('active')
+    if DNS_AVAILABLE:
+        available_modules.append('dns')
+    if FINGERPRINTING_AVAILABLE:
+        available_modules.append('fingerprinting')
+    
+    if not available_modules:
+        raise RuntimeError("No enumeration modules are available. Please check your installation.")
+    
+    if config.verbose:
+        print(f"🚀 Available modules: {', '.join(available_modules)}")
+    
+    # Filter enabled modules to only include available ones
+    config.enabled_modules = [m for m in config.enabled_modules if m in available_modules]
+    
+    if not config.enabled_modules:
+        raise ValueError("No enabled modules are available.")
+    
+    if config.verbose:
+        print(f"📋 Enabled modules: {', '.join(config.enabled_modules)}")
+    
+    # Run enumeration
+    orchestrator = DomainEnumerationOrchestrator(config)
+    results = orchestrator.run_comprehensive_enumeration()
+    
+    # Display results if verbose
+    if config.verbose:
+        display_results(results, verbose=config.verbose)
+    
+    # Save results if output file specified
+    if config.output_file:
+        save_results(results, config.output_file)
+        if config.verbose:
+            print(f"\n💾 Results saved to: {config.output_file}")
+    
+    if config.verbose:
+        print(f"\n✅ Enumeration completed successfully!")
+    
+    return results
+
 def main():
-    """Main function for command-line execution"""
-    import argparse
+    """Main entry point"""
+    parser = argparse.ArgumentParser(
+        description="Comprehensive Domain Enumeration Tool",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  python main.py example.com
+  python main.py example.com --verbose --output results.json
+  python main.py example.com --modules passive active --no-ai
+  python main.py example.com --active-threads 20 --dns-timeout 10
+        """
+    )
     
-    parser = argparse.ArgumentParser(description="Comprehensive Domain Enumeration")
-    parser.add_argument("domain", help="Target domain to enumerate")
-    parser.add_argument("--passive-only", action="store_true", help="Run only passive enumeration")
-    parser.add_argument("--active-only", action="store_true", help="Run only active enumeration")
-    parser.add_argument("--dns-only", action="store_true", help="Run only DNS enumeration")
-    parser.add_argument("--web-only", action="store_true", help="Run only web fingerprinting")
-    parser.add_argument("--wordlist", help="Custom wordlist file for active enumeration")
-    parser.add_argument("--output", help="Output file for results (JSON format)")
-    parser.add_argument("--verbose", "-v", action="store_true", help="Verbose logging")
+    # Required arguments
+    parser.add_argument('domain', help='Target domain to enumerate')
+    
+    # Global options
+    parser.add_argument('--verbose', '-v', action='store_true', 
+                       help='Enable verbose output')
+    parser.add_argument('--output', '-o', 
+                       help='Output file for results (JSON format)')
+    parser.add_argument('--modules', nargs='+', 
+                       choices=['passive', 'active', 'dns', 'fingerprinting'],
+                       help='Enumeration modules to run')
+    
+    # Passive enumeration options
+    parser.add_argument('--passive-timeout', type=int, default=10,
+                       help='Passive enumeration timeout (default: 10)')
+    parser.add_argument('--passive-concurrent', type=int, default=5,
+                       help='Passive enumeration concurrent requests (default: 5)')
+    
+    # Active enumeration options
+    parser.add_argument('--active-threads', type=int, default=10,
+                       help='Active enumeration threads (default: 10)')
+    parser.add_argument('--active-rate-limit', type=int, default=10,
+                       help='Active enumeration rate limit (default: 10)')
+    parser.add_argument('--active-timeout', type=int, default=5,
+                       help='Active enumeration timeout (default: 5)')
+    parser.add_argument('--wordlist', 
+                       help='Custom wordlist file for active enumeration')
+    parser.add_argument('--no-ai', action='store_true',
+                       help='Disable AI-enhanced wordlist generation')
+    
+    # DNS enumeration options
+    parser.add_argument('--dns-timeout', type=int, default=5,
+                       help='DNS enumeration timeout (default: 5)')
+    parser.add_argument('--dns-retries', type=int, default=2,
+                       help='DNS enumeration retries (default: 2)')
+    parser.add_argument('--record-types', nargs='+',
+                       choices=['A', 'AAAA', 'MX', 'NS', 'TXT', 'CNAME', 'SOA'],
+                       help='DNS record types to query')
+    
+    # Web fingerprinting options
+    parser.add_argument('--fingerprint-timeout', type=int, default=30,
+                       help='Web fingerprinting timeout (default: 30)')
+    parser.add_argument('--fingerprint-concurrent', type=int, default=3,
+                       help='Web fingerprinting concurrent requests (default: 3)')
+    parser.add_argument('--include-http', action='store_true',
+                       help='Include HTTP targets in fingerprinting')
+    parser.add_argument('--include-www', action='store_true',
+                       help='Include www variant in fingerprinting')
     
     args = parser.parse_args()
     
-    # Configure logging
-    log_level = logging.DEBUG if args.verbose else logging.INFO
-    logging.basicConfig(
-        level=log_level,
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    )
+    # Create configuration from arguments
+    config = create_config_from_args(args)
     
-    # Load custom wordlist if provided
-    custom_wordlist = None
-    if args.wordlist:
-        try:
-            with open(args.wordlist, 'r') as f:
-                custom_wordlist = [line.strip() for line in f if line.strip()]
-            print(f"Loaded {len(custom_wordlist)} words from {args.wordlist}")
-        except Exception as e:
-            print(f"Error loading wordlist: {e}")
-            return
+    # Check if any modules are available
+    available_modules = []
+    if PASSIVE_AVAILABLE:
+        available_modules.append('passive')
+    if ACTIVE_AVAILABLE:
+        available_modules.append('active')
+    if DNS_AVAILABLE:
+        available_modules.append('dns')
+    if FINGERPRINTING_AVAILABLE:
+        available_modules.append('fingerprinting')
     
-    # Initialize enumerator
-    enumerator = DomainEnumeration(args.domain)
+    if not available_modules:
+        print("❌ No enumeration modules are available. Please check your installation.")
+        sys.exit(1)
     
-    print(f"\n=== Domain Enumeration for {args.domain} ===")
+    print(f"🚀 Available modules: {', '.join(available_modules)}")
     
-    # Run specific enumeration methods
-    if args.passive_only:
-        print("Running passive enumeration only...")
-        enumerator.passive_enumeration()
-    elif args.active_only:
-        print("Running active enumeration only...")
-        enumerator.enhanced_active_enumeration(custom_wordlist)
-    elif args.dns_only:
-        print("Running DNS enumeration only...")
-        enumerator.dns_enumeration()
-    elif args.web_only:
-        print("Running web fingerprinting only...")
-        enumerator.web_fingerprinting()
-    else:
-        print("Running comprehensive enumeration...")
-        # Run comprehensive enumeration
-        subdomains = enumerator.subdomain_discovery(custom_wordlist)
-        
-        # Run web fingerprinting on discovered subdomains
-        web_targets = [f"https://{sub}" for sub in subdomains[:10]]  # Limit to first 10
-        enumerator.web_fingerprinting(web_targets)
+    # Filter enabled modules to only include available ones
+    config.enabled_modules = [m for m in config.enabled_modules if m in available_modules]
     
-    # Get final results
-    final_subdomains = enumerator.correlate_results()
-    comprehensive_results = enumerator.get_comprehensive_results()
+    if not config.enabled_modules:
+        print("❌ No enabled modules are available.")
+        sys.exit(1)
     
-    print(f"\n{'='*60}")
-    print(f"               COMPREHENSIVE RESULTS SUMMARY")
-    print(f"{'='*60}")
-    print(f"Domain: {args.domain}")
-    print(f"Verified subdomains found: {len(final_subdomains)}")
+    print(f"📋 Enabled modules: {', '.join(config.enabled_modules)}")
     
-    if final_subdomains:
-        print(f"\n{'='*40}")
-        print("           VERIFIED SUBDOMAINS")
-        print(f"{'='*40}")
-        for i, subdomain in enumerate(final_subdomains, 1):
-            print(f"  {i:2d}. {subdomain}")
+    # Run enumeration
+    orchestrator = DomainEnumerationOrchestrator(config)
+    results = orchestrator.run_comprehensive_enumeration()
     
-    # Display detailed results from each enumeration method
-    print(f"\n{'='*50}")
-    print("         DETAILED ENUMERATION RESULTS")
-    print(f"{'='*50}")
-    
-    # Passive Enumeration Results
-    passive_data = comprehensive_results.get('passive_data', {})
-    if passive_data:
-        print(f"\n🔍 PASSIVE ENUMERATION RESULTS:")
-        print("-" * 40)
-        total_passive = 0
-        for source, data in passive_data.items():
-            if isinstance(data, dict):
-                subdomains_found = 0
-                if 'subdomains' in data and isinstance(data['subdomains'], list):
-                    subdomains_found = len(data['subdomains'])
-                    total_passive += subdomains_found
-                print(f"  📊 {source}: {subdomains_found} subdomains")
-                
-                # Show first few subdomains from each source
-                if subdomains_found > 0 and isinstance(data['subdomains'], list):
-                    display_count = min(3, subdomains_found)
-                    for j, subdomain in enumerate(data['subdomains'][:display_count]):
-                        print(f"      • {subdomain}")
-                    if subdomains_found > display_count:
-                        print(f"      ... and {subdomains_found - display_count} more")
-        print(f"  📈 Total from passive sources: {total_passive} subdomains")
-    
-    # DNS Enumeration Results
-    dns_records = comprehensive_results.get('dns_records', {})
-    if dns_records:
-        print(f"\n🌐 DNS ENUMERATION RESULTS:")
-        print("-" * 40)
-        for record_type, records in dns_records.items():
-            if isinstance(records, list) and records:
-                print(f"  📋 {record_type} Records ({len(records)} found):")
-                display_count = min(5, len(records))
-                for record in records[:display_count]:
-                    print(f"      • {record}")
-                if len(records) > display_count:
-                    print(f"      ... and {len(records) - display_count} more")
-    
-    # Active Enumeration Results
-    active_data = comprehensive_results.get('active_discovery', {})
-    if active_data:
-        print(f"\n⚔️  ACTIVE ENUMERATION RESULTS:")
-        print("-" * 40)
-        total_active = 0
-        for method, subdomains in active_data.items():
-            if isinstance(subdomains, list):
-                method_count = len(subdomains)
-                total_active += method_count
-                print(f"  🎯 {method}: {method_count} subdomains")
-                if method_count > 0:
-                    display_count = min(3, method_count)
-                    for subdomain in subdomains[:display_count]:
-                        print(f"      • {subdomain}")
-                    if method_count > display_count:
-                        print(f"      ... and {method_count - display_count} more")
-        print(f"  📈 Total from active methods: {total_active} subdomains")
-    
-    # Web Technology Results
-    web_tech = comprehensive_results.get('web_technologies', {})
-    if web_tech:
-        print(f"\n🌐 WEB TECHNOLOGY FINGERPRINTING:")
-        print("-" * 40)
-        for url, tech_data in web_tech.items():
-            print(f"  🔗 {url}:")
-            if isinstance(tech_data, dict):
-                # Check for technology detection data
-                tech_detection = tech_data.get('technology_detection', {})
-                if tech_detection:
-                    # Display Wappalyzer results
-                    wappalyzer_techs = tech_detection.get('wappalyzer_detected', [])
-                    if wappalyzer_techs:
-                        print(f"      🔍 Wappalyzer detected:")
-                        for tech in wappalyzer_techs:
-                            print(f"         • {tech}")
-                    
-                    # Display AI detected results
-                    ai_techs = tech_detection.get('ai_detected', [])
-                    if ai_techs:
-                        print(f"      🤖 AI detected:")
-                        for tech in ai_techs:
-                            print(f"         • {tech}")
-                    
-                    # Display header detected results
-                    header_techs = tech_detection.get('header_detected', [])
-                    if header_techs:
-                        print(f"      📋 Header detected:")
-                        for tech in header_techs:
-                            print(f"         • {tech}")
-                    
-                    # Display content detected results
-                    content_techs = tech_detection.get('content_detected', [])
-                    if content_techs:
-                        print(f"      📄 Content detected:")
-                        for tech in content_techs:
-                            print(f"         • {tech}")
-                    
-                    # Display URL pattern results
-                    url_patterns = tech_detection.get('url_patterns', [])
-                    if url_patterns:
-                        print(f"      🔗 URL pattern detected:")
-                        for tech in url_patterns:
-                            print(f"         • {tech}")
-                
-                # Legacy check for direct technologies list
-                if 'technologies' in tech_data and tech_data['technologies']:
-                    print(f"      🔧 Other technologies:")
-                    for tech in tech_data['technologies']:
-                        print(f"         • {tech}")
-                
-                # Show additional info if available
-                if 'server' in tech_data and tech_data['server']:
-                    print(f"      🖥️  Server: {tech_data['server']}")
-                if 'status_code' in tech_data:
-                    print(f"      📊 Status Code: {tech_data['status_code']}")
-                if 'response_time' in tech_data:
-                    print(f"      ⏱️  Response Time: {tech_data['response_time']:.3f}s")
-                
-                # If no technologies were detected at all
-                if not any([
-                    tech_detection.get('wappalyzer_detected'),
-                    tech_detection.get('ai_detected'),
-                    tech_detection.get('header_detected'),
-                    tech_detection.get('content_detected'),
-                    tech_detection.get('url_patterns'),
-                    tech_data.get('technologies')
-                ]):
-                    print("      • No specific technologies detected")
-    
-    # Subdomain Statistics
-    subdomains_info = comprehensive_results.get('subdomains', {})
-    if subdomains_info:
-        print(f"\n📊 SUBDOMAIN VERIFICATION STATISTICS:")
-        print("-" * 40)
-        total_discovered = subdomains_info.get('total_discovered', 0)
-        total_verified = len(subdomains_info.get('verified', []))
-        verification_rate = subdomains_info.get('verification_rate', 0)
-        
-        print(f"  📈 Total discovered: {total_discovered}")
-        print(f"  ✅ Total verified: {total_verified}")
-        print(f"  📊 Verification rate: {verification_rate:.1%}")
-    
-    # Display errors if any
-    errors = enumerator.get_errors()
-    if errors:
-        print(f"\n❌ ERROR SUMMARY:")
-        print("-" * 40)
-        total_errors = sum(len(error_list) for error_list in errors.values())
-        print(f"  Total errors encountered: {total_errors}")
-        
-        for method, error_list in errors.items():
-            if error_list:
-                print(f"  🔴 {method}: {len(error_list)} errors")
-                # Show first few errors
-                display_count = min(2, len(error_list))
-                for error in error_list[:display_count]:
-                    print(f"      • {str(error)[:80]}...")
-                if len(error_list) > display_count:
-                    print(f"      ... and {len(error_list) - display_count} more errors")
-    
-    print(f"\n{'='*60}")
-    print("              ENUMERATION COMPLETE")
-    print(f"{'='*60}")
+    # Display results
+    display_results(results, verbose=config.verbose)
     
     # Save results if output file specified
-    if args.output:
-        try:
-            import json
-            report = enumerator.generate_report()
-            
-            with open(args.output, 'w') as f:
-                json.dump(report, f, indent=2, default=str)
-            
-            print(f"\n💾 Full detailed results saved to: {args.output}")
-        except Exception as e:
-            print(f"❌ Error saving results: {e}")
+    if config.output_file:
+        save_results(results, config.output_file)
+    
+    print(f"\n✅ Enumeration completed successfully!")
 
 
 if __name__ == "__main__":

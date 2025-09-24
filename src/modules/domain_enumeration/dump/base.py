@@ -19,6 +19,8 @@ try:
 except ImportError:
     print("Warning: dnspython package not installed. DNS functionality will be limited.")
     dns = None    
+# Configure module-level logging first
+logger = logging.getLogger(__name__)
 
 # Configure module-level logging
 logger = logging.getLogger(__name__)

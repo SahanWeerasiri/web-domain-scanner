@@ -15,11 +15,7 @@ import os
 
 # Add src directory to Python path for module imports
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-try:
-    from common.constants import DEFAULT_TIMEOUT
-except ImportError:
-    # Fallback if constants module is not available
-    DEFAULT_TIMEOUT = 5
+from common.constants import DEFAULT_TIMEOUT
 
 # Configure module-level logging
 logger = logging.getLogger(__name__)
