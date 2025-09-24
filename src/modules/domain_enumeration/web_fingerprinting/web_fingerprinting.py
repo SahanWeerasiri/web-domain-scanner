@@ -29,8 +29,12 @@ from urllib.parse import urlparse
 # Add parent directories to path for imports
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from config import EnumerationConfig
-from base import EnumerationErrorHandler, RateLimiter
+try:
+    from modules.domain_enumeration.config import EnumerationConfig
+    from modules.domain_enumeration.base import EnumerationErrorHandler, RateLimiter
+except ImportError:
+    from config import EnumerationConfig
+    from base import EnumerationErrorHandler, RateLimiter
 
 # Try to import Wappalyzer if available
 try:

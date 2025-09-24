@@ -6,7 +6,14 @@ import os
 import uuid
 import threading
 import time
+import sys
 from enum import Enum
+
+# Add project root to path for imports
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(current_dir)
+sys.path.insert(0, project_root)
+sys.path.insert(0, current_dir)
 
 from main import DomainRecon
 from modules.web_crawling import WebCrawler
@@ -281,6 +288,17 @@ def run_module_process(
         
     except Exception as e:
         update_state(request_id, state='error', message=str(e), progress=100.0)
+
+# Health check endpoint
+@app.get("/health")
+def health_check():
+    """Health check endpoint for Docker and monitoring."""
+    return {
+        "status": "healthy",
+        "service": "Web Domain Scanner API",
+        "version": "1.0.0",
+        "timestamp": time.time()
+    }
 
 # Endpoint to start a pipeline recon process
 @app.post("/api/pipeline")
