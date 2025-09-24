@@ -333,7 +333,11 @@ def render_job_status():
     col1, col2, col3 = st.columns([2, 1, 1])
     with col1:
         auto_refresh = st.checkbox("Auto-refresh (3s)", value=st.session_state.auto_refresh)
-        st.session_state.auto_refresh = auto_refresh
+        # Allow manual toggle, but show status
+        if auto_refresh != st.session_state.auto_refresh:
+            st.session_state.auto_refresh = auto_refresh
+            if auto_refresh:
+                st.info("🔄 Auto-refresh enabled")
     
     with col2:
         if st.button("🔄 Refresh Now"):
@@ -341,6 +345,11 @@ def render_job_status():
     
     with col3:
         refresh_placeholder = st.empty()
+        # Show refresh status
+        if st.session_state.auto_refresh:
+            st.caption("🟢 Auto-refreshing")
+        else:
+            st.caption("🔴 Auto-refresh off")
     
     # Get all jobs from server
     jobs_result = st.session_state.api_client.list_jobs()
@@ -358,6 +367,9 @@ def render_job_status():
                 format_func=lambda x: job_options[x],
                 index=0
             )
+            
+            # Store selected job index in session state for auto-refresh logic
+            st.session_state['selected_job_idx'] = selected_idx
             
             selected_job = jobs[selected_idx]
             job_id = selected_job['job_id']
@@ -409,12 +421,22 @@ def render_job_status():
                 elif job_data['status'] == 'completed':
                     st.success("✅ Job completed successfully!")
                     
+                    # Stop auto-refresh for completed jobs
+                    if st.session_state.auto_refresh:
+                        st.session_state.auto_refresh = False
+                        st.info("🔄 Auto-refresh stopped - Job completed!")
+                    
                     # Display results
                     if job_data.get('results'):
                         render_job_results(job_data['results'])
                 
                 elif job_data['status'] == 'failed':
                     st.error(f"❌ Job failed: {job_data.get('error', 'Unknown error')}")
+                    
+                    # Stop auto-refresh for failed jobs
+                    if st.session_state.auto_refresh:
+                        st.session_state.auto_refresh = False
+                        st.info("🔄 Auto-refresh stopped - Job failed!")
                 
                 elif job_data['status'] == 'pending':
                     st.info("⏳ Job is waiting to start...")
@@ -425,13 +447,34 @@ def render_job_status():
     else:
         st.info("No jobs found. Submit a new scan to get started!")
     
-    # Auto-refresh implementation
+    # Auto-refresh implementation - only for running/pending jobs
     if st.session_state.auto_refresh:
-        with refresh_placeholder:
-            for i in range(REFRESH_INTERVAL, 0, -1):
-                st.caption(f"Auto-refreshing in {i}s...")
-                time.sleep(1)
-        st.rerun()
+        # Check if current job is still active (running or pending)
+        should_continue_refresh = False
+        
+        if jobs_result['success'] and jobs_result['data']['jobs']:
+            jobs = jobs_result['data']['jobs']
+            if jobs:
+                selected_idx = st.session_state.get('selected_job_idx', 0)
+                if selected_idx < len(jobs):
+                    selected_job = jobs[selected_idx]
+                    job_id = selected_job['job_id']
+                    
+                    status_result = st.session_state.api_client.get_job_status(job_id)
+                    if status_result['success']:
+                        job_status = status_result['data']['status']
+                        # Only continue refreshing for active jobs
+                        should_continue_refresh = job_status in ['running', 'pending']
+        
+        if should_continue_refresh:
+            with refresh_placeholder:
+                for i in range(REFRESH_INTERVAL, 0, -1):
+                    st.caption(f"Auto-refreshing in {i}s...")
+                    time.sleep(1)
+            st.rerun()
+        else:
+            # Stop auto-refresh if job is no longer active
+            st.session_state.auto_refresh = False
 
 
 def render_job_results(results: Dict[str, Any]):
@@ -510,11 +553,83 @@ def render_module_results(module_name: str, module_data: Dict[str, Any]):
                            title="Subdomain Type Distribution")
                 st.plotly_chart(fig, use_container_width=True)
         
+        # Module-specific results with detailed breakdown
+        modules = module_data.get('modules', {})
+        if modules:
+            st.subheader("🔧 Module Breakdown")
+            
+            # Create tabs for each sub-module
+            module_tabs = st.tabs([mod.replace('_', ' ').title() for mod in modules.keys()])
+            
+            for i, (mod_name, mod_data) in enumerate(modules.items()):
+                with module_tabs[i]:
+                    if mod_data.get('status') == 'failed':
+                        st.error(f"❌ Failed: {mod_data.get('error', 'Unknown error')}")
+                    else:
+                        # Show module-specific data
+                        if mod_name == 'passive':
+                            # Certificate transparency data
+                            certs = mod_data.get('certificates', {})
+                            if certs:
+                                st.write("🔐 **Certificate Analysis**")
+                                for cert_id, cert_data in certs.items():
+                                    with st.expander(f"Certificate ID: {cert_id}"):
+                                        st.write(f"**SHA1:** `{cert_data.get('certificate_data', {}).get('sha1_fingerprint', 'N/A')}`")
+                                        st.write(f"**SHA256:** `{cert_data.get('certificate_data', {}).get('sha256_fingerprint', 'N/A')}`")
+                                        ct_logs = cert_data.get('ct_logs', [])
+                                        if ct_logs:
+                                            st.write(f"**CT Logs:** {len(ct_logs)} entries")
+                        
+                        elif mod_name == 'dns':
+                            # DNS records
+                            dns_records = mod_data.get('dns_records', {})
+                            if dns_records:
+                                st.write("🌐 **DNS Records**")
+                                for record_type, records in dns_records.items():
+                                    if records:
+                                        st.write(f"**{record_type}:** {', '.join(records)}")
+                            
+                            # Security analysis
+                            analysis = mod_data.get('analysis', {})
+                            if analysis:
+                                txt_analysis = analysis.get('txt_analysis', {})
+                                if txt_analysis:
+                                    st.write("🔒 **Security Records**")
+                                    for sec_type, sec_records in txt_analysis.items():
+                                        if sec_records:
+                                            st.write(f"**{sec_type.upper()}:** {', '.join(sec_records)}")
+                        
+                        elif mod_name == 'fingerprinting':
+                            # Technology detection
+                            targets = mod_data.get('targets', {})
+                            for url, target_data in targets.items():
+                                st.write(f"🎯 **Analysis for {url}**")
+                                
+                                # Technologies
+                                tech_detection = target_data.get('technology_detection', {})
+                                if tech_detection:
+                                    all_techs = []
+                                    for method, techs in tech_detection.items():
+                                        if techs:
+                                            all_techs.extend(techs)
+                                    if all_techs:
+                                        st.write(f"**Technologies:** {', '.join(set(all_techs))}")
+                                
+                                # Security analysis
+                                sec_analysis = target_data.get('security_analysis', {})
+                                if sec_analysis:
+                                    missing_headers = sec_analysis.get('missing_headers', [])
+                                    if missing_headers:
+                                        st.warning(f"⚠️ Missing security headers: {', '.join(missing_headers)}")
+                                    
+                                    security_score = sec_analysis.get('security_score', 0)
+                                    st.metric("Security Score", f"{security_score}/10")
+        
         # Module statistics
         stats = module_data.get('statistics', {})
         if stats:
             st.subheader("📊 Statistics")
-            col1, col2, col3 = st.columns(3)
+            col1, col2, col3, col4 = st.columns(4)
             
             with col1:
                 st.metric("Modules Executed", stats.get('modules_executed', 0))
@@ -522,33 +637,140 @@ def render_module_results(module_name: str, module_data: Dict[str, Any]):
                 st.metric("Total Execution Time", f"{stats.get('total_execution_time', 0):.2f}s")
             with col3:
                 st.metric("Modules Failed", stats.get('modules_failed', 0))
+            with col4:
+                st.metric("Technologies Found", stats.get('technologies_detected', 0))
     
     elif module_name == 'service_discovery':
         if module_data.get('success'):
-            services = module_data.get('service_results', {}).get('services', {})
+            service_results = module_data.get('service_results', {})
+            services = service_results.get('services', {})
             
             if services:
                 st.subheader(f"🎯 Open Ports & Services ({len(services)})")
                 
-                # Create services DataFrame
+                # Create enhanced services DataFrame
                 service_list = []
                 for port, service_info in services.items():
+                    # Extract version and SSL info
+                    version = service_info.get('version', 'Unknown')
+                    ssl_status = "🔒 SSL" if service_info.get('ssl', False) else "🔓 Plain"
+                    
+                    # Get protocol info
+                    protocol_info = service_info.get('protocol_info', {})
+                    extra_info = []
+                    if 'ssl' in protocol_info:
+                        ssl_info = protocol_info['ssl']
+                        extra_info.append(f"TLS: {ssl_info.get('version', 'Unknown')}")
+                        extra_info.append(f"Cipher: {ssl_info.get('cipher', 'Unknown')}")
+                    
                     service_list.append({
                         'Port': port,
                         'Service': service_info.get('service', 'Unknown'),
-                        'Banner': service_info.get('banner', 'No banner')[:50] + '...' if len(service_info.get('banner', '')) > 50 else service_info.get('banner', 'No banner'),
-                        'Confidence': service_info.get('confidence', 'Unknown')
+                        'Version': version,
+                        'SSL': ssl_status,
+                        'Extra Info': ' | '.join(extra_info) if extra_info else 'None',
+                        'Banner Preview': service_info.get('banner', 'No banner')[:100] + '...' if len(service_info.get('banner', '')) > 100 else service_info.get('banner', 'No banner')
                     })
                 
                 df = pd.DataFrame(service_list)
                 st.dataframe(df, use_container_width=True)
                 
+                # Service details in expandable sections
+                st.subheader("🔍 Detailed Service Information")
+                for port, service_info in services.items():
+                    with st.expander(f"Port {port} - {service_info.get('service', 'Unknown')}"):
+                        col1, col2 = st.columns(2)
+                        
+                        with col1:
+                            st.write("**Service Details:**")
+                            st.write(f"- **Port:** {port}")
+                            st.write(f"- **Service:** {service_info.get('service', 'Unknown')}")
+                            st.write(f"- **Version:** {service_info.get('version', 'Unknown')}")
+                            st.write(f"- **SSL Enabled:** {'Yes' if service_info.get('ssl', False) else 'No'}")
+                        
+                        with col2:
+                            # Protocol specific info
+                            protocol_info = service_info.get('protocol_info', {})
+                            if protocol_info:
+                                st.write("**Protocol Information:**")
+                                for proto, info in protocol_info.items():
+                                    if isinstance(info, dict):
+                                        st.write(f"**{proto.upper()}:**")
+                                        for key, value in info.items():
+                                            st.write(f"  - {key}: {value}")
+                        
+                        # Full banner
+                        banner = service_info.get('banner', 'No banner')
+                        if banner and banner != 'No banner':
+                            st.write("**Full Banner:**")
+                            st.code(banner, language=None)
+                
+                # Service summary metrics
+                summary = service_results.get('summary', {})
+                if summary:
+                    st.subheader("📊 Service Summary")
+                    
+                    # Service distribution chart
+                    service_dist = summary.get('service_distribution', {})
+                    if service_dist:
+                        col1, col2 = st.columns(2)
+                        
+                        with col1:
+                            fig = px.pie(
+                                values=list(service_dist.values()), 
+                                names=list(service_dist.keys()), 
+                                title="Service Type Distribution"
+                            )
+                            st.plotly_chart(fig, use_container_width=True)
+                        
+                        with col2:
+                            # SSL services
+                            ssl_services = summary.get('ssl_services', [])
+                            st.write("🔒 **SSL/TLS Services:**")
+                            if ssl_services:
+                                for ssl_service in ssl_services:
+                                    st.write(f"- {ssl_service}")
+                            else:
+                                st.write("- No SSL services detected")
+                
                 # Port distribution chart
                 port_numbers = [int(p) for p in services.keys() if p.isdigit()]
                 if port_numbers:
-                    fig = go.Figure(data=go.Scatter(x=port_numbers, y=[1]*len(port_numbers), mode='markers', marker=dict(size=10)))
-                    fig.update_layout(title="Open Ports Distribution", xaxis_title="Port Number", yaxis_title="", showlegend=False)
+                    fig = go.Figure(data=go.Scatter(
+                        x=port_numbers, 
+                        y=[1]*len(port_numbers), 
+                        mode='markers+text',
+                        marker=dict(size=15, color='blue'),
+                        text=[f"Port {p}" for p in port_numbers],
+                        textposition="top center"
+                    ))
+                    fig.update_layout(
+                        title="Open Ports Visualization", 
+                        xaxis_title="Port Number", 
+                        yaxis_title="", 
+                        showlegend=False,
+                        height=400
+                    )
                     st.plotly_chart(fig, use_container_width=True)
+                
+                # Scan information
+                scan_results = module_data.get('scan_results', {})
+                if scan_results:
+                    st.subheader("⚙️ Scan Information")
+                    col1, col2, col3 = st.columns(3)
+                    
+                    with col1:
+                        st.metric("Scan Duration", f"{scan_results.get('scan_duration', 0):.2f}s")
+                    with col2:
+                        st.metric("Scan Mode", module_data.get('scan_mode', 'Unknown').title())
+                    with col3:
+                        st.metric("Ports Scanned", module_data.get('ports_scanned', 'Unknown'))
+                    
+                    # Raw scan output
+                    raw_output = scan_results.get('raw_output', '')
+                    if raw_output:
+                        with st.expander("🔧 Raw Scan Output"):
+                            st.code(raw_output, language=None)
         else:
             st.error(f"Service discovery failed: {module_data.get('error', 'Unknown error')}")
     
@@ -558,7 +780,7 @@ def render_module_results(module_name: str, module_data: Dict[str, Any]):
             cdn_info = module_data.get('cdn_detection', {})
             if cdn_info:
                 st.subheader("🌐 CDN Detection")
-                col1, col2 = st.columns(2)
+                col1, col2, col3 = st.columns(3)
                 
                 with col1:
                     st.metric("CDN Detected", "Yes" if cdn_info.get('cdn_detected') else "No")
@@ -566,26 +788,176 @@ def render_module_results(module_name: str, module_data: Dict[str, Any]):
                 with col2:
                     if cdn_info.get('cdn_detected'):
                         st.metric("CDN Provider", cdn_info.get('cdn_name', 'Unknown'))
+                
+                with col3:
+                    bypass_info = module_data.get('cdn_bypass', {})
+                    if bypass_info:
+                        bypass_status = "✅ Success" if bypass_info.get('bypass_successful') else "❌ Failed"
+                        st.metric("Bypass Status", bypass_status)
             
-            # API Discovery
+            # Blocking Check
+            blocking_check = module_data.get('blocking_check', {})
+            if blocking_check:
+                st.subheader("🚫 Access Control")
+                col1, col2 = st.columns(2)
+                
+                with col1:
+                    is_blocked = blocking_check.get('is_blocked', False)
+                    st.metric("Site Blocked", "Yes" if is_blocked else "No")
+                
+                with col2:
+                    status_code = blocking_check.get('status_code', 'Unknown')
+                    st.metric("HTTP Status", status_code)
+                
+                blocked_phrases = blocking_check.get('blocked_phrases', [])
+                if blocked_phrases:
+                    st.warning(f"⚠️ Blocking indicators found: {', '.join(blocked_phrases)}")
+            
+            # Web Crawling Results
             web_crawl = module_data.get('web_crawl', {})
             if web_crawl:
+                # API Discovery
+                api_discovery = web_crawl.get('api_discovery', {})
+                if api_discovery:
+                    st.subheader("🔗 API Discovery")
+                    
+                    # REST APIs
+                    rest_apis = api_discovery.get('rest_apis', [])
+                    if rest_apis:
+                        st.write("**REST API Endpoints:**")
+                        api_list = []
+                        for api in rest_apis:
+                            api_list.append({
+                                'URL': api.get('url', 'Unknown'),
+                                'Status': api.get('status_code', 'Unknown'),
+                                'Content-Type': api.get('content_type', 'Unknown'),
+                                'Server': api.get('server', 'Unknown')
+                            })
+                        
+                        api_df = pd.DataFrame(api_list)
+                        st.dataframe(api_df, use_container_width=True)
+                        
+                        # Detailed API analysis
+                        for i, api in enumerate(rest_apis):
+                            with st.expander(f"API Details: {api.get('url', f'API {i+1}')}"):
+                                col1, col2 = st.columns(2)
+                                
+                                with col1:
+                                    st.write("**Response Information:**")
+                                    st.write(f"- **URL:** {api.get('url', 'Unknown')}")
+                                    st.write(f"- **Status Code:** {api.get('status_code', 'Unknown')}")
+                                    st.write(f"- **Content-Type:** {api.get('content_type', 'Unknown')}")
+                                    st.write(f"- **Server:** {api.get('server', 'Unknown')}")
+                                
+                                with col2:
+                                    headers = api.get('headers', {})
+                                    if headers:
+                                        st.write("**Response Headers:**")
+                                        for header, value in list(headers.items())[:10]:  # Show first 10 headers
+                                            st.write(f"- **{header}:** {value}")
+                                        if len(headers) > 10:
+                                            st.caption(f"... and {len(headers) - 10} more headers")
+                    
+                    # Other API types
+                    graphql_endpoints = api_discovery.get('graphql_endpoints', [])
+                    if graphql_endpoints:
+                        st.write("**GraphQL Endpoints:**")
+                        for endpoint in graphql_endpoints:
+                            st.write(f"- {endpoint}")
+                    
+                    swagger_endpoints = api_discovery.get('swagger_endpoints', [])
+                    if swagger_endpoints:
+                        st.write("**Swagger/OpenAPI Endpoints:**")
+                        for endpoint in swagger_endpoints:
+                            st.write(f"- {endpoint}")
+                
+                # General APIs list
                 apis = web_crawl.get('apis', [])
                 if apis:
-                    st.subheader(f"🔗 API Endpoints ({len(apis)})")
-                    
-                    api_df = pd.DataFrame(apis, columns=['API Endpoint'])
-                    st.dataframe(api_df, use_container_width=True)
+                    st.subheader(f"📋 All Discovered Endpoints ({len(apis)})")
+                    api_simple_df = pd.DataFrame(apis, columns=['Endpoint'])
+                    st.dataframe(api_simple_df, use_container_width=True)
                 
-                # Pages crawled
+                # Discovered URLs
+                discovered_urls = web_crawl.get('discovered_urls', [])
+                if discovered_urls:
+                    st.subheader(f"🔍 Additional URLs Found ({len(discovered_urls)})")
+                    url_df = pd.DataFrame(discovered_urls, columns=['URL'])
+                    st.dataframe(url_df, use_container_width=True)
+                
+                # Page Analysis
                 pages = web_crawl.get('pages', [])
                 if pages:
-                    st.subheader(f"📄 Crawled Pages ({len(pages)})")
-                    with st.expander("View crawled pages"):
-                        for page in pages[:10]:  # Show first 10
-                            st.text(page)
-                        if len(pages) > 10:
-                            st.caption(f"... and {len(pages) - 10} more pages")
+                    st.subheader(f"📄 Page Analysis ({len(pages)})")
+                    
+                    for i, page in enumerate(pages):
+                        with st.expander(f"Page {i+1}: {page.get('title', 'Unknown Title')}"):
+                            col1, col2 = st.columns(2)
+                            
+                            with col1:
+                                st.write("**Page Information:**")
+                                st.write(f"- **URL:** {page.get('url', 'Unknown')}")
+                                st.write(f"- **Title:** {page.get('title', 'Unknown')}")
+                                st.write(f"- **Meta Description:** {page.get('meta_description', 'None')}")
+                                
+                                # Links found
+                                links = page.get('links', [])
+                                if links:
+                                    st.write(f"- **Links Found:** {len(links)}")
+                                
+                                # Forms found
+                                forms = page.get('forms', [])
+                                if forms:
+                                    st.write(f"- **Forms Found:** {len(forms)}")
+                            
+                            with col2:
+                                # JavaScript files
+                                js_files = page.get('javascript_files', [])
+                                if js_files:
+                                    st.write("**JavaScript Files:**")
+                                    for js_file in js_files[:5]:  # Show first 5
+                                        st.write(f"- {js_file}")
+                                    if len(js_files) > 5:
+                                        st.caption(f"... and {len(js_files) - 5} more JS files")
+                                
+                                # Potential endpoints
+                                endpoints = page.get('potential_endpoints', [])
+                                if endpoints:
+                                    st.write("**Potential API Endpoints:**")
+                                    for endpoint in endpoints:
+                                        st.write(f"- {endpoint}")
+                            
+                            # Page content preview
+                            text_content = page.get('text_content', '')
+                            if text_content:
+                                st.write("**Content Preview:**")
+                                st.text(text_content[:500] + "..." if len(text_content) > 500 else text_content)
+            
+            # Execution Information
+            exec_info = module_data.get('execution_info', {})
+            if exec_info:
+                st.subheader("⚙️ Execution Details")
+                col1, col2, col3 = st.columns(3)
+                
+                with col1:
+                    st.write("**Configuration:**")
+                    st.write(f"- **Domain:** {exec_info.get('domain', 'Unknown')}")
+                    st.write(f"- **CDN Bypass:** {'Yes' if exec_info.get('bypass_cdn') else 'No'}")
+                    st.write(f"- **Deep Crawl:** {'Yes' if exec_info.get('deep_crawl') else 'No'}")
+                
+                with col2:
+                    st.write("**Output:**")
+                    st.write(f"- **Output Directory:** {exec_info.get('output_dir', 'Unknown')}")
+                    st.write(f"- **Save to File:** {'Yes' if exec_info.get('save_to_file') else 'No'}")
+                    
+                    output_file = module_data.get('output_file', '')
+                    if output_file:
+                        st.write(f"- **Result File:** {output_file}")
+                
+                with col3:
+                    # Additional metrics can go here
+                    pass
+        
         else:
             st.error(f"Web analysis failed: {module_data.get('error', 'Unknown error')}")
 

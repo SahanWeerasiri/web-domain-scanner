@@ -173,12 +173,36 @@ class DomainEnumerationOrchestrator:
             # Extract comprehensive certificate data
             certificates = {}
             ct_logs_processed = 0
+            
+            # Debug: Log the structure to understand the issue
+            logger.debug(f"Passive results structure: {list(passive_results.keys())}")
+            if 'sources' in passive_results:
+                logger.debug(f"Sources available: {list(passive_results['sources'].keys())}")
+                
             if 'sources' in passive_results and 'certificate_transparency' in passive_results['sources']:
                 ct_data = passive_results['sources']['certificate_transparency']
-                if 'crt_sh' in ct_data and 'certificates' in ct_data['crt_sh']:
-                    certificates = ct_data['crt_sh']['certificates']
-                if 'crt_sh' in ct_data and 'total_certificates' in ct_data['crt_sh']:
-                    ct_logs_processed = ct_data['crt_sh']['total_certificates']
+                logger.debug(f"CT data structure: {list(ct_data.keys()) if isinstance(ct_data, dict) else 'Not a dict'}")
+                
+                # Check different possible paths for certificate data
+                if 'crt_sh' in ct_data:
+                    crt_sh_data = ct_data['crt_sh']
+                    logger.debug(f"crt.sh data structure: {list(crt_sh_data.keys()) if isinstance(crt_sh_data, dict) else 'Not a dict'}")
+                    
+                    if isinstance(crt_sh_data, dict):
+                        if 'certificates' in crt_sh_data:
+                            certificates = crt_sh_data['certificates']
+                            logger.info(f"Found certificates in crt_sh_data: {len(certificates)}")
+                        
+                        if 'total_certificates' in crt_sh_data:
+                            ct_logs_processed = crt_sh_data['total_certificates']
+                            
+            # Also check if certificates are at the top level of passive_results
+            if not certificates and 'certificates' in passive_results:
+                certificates = passive_results['certificates']
+                logger.info(f"Found certificates at top level: {len(certificates)}")
+                
+            # Log final certificate extraction status
+            logger.info(f"Certificate extraction completed: {len(certificates)} certificates, {ct_logs_processed} CT logs")
             
             # Structure comprehensive passive results
             structured_result = {
