@@ -247,20 +247,75 @@ python web_fingerprinting.py example.com --detection-methods headers content wap
 
 ## Security Analysis
 
-### Security Headers Checked
-- X-Frame-Options (Clickjacking protection)
-- Content-Security-Policy (XSS prevention)
-- Strict-Transport-Security (HTTPS enforcement)
-- X-Content-Type-Options (MIME type protection)
-- X-XSS-Protection (XSS filtering)
-- Referrer-Policy (Referrer information control)
-- Permissions-Policy (Feature permissions)
+### Security Score Calculation
 
-### SSL Analysis
-- HTTPS usage detection
-- SSL certificate validation
-- Security grade assessment
-- Recommendations for improvement
+The module calculates a comprehensive security score based on the presence of critical security headers. This quantitative assessment helps evaluate web application security posture.
+
+#### Security Headers Evaluated (7 total):
+1. **X-Frame-Options** - Prevents clickjacking attacks
+2. **Content-Security-Policy** - Prevents XSS and data injection attacks  
+3. **Strict-Transport-Security** - Enforces HTTPS connections (HSTS)
+4. **X-Content-Type-Options** - Prevents MIME-type sniffing attacks
+5. **X-XSS-Protection** - Enables XSS filtering in browsers
+6. **Referrer-Policy** - Controls referrer information sent with requests
+7. **Permissions-Policy** - Controls browser feature permissions
+
+#### Score Calculation Formula:
+```
+Security Score = (Present Headers / Total Headers) × 100
+Security Score = (Present Headers / 7) × 100
+```
+
+#### Score Interpretation:
+- **90-100%** (6-7 headers): 🟢 Excellent security - Well protected
+- **70-89%** (5 headers): 🟡 Good security - Minor improvements needed
+- **50-69%** (3-4 headers): 🟠 Moderate security - Several vulnerabilities
+- **30-49%** (2 headers): 🔴 Poor security - Major risks present
+- **0-29%** (0-1 headers): ⚠️ Critical issues - Immediate attention required
+
+#### Security Analysis Output Example:
+```json
+{
+  "security_analysis": {
+    "security_score": 71.4,
+    "security_headers": {
+      "X-Frame-Options": "SAMEORIGIN",
+      "Content-Security-Policy": "default-src 'self'",
+      "Strict-Transport-Security": "max-age=31536000",
+      "X-Content-Type-Options": "nosniff",
+      "X-XSS-Protection": "1; mode=block",
+      "Referrer-Policy": null,
+      "Permissions-Policy": null
+    },
+    "missing_headers": [
+      "Referrer-Policy",
+      "Permissions-Policy"
+    ],
+    "present_headers": [
+      "X-Frame-Options",
+      "Content-Security-Policy",
+      "Strict-Transport-Security",
+      "X-Content-Type-Options",
+      "X-XSS-Protection"
+    ],
+    "recommendations": [
+      "Add Referrer-Policy header to control referrer information",
+      "Implement Permissions-Policy to control browser features"
+    ],
+    "ssl_info": {
+      "uses_ssl": true,
+      "url_scheme": "https",
+      "ssl_grade": "Good"
+    }
+  }
+}
+```
+
+### SSL/TLS Analysis
+- **HTTPS Detection**: Automatically detects SSL/TLS usage
+- **Certificate Validation**: Checks for valid SSL certificates
+- **Security Grade**: Overall SSL security assessment
+- **Protocol Analysis**: Evaluates encryption and protocol versions
 
 ## Error Handling
 
