@@ -19,7 +19,7 @@ from port_scanning.port_scanner import scan_target
 from service_identification.service_identification import identify_services_from_scanner
 
 
-def run_service_discovery(scan_mode: str, target: str, ports: Optional[str] = None, 
+def execute_service_discovery(scan_mode: str, target: str, ports: Optional[str] = None, 
                          output_format: str = 'json', verbose: bool = False) -> Dict:
     """
     Run complete service discovery including port scanning and service identification.
@@ -217,7 +217,7 @@ Examples:
     print(f"🔍 Starting service discovery on {args.target}...")
     
     # Run service discovery
-    results = run_service_discovery(
+    results = execute_service_discovery(
         scan_mode=args.mode,
         target=args.target,
         ports=args.ports,
