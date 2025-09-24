@@ -743,6 +743,102 @@ class WebCrawler:
     def close(self):
         """Clean up resources"""
         self.browser_manager.close_browser()
+
+def execute_web_crawler(domain: str, crawl_level: str = 'smart', content_file: str = None, save_results: bool = True, verbose: bool = True) -> Dict[str, Any]:
+    """
+    Execute web crawler with specified parameters
+    
+    Args:
+        domain: Target domain to crawl
+        crawl_level: Crawl level ('quick', 'smart', 'deep')
+        content_file: Path to pre-fetched HTML content file (optional)
+        save_results: Whether to save results to file
+        verbose: Whether to print verbose output
+        
+    Returns:
+        Dictionary containing crawl results
+    """
+    # Initialize crawler
+    crawler = WebCrawler(domain)
+    
+    try:
+        # Load content from file if provided
+        content = None
+        if content_file and os.path.exists(content_file):
+            with open(content_file, 'r', encoding='utf-8') as f:
+                content = f.read()
+                logging.info(f"Loaded content from {content_file}")
+                
+        # Perform crawling with specified level
+        results = crawler.run_crawl_level(crawl_level, content)
+        
+        # Print summary results if verbose
+        if verbose:
+            print(f"\n=== CRAWL RESULTS ({crawl_level.upper()} LEVEL) ===")
+            print(f"Domain: {domain}")
+            print(f"Pages analyzed: {len(results.get('pages', []))}")
+            print(f"Total URLs discovered: {len(results.get('discovered_urls', []))}")
+            print(f"Total APIs discovered: {len(results.get('apis', []))}")
+            
+            # Print API discovery breakdown
+            api_discovery = results.get('api_discovery', {})
+            print(f"\n=== API DISCOVERY BREAKDOWN ===")
+            print(f"REST APIs: {len(api_discovery.get('rest_apis', []))}")
+            print(f"GraphQL endpoints: {len(api_discovery.get('graphql_endpoints', []))}")
+            print(f"Swagger/OpenAPI: {len(api_discovery.get('swagger_endpoints', []))}")
+            print(f"Other APIs: {len(api_discovery.get('other_apis', []))}")
+            
+            # Print some example endpoints if found
+            if api_discovery.get('rest_apis'):
+                print(f"\n=== SAMPLE REST API ENDPOINTS ===")
+                for i, endpoint in enumerate(api_discovery['rest_apis'][:5]):
+                    print(f"{i+1}. {endpoint['url']} (Status: {endpoint['status_code']})")
+        
+        # Save results to file if requested
+        if save_results:
+            output_filename = f'results/{domain.replace(".", "_")}_crawl_{crawl_level}.json'
+            os.makedirs('results', exist_ok=True)
+            with open(output_filename, 'w') as f:
+                json.dump(results, f, indent=2, default=str)
+                
+            if verbose:
+                print(f"\nResults saved to {output_filename}")
+            
+            # Add output filename to results
+            results['output_file'] = output_filename
+        
+        # Add execution metadata to results
+        results['execution_info'] = {
+            'domain': domain,
+            'crawl_level': crawl_level,
+            'content_file_used': content_file is not None,
+            'results_saved': save_results,
+            'timestamp': time.time()
+        }
+        
+        return results
+        
+    except Exception as e:
+        error_msg = f"Crawl failed: {str(e)}"
+        logging.error(error_msg)
+        if verbose:
+            print(f"Error: {str(e)}")
+        
+        # Return error result
+        return {
+            'success': False,
+            'error': str(e),
+            'execution_info': {
+                'domain': domain,
+                'crawl_level': crawl_level,
+                'content_file_used': content_file is not None,
+                'results_saved': False,
+                'timestamp': time.time()
+            }
+        }
+        
+    finally:
+        crawler.close()
         
 if __name__ == "__main__":
     import argparse
@@ -759,54 +855,21 @@ if __name__ == "__main__":
     parser.add_argument("--content-file", help="Path to pre-fetched HTML content file")
     parser.add_argument("--crawl-level", choices=['quick', 'smart', 'deep'], default='smart',
                         help="Crawl level: quick (basic), smart (AI-enhanced), deep (comprehensive)")
+    parser.add_argument("--no-save", action="store_true", help="Don't save results to file")
+    parser.add_argument("--quiet", action="store_true", help="Suppress verbose output")
     args = parser.parse_args()
     
-    # Initialize crawler
-    crawler = WebCrawler(args.domain)
+    # Execute crawler with parsed arguments
+    results = execute_web_crawler(
+        domain=args.domain,
+        crawl_level=args.crawl_level,
+        content_file=args.content_file,
+        save_results=not args.no_save,
+        verbose=not args.quiet
+    )
     
-    try:
-        # Load content from file if provided
-        content = None
-        if args.content_file and os.path.exists(args.content_file):
-            with open(args.content_file, 'r', encoding='utf-8') as f:
-                content = f.read()
-                logging.info(f"Loaded content from {args.content_file}")
-                
-        # Perform crawling with specified level
-        results = crawler.run_crawl_level(args.crawl_level, content)
-        
-        # Print summary results
-        print(f"\n=== CRAWL RESULTS ({args.crawl_level.upper()} LEVEL) ===")
-        print(f"Domain: {args.domain}")
-        print(f"Pages analyzed: {len(results.get('pages', []))}")
-        print(f"Total URLs discovered: {len(results.get('discovered_urls', []))}")
-        print(f"Total APIs discovered: {len(results.get('apis', []))}")
-        
-        # Print API discovery breakdown
-        api_discovery = results.get('api_discovery', {})
-        print(f"\n=== API DISCOVERY BREAKDOWN ===")
-        print(f"REST APIs: {len(api_discovery.get('rest_apis', []))}")
-        print(f"GraphQL endpoints: {len(api_discovery.get('graphql_endpoints', []))}")
-        print(f"Swagger/OpenAPI: {len(api_discovery.get('swagger_endpoints', []))}")
-        print(f"Other APIs: {len(api_discovery.get('other_apis', []))}")
-        
-        # Print some example endpoints if found
-        if api_discovery.get('rest_apis'):
-            print(f"\n=== SAMPLE REST API ENDPOINTS ===")
-            for i, endpoint in enumerate(api_discovery['rest_apis'][:5]):
-                print(f"{i+1}. {endpoint['url']} (Status: {endpoint['status_code']})")
-        
-        # Save results to file
-        output_filename = f'results/{args.domain.replace(".", "_")}_crawl_{args.crawl_level}.json'
-        os.makedirs('results', exist_ok=True)
-        with open(output_filename, 'w') as f:
-            json.dump(results, f, indent=2, default=str)
-            
-        print(f"\nResults saved to {output_filename}")
-        
-    except Exception as e:
-        logging.error(f"Crawl failed: {str(e)}")
-        print(f"Error: {str(e)}")
-        
-    finally:
-        crawler.close()
+    # Exit with appropriate code based on success
+    if results.get('success', True):  # Default to True for backward compatibility
+        exit(0)
+    else:
+        exit(1)
