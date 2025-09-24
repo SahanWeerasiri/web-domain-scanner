@@ -12,3 +12,6 @@ data
 */**/web_crawler.log
 */**/downloaded_files/
 */**/examples/
+*/**/enumeration_*
+*/**/results.*
+*/**/dump/*

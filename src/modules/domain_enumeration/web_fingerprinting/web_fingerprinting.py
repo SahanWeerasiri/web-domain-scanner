@@ -1,21 +1,8 @@
 #!/usr/bin/env python3
 """
-Web Fingerprinting Module
+Configurable Web Fingerprinting Module
 
-This module provides comprehensive web technology fingerprinting capabilities.
-It analyzes HTTP responses, headers, and content to identify web technologies,
-frameworks, servers, and security configurations.
-
-Key Features:
-- HTTP header analysis
-- Server software identification
-- Web framework detection
-- Wappalyzer integration for technology detection
-- Security header analysis
-- Response code and content analysis
-
-Author: Web Domain Scanner Project
-License: See LICENSE file in project root
+This module provides comprehensive web technology fingerprinting with full pre-execution configuration.
 """
 
 import logging
@@ -23,7 +10,7 @@ import time
 import requests
 import sys
 import os
-from typing import Dict, List, Set, Optional, TYPE_CHECKING
+from typing import Dict, List, Set, Optional, Any
 from urllib.parse import urlparse
 
 # Add parent directories to path for imports
@@ -38,24 +25,17 @@ except ImportError:
 
 # Try to import Wappalyzer if available
 try:
-    # Suppress deprecation warnings for pkg_resources
     import warnings
     warnings.filterwarnings("ignore", category=UserWarning, module="Wappalyzer")
     warnings.filterwarnings("ignore", category=UserWarning, message=".*pkg_resources.*")
     
-    # Add the path where fingerprinting_wapplyzer module might be located
     sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
     import modules.domain_enumeration.utils.fingerprinting_wapplyzer as fingerprinting_wapplyzer
     WAPPALYZER_AVAILABLE = True
 except ImportError:
     WAPPALYZER_AVAILABLE = False
-    logger = logging.getLogger(__name__)
-    logger.warning("Wappalyzer module not available. Technology detection will be limited.")
 
-# Import AI Integration module for enhanced technology detection
-if TYPE_CHECKING:
-    from ai_integration import AIIntegration
-
+# Import AI Integration module
 try:
     from ai_integration import AIIntegration
     AI_AVAILABLE = True
@@ -66,114 +46,284 @@ except ImportError:
 logger = logging.getLogger(__name__)
 
 
-class WebFingerprinter:
-    """
-    Web technology fingerprinting class.
+class WebFingerprintingConfig(EnumerationConfig):
+    """Extended configuration for web fingerprinting with method-specific parameters"""
     
-    This class analyzes web responses to identify technologies, frameworks,
-    server software, and security configurations.
+    def __init__(self):
+        super().__init__()
+        
+        # Target Configuration
+        self.default_targets = ['https://{domain}']
+        self.include_www_variant = False  # Disabled by default to avoid DNS errors
+        self.include_http = False  # Security: HTTP disabled by default
+        self.custom_targets = []
+        
+        # Request Configuration
+        self.follow_redirects = True
+        self.max_redirects = 10
+        self.verify_ssl = True
+        self.user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        self.accept_language = 'en-US,en;q=0.9'
+        
+        # Analysis Configuration
+        self.enable_wappalyzer = WAPPALYZER_AVAILABLE
+        self.enable_ai_analysis = AI_AVAILABLE
+        self.enable_security_analysis = True
+        self.enable_performance_metrics = True
+        self.enable_technology_insights = True
+        self.content_analysis_limit = 1000  # Characters to analyze
+        
+        # Technology Detection Configuration
+        self.detection_methods = ['headers', 'content', 'url_patterns', 'wappalyzer', 'ai']
+        self.technology_categories = {
+            'web_servers': True,
+            'programming_languages': True,
+            'frameworks': True,
+            'cms': True,
+            'javascript_libraries': True,
+            'cdn': True,
+            'analytics': True
+        }
+        
+        # Security Analysis Configuration
+        self.check_security_headers = True
+        self.analyze_cookies = True
+        self.ssl_analysis = True
+        self.security_score_threshold = 70  # Percentage
+        
+        # Performance Configuration
+        self.concurrent_requests = 3
+        self.request_timeout = 30
+        self.retry_attempts = 2
+        self.retry_delay = 1
+        
+        # Output Configuration
+        self.verbose_output = False
+        self.save_raw_responses = False
+        self.generate_summary = True
+        self.output_format = 'detailed'  # detailed, summary, minimal
+
+
+class ConfigurableWebFingerprinter:
+    """
+    Enhanced web fingerprinter with comprehensive pre-execution configuration.
     """
     
-    def __init__(self, domain: str, config: EnumerationConfig = None, ai_integration = None):
-        """Initialize web fingerprinter"""
+    def __init__(self, domain: str, config: WebFingerprintingConfig = None, 
+                 ai_integration = None, **kwargs):
+        """Initialize with full configuration"""
         self.domain = domain.lower().strip()
-        self.config = config or EnumerationConfig()
+        self.config = config or WebFingerprintingConfig()
+        
+        # Apply any keyword argument overrides
+        self._apply_config_overrides(kwargs)
+        
         self.error_handler = EnumerationErrorHandler()
         self.rate_limiter = RateLimiter(self.config.rate_limit)
-        
-        # Initialize AI integration if available
         self.ai_integration = ai_integration
-        if AI_AVAILABLE and not self.ai_integration:
-            # Try to create AI integration with environment variables
-            api_keys = {
-                'gemini_api_key': os.getenv('GEMINI_API_KEY'),
-                'openai_api_key': os.getenv('OPENAI_API_KEY'),
-                'anthropic_api_key': os.getenv('ANTHROPIC_API_KEY')
-            }
-            if any(api_keys.values()):
-                self.ai_integration = AIIntegration(**{k: v for k, v in api_keys.items() if v})
-                logger.info("AI integration initialized for enhanced technology detection")
         
-        # Set up HTTP session
-        self.session = requests.Session()
-        self.session.headers.update({
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
-                         '(KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        # Setup HTTP session with configured parameters
+        self.session = self._setup_http_session()
+        
+        logger.info(f"ConfigurableWebFingerprinter initialized for domain: {self.domain}")
+        self._log_configuration()
+    
+    def _apply_config_overrides(self, kwargs: Dict[str, Any]):
+        """Apply configuration overrides from keyword arguments"""
+        for key, value in kwargs.items():
+            if hasattr(self.config, key):
+                setattr(self.config, key, value)
+                logger.debug(f"Overridden config.{key} = {value}")
+    
+    def _log_configuration(self):
+        """Log the current configuration"""
+        logger.info("=== Web Fingerprinting Configuration ===")
+        logger.info(f"Domain: {self.domain}")
+        logger.info(f"Detection methods: {', '.join(self.config.detection_methods)}")
+        logger.info(f"Security analysis: {self.config.enable_security_analysis}")
+        logger.info(f"Wappalyzer: {self.config.enable_wappalyzer}")
+        logger.info(f"AI analysis: {self.config.enable_ai_analysis}")
+        logger.info(f"Timeout: {self.config.request_timeout}s")
+        logger.info(f"Concurrent requests: {self.config.concurrent_requests}")
+        logger.info("========================================")
+    
+    def _setup_http_session(self) -> requests.Session:
+        """Setup HTTP session with configured parameters"""
+        session = requests.Session()
+        
+        # Configure headers
+        session.headers.update({
+            'User-Agent': self.config.user_agent,
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Language': self.config.accept_language,
+            'Accept-Encoding': 'gzip, deflate',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1'
         })
         
-        logger.info(f"WebFingerprinter initialized for domain: {self.domain}")
+        # Configure session options
+        session.max_redirects = self.config.max_redirects
+        session.verify = self.config.verify_ssl
+        
+        # Configure retry strategy
+        from requests.adapters import HTTPAdapter
+        from urllib3.util.retry import Retry
+        
+        retry_strategy = Retry(
+            total=self.config.retry_attempts,
+            backoff_factor=self.config.retry_delay,
+            status_forcelist=[429, 500, 502, 503, 504],
+        )
+        
+        adapter = HTTPAdapter(
+            max_retries=retry_strategy,
+            pool_connections=self.config.concurrent_requests,
+            pool_maxsize=self.config.concurrent_requests * 2
+        )
+        session.mount("http://", adapter)
+        session.mount("https://", adapter)
+        
+        return session
     
-    def run_web_fingerprinting(self, targets: List[str] = None) -> Dict:
+    def run_comprehensive_fingerprinting(self, custom_targets: List[str] = None) -> Dict[str, Any]:
         """
-        Run comprehensive web fingerprinting.
+        Run comprehensive web fingerprinting with pre-configured parameters.
         
         Args:
-            targets: List of URLs/domains to fingerprint. If None, uses default targets.
+            custom_targets: Optional list of specific URLs to fingerprint
             
         Returns:
-            Dict: Fingerprinting results for each target
+            Dict containing all fingerprinting results, statistics, and metadata
         """
-        logger.info(f"Starting web fingerprinting for domain: {self.domain}")
+        start_time = time.time()
         
-        if not targets:
-            targets = self._generate_default_targets()
+        results = {
+            'domain': self.domain,
+            'timestamp': time.time(),
+            'configuration': self._get_config_summary(),
+            'targets': {},
+            'summary': {},
+            'statistics': {},
+            'errors': {}
+        }
         
-        results = {}
-        
-        for target in targets:
-            logger.debug(f"Fingerprinting target: {target}")
+        try:
+            # Generate targets
+            targets = self._generate_targets(custom_targets)
+            logger.info(f"Generated {len(targets)} targets for fingerprinting")
             
-            try:
-                # Apply rate limiting
-                if self.config.rate_limiting_enabled:
-                    self.rate_limiter.acquire()
-                
-                # Perform fingerprinting
-                fingerprint_result = self._fingerprint_target(target)
-                results[target] = fingerprint_result
-                
-                logger.info(f"Fingerprinting completed for {target}")
-                
-            except Exception as e:
-                logger.warning(f"Failed to fingerprint {target}: {str(e)}")
-                self.error_handler.handle_error("web_fingerprinting", e)
-                results[target] = {
-                    'error': str(e),
-                    'timestamp': time.time()
-                }
+            # Fingerprint each target
+            for target in targets:
+                target_start = time.time()
+                try:
+                    if self.config.rate_limiting_enabled:
+                        self.rate_limiter.acquire()
+                    
+                    target_result = self._fingerprint_single_target(target)
+                    results['targets'][target] = target_result
+                    
+                    target_duration = time.time() - target_start
+                    logger.info(f"Fingerprinted {target} in {target_duration:.2f}s")
+                    
+                except Exception as e:
+                    logger.error(f"Failed to fingerprint {target}: {e}")
+                    self.error_handler.handle_error("target_fingerprinting", e)
+                    results['targets'][target] = {'error': str(e), 'timestamp': time.time()}
+            
+            # Generate summary if enabled
+            if self.config.generate_summary:
+                results['summary'] = self._generate_fingerprint_summary(results['targets'])
+            
+            # Compile statistics
+            results['statistics'] = self._compile_statistics(results, start_time)
+            results['errors'] = self.error_handler.get_errors()
+            
+            logger.info("=== Web Fingerprinting Completed ===")
+            
+        except Exception as e:
+            logger.error(f"Comprehensive fingerprinting failed: {e}")
+            self.error_handler.handle_error("comprehensive_fingerprinting", e)
+            results['errors']['comprehensive_fingerprinting'] = [str(e)]
         
-        logger.info(f"Web fingerprinting completed for {len(results)} targets")
         return results
     
-    def _generate_default_targets(self) -> List[str]:
-        """Generate default targets for fingerprinting"""
-        targets = [
-            f"https://{self.domain}",
-        ]
+    def _generate_targets(self, custom_targets: List[str] = None) -> List[str]:
+        """Generate targets based on configuration with DNS validation"""
+        if custom_targets:
+            return self._validate_targets(custom_targets)
         
-        # Only add www variant if it's likely to exist
-        # Check if www subdomain was found in passive enumeration
-        try:
-            www_domain = f"www.{self.domain}"
-            # Do a quick DNS check before adding to targets
-            import socket
-            try:
-                socket.gethostbyname(www_domain)
-                targets.append(f"https://{www_domain}")
-                logger.debug(f"Added www variant: {www_domain}")
-            except socket.gaierror:
-                logger.debug(f"Skipping www variant - DNS resolution failed for {www_domain}")
-        except Exception as e:
-            logger.debug(f"Error checking www variant: {e}")
+        targets = []
         
-        # Note: HTTP targets commented out for security
-        # f"http://{self.domain}",
-        # f"http://www.{self.domain}"
+        # Add default targets with domain substitution
+        for target_template in self.config.default_targets:
+            target = target_template.format(domain=self.domain)
+            targets.append(target)
         
-        logger.debug(f"Generated {len(targets)} default targets")
-        return targets
+        # Add www variant if enabled (with DNS validation)
+        if self.config.include_www_variant:
+            www_target = f"https://www.{self.domain}"
+            if self._can_resolve_domain(f"www.{self.domain}"):
+                targets.append(www_target)
+            else:
+                logger.debug(f"Skipping www.{self.domain} - DNS resolution failed")
+        
+        # Add HTTP targets if enabled (not recommended for security)
+        if self.config.include_http:
+            http_targets = [
+                f"http://{self.domain}",
+            ]
+            # Only add www HTTP if DNS resolves
+            if self._can_resolve_domain(f"www.{self.domain}"):
+                http_targets.append(f"http://www.{self.domain}")
+            
+            targets.extend(http_targets)
+        
+        # Add custom targets
+        targets.extend(self.config.custom_targets)
+        
+        # Remove duplicates and validate
+        unique_targets = list(set(targets))
+        return self._validate_targets(unique_targets)
     
-    def _fingerprint_target(self, target: str) -> Dict:
+    def _can_resolve_domain(self, domain: str) -> bool:
+        """Check if a domain can be resolved via DNS"""
+        try:
+            import socket
+            socket.gethostbyname(domain)
+            return True
+        except (socket.gaierror, socket.error):
+            return False
+    
+    def _validate_targets(self, targets: List[str]) -> List[str]:
+        """Validate targets by checking DNS resolution"""
+        validated_targets = []
+        
+        for target in targets:
+            try:
+                # Extract domain from URL
+                from urllib.parse import urlparse
+                parsed = urlparse(target)
+                domain = parsed.netloc
+                
+                # Skip validation for localhost and IP addresses
+                if domain in ['localhost', '127.0.0.1'] or domain.replace('.', '').isdigit():
+                    validated_targets.append(target)
+                    continue
+                
+                # Check DNS resolution
+                if self._can_resolve_domain(domain):
+                    validated_targets.append(target)
+                else:
+                    logger.debug(f"Skipping {target} - DNS resolution failed for {domain}")
+                    
+            except Exception as e:
+                logger.debug(f"Error validating target {target}: {e}")
+                # Include target anyway if validation fails
+                validated_targets.append(target)
+        
+        return validated_targets
+    
+    def _fingerprint_single_target(self, target: str) -> Dict[str, Any]:
         """
         Perform comprehensive fingerprinting on a single target.
         
@@ -196,8 +346,12 @@ class WebFingerprinter:
         start_time = time.time()
         
         try:
-            # Make HTTP request
-            response = self.session.get(target, timeout=self.config.timeout, allow_redirects=True)
+            # Make HTTP request with configured parameters
+            response = self.session.get(
+                target, 
+                timeout=self.config.request_timeout, 
+                allow_redirects=self.config.follow_redirects
+            )
             
             # Analyze response
             result['response_analysis'] = self._analyze_response(response)
@@ -205,21 +359,25 @@ class WebFingerprinter:
             # Analyze headers
             result['header_analysis'] = self._analyze_headers(response.headers)
             
-            # Detect technologies
+            # Detect technologies based on configured methods
             result['technology_detection'] = self._detect_technologies(target, response)
             
-            # Analyze technology insights
-            result['technology_insights'] = self._analyze_technology_insights(result['technology_detection'])
+            # Analyze technology insights if enabled
+            if self.config.enable_technology_insights:
+                result['technology_insights'] = self._analyze_technology_insights(result['technology_detection'])
             
-            # Analyze security
-            result['security_analysis'] = self._analyze_security(response)
+            # Analyze security if enabled
+            if self.config.enable_security_analysis:
+                result['security_analysis'] = self._analyze_security(response)
             
-            # Performance metrics
-            result['performance_metrics'] = {
-                'response_time': time.time() - start_time,
-                'content_length': len(response.content),
-                'status_code': response.status_code
-            }
+            # Performance metrics if enabled
+            if self.config.enable_performance_metrics:
+                result['performance_metrics'] = {
+                    'response_time': time.time() - start_time,
+                    'content_length': len(response.content),
+                    'status_code': response.status_code,
+                    'redirect_count': len(response.history)
+                }
             
         except requests.RequestException as e:
             logger.warning(f"Request failed for {target}: {str(e)}")
@@ -228,7 +386,7 @@ class WebFingerprinter:
         
         return result
     
-    def _analyze_response(self, response: requests.Response) -> Dict:
+    def _analyze_response(self, response: requests.Response) -> Dict[str, Any]:
         """Analyze HTTP response for basic information"""
         analysis = {
             'status_code': response.status_code,
@@ -238,13 +396,16 @@ class WebFingerprinter:
             'content_length': len(response.content),
             'url': response.url,
             'redirect_chain': [r.url for r in response.history],
-            'is_redirect': len(response.history) > 0
+            'is_redirect': len(response.history) > 0,
+            'final_url': response.url
         }
         
-        # Analyze content if it's text-based
-        if 'text' in analysis['content_type'].lower() or 'html' in analysis['content_type'].lower():
+        # Analyze content if it's text-based and within limit
+        content_type = analysis['content_type'].lower()
+        if 'text' in content_type or 'html' in content_type:
             try:
-                content = response.text[:1000]  # First 1000 chars for analysis
+                content = response.text[:self.config.content_analysis_limit]
+                analysis['content_preview'] = content[:200] + '...' if len(content) > 200 else content
                 analysis['has_html'] = '<html' in content.lower()
                 analysis['has_javascript'] = '<script' in content.lower()
                 analysis['has_css'] = '<style' in content.lower() or '.css' in content.lower()
@@ -255,7 +416,7 @@ class WebFingerprinter:
         
         return analysis
     
-    def _analyze_headers(self, headers: Dict) -> Dict:
+    def _analyze_headers(self, headers: Dict) -> Dict[str, Any]:
         """Analyze HTTP headers for server and technology information"""
         analysis = {
             'server': headers.get('Server', 'Not found'),
@@ -283,30 +444,24 @@ class WebFingerprinter:
         
         return analysis
     
-    def _detect_technologies(self, url: str, response: requests.Response) -> Dict:
-        """Detect web technologies using various methods"""
-        technologies = {
-            'wappalyzer_detected': [],
-            'header_detected': [],
-            'content_detected': [],
-            'url_patterns': []
-        }
+    def _detect_technologies(self, url: str, response: requests.Response) -> Dict[str, Any]:
+        """Detect web technologies using configured methods"""
+        technologies = {}
         
-        # Wappalyzer detection if available
-        if WAPPALYZER_AVAILABLE:
+        # Wappalyzer detection if enabled and available
+        if 'wappalyzer' in self.config.detection_methods and self.config.enable_wappalyzer and WAPPALYZER_AVAILABLE:
             try:
                 wappalyzer_result = fingerprinting_wapplyzer.fingerprint_technology(url)
                 if isinstance(wappalyzer_result, (list, set)):
                     technologies['wappalyzer_detected'] = list(wappalyzer_result)
                 elif wappalyzer_result:
                     technologies['wappalyzer_detected'] = [str(wappalyzer_result)]
-                
-                logger.info(f"Wappalyzer detected technologies: {technologies['wappalyzer_detected']}")
             except Exception as e:
                 logger.warning(f"Wappalyzer detection failed: {e}")
+                technologies['wappalyzer_error'] = str(e)
         
-        # AI-enhanced technology detection if available
-        if self.ai_integration:
+        # AI-enhanced technology detection if enabled
+        if 'ai' in self.config.detection_methods and self.config.enable_ai_analysis and self.ai_integration:
             try:
                 page_content = {
                     'html': response.text if hasattr(response, 'text') else '',
@@ -317,24 +472,29 @@ class WebFingerprinter:
                 ai_detected = self.ai_integration.detect_technology(page_content)
                 if ai_detected:
                     technologies['ai_detected'] = list(ai_detected)
-                    logger.info(f"AI detected technologies: {technologies['ai_detected']}")
             except Exception as e:
                 logger.warning(f"AI technology detection failed: {e}")
+                technologies['ai_error'] = str(e)
         
         # Header-based detection
-        technologies['header_detected'] = self._detect_from_headers(response.headers)
+        if 'headers' in self.config.detection_methods:
+            technologies['header_detected'] = self._detect_from_headers(response.headers)
         
         # Content-based detection
-        if hasattr(response, 'text'):
+        if 'content' in self.config.detection_methods and hasattr(response, 'text'):
             technologies['content_detected'] = self._detect_from_content(response.text)
         
         # URL pattern detection
-        technologies['url_patterns'] = self._detect_from_url_patterns(response.text if hasattr(response, 'text') else '')
+        if 'url_patterns' in self.config.detection_methods and hasattr(response, 'text'):
+            technologies['url_patterns'] = self._detect_from_url_patterns(response.text)
         
         return technologies
     
-    def _analyze_security(self, response: requests.Response) -> Dict:
+    def _analyze_security(self, response: requests.Response) -> Dict[str, Any]:
         """Analyze security headers and configurations"""
+        if not self.config.enable_security_analysis:
+            return {'disabled': True}
+        
         security = {
             'security_headers': {},
             'ssl_info': {},
@@ -346,86 +506,77 @@ class WebFingerprinter:
         
         headers = response.headers
         
-        # Security headers analysis
-        security_headers = {
-            'X-Frame-Options': headers.get('X-Frame-Options'),
-            'Content-Security-Policy': headers.get('Content-Security-Policy'),
-            'Strict-Transport-Security': headers.get('Strict-Transport-Security'),
-            'X-Content-Type-Options': headers.get('X-Content-Type-Options'),
-            'X-XSS-Protection': headers.get('X-XSS-Protection'),
-            'Referrer-Policy': headers.get('Referrer-Policy'),
-            'Permissions-Policy': headers.get('Permissions-Policy')
-        }
+        # Security headers analysis if enabled
+        if self.config.check_security_headers:
+            security_headers = {
+                'X-Frame-Options': headers.get('X-Frame-Options'),
+                'Content-Security-Policy': headers.get('Content-Security-Policy'),
+                'Strict-Transport-Security': headers.get('Strict-Transport-Security'),
+                'X-Content-Type-Options': headers.get('X-Content-Type-Options'),
+                'X-XSS-Protection': headers.get('X-XSS-Protection'),
+                'Referrer-Policy': headers.get('Referrer-Policy'),
+                'Permissions-Policy': headers.get('Permissions-Policy')
+            }
+            
+            security['security_headers'] = security_headers
+            
+            # Calculate security score
+            score = 0
+            missing_headers = []
+            
+            for header, value in security_headers.items():
+                if value and value != 'Not found':
+                    score += 1
+                else:
+                    missing_headers.append(header)
+            
+            security['security_score'] = (score / len(security_headers)) * 100
+            security['missing_headers'] = missing_headers
+            
+            # Generate recommendations
+            recommendations = []
+            if 'X-Frame-Options' in missing_headers:
+                recommendations.append("Add X-Frame-Options header to prevent clickjacking")
+            if 'Content-Security-Policy' in missing_headers:
+                recommendations.append("Implement Content-Security-Policy to prevent XSS")
+            if 'Strict-Transport-Security' in missing_headers:
+                recommendations.append("Add HSTS header to enforce HTTPS")
+            
+            security['recommendations'] = recommendations
         
-        security['security_headers'] = security_headers
+        # Cookie security analysis if enabled
+        if self.config.analyze_cookies:
+            set_cookie = headers.get('Set-Cookie', '')
+            security['cookie_security'] = {
+                'has_secure': 'Secure' in set_cookie,
+                'has_httponly': 'HttpOnly' in set_cookie,
+                'has_samesite': 'SameSite' in set_cookie,
+                'recommendations': []
+            }
         
-        # Calculate security score and track missing headers
-        score = 0
-        missing_headers = []
-        recommendations = []
-        
-        for header, value in security_headers.items():
-            if value and value != 'Not found':
-                score += 1
+        # SSL information if enabled
+        if self.config.ssl_analysis:
+            if response.url.startswith('https://'):
+                security['ssl_info'] = {
+                    'uses_ssl': True,
+                    'url_scheme': 'https',
+                    'ssl_grade': 'Good' if security.get('security_score', 0) >= self.config.security_score_threshold else 'Needs Improvement'
+                }
             else:
-                missing_headers.append(header)
-                
-                # Add specific recommendations
-                if header == 'X-Frame-Options':
-                    recommendations.append("Add X-Frame-Options header to prevent clickjacking attacks")
-                elif header == 'Content-Security-Policy':
-                    recommendations.append("Implement Content-Security-Policy to prevent XSS attacks")
-                elif header == 'Strict-Transport-Security':
-                    recommendations.append("Add HSTS header to enforce HTTPS connections")
-                elif header == 'X-Content-Type-Options':
-                    recommendations.append("Add X-Content-Type-Options: nosniff to prevent MIME type sniffing")
-                elif header == 'X-XSS-Protection':
-                    recommendations.append("Add X-XSS-Protection header for legacy browser protection")
-        
-        security['security_score'] = (score / len(security_headers)) * 100
-        security['missing_headers'] = missing_headers
-        security['recommendations'] = recommendations
-        
-        # Cookie security analysis
-        set_cookie = headers.get('Set-Cookie', '')
-        security['cookie_security'] = {
-            'has_secure': 'Secure' in set_cookie,
-            'has_httponly': 'HttpOnly' in set_cookie,
-            'has_samesite': 'SameSite' in set_cookie,
-            'recommendations': []
-        }
-        
-        # Cookie recommendations
-        if not security['cookie_security']['has_secure']:
-            security['cookie_security']['recommendations'].append("Add Secure flag to cookies")
-        if not security['cookie_security']['has_httponly']:
-            security['cookie_security']['recommendations'].append("Add HttpOnly flag to cookies")
-        if not security['cookie_security']['has_samesite']:
-            security['cookie_security']['recommendations'].append("Add SameSite attribute to cookies")
-        
-        # SSL information
-        if response.url.startswith('https://'):
-            security['ssl_info'] = {
-                'uses_ssl': True,
-                'url_scheme': 'https',
-                'ssl_grade': 'Good' if len(missing_headers) < 3 else 'Needs Improvement'
-            }
-        else:
-            security['ssl_info'] = {
-                'uses_ssl': False,
-                'url_scheme': 'http',
-                'ssl_grade': 'Poor - No SSL'
-            }
-            recommendations.append("Enable HTTPS/SSL for secure communication")
+                security['ssl_info'] = {
+                    'uses_ssl': False,
+                    'url_scheme': 'http',
+                    'ssl_grade': 'Poor - No SSL'
+                }
+                security['recommendations'].append("Enable HTTPS/SSL for secure communication")
         
         return security
     
-    def _parse_server_header(self, server_header: str) -> Dict:
+    def _parse_server_header(self, server_header: str) -> Dict[str, Any]:
         """Parse Server header for technology information"""
         if not server_header or server_header == 'Not found':
             return {'name': 'Unknown', 'version': 'Unknown', 'components': []}
         
-        # Common server patterns
         server_patterns = {
             'nginx': 'Nginx',
             'apache': 'Apache',
@@ -450,12 +601,11 @@ class WebFingerprinter:
             'components': server_header.split() if ' ' in server_header else [server_header]
         }
     
-    def _parse_powered_by_header(self, powered_by_header: str) -> Dict:
+    def _parse_powered_by_header(self, powered_by_header: str) -> Dict[str, Any]:
         """Parse X-Powered-By header for framework information"""
         if not powered_by_header or powered_by_header == 'Not found':
             return {'framework': 'Unknown', 'version': 'Unknown'}
         
-        # Common framework patterns
         framework_patterns = {
             'php': 'PHP',
             'asp.net': 'ASP.NET',
@@ -483,7 +633,6 @@ class WebFingerprinter:
         """Detect technologies from HTTP headers"""
         detected = []
         
-        # Check for specific technology headers
         technology_headers = {
             'X-Powered-By': ['PHP', 'ASP.NET', 'Express'],
             'Server': ['Nginx', 'Apache', 'IIS', 'Cloudflare'],
@@ -508,7 +657,6 @@ class WebFingerprinter:
         
         content_lower = content.lower()
         
-        # Content-based technology detection
         content_patterns = {
             'wordpress': ['wp-content', 'wp-includes', 'wordpress'],
             'drupal': ['drupal.js', 'drupal.settings', 'sites/default'],
@@ -528,7 +676,7 @@ class WebFingerprinter:
                     detected.append(technology.title())
                     break
         
-        return list(set(detected))  # Remove duplicates
+        return list(set(detected))
     
     def _detect_from_url_patterns(self, content: str) -> List[str]:
         """Detect technologies from URL patterns in content"""
@@ -537,7 +685,6 @@ class WebFingerprinter:
         if not content:
             return detected
         
-        # URL pattern-based detection
         url_patterns = {
             'CDN': ['cdn.', 'cloudflare', 'amazonaws', 'azure'],
             'Google Services': ['googleapis.com', 'googletagmanager', 'google-analytics'],
@@ -567,7 +714,7 @@ class WebFingerprinter:
             pass
         return 'Not found'
     
-    def _extract_meta_info(self, content: str) -> Dict:
+    def _extract_meta_info(self, content: str) -> Dict[str, Any]:
         """Extract meta information from HTML content"""
         meta_info = {
             'generator': 'Not found',
@@ -578,17 +725,14 @@ class WebFingerprinter:
         try:
             import re
             
-            # Extract generator
             generator_match = re.search(r'<meta[^>]*name=["\']generator["\'][^>]*content=["\']([^"\']+)["\']', content, re.IGNORECASE)
             if generator_match:
                 meta_info['generator'] = generator_match.group(1)
             
-            # Extract description
             desc_match = re.search(r'<meta[^>]*name=["\']description["\'][^>]*content=["\']([^"\']+)["\']', content, re.IGNORECASE)
             if desc_match:
-                meta_info['description'] = desc_match.group(1)[:100]  # Limit length
+                meta_info['description'] = desc_match.group(1)[:100]
             
-            # Extract keywords
             keywords_match = re.search(r'<meta[^>]*name=["\']keywords["\'][^>]*content=["\']([^"\']+)["\']', content, re.IGNORECASE)
             if keywords_match:
                 meta_info['keywords'] = keywords_match.group(1)
@@ -598,8 +742,11 @@ class WebFingerprinter:
         
         return meta_info
     
-    def _analyze_technology_insights(self, technologies: Dict) -> Dict:
+    def _analyze_technology_insights(self, technologies: Dict) -> Dict[str, Any]:
         """Analyze detected technologies and provide insights"""
+        if not self.config.enable_technology_insights:
+            return {'disabled': True}
+        
         insights = {
             'technology_stack': {
                 'web_server': [],
@@ -611,8 +758,7 @@ class WebFingerprinter:
                 'analytics': []
             },
             'security_implications': [],
-            'performance_notes': [],
-            'version_info': {}
+            'performance_notes': []
         }
         
         # Categorize technologies
@@ -624,50 +770,34 @@ class WebFingerprinter:
         for tech in set(all_techs):
             tech_lower = tech.lower()
             
-            # Web servers
-            if any(server in tech_lower for server in ['apache', 'nginx', 'iis', 'cloudflare']):
+            # Categorize based on configured categories
+            if self.config.technology_categories['web_servers'] and any(server in tech_lower for server in ['apache', 'nginx', 'iis', 'cloudflare']):
                 insights['technology_stack']['web_server'].append(tech)
             
-            # Programming languages
-            elif any(lang in tech_lower for lang in ['php', 'python', 'java', 'asp.net', 'node.js']):
+            if self.config.technology_categories['programming_languages'] and any(lang in tech_lower for lang in ['php', 'python', 'java', 'asp.net', 'node.js']):
                 insights['technology_stack']['programming_language'].append(tech)
             
-            # Frameworks
-            elif any(fw in tech_lower for fw in ['django', 'flask', 'laravel', 'express', 'rails']):
+            if self.config.technology_categories['frameworks'] and any(fw in tech_lower for fw in ['django', 'flask', 'laravel', 'express', 'rails']):
                 insights['technology_stack']['framework'].append(tech)
             
-            # CMS
-            elif any(cms in tech_lower for cms in ['wordpress', 'drupal', 'joomla', 'moodle']):
+            if self.config.technology_categories['cms'] and any(cms in tech_lower for cms in ['wordpress', 'drupal', 'joomla', 'moodle']):
                 insights['technology_stack']['cms'].append(tech)
-                if 'moodle' in tech_lower:
-                    insights['security_implications'].append("Moodle CMS - ensure regular updates for security")
             
-            # JavaScript libraries
-            elif any(js in tech_lower for js in ['jquery', 'react', 'angular', 'vue', 'mathjax', 'requirejs']):
+            if self.config.technology_categories['javascript_libraries'] and any(js in tech_lower for js in ['jquery', 'react', 'angular', 'vue']):
                 insights['technology_stack']['javascript_libraries'].append(tech)
             
-            # CDN
-            elif any(cdn in tech_lower for cdn in ['cloudflare', 'jsdelivr', 'cdnjs', 'amazonaws']):
+            if self.config.technology_categories['cdn'] and any(cdn in tech_lower for cdn in ['cloudflare', 'jsdelivr', 'cdnjs', 'amazonaws']):
                 insights['technology_stack']['cdn'].append(tech)
-                insights['performance_notes'].append(f"Using {tech} CDN for improved performance")
             
-            # Analytics
-            elif any(analytics in tech_lower for analytics in ['google analytics', 'gtag']):
+            if self.config.technology_categories['analytics'] and any(analytics in tech_lower for analytics in ['google analytics', 'gtag']):
                 insights['technology_stack']['analytics'].append(tech)
-        
-        # Add security implications based on detected technologies
-        if any('php' in tech.lower() for tech in all_techs):
-            insights['security_implications'].append("PHP detected - ensure latest version for security")
-        
-        if any('apache' in tech.lower() for tech in all_techs):
-            insights['security_implications'].append("Apache server - review security modules and configuration")
         
         return insights
     
-    def generate_fingerprint_summary(self, results: Dict) -> Dict:
+    def _generate_fingerprint_summary(self, targets_results: Dict) -> Dict[str, Any]:
         """Generate a summary of fingerprinting results"""
         summary = {
-            'total_targets': len(results),
+            'total_targets': len(targets_results),
             'successful_scans': 0,
             'failed_scans': 0,
             'unique_technologies': set(),
@@ -678,7 +808,7 @@ class WebFingerprinter:
         
         security_scores = []
         
-        for target, result in results.items():
+        for target, result in targets_results.items():
             if 'error' in result:
                 summary['failed_scans'] += 1
                 continue
@@ -713,132 +843,286 @@ class WebFingerprinter:
         if security_scores:
             summary['security_score_avg'] = sum(security_scores) / len(security_scores)
         
-        # Convert set to list for JSON serialization
         summary['unique_technologies'] = list(summary['unique_technologies'])
         
         return summary
+    
+    def _get_config_summary(self) -> Dict[str, Any]:
+        """Get configuration summary for results"""
+        return {
+            'detection_methods': self.config.detection_methods,
+            'technology_categories': self.config.technology_categories,
+            'security_analysis': self.config.enable_security_analysis,
+            'wappalyzer_enabled': self.config.enable_wappalyzer,
+            'ai_analysis_enabled': self.config.enable_ai_analysis
+        }
+    
+    def _compile_statistics(self, results: Dict, start_time: float) -> Dict[str, Any]:
+        """Compile execution statistics"""
+        total_duration = time.time() - start_time
+        total_targets = len(results.get('targets', {}))
+        
+        successful_targets = 0
+        for target_result in results.get('targets', {}).values():
+            if 'error' not in target_result:
+                successful_targets += 1
+        
+        return {
+            'total_duration': total_duration,
+            'total_targets': total_targets,
+            'successful_targets': successful_targets,
+            'success_rate': (successful_targets / total_targets * 100) if total_targets > 0 else 0,
+            'completion_time': time.strftime('%Y-%m-%d %H:%M:%S')
+        }
     
     def get_errors(self) -> Dict:
         """Get all errors encountered during web fingerprinting"""
         return self.error_handler.get_errors()
 
 
-# Main function for testing
-if __name__ == "__main__":
+def create_fingerprinting_config_from_args(args) -> WebFingerprintingConfig:
+    """Create fingerprinting configuration from command line arguments"""
+    config = WebFingerprintingConfig()
+    
+    # Target configuration
+    if hasattr(args, 'targets') and args.targets:
+        config.custom_targets = args.targets
+    
+    if hasattr(args, 'include_http'):
+        config.include_http = args.include_http
+    
+    if hasattr(args, 'include_www'):
+        config.include_www_variant = args.include_www
+    
+    # Detection configuration
+    if hasattr(args, 'detection_methods') and args.detection_methods:
+        config.detection_methods = args.detection_methods
+    
+    if hasattr(args, 'disable_wappalyzer'):
+        config.enable_wappalyzer = not args.disable_wappalyzer
+    
+    if hasattr(args, 'disable_ai'):
+        config.enable_ai_analysis = not args.disable_ai
+    
+    if hasattr(args, 'disable_security'):
+        config.enable_security_analysis = not args.disable_security
+    
+    # Performance configuration
+    if hasattr(args, 'timeout'):
+        config.request_timeout = args.timeout
+    
+    if hasattr(args, 'concurrent'):
+        config.concurrent_requests = args.concurrent
+    
+    # Output configuration
+    if hasattr(args, 'verbose'):
+        config.verbose_output = args.verbose
+    
+    if hasattr(args, 'output_format'):
+        config.output_format = args.output_format
+    
+    return config
+
+def execute_fingerprinting(domain: str,
+                          targets: List[str] = None,
+                          include_http: bool = False,
+                          include_www: bool = False,
+                          detection_methods: List[str] = None,
+                          disable_wappalyzer: bool = False,
+                          disable_ai: bool = False,
+                          disable_security: bool = False,
+                          timeout: int = 30,
+                          concurrent: int = 3,
+                          verbose: bool = False,
+                          output_format: str = 'detailed'):
+    """
+    Enhanced fingerprinting function with direct parameter configuration
+    
+    Args:
+        domain: Target domain to fingerprint
+        targets: Specific URLs to fingerprint (default: None - auto-generate)
+        include_http: Include HTTP targets (default: False - not recommended)
+        include_www: Include www variant (default: False - avoid DNS errors)
+        detection_methods: Technology detection methods (default: ['headers', 'content', 'url_patterns', 'wappalyzer'])
+        disable_wappalyzer: Disable Wappalyzer detection (default: False)
+        disable_ai: Disable AI analysis (default: False)
+        disable_security: Disable security analysis (default: False)
+        timeout: Request timeout in seconds (default: 30)
+        concurrent: Concurrent requests (default: 3)
+        verbose: Enable verbose output (default: False)
+        output_format: Output format - 'detailed', 'summary', or 'minimal' (default: 'detailed')
+    
+    Returns:
+        Dict: Complete fingerprinting results
+    """
+    # Set defaults if not provided
+    if detection_methods is None:
+        detection_methods = ['headers', 'content', 'url_patterns', 'wappalyzer']
+    
+    # Configure logging
+    logging.basicConfig(
+        level=logging.DEBUG if verbose else logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s'
+    )
+    
+    # Create configuration object
+    config = WebFingerprintingConfig()
+    config.custom_targets = targets or []
+    config.include_http = include_http
+    config.include_www_variant = include_www
+    config.detection_methods = detection_methods
+    config.enable_wappalyzer = not disable_wappalyzer
+    config.enable_ai_analysis = not disable_ai
+    config.enable_security_analysis = not disable_security
+    config.request_timeout = timeout
+    config.concurrent_requests = concurrent
+    config.verbose_output = verbose
+    config.output_format = output_format
+    
+    # Create and run fingerprinter
+    fingerprinter = ConfigurableWebFingerprinter(domain, config)
+    results = fingerprinter.run_comprehensive_fingerprinting(targets)
+    
+    # Display results based on output format
+    _display_results(results, config)
+    
+    return results
+
+
+def main():
+    """Enhanced main function with comprehensive configuration"""
     import argparse
     
-    parser = argparse.ArgumentParser(description="Web Technology Fingerprinting")
+    parser = argparse.ArgumentParser(description="Configurable Web Technology Fingerprinting")
     parser.add_argument("domain", help="Target domain to fingerprint")
+    
+    # Target Configuration
     parser.add_argument("--targets", nargs='+', help="Specific URLs to fingerprint")
-    parser.add_argument("--summary", action="store_true", help="Generate summary report")
+    parser.add_argument("--include-http", action='store_true', help="Include HTTP targets (not recommended)")
+    parser.add_argument("--include-www", action='store_true', default=True, help="Include www variant")
+    
+    # Detection Configuration
+    parser.add_argument("--detection-methods", nargs='+',
+                       choices=['headers', 'content', 'url_patterns', 'wappalyzer', 'ai'],
+                       default=['headers', 'content', 'url_patterns', 'wappalyzer'],
+                       help="Technology detection methods to use")
+    
+    parser.add_argument("--disable-wappalyzer", action='store_true', help="Disable Wappalyzer detection")
+    parser.add_argument("--disable-ai", action='store_true', help="Disable AI analysis")
+    parser.add_argument("--disable-security", action='store_true', help="Disable security analysis")
+    
+    # Performance Configuration
+    parser.add_argument("--timeout", type=int, default=30, help="Request timeout in seconds")
+    parser.add_argument("--concurrent", type=int, default=3, help="Concurrent requests")
+    
+    # Output Configuration
+    parser.add_argument("--verbose", action='store_true', help="Enable verbose output")
+    parser.add_argument("--output-format", choices=['detailed', 'summary', 'minimal'], 
+                       default='detailed', help="Output format")
     
     args = parser.parse_args()
     
     # Configure logging
     logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+        level=logging.DEBUG if args.verbose else logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s'
     )
     
-    # Run web fingerprinting
-    fingerprinter = WebFingerprinter(args.domain)
+    # Create configuration from arguments
+    config = create_fingerprinting_config_from_args(args)
     
-    if args.targets:
-        results = fingerprinter.run_web_fingerprinting(args.targets)
-    else:
-        results = fingerprinter.run_web_fingerprinting()
+    # Create and run fingerprinter
+    fingerprinter = ConfigurableWebFingerprinter(args.domain, config)
+    results = fingerprinter.run_comprehensive_fingerprinting(args.targets)
     
-    print(f"\n=== Web Fingerprinting Results for {args.domain} ===")
+    # Display results based on output format
+    _display_results(results, config)
+
+
+def _display_results(results: Dict, config: WebFingerprintingConfig):
+    """Display results based on configuration"""
+    output_format = config.output_format
     
-    for target, result in results.items():
+    if output_format == 'minimal':
+        _display_minimal_results(results)
+    elif output_format == 'summary':
+        _display_summary_results(results)
+    else:  # detailed
+        _display_detailed_results(results)
+
+
+def _display_minimal_results(results: Dict):
+    """Display minimal results"""
+    domain = results['domain']
+    targets = results.get('targets', {})
+    
+    print(f"\n=== Web Fingerprinting Results for {domain} ===")
+    print(f"Targets scanned: {len(targets)}")
+    
+    for target, result in targets.items():
+        status = "✓" if 'error' not in result else "✗"
+        tech_count = 0
+        if 'error' not in result:
+            tech_detection = result.get('technology_detection', {})
+            for tech_list in tech_detection.values():
+                if isinstance(tech_list, list):
+                    tech_count += len(tech_list)
+        
+        print(f"{status} {target}: {tech_count} technologies")
+
+
+def _display_summary_results(results: Dict):
+    """Display summary results"""
+    domain = results['domain']
+    summary = results.get('summary', {})
+    statistics = results.get('statistics', {})
+    
+    print(f"\n=== Web Fingerprinting Summary for {domain} ===")
+    print(f"Execution time: {statistics.get('total_duration', 0):.2f}s")
+    print(f"Success rate: {statistics.get('success_rate', 0):.1f}%")
+    print(f"Unique technologies: {len(summary.get('unique_technologies', []))}")
+    print(f"Average security score: {summary.get('security_score_avg', 0):.1f}%")
+    
+    if summary.get('common_servers'):
+        print("\nCommon Servers:")
+        for server, count in summary['common_servers'].items():
+            print(f"  {server}: {count}")
+
+
+def _display_detailed_results(results: Dict):
+    """Display detailed results"""
+    domain = results['domain']
+    targets = results.get('targets', {})
+    
+    print(f"\n=== Web Fingerprinting Results for {domain} ===")
+    
+    for target, result in targets.items():
         print(f"\n--- {target} ---")
         
         if 'error' in result:
             print(f"Error: {result['error']}")
             continue
         
-        # Response analysis
+        # Basic info
         response_analysis = result.get('response_analysis', {})
         print(f"Status: {response_analysis.get('status_code', 'Unknown')}")
-        print(f"Content Type: {response_analysis.get('content_type', 'Unknown')}")
-        print(f"Title: {response_analysis.get('title', 'Unknown')}")
-        
-        # Server information
-        header_analysis = result.get('header_analysis', {})
-        print(f"Server: {header_analysis.get('server', 'Unknown')}")
-        print(f"X-Powered-By: {header_analysis.get('x_powered_by', 'Unknown')}")
+        print(f"Server: {result.get('header_analysis', {}).get('server', 'Unknown')}")
         
         # Technologies
         tech_detection = result.get('technology_detection', {})
-        tech_insights = result.get('technology_insights', {})
+        all_techs = set()
+        for tech_list in tech_detection.values():
+            if isinstance(tech_list, list):
+                all_techs.update(tech_list)
         
-        wappalyzer_techs = tech_detection.get('wappalyzer_detected', [])
-        header_techs = tech_detection.get('header_detected', [])
-        content_techs = tech_detection.get('content_detected', [])
-        
-        all_techs = set(wappalyzer_techs + header_techs + content_techs)
-        print(f"Technologies: {', '.join(all_techs) if all_techs else 'None detected'}")
-        
-        # Show technology stack categorization
-        tech_stack = tech_insights.get('technology_stack', {})
-        for category, techs in tech_stack.items():
-            if techs:
-                category_name = category.replace('_', ' ').title()
-                print(f"{category_name}: {', '.join(techs)}")
-        
-        # AI detected technologies if available
-        ai_techs = tech_detection.get('ai_detected', [])
-        if ai_techs:
-            print(f"AI Detected: {', '.join(ai_techs)}")
+        print(f"Technologies: {', '.join(all_techs) if all_techs else 'None'}")
         
         # Security
-        security_analysis = result.get('security_analysis', {})
-        security_score = security_analysis.get('security_score', 0)
-        uses_ssl = security_analysis.get('ssl_info', {}).get('uses_ssl', False)
-        ssl_grade = security_analysis.get('ssl_info', {}).get('ssl_grade', 'Unknown')
-        missing_headers = security_analysis.get('missing_headers', [])
-        recommendations = security_analysis.get('recommendations', [])
-        
-        print(f"Security Score: {security_score:.1f}%")
-        print(f"SSL Enabled: {'Yes' if uses_ssl else 'No'}")
-        print(f"SSL Grade: {ssl_grade}")
-        
-        if missing_headers:
-            print(f"Missing Security Headers: {', '.join(missing_headers)}")
-        
-        if recommendations:
-            print("Security Recommendations:")
-            for i, rec in enumerate(recommendations[:3], 1):  # Show top 3
-                print(f"  {i}. {rec}")
-        
-        # AI detected technologies if available
-        ai_techs = tech_detection.get('ai_detected', [])
-        if ai_techs:
-            print(f"AI Detected: {', '.join(ai_techs)}")
-    
-    # Generate summary if requested
-    if args.summary:
-        summary = fingerprinter.generate_fingerprint_summary(results)
-        
-        print(f"\n=== Fingerprinting Summary ===")
-        print(f"Total Targets: {summary['total_targets']}")
-        print(f"Successful Scans: {summary['successful_scans']}")
-        print(f"Failed Scans: {summary['failed_scans']}")
-        print(f"Unique Technologies: {len(summary['unique_technologies'])}")
-        print(f"Average Security Score: {summary['security_score_avg']:.1f}%")
-        print(f"SSL Enabled Sites: {summary['ssl_enabled']}/{summary['successful_scans']}")
-        
-        if summary['unique_technologies']:
-            print(f"Technologies Found: {', '.join(summary['unique_technologies'])}")
-        
-        if summary['common_servers']:
-            print("Common Servers:")
-            for server, count in summary['common_servers'].items():
-                print(f"  {server}: {count}")
-    
-    # Display errors if any
-    errors = fingerprinter.get_errors()
-    if errors:
-        print(f"\n=== Errors Encountered ===")
-        for method, error_list in errors.items():
-            print(f"{method}: {len(error_list)} errors")
+        security = result.get('security_analysis', {})
+        if security and not security.get('disabled'):
+            print(f"Security Score: {security.get('security_score', 0):.1f}%")
+            print(f"SSL: {'Enabled' if security.get('ssl_info', {}).get('uses_ssl') else 'Disabled'}")
+
+
+if __name__ == "__main__":
+    main()

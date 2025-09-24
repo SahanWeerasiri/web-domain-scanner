@@ -19,6 +19,7 @@ class CDNDetector:
         self.domain = domain
         self.results: Dict[str, Any] = {}
         self.browser_manager = BrowserManager()
+        self._bypassed_content = None  # Store bypassed content internally
         
         # CDN indicators
         self.cdn_indicators = {
@@ -30,11 +31,12 @@ class CDNDetector:
             "Azure CDN": ["azure"]
         }
         
-        # Block phrases to detect CDN challenges
+        # Block phrases to detect CDN challenges - be specific to avoid false positives
         self.block_phrases = [
-            "just a moment", "checking your browser", "cloudflare",
-            "attention required", "security check", "challenge platform",
-            "enable javascript and cookies", "cf-ray", "__cf_chl_"
+            "just a moment", "checking your browser", "attention required", 
+            "security check", "challenge platform", "enable javascript and cookies", 
+            "cf-ray", "__cf_chl_", "cloudflare ray id", "completing security check",
+            "browser verification", "ddos protection"
         ]
         
     def detect_cdn_via_headers(self, timeout: int = 3) -> Optional[str]:
@@ -105,6 +107,77 @@ class CDNDetector:
             
         return None
         
+    def check_for_blocking_content(self, timeout: int = 8) -> Dict[str, Any]:
+        """
+        Check if CDN is actually blocking content with a normal request
+        
+        Args:
+            timeout: Request timeout in seconds
+            
+        Returns:
+            Dictionary with blocking check results
+        """
+        try:
+            url = f"https://{self.domain}"
+            response = requests.get(url, timeout=timeout, allow_redirects=True)
+            content = response.text.lower()
+            
+            # Check for block phrases that indicate CDN interference
+            blocked_phrases = []
+            for phrase in self.block_phrases:
+                if phrase in content:
+                    blocked_phrases.append(phrase)
+                    
+            is_blocked = len(blocked_phrases) > 0
+            
+            result = {
+                'is_blocked': is_blocked,
+                'blocked_phrases': blocked_phrases,
+                'status_code': response.status_code,
+                '_content': response.text  # Store content internally for reuse
+            }
+            
+            if is_blocked:
+                logging.info(f"Content appears to be blocked. Found phrases: {blocked_phrases}")
+            else:
+                logging.info("Content appears to be accessible without CDN bypass")
+                
+            return result
+            
+        except requests.RequestException as e:
+            logging.warning(f"Failed to check for blocking content: {str(e)}")
+            return {
+                'is_blocked': True,  # Assume blocked if we can't get content
+                'blocked_phrases': [],
+                'content': None,
+                'status_code': None,
+                'error': str(e)
+            }
+        
+    def get_content_for_analysis(self, timeout: int = 8) -> Optional[str]:
+        """
+        Get page content for AI analysis without storing it in results
+        
+        Args:
+            timeout: Request timeout in seconds
+            
+        Returns:
+            Page content as string or None
+        """
+        # First check if we have bypassed content from a successful CDN bypass
+        if hasattr(self, '_bypassed_content') and self._bypassed_content:
+            logging.info("Using bypassed content for analysis")
+            return self._bypassed_content
+            
+        # Otherwise, try normal request
+        try:
+            url = f"https://{self.domain}"
+            response = requests.get(url, timeout=timeout, allow_redirects=True)
+            return response.text
+        except requests.RequestException as e:
+            logging.warning(f"Failed to get content for analysis: {str(e)}")
+            return None
+        
     def detect_cdn(self, timeout: int = 5) -> Dict[str, Any]:
         """
         Comprehensive CDN detection using multiple methods
@@ -164,31 +237,44 @@ class CDNDetector:
         self.results['bypass_attempted'] = True
         
         try:
-            url = f"https://{self.domain}"
-            content = self.browser_manager.get_page_content(url)
+            # ============= PROVEN WORKING METHOD =============
+            # This exact approach works reliably for CDN bypass
+            from seleniumbase import Driver
+            self._bypass_driver = Driver(uc=True, headless=True)  # Store driver for later use
+            url = f"https://{self.domain}" if not self.domain.startswith("http") else self.domain
+            print(f"[BYPASS] Navigating to URL: {url}")
+            self._bypass_driver.get(url)
+            print("[BYPASS] Waiting for page to load and CDN challenge to pass...")
+            import time
+            time.sleep(8)  # Proven timing - don't change this
+            print("[BYPASS] Fetching page source...")
+            page_source = self._bypass_driver.page_source
+            print("[BYPASS] Driver ready for endpoint testing...")
+            # Note: NOT quitting driver here - keeping it for endpoint testing
+            # ============= END PROVEN METHOD =============
             
-            if content:
-                # Check if bypass was successful
-                bypass_successful = True
+            if page_source:
+                # Check if bypass was successful by looking for blocking phrases
+                blocking_phrases_found = []
                 for phrase in self.block_phrases:
-                    if phrase in content.lower():
-                        bypass_successful = False
-                        break
+                    if phrase in page_source.lower():
+                        blocking_phrases_found.append(phrase)
+                
+                # Consider bypass successful if no blocking phrases are found
+                bypass_successful = len(blocking_phrases_found) == 0
+                
+                # Store content internally for later retrieval (not in final results)
+                self._bypassed_content = page_source
                         
                 self.results.update({
                     'bypass_successful': bypass_successful,
-                    'content': content
+                    'remaining_blocking_phrases': blocking_phrases_found if blocking_phrases_found else []
                 })
                 
-                # Save content to file
-                safe_domain = self.domain.replace('.', '_')
-                filename = f"results/{safe_domain}_bypassed.html"
-                self.browser_manager.save_page_content(content, filename)
-                
                 if bypass_successful:
-                    logging.info("CDN bypass successful")
+                    logging.info("CDN bypass successful - no blocking phrases detected")
                 else:
-                    logging.warning("CDN bypass may not have been fully successful")
+                    logging.warning(f"CDN bypass may not have been fully successful. Found phrases: {blocking_phrases_found}")
                     
             else:
                 logging.error("Failed to retrieve content during bypass attempt")
@@ -199,6 +285,42 @@ class CDNDetector:
             self.results['bypass_successful'] = False
             
         return self.results
+    
+    def get_bypass_driver(self):
+        """Return the active bypass driver for endpoint testing"""
+        return getattr(self, '_bypass_driver', None)
+    
+    def close_bypass_driver(self):
+        """Close the bypass driver when done with endpoint testing"""
+        if hasattr(self, '_bypass_driver') and self._bypass_driver:
+            try:
+                print("[BYPASS] Closing driver after endpoint testing...")
+                self._bypass_driver.quit()
+                logging.info("Bypass driver closed successfully")
+            except Exception as e:
+                logging.error(f"Error closing bypass driver: {str(e)}")
+            
+        return self.results
+            
+        return self.results
+        
+    def get_bypassed_content(self) -> Optional[str]:
+        """
+        Get the last bypassed content for analysis (without storing in results)
+        
+        Returns:
+            Bypassed content as string or None
+        """
+        if not self.results.get('bypass_successful', False):
+            return None
+            
+        try:
+            url = f"https://{self.domain}"
+            content = self.browser_manager.get_page_content(url)
+            return content
+        except Exception as e:
+            logging.error(f"Failed to get bypassed content: {str(e)}")
+            return None
         
     def close(self):
         """Clean up resources"""

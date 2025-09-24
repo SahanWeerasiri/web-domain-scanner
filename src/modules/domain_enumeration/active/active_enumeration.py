@@ -1,34 +1,21 @@
 #!/usr/bin/env python3
 """
-Active Domain Enumeration Module
+Enhanced Active Domain Enumeration Module
 
-This module provides active subdomain discovery capabilities using direct probing
-techniques. It implements intelligent wordlist generation, brute force attacks,
-DNS permutation techniques, and various advanced enumeration methods.
-
-Key Features:
-- Intelligent wordlist generation
-- Rate-limited brute force attacks
-- DNS permutation attacks
-- Zone transfer attempts
-- DNS cache snooping
-- DNS-over-HTTPS fallback
-- CDN bypass techniques
-
-Author: Web Domain Scanner Project
-License: See LICENSE file in project root
+This module provides configurable active subdomain discovery with comprehensive
+parameter customization before execution.
 """
 
 import logging
 import time
 import socket
-import random
 import dns.resolver
 import requests
 import sys
 import os
+import argparse
 from concurrent.futures import ThreadPoolExecutor
-from typing import Dict, List, Set, Optional, TYPE_CHECKING
+from typing import Dict, List, Set, Optional, Any, Union
 
 # Add parent directories to path for imports
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
@@ -42,36 +29,91 @@ except ImportError:
 
 logger = logging.getLogger(__name__)
 
-# Import AI Integration module for intelligent wordlist generation
-if TYPE_CHECKING:
-    from ai_integration import AIIntegration
-
+# Import AI Integration module
 try:
-    from ai_integration import AIIntegration
+    from modules.ai_integration import AIIntegration
     AI_AVAILABLE = True
-    logger.info("AI Integration module loaded successfully")
 except ImportError:
-    AI_AVAILABLE = False
-    AIIntegration = None  # Set to None for runtime
-    logger.warning("AI Integration module not available. Using fallback methods for wordlist generation.")
+    try:
+        # Try alternative import path
+        sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+        from ai_integration import AIIntegration
+        AI_AVAILABLE = True
+    except ImportError:
+        AI_AVAILABLE = False
+        AIIntegration = None
 
 
-class ActiveEnumerator:
-    """
-    Active domain enumeration class focusing on direct probing techniques.
+class EnhancedEnumerationConfig(EnumerationConfig):
+    """Extended configuration with method-specific parameters"""
     
-    This class implements various active reconnaissance methods including
-    brute force attacks, DNS enumeration, and intelligent wordlist generation.
+    def __init__(self):
+        super().__init__()
+        
+        # Brute Force Configuration
+        self.bruteforce_timeout = 5
+        self.bruteforce_retries = 2
+        self.bruteforce_validate_responses = True
+        self.bruteforce_doh_priority = False  # Prefer DoH over traditional DNS
+        
+        # DNS Permutation Configuration
+        self.permutation_depth = 3
+        self.include_numeric_permutations = True
+        self.include_regional_permutations = True
+        self.include_environment_permutations = True
+        self.custom_permutation_patterns = []
+        
+        # DNS Zone Transfer Configuration
+        self.zone_transfer_timeout = 10
+        self.zone_transfer_servers = []  # Specific nameservers to try
+        self.zone_transfer_retries = 3
+        
+        # DNS Cache Snooping Configuration
+        self.cache_snoop_dns_servers = [
+            '8.8.8.8',      # Google
+            '1.1.1.1',      # Cloudflare  
+            '208.67.222.222',  # OpenDNS
+            '9.9.9.9'       # Quad9
+        ]
+        self.cache_snoop_subdomains = [
+            'www', 'mail', 'ftp', 'admin', 'api', 'test', 'dev', 'staging',
+            'blog', 'shop', 'support', 'vpn', 'remote', 'portal'
+        ]
+        self.cache_snoop_timeout = 2
+        self.cache_snoop_concurrent_servers = 2
+        
+        # Wordlist Generation Configuration
+        self.wordlist_ai_enabled = True
+        self.wordlist_ai_max_terms = 50
+        self.wordlist_include_common = True
+        self.wordlist_include_permutations = True
+        self.wordlist_custom_terms = []
+        
+        # General Enumeration Settings
+        self.enabled_methods = ['bruteforce', 'dns_permutations', 'zone_transfer', 'cache_snooping']
+        self.output_format = 'text'  # text, json, csv
+        self.save_results = True
+        self.results_filename = None
+
+
+class ConfigurableActiveEnumerator:
+    """
+    Enhanced active enumerator with comprehensive pre-execution configuration.
     """
     
-    def __init__(self, domain: str, config: EnumerationConfig = None, ai_integration = None):
-        """Initialize active enumerator"""
+    def __init__(self, domain: str, config: EnhancedEnumerationConfig = None, 
+                 ai_integration = None, **kwargs):
+        """Initialize with full configuration"""
         self.domain = domain.lower().strip()
-        self.config = config or EnumerationConfig()
+        self.config = config or EnhancedEnumerationConfig()
+        
+        # Override config with kwargs
+        self._apply_config_overrides(kwargs)
+        
         self.error_handler = EnumerationErrorHandler()
         self.rate_limiter = RateLimiter(self.config.rate_limit)
         
-        # Initialize AI integration if available
+        # Initialize AI integration properly
         self.ai_integration = ai_integration
         if AI_AVAILABLE and not self.ai_integration:
             # Try to create AI integration with environment variables
@@ -81,197 +123,179 @@ class ActiveEnumerator:
                 'anthropic_api_key': os.getenv('ANTHROPIC_API_KEY')
             }
             if any(api_keys.values()):
-                self.ai_integration = AIIntegration(**{k: v for k, v in api_keys.items() if v})
-                logger.info("AI integration initialized for enhanced wordlist generation")
+                try:
+                    self.ai_integration = AIIntegration(**{k: v for k, v in api_keys.items() if v})
+                    logger.info("AI integration initialized for enhanced wordlist generation")
+                except Exception as e:
+                    logger.warning(f"Failed to initialize AI integration: {e}")
+            else:
+                logger.info("AI Integration module available but no API keys found in environment variables. Using fallback methods for wordlist generation.")
+        elif not AI_AVAILABLE:
+            logger.info("AI Integration module not available. Using fallback methods for wordlist generation.")
         
         # Set up HTTP session
         self.session = requests.Session()
         self.session.headers.update({
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
-                         '(KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
         })
         
-        logger.info(f"ActiveEnumerator initialized for domain: {self.domain}")
+        logger.info(f"ConfigurableActiveEnumerator initialized for {self.domain}")
+        self._log_configuration()
     
-    def run_active_enumeration(self, wordlist: List[str] = None, page_content: Dict = None) -> Dict:
+    def _apply_config_overrides(self, kwargs: Dict[str, Any]):
+        """Apply configuration overrides from keyword arguments"""
+        for key, value in kwargs.items():
+            if hasattr(self.config, key):
+                setattr(self.config, key, value)
+                logger.debug(f"Overridden config.{key} = {value}")
+    
+    def _log_configuration(self):
+        """Log the current configuration"""
+        logger.info("=== Active Enumeration Configuration ===")
+        logger.info(f"Domain: {self.domain}")
+        logger.info(f"Enabled methods: {', '.join(self.config.enabled_methods)}")
+        logger.info(f"Threads: {self.config.thread_count}, Rate limit: {self.config.rate_limit}/s")
+        logger.info(f"Brute force: {self.config.bruteforce_timeout}s timeout, {self.config.bruteforce_retries} retries")
+        logger.info(f"Permutations: depth={self.config.permutation_depth}")
+        logger.info(f"Zone transfer: {len(self.config.zone_transfer_servers)} custom servers")
+        logger.info(f"Cache snooping: {len(self.config.cache_snoop_dns_servers)} DNS servers")
+        logger.info("=========================================")
+    
+    def run_comprehensive_enumeration(self, wordlist: List[str] = None, 
+                                    page_content: Dict = None) -> Dict[str, Any]:
         """
-        Run comprehensive active enumeration.
+        Run comprehensive enumeration with pre-configured parameters.
         
-        Args:
-            wordlist: Custom wordlist for brute force. If None, generates dynamic wordlist.
-            page_content: Page content from web crawling for AI-enhanced wordlist generation.
-            
         Returns:
-            Dict: Results from all active enumeration methods
+            Dict containing results, metrics, and configuration
         """
-        logger.info("=== Starting Enhanced Active Enumeration ===")
-        logger.info(f"Target domain: {self.domain}")
-        logger.info(f"Rate limit: {self.config.rate_limit} requests/sec")
-        logger.info(f"Timeout: {self.config.timeout} seconds")
-        logger.info(f"Thread count: {self.config.thread_count}")
-        
         start_time = time.time()
+        results = {
+            'domain': self.domain,
+            'timestamp': time.time(),
+            'configuration': self._get_config_summary(),
+            'methods': {},
+            'statistics': {},
+            'errors': {}
+        }
         
-        # Generate or use provided wordlist
+        # Generate wordlist if not provided
         if not wordlist:
-            logger.info("No wordlist provided, generating dynamic wordlist")
-            wordlist = self._generate_dynamic_wordlist(page_content)
-        else:
-            logger.info(f"Using provided wordlist with {len(wordlist)} entries")
+            wordlist = self._generate_enhanced_wordlist(page_content)
         
-        # Multi-method discovery
-        methods = {}
+        # Execute enabled methods
+        for method in self.config.enabled_methods:
+            method_start = time.time()
+            try:
+                if method == 'bruteforce':
+                    results['methods'][method] = self._execute_bruteforce(wordlist)
+                elif method == 'dns_permutations':
+                    results['methods'][method] = self._execute_dns_permutations()
+                elif method == 'zone_transfer':
+                    results['methods'][method] = self._execute_zone_transfer()
+                elif method == 'cache_snooping':
+                    results['methods'][method] = self._execute_cache_snooping()
+                else:
+                    logger.warning(f"Unknown method: {method}")
+                    continue
+                
+                method_duration = time.time() - method_start
+                logger.info(f"{method}: found {len(results['methods'][method])} subdomains in {method_duration:.2f}s")
+                
+            except Exception as e:
+                logger.error(f"Method {method} failed: {e}")
+                results['methods'][method] = []
+                self.error_handler.handle_error(method, e)
         
-        try:
-            logger.info("--- Starting Brute Force Attack ---")
-            bf_start = time.time()
-            methods['bruteforce'] = self._bruteforce_with_rate_limiting(wordlist)
-            bf_duration = time.time() - bf_start
-            logger.info(f"Brute force completed in {bf_duration:.2f}s, found {len(methods['bruteforce'])} subdomains")
-            
-        except Exception as e:
-            logger.error(f"Brute force attack failed: {e}")
-            methods['bruteforce'] = []
-            self.error_handler.handle_error("bruteforce", e)
+        # Compile results and statistics
+        results['statistics'] = self._compile_statistics(results, start_time)
+        results['errors'] = self.error_handler.get_errors()
         
-        try:
-            logger.info("--- Starting DNS Permutation Attack ---")
-            perm_start = time.time()
-            methods['dns_permutations'] = self._dns_permutation_attack()
-            perm_duration = time.time() - perm_start
-            logger.info(f"DNS permutations completed in {perm_duration:.2f}s, found {len(methods['dns_permutations'])} subdomains")
-            
-        except Exception as e:
-            logger.error(f"DNS permutation attack failed: {e}")
-            methods['dns_permutations'] = []
-            self.error_handler.handle_error("dns_permutations", e)
+        # Save results if configured
+        if self.config.save_results:
+            self._save_results(results)
         
-        try:
-            logger.info("--- Attempting DNS Zone Transfer ---")
-            zt_start = time.time()
-            methods['dns_zone_transfer'] = self._attempt_zone_transfer()
-            zt_duration = time.time() - zt_start
-            logger.info(f"Zone transfer attempt completed in {zt_duration:.2f}s, found {len(methods['dns_zone_transfer'])} subdomains")
-            
-        except Exception as e:
-            logger.error(f"DNS zone transfer failed: {e}")
-            methods['dns_zone_transfer'] = []
-            self.error_handler.handle_error("dns_zone_transfer", e)
-        
-        try:
-            logger.info("--- Starting DNS Cache Snooping ---")
-            cs_start = time.time()
-            methods['dns_cache_snooping'] = self._dns_cache_snooping()
-            cs_duration = time.time() - cs_start
-            logger.info(f"DNS cache snooping completed in {cs_duration:.2f}s, found {len(methods['dns_cache_snooping'])} subdomains")
-            
-        except Exception as e:
-            logger.error(f"DNS cache snooping failed: {e}")
-            methods['dns_cache_snooping'] = []
-            self.error_handler.handle_error("dns_cache_snooping", e)
-        
-        total_duration = time.time() - start_time
-        total_found = sum(len(results) for results in methods.values())
-        
-        logger.info("=== Active Enumeration Summary ===")
-        logger.info(f"Total execution time: {total_duration:.2f} seconds")
-        logger.info(f"Total subdomains found: {total_found}")
-        for method, results in methods.items():
-            logger.info(f"  {method}: {len(results)} subdomains")
-        
-        return methods
+        return results
     
-    def _bruteforce_with_rate_limiting(self, wordlist: List[str]) -> List[str]:
-        """Rate-limited brute force with fallback mechanisms"""
-        logger.info(f"Starting rate-limited brute force with {len(wordlist)} words")
+    def _execute_bruteforce(self, wordlist: List[str]) -> List[str]:
+        """Execute brute force with configured parameters"""
+        logger.info(f"Executing brute force with {len(wordlist)} words")
         
         results = []
-        successful_checks = 0
-        failed_checks = 0
+        successful = 0
+        failed = 0
         
         with ThreadPoolExecutor(max_workers=self.config.thread_count) as executor:
             futures = []
             for word in wordlist:
                 if self.config.rate_limiting_enabled:
                     self.rate_limiter.acquire()
-                future = executor.submit(self._check_subdomain, word)
+                
+                future = executor.submit(self._check_subdomain_enhanced, word)
                 futures.append((word, future))
             
             for word, future in futures:
                 try:
-                    result = future.result(timeout=self.config.timeout)
+                    result = future.result(timeout=self.config.bruteforce_timeout)
                     if result:
                         results.append(result)
-                        successful_checks += 1
-                        logger.info(f"✓ Found: {result}")
+                        successful += 1
+                        logger.debug(f"Found: {result}")
                     else:
-                        failed_checks += 1
-                        logger.debug(f"✗ Not found: {word}.{self.domain}")
+                        failed += 1
                 except Exception as e:
-                    failed_checks += 1
-                    logger.debug(f"Error in brute force thread for {word}: {e}")
+                    failed += 1
+                    logger.debug(f"Brute force error for {word}: {e}")
         
-        logger.info(f"Brute force summary: {successful_checks} found, {failed_checks} not found")
+        logger.info(f"Brute force completed: {successful} found, {failed} failed")
         return results
     
-    def _check_subdomain(self, subdomain: str) -> str:
-        """Check if subdomain exists with fallback to DoH"""
+    def _check_subdomain_enhanced(self, subdomain: str) -> str:
+        """Enhanced subdomain checking with retries and configurable DNS priority"""
         full_domain = f"{subdomain}.{self.domain}"
         
-        try:
-            # Traditional DNS lookup
-            result = socket.gethostbyname(full_domain)
-            logger.info(f"Found subdomain: {full_domain} -> {result}")
-            return full_domain
-        except socket.gaierror as e:
-            # Traditional DNS failed, try DNS-over-HTTPS fallback
-            if self.config.doh_fallback:
-                doh_result = self._doh_query(full_domain)
-                if doh_result:
-                    logger.info(f"Found subdomain via DoH: {full_domain} -> {doh_result}")
-                    return full_domain
-                else:
-                    logger.debug(f"DoH also failed for {full_domain}")
-            else:
-                logger.debug(f"Traditional DNS failed for {full_domain}: {e}")
-        except Exception as e:
-            logger.debug(f"Error checking {full_domain}: {e}")
+        for attempt in range(self.config.bruteforce_retries + 1):
+            try:
+                # Use DoH first if configured
+                if self.config.bruteforce_doh_priority:
+                    doh_result = self._doh_query(full_domain)
+                    if doh_result:
+                        return full_domain
+                
+                # Traditional DNS lookup
+                result = socket.gethostbyname(full_domain)
+                return full_domain
+                
+            except socket.gaierror:
+                # Try fallback if traditional DNS failed and DoH not prioritized
+                if not self.config.bruteforce_doh_priority and self.config.doh_fallback:
+                    doh_result = self._doh_query(full_domain)
+                    if doh_result:
+                        return full_domain
+            
+            except Exception as e:
+                logger.debug(f"Attempt {attempt + 1} failed for {full_domain}: {e}")
+                
+            if attempt < self.config.bruteforce_retries:
+                time.sleep(0.1)  # Brief delay before retry
+        
         return None
     
-    def _dns_permutation_attack(self) -> List[str]:
-        """Generate and check DNS permutations"""
-        logger.info("Starting DNS permutation attack")
+    def _execute_dns_permutations(self) -> List[str]:
+        """Execute DNS permutation attack with configured parameters"""
+        logger.info("Executing DNS permutation attack")
+        
+        # Generate permutations based on configuration
+        permutations = self._generate_configured_permutations()
+        logger.info(f"Generated {len(permutations)} permutation patterns")
         
         results = []
-        domain_parts = self.domain.split('.')
-        base_name = domain_parts[0] if len(domain_parts) > 1 else self.domain
-        
-        # Common permutation patterns
-        permutation_patterns = [
-            # Character substitutions
-            f"{base_name}1", f"{base_name}2", f"{base_name}01", f"{base_name}02",
-            f"{base_name}-1", f"{base_name}-2", f"{base_name}_1", f"{base_name}_2",
-            # Common prefixes/suffixes
-            f"new-{base_name}", f"old-{base_name}", f"{base_name}-new", f"{base_name}-old",
-            f"test-{base_name}", f"{base_name}-test", f"dev-{base_name}", f"{base_name}-dev",
-            f"prod-{base_name}", f"{base_name}-prod", f"stage-{base_name}", f"{base_name}-stage",
-            # Environment variations
-            f"{base_name}-staging", f"{base_name}-production", f"{base_name}-development",
-            # Regional variations
-            f"{base_name}-us", f"{base_name}-eu", f"{base_name}-asia", f"{base_name}-uk",
-            # Service variations
-            f"api-{base_name}", f"{base_name}-api", f"app-{base_name}", f"{base_name}-app"
-        ]
-        
-        logger.info(f"Generated {len(permutation_patterns)} permutation patterns")
-        
-        # Check each permutation
         with ThreadPoolExecutor(max_workers=self.config.thread_count) as executor:
             futures = []
-            for pattern in permutation_patterns:
+            for pattern in permutations:
                 if self.config.rate_limiting_enabled:
                     self.rate_limiter.acquire()
-                future = executor.submit(self._check_subdomain, pattern)
+                future = executor.submit(self._check_subdomain_enhanced, pattern)
                 futures.append(future)
             
             for future in futures:
@@ -280,161 +304,259 @@ class ActiveEnumerator:
                     if result:
                         results.append(result)
                 except Exception as e:
-                    logger.debug(f"Error in permutation thread: {e}")
+                    logger.debug(f"Permutation error: {e}")
         
-        logger.info(f"DNS permutation attack found {len(results)} valid subdomains")
         return results
     
-    def _attempt_zone_transfer(self) -> List[str]:
-        """Attempt DNS zone transfer"""
-        logger.info("Attempting DNS zone transfer")
-        try:
-            ns_answers = dns.resolver.resolve(self.domain, 'NS')
-            nameservers = [str(ns) for ns in ns_answers]
-            
-            for ns in nameservers:
-                try:
-                    zone = dns.zone.from_xfr(dns.query.xfr(ns, self.domain))
-                    subdomains = [name for name in zone.nodes.keys()]
-                    logger.info(f"Zone transfer successful from {ns}: {len(subdomains)} records")
-                    return [f"{sub}.{self.domain}" for sub in subdomains]
-                except Exception:
-                    logger.debug(f"Zone transfer failed for {ns}")
-                    continue
-        except Exception as e:
-            logger.warning(f"Zone transfer failed: {e}")
-        return []
+    def _generate_configured_permutations(self) -> List[str]:
+        """Generate permutations based on configuration"""
+        permutations = set()
+        domain_parts = self.domain.split('.')
+        base_name = domain_parts[0] if len(domain_parts) > 1 else self.domain
+        
+        # Add custom patterns first
+        permutations.update(self.config.custom_permutation_patterns)
+        
+        # Numeric permutations
+        if self.config.include_numeric_permutations:
+            for i in range(1, self.config.permutation_depth + 1):
+                permutations.update([
+                    f"{base_name}{i}", f"{base_name}-{i}", f"{base_name}_{i}",
+                    f"{base_name}0{i}", f"{base_name}-0{i}", f"{base_name}_0{i}"
+                ])
+        
+        # Regional permutations
+        if self.config.include_regional_permutations:
+            regions = ['us', 'eu', 'uk', 'asia', 'ca', 'au', 'in', 'jp', 'cn']
+            for region in regions[:self.config.permutation_depth]:
+                permutations.update([
+                    f"{base_name}-{region}", f"{region}-{base_name}",
+                    f"{base_name}_{region}", f"{base_name}{region}"
+                ])
+        
+        # Environment permutations
+        if self.config.include_environment_permutations:
+            envs = ['dev', 'test', 'stage', 'prod', 'uat', 'qa', 'preprod']
+            for env in envs[:self.config.permutation_depth]:
+                permutations.update([
+                    f"{env}-{base_name}", f"{base_name}-{env}",
+                    f"{env}_{base_name}", f"{base_name}_{env}",
+                    f"{env}{base_name}", f"{base_name}{env}"
+                ])
+        
+        return list(permutations)
     
-    def _dns_cache_snooping(self) -> List[str]:
-        """DNS cache snooping techniques"""
-        logger.info("Attempting DNS cache snooping")
+    def _execute_zone_transfer(self) -> List[str]:
+        """Execute zone transfer with configured parameters"""
+        logger.info("Executing DNS zone transfer")
+        
+        results = []
+        nameservers = self.config.zone_transfer_servers
+        
+        # If no custom nameservers provided, discover them
+        if not nameservers:
+            try:
+                ns_answers = dns.resolver.resolve(self.domain, 'NS')
+                nameservers = [str(ns) for ns in ns_answers]
+            except Exception as e:
+                logger.warning(f"Failed to discover nameservers: {e}")
+                return []
+        
+        for ns in nameservers:
+            for attempt in range(self.config.zone_transfer_retries):
+                try:
+                    zone = dns.zone.from_xfr(dns.query.xfr(ns, self.domain, 
+                                                          timeout=self.config.zone_transfer_timeout))
+                    subdomains = [f"{name}.{self.domain}" for name in zone.nodes.keys()]
+                    logger.info(f"Zone transfer successful from {ns}: {len(subdomains)} records")
+                    results.extend(subdomains)
+                    break  # Success, no need for retries
+                except Exception as e:
+                    logger.debug(f"Zone transfer attempt {attempt + 1} failed for {ns}: {e}")
+                    if attempt < self.config.zone_transfer_retries - 1:
+                        time.sleep(1)  # Wait before retry
+        
+        return list(set(results))  # Remove duplicates
+    
+    def _execute_cache_snooping(self) -> List[str]:
+        """Execute DNS cache snooping with configured parameters"""
+        logger.info("Executing DNS cache snooping")
         
         results = []
         
-        # Common public DNS servers to check
-        public_dns_servers = [
-            '8.8.8.8',      # Google
-            '1.1.1.1',      # Cloudflare
-            '208.67.222.222',  # OpenDNS
-            '9.9.9.9'       # Quad9
-        ]
+        # Use configured DNS servers and subdomains
+        dns_servers = self.config.cache_snoop_dns_servers
+        subdomains = self.config.cache_snoop_subdomains
         
-        # Common subdomains to snoop for
-        common_subdomains = [
-            'www', 'mail', 'ftp', 'admin', 'api', 'test', 'dev', 'staging',
-            'blog', 'shop', 'support', 'vpn', 'remote', 'portal'
-        ]
+        logger.info(f"Checking {len(subdomains)} subdomains on {len(dns_servers)} DNS servers")
         
-        for dns_server in public_dns_servers:
-            try:
-                # Create a custom resolver for this DNS server
-                resolver = dns.resolver.Resolver()
-                resolver.nameservers = [dns_server]
-                resolver.timeout = 2
-                resolver.lifetime = 5
-                
-                logger.info(f"Checking DNS cache on server: {dns_server}")
-                
-                for subdomain in common_subdomains:
-                    try:
-                        full_domain = f"{subdomain}.{self.domain}"
-                        answer = resolver.resolve(full_domain, 'A')
-                        if answer:
-                            results.append(full_domain)
-                            logger.info(f"Found cached subdomain: {full_domain}")
-                    except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer):
-                        continue
-                    except Exception as e:
-                        logger.debug(f"Error checking {subdomain} on {dns_server}: {e}")
-                        
-            except Exception as e:
-                logger.warning(f"Failed to setup resolver for {dns_server}: {e}")
-                continue
+        with ThreadPoolExecutor(max_workers=self.config.cache_snoop_concurrent_servers) as executor:
+            futures = []
+            for dns_server in dns_servers:
+                future = executor.submit(self._snoop_dns_server, dns_server, subdomains)
+                futures.append(future)
+            
+            for future in futures:
+                try:
+                    server_results = future.result(timeout=len(subdomains) * self.config.cache_snoop_timeout + 5)
+                    results.extend(server_results)
+                except Exception as e:
+                    logger.debug(f"DNS cache snooping error: {e}")
         
-        # Remove duplicates
-        results = list(set(results))
-        logger.info(f"DNS cache snooping found {len(results)} potential subdomains")
+        return list(set(results))
+    
+    def _snoop_dns_server(self, dns_server: str, subdomains: List[str]) -> List[str]:
+        """Snoop a specific DNS server"""
+        results = []
+        try:
+            resolver = dns.resolver.Resolver()
+            resolver.nameservers = [dns_server]
+            resolver.timeout = self.config.cache_snoop_timeout
+            resolver.lifetime = self.config.cache_snoop_timeout * 2
+            
+            for subdomain in subdomains:
+                full_domain = f"{subdomain}.{self.domain}"
+                try:
+                    answer = resolver.resolve(full_domain, 'A')
+                    if answer:
+                        results.append(full_domain)
+                        logger.debug(f"Found cached: {full_domain} on {dns_server}")
+                except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer):
+                    continue
+                except Exception as e:
+                    logger.debug(f"Error checking {subdomain} on {dns_server}: {e}")
+                    
+        except Exception as e:
+            logger.warning(f"Failed to setup resolver for {dns_server}: {e}")
+        
         return results
     
-    def _doh_query(self, domain: str, record_type: str = 'A') -> str:
-        """DNS-over-HTTPS query as fallback"""
-        doh_servers = [
-            'https://cloudflare-dns.com/dns-query',
-            'https://dns.google/dns-query'
+    def _fetch_page_content(self) -> Dict:
+        """Fetch page content from the target domain for AI analysis"""
+        import base64
+        
+        urls_to_try = [
+            f"https://{self.domain}",
+            f"http://{self.domain}",
+            f"https://www.{self.domain}",
+            f"http://www.{self.domain}"
         ]
         
-        for doh_server in doh_servers:
+        for url in urls_to_try:
             try:
-                params = {'name': domain, 'type': record_type}
-                headers = {'accept': 'application/dns-json'}
-                
-                response = self.session.get(doh_server, params=params, headers=headers, timeout=self.config.timeout)
-                logger.debug(f"DoH query for {domain}: HTTP {response.status_code}")
+                logger.info(f"Fetching page content from {url}")
+                response = self.session.get(url, timeout=10, allow_redirects=True)
                 
                 if response.status_code == 200:
-                    data = response.json()
-                    logger.debug(f"DoH response for {domain}: {data}")
+                    # Encode content as base64 for AI processing
+                    content_b64 = base64.b64encode(response.content).decode('utf-8')
                     
-                    # Check DNS response status
-                    status = data.get('Status', -1)
-                    if status == 0:  # NOERROR - successful DNS response
-                        if 'Answer' in data and data['Answer']:
-                            # Domain exists and has records
-                            ip_address = data['Answer'][0].get('data', '')
-                            logger.info(f"DoH found {domain} -> {ip_address}")
-                            return ip_address
-                        else:
-                            # NOERROR but no Answer section - domain exists but no A record
-                            logger.debug(f"DoH: {domain} exists but no A record")
-                            return "exists"
-                    elif status == 3:  # NXDOMAIN - domain doesn't exist
-                        logger.debug(f"DoH: {domain} does not exist (NXDOMAIN)")
-                        continue
-                    else:
-                        logger.debug(f"DoH: {domain} returned status {status}")
-                        continue
-                else:
-                    logger.debug(f"DoH query failed with HTTP {response.status_code}")
+                    page_content = {
+                        'url': url,
+                        'status_code': response.status_code,
+                        'headers': dict(response.headers),
+                        'content_base64': content_b64,
+                        'content_text': response.text[:10000],  # First 10KB of text
+                        'content_length': len(response.content)
+                    }
+                    
+                    logger.info(f"Successfully fetched page content: {len(response.content)} bytes")
+                    return page_content
+                    
             except Exception as e:
-                logger.debug(f"DoH query failed for {doh_server}: {e}")
+                logger.debug(f"Failed to fetch {url}: {e}")
                 continue
         
+        logger.warning(f"Could not fetch page content for {self.domain}")
         return None
-    
-    def _generate_dynamic_wordlist(self, page_content: Dict = None) -> List[str]:
-        """Generate context-aware wordlists using various techniques including AI"""
-        logger.info("Generating dynamic wordlist")
+
+    def _generate_enhanced_wordlist(self, page_content: Dict = None) -> List[str]:
+        """Generate wordlist with configured options"""
+        logger.info("Generating enhanced wordlist")
         
-        wordlist_sources = {
-            'common_subdomains': self._load_common_wordlist(),
-            'target_specific': self._generate_target_specific_terms(),
-            'permutations': self._generate_permutations()
-        }
+        wordlist_sources = {}
         
-        # Use AI integration if available and page content is provided
-        if self.ai_integration and page_content:
+        # Common subdomains
+        if self.config.wordlist_include_common:
+            wordlist_sources['common'] = self._load_common_wordlist()
+        
+        # Fetch page content for AI if not provided
+        if not page_content and self.config.wordlist_ai_enabled and self.ai_integration:
+            page_content = self._fetch_page_content()
+        
+        # AI-generated terms
+        if self.config.wordlist_ai_enabled and self.ai_integration and page_content:
             try:
-                logger.info("Using AI integration for enhanced wordlist generation")
+                logger.info("Generating AI-based wordlist from page content")
                 ai_terms = self.ai_integration.generate_target_specific_wordlist(
                     page_content=page_content,
                     domain=self.domain,
-                    context=f"Active subdomain enumeration for {self.domain}",
-                    num_terms=50
+                    num_terms=self.config.wordlist_ai_max_terms
                 )
                 if ai_terms:
-                    wordlist_sources['ai_generated'] = ai_terms
-                    logger.info(f"AI generated {len(ai_terms)} intelligent subdomain terms")
+                    wordlist_sources['ai'] = ai_terms
+                    logger.info(f"AI generated {len(ai_terms)} domain-specific terms")
+                else:
+                    logger.warning("AI integration returned no terms")
             except Exception as e:
                 logger.warning(f"AI wordlist generation failed: {e}")
-                wordlist_sources['llm_generated'] = self._generate_llm_based_terms()
-        else:
-            # Fallback to rule-based intelligent generation
-            wordlist_sources['llm_generated'] = self._generate_llm_based_terms()
+        
+        # Permutations
+        if self.config.wordlist_include_permutations:
+            wordlist_sources['permutations'] = self._generate_llm_based_terms()
+        
+        # Custom terms
+        if self.config.wordlist_custom_terms:
+            wordlist_sources['custom'] = self.config.wordlist_custom_terms
         
         return self._merge_wordlists(wordlist_sources)
     
+    def _get_config_summary(self) -> Dict[str, Any]:
+        """Get configuration summary for results"""
+        return {
+            'enabled_methods': self.config.enabled_methods,
+            'rate_limit': self.config.rate_limit,
+            'thread_count': self.config.thread_count,
+            'timeout': self.config.timeout,
+            'bruteforce_retries': self.config.bruteforce_retries,
+            'permutation_depth': self.config.permutation_depth
+        }
+    
+    def _compile_statistics(self, results: Dict, start_time: float) -> Dict[str, Any]:
+        """Compile execution statistics"""
+        total_duration = time.time() - start_time
+        total_subdomains = sum(len(method_results) for method_results in results['methods'].values())
+        
+        return {
+            'total_duration': total_duration,
+            'total_subdomains': total_subdomains,
+            'methods_breakdown': {method: len(method_results) 
+                                for method, method_results in results['methods'].items()},
+            'completion_time': time.strftime('%Y-%m-%d %H:%M:%S')
+        }
+    
+    def _save_results(self, results: Dict):
+        """Save results to file"""
+        filename = self.config.results_filename or f"enumeration_{self.domain}_{int(time.time())}.txt"
+        try:
+            with open(filename, 'w') as f:
+                f.write(f"# Domain Enumeration Results for {self.domain}\n")
+                f.write(f"# Generated at: {time.ctime(results['timestamp'])}\n")
+                f.write(f"# Total subdomains found: {results['statistics']['total_subdomains']}\n\n")
+                
+                all_subdomains = set()
+                for method, subdomains in results['methods'].items():
+                    all_subdomains.update(subdomains)
+                
+                for subdomain in sorted(all_subdomains):
+                    f.write(f"{subdomain}\n")
+            
+            logger.info(f"Results saved to: {filename}")
+        except Exception as e:
+            logger.error(f"Failed to save results: {e}")
+    
+    # Existing helper methods (keep from original)
     def _load_common_wordlist(self) -> List[str]:
-        """Load common subdomain wordlist"""
         common_subdomains = [
             'www', 'mail', 'ftp', 'localhost', 'webmail', 'smtp', 'pop', 'ns1', 'webdisk',
             'ns2', 'cpanel', 'whm', 'autodiscover', 'autoconfig', 'm', 'imap', 'test',
@@ -444,35 +566,6 @@ class ActiveEnumerator:
             'web', 'media', 'email', 'images', 'img', 'www1', 'intranet', 'portal', 'video'
         ]
         return common_subdomains
-    
-    def _generate_target_specific_terms(self) -> List[str]:
-        """Generate target-specific terms based on domain analysis"""
-        target_terms = []
-        
-        # Extract meaningful parts from domain
-        domain_parts = self.domain.split('.')
-        if len(domain_parts) >= 2:
-            organization = domain_parts[0]
-            
-            # Generate variations based on organization name
-            variations = [
-                f"www{organization}", f"{organization}www",
-                f"mail{organization}", f"{organization}mail",
-                f"test{organization}", f"{organization}test",
-                f"dev{organization}", f"{organization}dev",
-                f"staging{organization}", f"{organization}staging"
-            ]
-            target_terms.extend(variations)
-            
-            # Add common organizational subdomains
-            org_subdomains = [
-                'admin', 'portal', 'intranet', 'extranet', 'vpn',
-                'remote', 'access', 'login', 'auth', 'sso',
-                'ldap', 'directory', 'hr', 'finance', 'it'
-            ]
-            target_terms.extend(org_subdomains)
-        
-        return target_terms
     
     def _generate_llm_based_terms(self) -> List[str]:
         """Generate terms using intelligent analysis"""
@@ -522,137 +615,252 @@ class ActiveEnumerator:
         logger.info(f"Generated {len(llm_terms)} intelligent terms")
         return llm_terms
     
-    def _generate_permutations(self) -> List[str]:
-        """Generate subdomain permutations"""
-        logger.info("Generating subdomain permutations")
-        
-        permutations = []
-        domain_parts = self.domain.split('.')
-        base_name = domain_parts[0] if len(domain_parts) > 1 else self.domain
-        
-        # Character manipulation permutations
-        char_permutations = []
-        
-        # Add/remove characters
-        if len(base_name) > 3:
-            char_permutations.append(base_name[:-1])  # Remove last character
-            char_permutations.append(base_name[1:])   # Remove first character
-            
-        # Add common characters
-        for char in ['1', '2', '0', '-', '_']:
-            char_permutations.extend([
-                f"{base_name}{char}",
-                f"{char}{base_name}",
-                f"{base_name}{char}{base_name}"
-            ])
-        
-        # Letter substitutions (common typos/variations)
-        substitutions = {
-            'o': '0', '0': 'o', 'i': '1', '1': 'i', 'l': '1', 
-            's': '5', '5': 's', 'e': '3', '3': 'e'
-        }
-        
-        for original, replacement in substitutions.items():
-            if original in base_name:
-                substituted = base_name.replace(original, replacement)
-                char_permutations.append(substituted)
-        
-        # Common prefix/suffix combinations
-        prefixes = ['new', 'old', 'beta', 'alpha', 'test', 'demo', 'temp']
-        suffixes = ['new', 'old', 'beta', 'test', 'demo', 'backup', 'temp']
-        
-        for prefix in prefixes:
-            char_permutations.extend([
-                f"{prefix}{base_name}",
-                f"{prefix}-{base_name}",
-                f"{prefix}_{base_name}"
-            ])
-            
-        for suffix in suffixes:
-            char_permutations.extend([
-                f"{base_name}{suffix}",
-                f"{base_name}-{suffix}",
-                f"{base_name}_{suffix}"
-            ])
-        
-        # Remove duplicates and invalid entries
-        char_permutations = list(set([p for p in char_permutations if p and len(p) > 1]))
-        permutations.extend(char_permutations)
-        
-        logger.info(f"Generated {len(permutations)} character-based permutations")
-        return permutations
-    
     def _merge_wordlists(self, wordlist_sources: Dict) -> List[str]:
-        """Merge and deduplicate wordlists"""
         all_words = set()
-        for source_name, words in wordlist_sources.items():
+        for words in wordlist_sources.values():
             all_words.update(words)
-            logger.info(f"Added {len(words)} words from {source_name}")
+        return list(all_words)
+    
+    def _doh_query(self, domain: str, record_type: str = 'A') -> str:
+        """DNS-over-HTTPS query as fallback"""
+        doh_servers = [
+            'https://cloudflare-dns.com/dns-query',
+            'https://dns.google/dns-query'
+        ]
         
-        final_list = list(all_words)
-        logger.info(f"Final merged wordlist contains {len(final_list)} unique entries")
-        return final_list
-    
-    def get_errors(self) -> Dict:
-        """Get all errors encountered during active enumeration"""
-        return self.error_handler.get_errors()
+        for doh_server in doh_servers:
+            try:
+                params = {'name': domain, 'type': record_type}
+                headers = {'accept': 'application/dns-json'}
+                
+                response = self.session.get(doh_server, params=params, headers=headers, timeout=self.config.timeout)
+                logger.debug(f"DoH query for {domain}: HTTP {response.status_code}")
+                
+                if response.status_code == 200:
+                    data = response.json()
+                    logger.debug(f"DoH response for {domain}: {data}")
+                    
+                    # Check DNS response status
+                    status = data.get('Status', -1)
+                    if status == 0:  # NOERROR - successful DNS response
+                        if 'Answer' in data and data['Answer']:
+                            # Domain exists and has records
+                            ip_address = data['Answer'][0].get('data', '')
+                            logger.info(f"DoH found {domain} -> {ip_address}")
+                            return ip_address
+                        else:
+                            # NOERROR but no Answer section - domain exists but no A record
+                            logger.debug(f"DoH: {domain} exists but no A record")
+                            return "exists"
+                    elif status == 3:  # NXDOMAIN - domain doesn't exist
+                        logger.debug(f"DoH: {domain} does not exist (NXDOMAIN)")
+                        continue
+                    else:
+                        logger.debug(f"DoH: {domain} returned status {status}")
+                        continue
+                else:
+                    logger.debug(f"DoH query failed with HTTP {response.status_code}")
+            except Exception as e:
+                logger.debug(f"DoH query failed for {doh_server}: {e}")
+                continue
+        
+        return None
 
 
-# Main function for testing
-if __name__ == "__main__":
-    import argparse
+def create_enumeration_config_from_args(args) -> EnhancedEnumerationConfig:
+    """Create configuration from command line arguments"""
+    config = EnhancedEnumerationConfig()
     
-    parser = argparse.ArgumentParser(description="Active Domain Enumeration")
+    # Basic configuration
+    if hasattr(args, 'threads'):
+        config.thread_count = args.threads
+    if hasattr(args, 'rate_limit'):
+        config.rate_limit = args.rate_limit
+    if hasattr(args, 'timeout'):
+        config.timeout = args.timeout
+    
+    # Method-specific configuration
+    if hasattr(args, 'bruteforce_retries'):
+        config.bruteforce_retries = args.bruteforce_retries
+    if hasattr(args, 'permutation_depth'):
+        config.permutation_depth = args.permutation_depth
+    if hasattr(args, 'dns_servers') and args.dns_servers is not None:
+        config.cache_snoop_dns_servers = args.dns_servers
+    
+    # Enable/disable methods
+    if hasattr(args, 'methods'):
+        config.enabled_methods = args.methods
+    
+    return config
+
+def execute_active_enumeration(domain, 
+                                threads=10, 
+                                rate_limit=10, 
+                                timeout=5,
+                                bruteforce_retries=2, 
+                                permutation_depth=3, 
+                                dns_servers=None,
+                                methods=None, 
+                                wordlist_file=None, 
+                                enable_ai=True):
+    """Enhanced enumeration function with direct parameter configuration
+    
+    Args:
+        domain (str): Target domain to enumerate
+        threads (int): Number of threads (default: 10)
+        rate_limit (int): Requests per second (default: 10)
+        timeout (int): Request timeout in seconds (default: 5)
+        bruteforce_retries (int): Brute force retry attempts (default: 2)
+        permutation_depth (int): DNS permutation depth (default: 3)
+        dns_servers (list): Custom DNS servers for cache snooping (default: None)
+        methods (list): Enumeration methods to enable (default: all methods)
+        wordlist_file (str): Custom wordlist file path (default: None)
+        enable_ai (bool): Enable AI wordlist generation (default: True)
+    
+    Returns:
+        dict: Enumeration results with statistics and found subdomains
+    """
+    if not domain:
+        raise ValueError("Domain parameter is required")
+    
+    # Set default methods if not provided
+    if methods is None:
+        methods = ['bruteforce', 'dns_permutations', 'zone_transfer', 'cache_snooping']
+    
+    # Configure logging
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    
+    # Create configuration object
+    config = EnhancedEnumerationConfig()
+    
+    # Apply parameters to configuration
+    config.thread_count = threads
+    config.rate_limit = rate_limit
+    config.timeout = timeout
+    config.bruteforce_retries = bruteforce_retries
+    config.permutation_depth = permutation_depth
+    config.enabled_methods = methods
+    config.wordlist_ai_enabled = enable_ai
+    
+    # Set custom DNS servers if provided
+    if dns_servers:
+        config.cache_snoop_dns_servers = dns_servers
+    
+    # Load custom wordlist if provided
+    custom_wordlist = None
+    if wordlist_file:
+        try:
+            # Check if it's an absolute path or just a filename
+            if os.path.isabs(wordlist_file):
+                wordlist_path = wordlist_file
+            else:
+                # Construct path to wordlists directory
+                base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+                wordlist_path = os.path.join(base_dir, '..', 'config', 'wordlists', wordlist_file)
+            
+            with open(wordlist_path, 'r') as f:
+                custom_wordlist = [line.strip() for line in f if line.strip()]
+            logger.info(f"Loaded {len(custom_wordlist)} words from {wordlist_path}")
+        except Exception as e:
+            logger.error(f"Error loading wordlist: {e}")
+            raise
+    
+    # Create and run enumerator
+    enumerator = ConfigurableActiveEnumerator(domain, config)
+    results = enumerator.run_comprehensive_enumeration(custom_wordlist)
+    
+    # Display results
+    print(f"\n=== Enumeration Results for {domain} ===")
+    print(f"Total subdomains found: {results['statistics']['total_subdomains']}")
+    print(f"Execution time: {results['statistics']['total_duration']:.2f} seconds")
+    
+    for method, subdomains in results['methods'].items():
+        print(f"\n{method.upper()}: {len(subdomains)} subdomains")
+        for subdomain in sorted(subdomains):
+            print(f"  - {subdomain}")
+    
+    # Save results summary
+    if results['errors']:
+        print(f"\n=== Errors ===")
+        for method, errors in results['errors'].items():
+            print(f"{method}: {len(errors)} errors")
+    
+    return results
+
+
+def main():
+    """Enhanced main function with comprehensive configuration"""
+    parser = argparse.ArgumentParser(description="Configurable Active Domain Enumeration")
     parser.add_argument("domain", help="Target domain to enumerate")
-    parser.add_argument("--wordlist", help="Custom wordlist file", default=None)
+    
+    # Basic configuration
     parser.add_argument("--threads", type=int, default=10, help="Number of threads")
     parser.add_argument("--rate-limit", type=int, default=10, help="Requests per second")
+    parser.add_argument("--timeout", type=int, default=5, help="Request timeout in seconds")
+    
+    # Method-specific configuration
+    parser.add_argument("--bruteforce-retries", type=int, default=2, help="Brute force retry attempts")
+    parser.add_argument("--permutation-depth", type=int, default=3, help="DNS permutation depth")
+    parser.add_argument("--dns-servers", nargs='+', help="Custom DNS servers for cache snooping")
+    
+    # Method selection
+    parser.add_argument("--methods", nargs='+', 
+                       choices=['bruteforce', 'dns_permutations', 'zone_transfer', 'cache_snooping'],
+                       default=['bruteforce', 'dns_permutations', 'zone_transfer', 'cache_snooping'],
+                       help="Enumeration methods to enable")
+    
+    # Wordlist options
+    parser.add_argument("--wordlist", help="Custom wordlist file")
+    parser.add_argument("--no-ai", action='store_true', help="Disable AI wordlist generation")
     
     args = parser.parse_args()
     
     # Configure logging
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    )
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     
-    # Create custom config
-    config = EnumerationConfig()
-    config.thread_count = args.threads
-    config.rate_limit = args.rate_limit
+    # Create configuration
+    config = create_enumeration_config_from_args(args)
+    config.wordlist_ai_enabled = not args.no_ai
     
     # Load custom wordlist if provided
     custom_wordlist = None
     if args.wordlist:
         try:
-            with open(args.wordlist, 'r') as f:
+            # Check if it's an absolute path or just a filename
+            if os.path.isabs(args.wordlist):
+                wordlist_path = args.wordlist
+            else:
+                # Construct path to wordlists directory
+                base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+                wordlist_path = os.path.join(base_dir, '..', 'config', 'wordlists', args.wordlist)
+            
+            with open(wordlist_path, 'r') as f:
                 custom_wordlist = [line.strip() for line in f if line.strip()]
-            print(f"Loaded {len(custom_wordlist)} words from {args.wordlist}")
+            print(f"Loaded {len(custom_wordlist)} words from {wordlist_path}")
         except Exception as e:
             print(f"Error loading wordlist: {e}")
+            return
     
-    # Run active enumeration
-    enumerator = ActiveEnumerator(args.domain, config)
-    results = enumerator.run_active_enumeration(custom_wordlist)
+    # Create and run enumerator
+    enumerator = ConfigurableActiveEnumerator(args.domain, config)
+    results = enumerator.run_comprehensive_enumeration(custom_wordlist)
     
-    # Extract and display all found subdomains
-    all_subdomains = set()
-    for method, subdomains in results.items():
-        all_subdomains.update(subdomains)
+    # Display results
+    print(f"\n=== Enumeration Results for {args.domain} ===")
+    print(f"Total subdomains found: {results['statistics']['total_subdomains']}")
+    print(f"Execution time: {results['statistics']['total_duration']:.2f} seconds")
     
-    print(f"\n=== Active Enumeration Results for {args.domain} ===")
-    print(f"Found {len(all_subdomains)} unique subdomains:")
-    for subdomain in sorted(all_subdomains):
-        print(f"  - {subdomain}")
+    for method, subdomains in results['methods'].items():
+        print(f"\n{method.upper()}: {len(subdomains)} subdomains")
+        for subdomain in sorted(subdomains):
+            print(f"  - {subdomain}")
     
-    # Display method breakdown
-    print(f"\n=== Method Breakdown ===")
-    for method, subdomains in results.items():
-        print(f"{method}: {len(subdomains)} subdomains")
-    
-    # Display errors if any
-    errors = enumerator.get_errors()
-    if errors:
-        print(f"\n=== Errors Encountered ===")
-        for method, error_list in errors.items():
-            print(f"{method}: {len(error_list)} errors")
+    # Save results summary
+    if results['errors']:
+        print(f"\n=== Errors ===")
+        for method, errors in results['errors'].items():
+            print(f"{method}: {len(errors)} errors")
+
+
+if __name__ == "__main__":
+    main()
