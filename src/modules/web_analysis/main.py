@@ -276,6 +276,197 @@ class ReconToolkit:
         logging.info(f"Results saved to {filename}")
         return filename
 
+def execute_web_analysis(domain: str, bypass_cdn: bool = True, deep_crawl: bool = False, 
+                        output_dir: str = "results", save_to_file: bool = False, 
+                        verbose: bool = True, setup_logging: bool = True):
+    """
+    Execute comprehensive web analysis including CDN detection and web crawling
+    
+    Args:
+        domain: Domain to analyze
+        bypass_cdn: Whether to attempt CDN bypass if detected (default: True)
+        deep_crawl: Whether to perform deep crawling (default: False)
+        output_dir: Output directory for results (default: "results")
+        save_to_file: Whether to save results to JSON file (default: False)
+        verbose: Whether to print verbose output (default: True)
+        setup_logging: Whether to set up logging configuration (default: True)
+        
+    Returns:
+        Dict: Complete analysis results including CDN detection, bypass, and crawling
+    """
+    # Set up logging if requested
+    if setup_logging:
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - %(levelname)s - %(message)s',
+            handlers=[
+                logging.FileHandler('recon_toolkit.log'),
+                logging.StreamHandler()
+            ]
+        )
+    
+    try:
+        # Run the toolkit
+        toolkit = ReconToolkit(domain)
+        results = toolkit.run(
+            bypass_cdn=bypass_cdn,
+            deep_crawl=deep_crawl
+        )
+        
+        # Add execution metadata
+        results['execution_info'] = {
+            'domain': domain,
+            'bypass_cdn': bypass_cdn,
+            'deep_crawl': deep_crawl,
+            'output_dir': output_dir,
+            'save_to_file': save_to_file
+        }
+        
+        # Print detailed results in JSON format if verbose
+        if verbose:
+            print("\n" + "=" * 60)
+            print("DETAILED RESULTS (JSON)")
+            print("=" * 60)
+            print(json.dumps(results, indent=2, default=str))
+        
+        # Optionally save results to file
+        output_file = None
+        if save_to_file:
+            output_file = toolkit.save_results(output_dir)
+            results['output_file'] = output_file
+            if verbose:
+                print(f"\n💾 Results also saved to: {output_file}")
+        
+        # Print summary if verbose
+        if verbose:
+            print("\n" + "=" * 50)
+            print("RECONNAISSANCE SUMMARY")
+            print("=" * 50)
+            print(f"Domain: {domain}")
+            print(f"CDN Detected: {results['cdn_detection']['cdn_detected']}")
+            
+            if results['cdn_detection']['cdn_detected']:
+                print(f"CDN Name: {results['cdn_detection']['cdn_name']}")
+                print(f"Detection Method: {results['cdn_detection']['detection_method']}")
+                
+                if 'blocking_check' in results:
+                    print(f"Content Blocked: {results['blocking_check']['is_blocked']}")
+                    if results['blocking_check']['is_blocked']:
+                        print(f"Blocked Phrases: {', '.join(results['blocking_check']['blocked_phrases'])}")
+                
+                if 'cdn_bypass' in results:
+                    bypass_method = results['cdn_bypass'].get('method', 'browser_automation')
+                    print(f"Bypass Method: {bypass_method}")
+                    
+                    if bypass_method == 'normal_request':
+                        print("Bypass Status: Skipped (content accessible via normal request)")
+                    else:
+                        print(f"Bypass Attempted: {results['cdn_bypass'].get('bypass_attempted', False)}")
+                        print(f"Bypass Successful: {results['cdn_bypass'].get('bypass_successful', False)}")
+                    
+                    if 'web_crawl' in results:
+                        web_crawl = results['web_crawl']
+                        pages_count = len(web_crawl.get('pages', []))
+                        apis_count = len(web_crawl.get('apis', []))
+                        urls_count = len(web_crawl.get('discovered_urls', []))
+                        
+                        print(f"Pages Crawled: {pages_count}")
+                        print(f"APIs Discovered: {apis_count}")
+                        print(f"URLs Found: {urls_count}")
+                        
+                        # Display API discovery details
+                        api_discovery = web_crawl.get('api_discovery', {})
+                        if api_discovery:
+                            rest_apis = len(api_discovery.get('rest_apis', []))
+                            graphql_apis = len(api_discovery.get('graphql_endpoints', []))
+                            swagger_apis = len(api_discovery.get('swagger_endpoints', []))
+                            other_apis = len(api_discovery.get('other_apis', []))
+                            
+                            total_discovered = rest_apis + graphql_apis + swagger_apis + other_apis
+                            print(f"Total API Endpoints Found: {total_discovered}")
+                            if rest_apis > 0:
+                                print(f"  - REST APIs: {rest_apis}")
+                            if graphql_apis > 0:
+                                print(f"  - GraphQL Endpoints: {graphql_apis}")
+                            if swagger_apis > 0:
+                                print(f"  - Swagger/OpenAPI: {swagger_apis}")
+                            if other_apis > 0:
+                                print(f"  - Other APIs: {other_apis}")
+                                
+                            # Show some example endpoints
+                            all_endpoints = []
+                            for category, endpoints in api_discovery.items():
+                                if isinstance(endpoints, list) and endpoints:
+                                    all_endpoints.extend([ep.get('url', ep) if isinstance(ep, dict) else ep for ep in endpoints[:3]])
+                            
+                            if all_endpoints:
+                                print(f"Sample Endpoints:")
+                                for i, endpoint in enumerate(all_endpoints[:5], 1):
+                                    print(f"  {i}. {endpoint}")
+            
+            elif 'web_crawl' in results:
+                web_crawl = results['web_crawl']
+                pages_count = len(web_crawl.get('pages', []))
+                apis_count = len(web_crawl.get('apis', []))
+                urls_count = len(web_crawl.get('discovered_urls', []))
+                
+                print(f"Pages Crawled: {pages_count}")
+                print(f"APIs Discovered: {apis_count}")
+                print(f"URLs Found: {urls_count}")
+                
+                # Display API discovery details
+                api_discovery = web_crawl.get('api_discovery', {})
+                if api_discovery:
+                    rest_apis = len(api_discovery.get('rest_apis', []))
+                    graphql_apis = len(api_discovery.get('graphql_endpoints', []))
+                    swagger_apis = len(api_discovery.get('swagger_endpoints', []))
+                    other_apis = len(api_discovery.get('other_apis', []))
+                    
+                    total_discovered = rest_apis + graphql_apis + swagger_apis + other_apis
+                    print(f"Total API Endpoints Found: {total_discovered}")
+                    if rest_apis > 0:
+                        print(f"  - REST APIs: {rest_apis}")
+                    if graphql_apis > 0:
+                        print(f"  - GraphQL Endpoints: {graphql_apis}")
+                    if swagger_apis > 0:
+                        print(f"  - Swagger/OpenAPI: {swagger_apis}")
+                    if other_apis > 0:
+                        print(f"  - Other APIs: {other_apis}")
+                        
+                    # Show some example endpoints
+                    all_endpoints = []
+                    for category, endpoints in api_discovery.items():
+                        if isinstance(endpoints, list) and endpoints:
+                            all_endpoints.extend([ep.get('url', ep) if isinstance(ep, dict) else ep for ep in endpoints[:3]])
+                    
+                    if all_endpoints:
+                        print(f"Sample Endpoints:")
+                        for i, endpoint in enumerate(all_endpoints[:5], 1):
+                            print(f"  {i}. {endpoint}")
+        
+        # Mark as successful
+        results['success'] = True
+        return results
+        
+    except Exception as e:
+        error_msg = f"Web analysis failed: {str(e)}"
+        logging.error(error_msg)
+        if verbose:
+            print(f"Error: {str(e)}")
+        
+        # Return error result
+        return {
+            'success': False,
+            'error': str(e),
+            'execution_info': {
+                'domain': domain,
+                'bypass_cdn': bypass_cdn,
+                'deep_crawl': deep_crawl,
+                'output_dir': output_dir,
+                'save_to_file': save_to_file
+            }
+        }
+
 if __name__ == "__main__":
     # Set up logging
     logging.basicConfig(
