@@ -1,660 +1,613 @@
+#!/usr/bin/env python3
+"""
+Flask Web Server for Unified Web Domain Scanner
+===============================================
+
+This Flask server provides REST API endpoints for running domain reconnaissance jobs:
+- POST /api/scan - Submit a new scan job
+- GET /api/status/<job_id> - Check job status and get results
+
+Author: Web Domain Scanner Project
+License: See LICENSE file in project root
+"""
+
 import os
-import logging
-import asyncio
-import requests
-import json
-from datetime import datetime
-from pathlib import Path
 import sys
+import json
+import uuid
+import time
+import threading
+import logging
+from datetime import datetime
+from typing import Dict, Any, Optional
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+import traceback
 
-# Add project root to path for imports
+# Add modules path for imports
 current_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = os.path.dirname(current_dir)
-sys.path.insert(0, project_root)
-sys.path.insert(0, current_dir)
+modules_dir = os.path.join(current_dir, 'modules')
+sys.path.append(modules_dir)
 
-# Import modules
-from modules.domain_enumeration import DomainEnumeration
-from modules.service_discovery import ServiceDiscovery
-from modules.web_crawling import WebCrawler
-from modules.ai_integration import AIIntegration
-from modules.cloud_detection import CloudDetector
-from modules.utils import sanitize_domain, create_output_directory, create_web_wordlist
-from output.report_generator import ReportGenerator
-from common.network_utils import NetworkUtils
+try:
+    from modules.main import execute_unified_scan_with_params
+    SCANNER_AVAILABLE = True
+except ImportError as e:
+    print(f"Error: Could not import unified scanner: {e}")
+    SCANNER_AVAILABLE = False
 
-# Import config
-from config.settings import (
-    COMMON_PORTS, COMMON_SUBDOMAINS, REQUEST_HEADERS,
-    CDN_INDICATORS, COMMON_S3_BUCKETS, GEMINI_API_KEY,
-    OPENAI_API_KEY, ANTHROPIC_API_KEY
-)
+# Flask app initialization
+app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('reconnaissance.log'),
+        logging.FileHandler('flask_server.log'),
         logging.StreamHandler()
     ]
 )
+logger = logging.getLogger(__name__)
 
-class DomainRecon:
-    def __init__(self, domain_or_url, gemini_api_key=None, openai_api_key=None, anthropic_api_key=None, use_async=False,
-                 module_config=None):
-        # Extract domain from URL if provided
-        self.domain, self.sanitized_domain = sanitize_domain(domain_or_url)
-        
-        self.results = {}
-        self.timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        self.output_dir = create_output_directory(self.domain, self.timestamp)
-        self.use_async = use_async
-        
-        # Setup feedback database path
-        self.feedback_db_path = os.path.join(project_root, "data", "endpoint_feedback.json")
-        Path(os.path.join(project_root, "data")).mkdir(exist_ok=True)
-        
-        # Use provided keys or fall back to environment variables
-        gemini_key = gemini_api_key or GEMINI_API_KEY
-        openai_key = openai_api_key or OPENAI_API_KEY
-        anthropic_key = anthropic_api_key or ANTHROPIC_API_KEY
-        
-        # Default module configurations
-        default_config = {
-            'domain_enum': {},
-            'service_disc': {},
-            'web_crawler': {},
-            'ai_integration': {
-                'cache_size': 128,
-            },
-            'cloud_detector': {}
-        }
-        
-        # Merge with provided configuration if available
-        self.config = default_config
-        if module_config:
-            for module, params in module_config.items():
-                if module in self.config:
-                    self.config[module].update(params)
-        
-        # Initialize modules with advanced configurations
-        # Create proper EnumerationConfig for domain_enum
-        domain_enum_config = self.config.get('domain_enum', {})
-        self.domain_enum = DomainEnumeration(self.domain, config=domain_enum_config)
-        
-        self.service_disc = ServiceDiscovery(self.domain)
-        self.web_crawler = WebCrawler(self.domain)
-        self.ai_integration = AIIntegration(
-            gemini_api_key=gemini_key,
-            openai_api_key=openai_key,
-            anthropic_api_key=anthropic_key,
-            cache_size=self.config['ai_integration'].get('cache_size', 128),
-            feedback_db_path=self.feedback_db_path
-        )
-        self.cloud_detector = CloudDetector(self.domain)
-        
-    def run_all(self, scan_mode='quick', modules_to_run=None):
-        """
-        Run all or selected reconnaissance modules
-        
-        Args:
-            scan_mode (str): 'quick', 'smart', or 'deep' scan mode
-            modules_to_run (list): List of module names to run. If None, run all modules.
-        """
-        logging.info(f"Starting comprehensive reconnaissance for {self.domain} in {scan_mode} mode")
-        
-        # If no specific modules are specified, run all
-        if not modules_to_run:
-            modules_to_run = ['subdomain_discovery', 'dns_enumeration', 'service_discovery', 
-                             'web_crawl', 'web_fingerprinting', 'directory_bruteforce', 
-                             'api_discovery', 'cloud_detection']
-                             
-        # Run specified modules
-        for module in modules_to_run:
-            if module == 'subdomain_discovery' and hasattr(self, 'subdomain_discovery'):
-                self.subdomain_discovery()
-            elif module == 'dns_enumeration' and hasattr(self, 'dns_enumeration'):
-                self.dns_enumeration()
-            elif module == 'service_discovery' and hasattr(self, 'service_discovery'):
-                self.service_discovery(scan_mode=scan_mode)
-            elif module == 'web_crawl' and hasattr(self, 'web_crawl'):
-                self.web_crawl(crawl_level=scan_mode)
-            elif module == 'web_fingerprinting' and hasattr(self, 'web_fingerprinting'):
-                self.web_fingerprinting()
-            elif module == 'directory_bruteforce' and hasattr(self, 'directory_bruteforce'):
-                self.directory_bruteforce()
-            elif module == 'api_discovery' and hasattr(self, 'api_discovery'):
-                self.api_discovery()
-            elif module == 'cloud_detection' and hasattr(self, 'cloud_detection'):
-                self.cloud_detection()
-        
-        try:
-            self.subdomain_discovery()
-            self.dns_enumeration()
-            self.service_discovery(scan_mode)
-            self.web_fingerprinting()
-            # self.directory_bruteforce()
-            # self.api_discovery()
-            # self.cloud_detection()
-            
-            logging.info(f"Reconnaissance completed. Results saved in {self.output_dir}")
-            self.save_final_report()
-        except Exception as e:
-            logging.error(f"Reconnaissance failed: {str(e)}")
-        
-    def subdomain_discovery(self, wordlist=None):
-        """Discover subdomains with optional custom wordlist"""
-        # Get domain enum config
-        domain_config = self.config.get('domain_enum', {})
-        wordlist_param = wordlist or domain_config.get('wordlist')
-        
-        if wordlist_param:
-            self.results['subdomains'] = self.domain_enum.subdomain_discovery(wordlist=wordlist_param)
-        else:
-            self.results['subdomains'] = self.domain_enum.subdomain_discovery(COMMON_SUBDOMAINS)
-    
-    def dns_enumeration(self):
-        """Enumerate DNS records"""
-        self.results['dns_records'] = self.domain_enum.dns_enumeration()
-    
-    def service_discovery(self, scan_mode='quick', **kwargs):
-        """
-        Discover open ports and services with different scanning modes
-        
-        Args:
-            scan_mode (str): 'quick', 'smart', or 'deep'
-            **kwargs: Additional service discovery parameters
-        """
-        # Get service discovery config and merge with kwargs
-        service_config = self.config.get('service_disc', {}).copy()
-        
-        # Override scan_mode from config if provided, but remove it from service_config
-        # to prevent duplicate parameter passing
-        config_scan_mode = service_config.pop('scan_mode', scan_mode)
-        
-        # Merge kwargs with service_config, with kwargs taking precedence
-        merged_params = {**service_config, **kwargs}
-        
-        # Pass additional parameters to service discovery
-        self.results['services'] = self.service_disc.discover_services(
-            COMMON_PORTS, 
-            scan_mode=config_scan_mode,
-            **merged_params
-        )
-    
-    def web_crawl(self, crawl_level: str = 'smart', wordlist_path: str = None, **kwargs):
-        """Run web crawling, directory bruteforce, and API discovery using WebCrawler.run_crawl_level"""
-        logging.info(f"Starting web crawl for {self.domain} (level: {crawl_level})")
-        
-        # Get web crawler config
-        crawler_config = self.config.get('web_crawler', {})
-        
-        # Override parameters from config
-        config_crawl_level = crawler_config.get('crawl_level', crawl_level)
-        config_wordlist_path = crawler_config.get('wordlist_path', wordlist_path)
-        
-        # Apply additional crawler configuration to the WebCrawler instance
-        if crawler_config:
-            # Update crawl levels if custom values are provided
-            if 'max_pages' in crawler_config or 'wordlist_size' in crawler_config or 'recursive' in crawler_config or 'use_ai' in crawler_config:
-                if config_crawl_level in self.web_crawler.crawl_levels:
-                    level_config = self.web_crawler.crawl_levels[config_crawl_level].copy()
-                    level_config.update({k: v for k, v in crawler_config.items() 
-                                       if k in ['max_pages', 'wordlist_size', 'recursive', 'use_ai']})
-                    self.web_crawler.crawl_levels[config_crawl_level] = level_config
-        
-        crawl_results = self.web_crawler.run_crawl_level(config_crawl_level, config_wordlist_path)
-        self.results['web_crawl'] = crawl_results
-    def web_fingerprinting(self):
-        """Fingerprint web technologies with AI enhancement"""
-        logging.info("Starting web technology fingerprinting")
+# Global job storage (in production, use Redis or database)
+jobs = {}
+job_lock = threading.Lock()
 
-        # Run web fingerprinting and assign results correctly
-        self.domain_enum.web_fingerprinting()
-        self.results['web_technologies'] = self.domain_enum.results.get('web_technologies', {})
 
-        # Try to enhance with AI technology detection for additional insights
-        base_urls = [
-            # f"https://{self.domain}",
-            f"http://{self.domain}",
-            # f"https://www.{self.domain}",
-            # f"http://www.{self.domain}"
-        ]
+class JobStatus:
+    """Job status constants"""
+    PENDING = "pending"
+    RUNNING = "running"
+    COMPLETED = "completed"
+    FAILED = "failed"
 
-        ai_detected_tech = []
-        for base_url in base_urls:
-            page_content = self.web_crawler.scrape_page_content(base_url, headers=REQUEST_HEADERS)
-            if page_content:
-                # Use AI integration to detect technologies
-                ai_tech = self.ai_integration.detect_technology(page_content)
-                if ai_tech:
-                    logging.info(f"AI detected additional technologies: {', '.join(ai_tech)}")
-                    ai_detected_tech.extend(ai_tech)
-                break
 
-        # Add AI-detected technologies as additional metadata if found
-        if ai_detected_tech:
-            self.results['ai_detected_technologies'] = list(set(ai_detected_tech))
+class ScanJob:
+    """Represents a scan job with status tracking"""
     
-    def directory_bruteforce(self, wordlist_path=None, extensions=None, recursive=False, depth=2, **kwargs):
-        """Brute force common web directories with configurable parameters"""
-        # Get directory bruteforce config
-        dir_config = self.config.get('directory_bruteforce', {})
+    def __init__(self, job_id: str, parameters: Dict[str, Any]):
+        self.job_id = job_id
+        self.parameters = parameters
+        self.status = JobStatus.PENDING
+        self.created_at = datetime.now()
+        self.started_at = None
+        self.completed_at = None
+        self.current_module = None
+        self.progress = {}
+        self.results = None
+        self.error = None
+        self.verbose_logs = []
         
-        # Use config values if not overridden
-        final_wordlist_path = wordlist_path or dir_config.get('wordlist_path')
-        final_extensions = extensions or dir_config.get('extensions')
-        final_recursive = dir_config.get('recursive', recursive)
-        final_depth = dir_config.get('depth', depth)
-        
-        # Use provided wordlist or create default one
-        if not final_wordlist_path:
-            final_wordlist_path = create_web_wordlist(self.output_dir)
-        
-        self.results['directories'] = self.web_crawler.directory_bruteforce(
-            final_wordlist_path, 
-            extensions=final_extensions,
-            recursive=final_recursive,
-            depth=final_depth,
-            **kwargs
-        )
-    
-    def api_discovery(self, custom_paths=None, wordlist_path=None, max_endpoints=500, **kwargs):
-        """Discover common API endpoints using multiple AI providers with fallback"""
-        logging.info("Starting API discovery")
-        
-        # Get API discovery config
-        api_config = self.config.get('api_discovery', {})
-        
-        # Use config values if not overridden
-        final_custom_paths = custom_paths or api_config.get('custom_paths', [])
-        final_wordlist_path = wordlist_path or api_config.get('wordlist_path')
-        final_max_endpoints = api_config.get('max_endpoints', max_endpoints)
-        use_ai = api_config.get('use_ai', True)
-        
-        self.results['api_endpoints'] = []
-        
-        # Default common endpoints
-        common_endpoints = [
-            'api', 'api/v1', 'rest', 'graphql', 
-            'swagger', 'swagger.json', 'api-docs',
-            'graphiql', 'v1', 'v2', 'oauth', 'calculator'
-        ]
-        
-        # Add custom paths to common endpoints
-        if final_custom_paths:
-            common_endpoints.extend(final_custom_paths)
-        
-        # Load additional endpoints from wordlist if provided
-        if final_wordlist_path and os.path.exists(final_wordlist_path):
-            try:
-                with open(final_wordlist_path, 'r') as f:
-                    wordlist_endpoints = [line.strip() for line in f.readlines() if line.strip()]
-                common_endpoints.extend(wordlist_endpoints)
-                logging.info(f"Loaded {len(wordlist_endpoints)} endpoints from wordlist: {final_wordlist_path}")
-            except Exception as e:
-                logging.warning(f"Failed to load wordlist {final_wordlist_path}: {e}")
-        
-        base_urls = [
-            f"https://{self.domain}",
-        ]
-        
-        # Try to scrape content and generate AI-powered endpoints
-        ai_endpoints = []
-        successful_scrape = False
-        
-        if use_ai and self.ai_integration.available_providers:
-            # Log available providers
-            providers_str = ", ".join(self.ai_integration.available_providers)
-            logging.info(f"Using AI providers for endpoint discovery: {providers_str}")
-            
-            for base_url in base_urls:
-                page_content = self.web_crawler.scrape_page_content(base_url, headers=REQUEST_HEADERS)
-                if page_content:
-                    successful_scrape = True
-                    
-                    # Use async or sync method based on configuration
-                    if self.use_async:
-                        # Run async endpoint generation in a sync context
-                        try:
-                            loop = asyncio.get_event_loop()
-                        except RuntimeError:
-                            # Create new event loop if none exists
-                            loop = asyncio.new_event_loop()
-                            asyncio.set_event_loop(loop)
-                            
-                        ai_endpoints = loop.run_until_complete(
-                            self.ai_integration.generate_ai_endpoints_async(page_content, self.domain)
-                        )
-                        logging.info(f"Generated endpoints using async AI integration")
-                    else:
-                        # Use synchronous endpoint generation
-                        ai_endpoints = self.ai_integration.generate_ai_endpoints(page_content, self.domain)
-                    
-                    if ai_endpoints:
-                        logging.info(f"Generated {len(ai_endpoints)} endpoints from {base_url} using AI analysis")
-                        break
-                    else:
-                        logging.warning(f"No endpoints generated from {base_url}")
-                else:
-                    logging.warning(f"Failed to scrape {base_url}")
-        elif use_ai:
-            # Even without API keys, try intelligent fallback analysis
-            logging.info("No AI providers configured. Using fallback content analysis for endpoint discovery")
-            for base_url in base_urls:
-                page_content = self.web_crawler.scrape_page_content(base_url, headers=REQUEST_HEADERS)
-                if page_content:
-                    successful_scrape = True
-                    ai_endpoints = self.ai_integration.generate_intelligent_fallback_endpoints(page_content)
-                    if ai_endpoints:
-                        logging.info(f"Generated {len(ai_endpoints)} endpoints from {base_url} using content analysis")
-                        break
-                else:
-                    logging.warning(f"Failed to scrape {base_url}")
-            
-            if not successful_scrape:
-                logging.info("No content could be scraped for intelligent endpoint generation")
-        
-        # Combine default and AI-generated endpoints
-        all_endpoints = list(set(common_endpoints + ai_endpoints))
-        
-        # Limit endpoints to max_endpoints
-        if len(all_endpoints) > final_max_endpoints:
-            all_endpoints = all_endpoints[:final_max_endpoints]
-            logging.info(f"Limited endpoint testing to {final_max_endpoints} endpoints")
-        
-        ai_count = len(ai_endpoints)
-        default_count = len(common_endpoints)
-        total_count = len(all_endpoints)
-        
-        logging.info(f"Testing {total_count} total endpoints ({ai_count} from analysis, {default_count} default)")
-        
-        found_endpoints = []
-        for base_url in base_urls:
-            for endpoint in all_endpoints:
-                url = f"{base_url}/{endpoint}"
-                try:
-                    response = requests.get(url, timeout=3, verify=False if 'netlify.app' in url else True)
-                    if response.status_code < 400:
-                        endpoint_info = {
-                            'url': url,
-                            'status': response.status_code,
-                            'content_type': response.headers.get('Content-Type'),
-                            'source': 'content_analysis' if endpoint in ai_endpoints else 'default'
-                        }
-                        found_endpoints.append(endpoint_info)
-                        source_type = 'analyzed' if endpoint in ai_endpoints else 'default'
-                        logging.info(f"Found {source_type} endpoint: {url} ({response.status_code})")
-                        
-                        # Record successful endpoint discovery for learning
-                        if endpoint in ai_endpoints:
-                            self.ai_integration.save_feedback(self.domain, endpoint, True)
-                except requests.RequestException:
-                    # Record unsuccessful endpoint prediction for learning
-                    if endpoint in ai_endpoints:
-                        self.ai_integration.save_feedback(self.domain, endpoint, False)
-                    continue
-        
-        self.results['api_endpoints'] = found_endpoints
-    
-    def cloud_detection(self, common_buckets_patterns=None, cdn_indicators=None, **kwargs):
-        """Detect cloud services and CDNs with configurable parameters"""
-        # Get cloud detection config
-        cloud_config = self.config.get('cloud_detector', {})
-        
-        # Use provided parameters or defaults from config or global defaults
-        buckets = (common_buckets_patterns or 
-                  cloud_config.get('common_buckets_patterns') or 
-                  COMMON_S3_BUCKETS)
-        indicators = (cdn_indicators or 
-                     cloud_config.get('cdn_indicators') or 
-                     CDN_INDICATORS)
-        
-        self.results['cloud_services'] = self.cloud_detector.detect_cloud_services(
-            buckets, indicators, **kwargs
-        )
-        
-        return self.results['cloud_services']
-    
-    # Update the save_final_report method
-    def save_final_report(self):
-        """Save all results to JSON and HTML reports"""
-        report_generator = ReportGenerator(self.results, self.output_dir, self.domain)
-
-        # Generate JSON report
-        json_report_path = report_generator.generate_json_report()
-        logging.info(f"JSON report saved to {json_report_path}")
-        
-        # Generate HTML report
-        html_report_path = report_generator.generate_html_report()
-        logging.info(f"HTML report saved to {html_report_path}")
-        
-        # Generate summary
-        summary = report_generator.generate_summary()
-        logging.info(f"Reconnaissance summary: {summary}")
-        
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert job to dictionary for JSON response"""
         return {
-            'json_report': json_report_path,
-            'html_report': html_report_path,
-            'summary': summary
+            'job_id': self.job_id,
+            'status': self.status,
+            'created_at': self.created_at.isoformat(),
+            'started_at': self.started_at.isoformat() if self.started_at else None,
+            'completed_at': self.completed_at.isoformat() if self.completed_at else None,
+            'current_module': self.current_module,
+            'progress': self.progress,
+            'parameters': self.parameters,
+            'results': self.results,
+            'error': self.error,
+            'verbose_logs': self.verbose_logs[-10:] if self.verbose_logs else []  # Last 10 logs
+        }
+
+
+def validate_scan_parameters(data: Dict[str, Any]) -> tuple[bool, str]:
+    """Validate scan parameters"""
+    
+    # Required parameter
+    if 'domain' not in data:
+        return False, "Missing required parameter: domain"
+    
+    domain = data['domain']
+    if not domain or not isinstance(domain, str):
+        return False, "Domain must be a non-empty string"
+    
+    # Validate optional parameters
+    valid_modules = ['domain_enumeration', 'service_discovery', 'web_analysis']
+    if 'enabled_modules' in data:
+        if not isinstance(data['enabled_modules'], list):
+            return False, "enabled_modules must be a list"
+        for module in data['enabled_modules']:
+            if module not in valid_modules:
+                return False, f"Invalid module: {module}. Valid modules: {valid_modules}"
+    
+    valid_domain_modules = ['passive', 'active', 'dns', 'fingerprinting']
+    if 'domain_enum_modules' in data:
+        if not isinstance(data['domain_enum_modules'], list):
+            return False, "domain_enum_modules must be a list"
+        for module in data['domain_enum_modules']:
+            if module not in valid_domain_modules:
+                return False, f"Invalid domain module: {module}. Valid modules: {valid_domain_modules}"
+    
+    valid_scan_modes = ['quick', 'smart', 'deep']
+    if 'scan_mode' in data:
+        if data['scan_mode'] not in valid_scan_modes:
+            return False, f"Invalid scan_mode: {data['scan_mode']}. Valid modes: {valid_scan_modes}"
+    
+    # Validate numeric parameters
+    numeric_params = {
+        'passive_timeout': int,
+        'active_threads': int,
+        'dns_timeout': int,
+        'fingerprint_timeout': int
+    }
+    
+    for param, param_type in numeric_params.items():
+        if param in data:
+            try:
+                data[param] = param_type(data[param])
+                if data[param] <= 0:
+                    return False, f"{param} must be a positive integer"
+            except (ValueError, TypeError):
+                return False, f"{param} must be a valid {param_type.__name__}"
+    
+    # Validate boolean parameters
+    boolean_params = ['verbose', 'save_results', 'no_ai', 'bypass_cdn', 'deep_crawl', 'setup_logging']
+    for param in boolean_params:
+        if param in data:
+            if not isinstance(data[param], bool):
+                return False, f"{param} must be a boolean"
+    
+    return True, "Parameters are valid"
+
+
+def execute_scan_job(job: ScanJob):
+    """Execute scan job in background thread"""
+    
+    with job_lock:
+        job.status = JobStatus.RUNNING
+        job.started_at = datetime.now()
+        job.verbose_logs.append(f"[{job.started_at.strftime('%H:%M:%S')}] Starting scan for domain: {job.parameters['domain']}")
+    
+    try:
+        # Prepare parameters with defaults
+        scan_params = {
+            'target_domain': job.parameters['domain'],
+            'enabled_modules': job.parameters.get('enabled_modules', ['domain_enumeration', 'service_discovery', 'web_analysis']),
+            'verbose': job.parameters.get('verbose', True),
+            'output_dir': job.parameters.get('output_dir', 'results'),
+            'save_results': job.parameters.get('save_results', True),
+            # Domain enumeration params
+            'domain_enum_modules': job.parameters.get('domain_enum_modules', ['passive', 'active', 'dns', 'fingerprinting']),
+            'passive_timeout': job.parameters.get('passive_timeout', 10),
+            'active_threads': job.parameters.get('active_threads', 10),
+            'dns_timeout': job.parameters.get('dns_timeout', 5),
+            'fingerprint_timeout': job.parameters.get('fingerprint_timeout', 30),
+            'wordlist': job.parameters.get('wordlist'),
+            'no_ai': job.parameters.get('no_ai', False),
+            # Service discovery params
+            'scan_mode': job.parameters.get('scan_mode', 'smart'),
+            'ports': job.parameters.get('ports'),
+            'service_output_format': job.parameters.get('service_output_format', 'json'),
+            # Web analysis params
+            'bypass_cdn': job.parameters.get('bypass_cdn', True),
+            'deep_crawl': job.parameters.get('deep_crawl', False),
+            'setup_logging': job.parameters.get('setup_logging', False)  # Disable to avoid logging conflicts
         }
         
-    def run_module(self, module_name, **module_params):
-        """
-        Run a single module with custom parameters
+        # Get enabled modules and initialize progress
+        enabled_modules = scan_params['enabled_modules']
+        total_modules = len(enabled_modules)
         
-        Args:
-            module_name (str): Name of the module to run
-            module_params (dict): Custom parameters for the module
+        # Initialize progress
+        with job_lock:
+            job.progress = {
+                'current_module': 'initializing',
+                'completed_modules': 0,
+                'total_modules': total_modules,
+                'percentage': 0
+            }
         
-        Returns:
-            dict: Module execution results
-        """
-        logging.info(f"Running module '{module_name}' for {self.domain}")
+        logger.info(f"Job {job.job_id}: Starting unified scan with {total_modules} modules")
         
-        module_result = None
+        # Execute each module individually to track progress properly
+        results = {
+            'target_domain': scan_params['target_domain'],
+            'scan_timestamp': datetime.now().isoformat(),
+            'enabled_modules': enabled_modules,
+            'modules': {},
+            'summary': {},
+            'execution_time': 0
+        }
+        completed_modules = 0
         
-        if module_name == 'subdomain_discovery':
-            wordlist = module_params.get('wordlist')
-            module_result = self.subdomain_discovery(wordlist=wordlist)
+        # Helper function to update progress
+        def update_progress(module_name: str, completed_count: int, status: str = "running"):
+            with job_lock:
+                job.current_module = module_name
+                job.progress = {
+                    'current_module': module_name,
+                    'completed_modules': completed_count,
+                    'total_modules': total_modules,
+                    'percentage': int((completed_count / total_modules) * 100)
+                }
+                if status == "starting":
+                    job.verbose_logs.append(f"[{datetime.now().strftime('%H:%M:%S')}] Starting {module_name}...")
+                elif status == "completed":
+                    job.verbose_logs.append(f"[{datetime.now().strftime('%H:%M:%S')}] Completed {module_name}")
         
-        elif module_name == 'dns_enumeration':
-            module_result = self.dns_enumeration()
+        # Execute each enabled module individually
+        for module_name in enabled_modules:
+            update_progress(module_name, completed_modules, "starting")
+            
+            try:
+                if module_name == 'domain_enumeration':
+                    # Import and execute domain enumeration
+                    from modules.domain_enumeration.main import execute_domain_enumeration, DomainEnumerationConfig
+                    
+                    # Create domain enumeration configuration
+                    domain_config = DomainEnumerationConfig()
+                    domain_config.domain = scan_params['target_domain']
+                    domain_config.verbose = scan_params['verbose']
+                    domain_config.enabled_modules = scan_params['domain_enum_modules']
+                    
+                    # Configure sub-modules
+                    domain_config.passive_config['timeout'] = scan_params['passive_timeout']
+                    domain_config.active_config['max_threads'] = scan_params['active_threads']
+                    domain_config.dns_config['timeout'] = scan_params['dns_timeout']
+                    domain_config.fingerprinting_config['timeout'] = scan_params['fingerprint_timeout']
+                    if scan_params['wordlist']:
+                        domain_config.active_config['wordlist_file'] = scan_params['wordlist']
+                    domain_config.active_config['disable_ai'] = scan_params['no_ai']
+                    
+                    module_result = execute_domain_enumeration(domain_config)
+                    results['modules']['domain_enumeration'] = module_result
+                    
+                elif module_name == 'service_discovery':
+                    # Import and execute service discovery
+                    from modules.service_discovery.main import execute_service_discovery
+                    
+                    module_result = execute_service_discovery(
+                        scan_mode=scan_params['scan_mode'],
+                        target=scan_params['target_domain'],
+                        ports=scan_params['ports'],
+                        output_format=scan_params['service_output_format'],
+                        verbose=scan_params['verbose']
+                    )
+                    results['modules']['service_discovery'] = module_result
+                    
+                elif module_name == 'web_analysis':
+                    # Import and execute web analysis
+                    from modules.web_analysis.main import execute_web_analysis
+                    
+                    module_result = execute_web_analysis(
+                        domain=scan_params['target_domain'],
+                        bypass_cdn=scan_params['bypass_cdn'],
+                        deep_crawl=scan_params['deep_crawl'],
+                        output_dir=scan_params['output_dir'],
+                        save_to_file=scan_params['save_results'],
+                        verbose=scan_params['verbose'],
+                        setup_logging=scan_params['setup_logging']
+                    )
+                    results['modules']['web_analysis'] = module_result
+                
+                completed_modules += 1
+                update_progress(module_name, completed_modules, "completed")
+                logger.info(f"Job {job.job_id}: Completed {module_name} ({completed_modules}/{total_modules})")
+                
+            except Exception as module_error:
+                logger.error(f"Job {job.job_id}: Module {module_name} failed: {str(module_error)}")
+                with job_lock:
+                    job.verbose_logs.append(f"[{datetime.now().strftime('%H:%M:%S')}] ERROR in {module_name}: {str(module_error)}")
+                
+                # Store error result for the module
+                results['modules'][module_name] = {
+                    'success': False,
+                    'error': str(module_error)
+                }
+                completed_modules += 1  # Still count as processed
         
-        elif module_name == 'service_discovery':
-            # Extract scan_mode from module_params to avoid duplicate parameter
-            module_params_copy = module_params.copy()
-            scan_mode = module_params_copy.pop('scan_mode', 'quick')
-            module_result = self.service_discovery(scan_mode=scan_mode, **module_params_copy)
+        # Compile summary (similar to unified scanner)
+        from modules.main import compile_unified_summary
+        results['summary'] = compile_unified_summary(results)
+        results['execution_time'] = (datetime.now() - job.started_at).total_seconds()
         
-        elif module_name == 'web_crawl':
-            # Extract parameters to avoid duplicates
-            module_params_copy = module_params.copy()
-            crawl_level = module_params_copy.pop('crawl_level', 'smart')
-            wordlist_path = module_params_copy.pop('wordlist_path', None)
-            module_result = self.web_crawl(crawl_level=crawl_level, wordlist_path=wordlist_path, **module_params_copy)
+        # Job completed successfully
+        with job_lock:
+            job.status = JobStatus.COMPLETED
+            job.completed_at = datetime.now()
+            job.results = results
+            job.current_module = None
+            job.progress = {
+                'current_module': 'completed',
+                'completed_modules': total_modules,
+                'total_modules': total_modules,
+                'percentage': 100
+            }
+            job.verbose_logs.append(f"[{job.completed_at.strftime('%H:%M:%S')}] Scan completed successfully")
         
-        elif module_name == 'web_fingerprinting':
-            module_result = self.web_fingerprinting()
+        logger.info(f"Job {job.job_id}: Completed successfully")
         
-        elif module_name == 'directory_bruteforce':
-            wordlist_path = module_params.get('wordlist_path')
-            extensions = module_params.get('extensions', None)
-            recursive = module_params.get('recursive', False)
-            depth = module_params.get('depth', 2)
-            max_urls = module_params.get('max_urls')
-            module_result = self.directory_bruteforce(
-                wordlist_path=wordlist_path, 
-                extensions=extensions, 
-                recursive=recursive, 
-                depth=depth,
-                max_urls=max_urls,
-                **{k: v for k, v in module_params.items() 
-                   if k not in ['wordlist_path', 'extensions', 'recursive', 'depth', 'max_urls']}
-            )
+    except Exception as e:
+        error_msg = f"Scan failed: {str(e)}"
+        logger.error(f"Job {job.job_id}: {error_msg}")
+        logger.error(f"Job {job.job_id}: Traceback: {traceback.format_exc()}")
         
-        elif module_name == 'api_discovery':
-            custom_paths = module_params.get('custom_paths', None)
-            wordlist_path = module_params.get('wordlist_path', None)
-            max_endpoints = module_params.get('max_endpoints', 500)
-            module_result = self.api_discovery(
-                custom_paths=custom_paths, 
-                wordlist_path=wordlist_path, 
-                max_endpoints=max_endpoints,
-                **{k: v for k, v in module_params.items() 
-                   if k not in ['custom_paths', 'wordlist_path', 'max_endpoints']}
-            )
-        
-        elif module_name == 'cloud_detection':
-            common_buckets_patterns = module_params.get('common_buckets_patterns', None)
-            cdn_indicators = module_params.get('cdn_indicators', None)
-            module_result = self.cloud_detection(
-                common_buckets_patterns=common_buckets_patterns, 
-                cdn_indicators=cdn_indicators,
-                **{k: v for k, v in module_params.items() 
-                   if k not in ['common_buckets_patterns', 'cdn_indicators']}
-            )
-        
-        else:
-            logging.warning(f"Unknown module name: {module_name}")
-            return {"error": f"Unknown module name: {module_name}"}
-        
-        # Save partial results to the output directory
-        partial_report_path = os.path.join(self.output_dir, f"{module_name}_report.json")
-        with open(partial_report_path, 'w') as f:
-            json.dump(module_result, f, indent=4)
-        
-        return module_result
+        with job_lock:
+            job.status = JobStatus.FAILED
+            job.completed_at = datetime.now()
+            job.error = error_msg
+            job.verbose_logs.append(f"[{job.completed_at.strftime('%H:%M:%S')}] ERROR: {error_msg}")
 
-if __name__ == "__main__":
-    import argparse
+
+@app.route('/api/scan', methods=['POST'])
+def submit_scan():
+    """
+    Submit a new scan job
     
-    parser = argparse.ArgumentParser(description="Comprehensive Domain Reconnaissance Tool")
-    parser.add_argument("domain", help="Domain to investigate")
+    Expected JSON body:
+    {
+        "domain": "example.com",  # Required
+        "enabled_modules": ["domain_enumeration", "service_discovery"],  # Optional
+        "verbose": true,  # Optional
+        "scan_mode": "smart",  # Optional
+        "bypass_cdn": true,  # Optional
+        ... other parameters
+    }
     
-    # Mode selection (pipeline or single module)
-    parser.add_argument("--mode", choices=['pipeline', 'module'], default='pipeline',
-                       help="Run mode: 'pipeline' for full scan, 'module' for individual module")
-    parser.add_argument("--module", choices=[
-                         'subdomain_discovery', 'dns_enumeration', 'service_discovery',
-                         'web_crawl', 'web_fingerprinting', 'directory_bruteforce',
-                         'api_discovery', 'cloud_detection'
-                       ], help="Module to run when in 'module' mode")
-    parser.add_argument("--modules", nargs='+', help="Specific modules to run in pipeline mode")
+    Returns:
+    {
+        "job_id": "uuid",
+        "status": "pending",
+        "message": "Job submitted successfully"
+    }
+    """
     
-    # Scan mode arguments
-    scan_group = parser.add_argument_group('Port Scanning Options')
-    scan_group.add_argument("--scan-mode", choices=['quick', 'smart', 'deep'], 
-                           default='quick', help="Port scanning mode: 'quick' (common ports), 'smart' (fuzzing), 'deep' (nmap/rustscan)")
+    if not SCANNER_AVAILABLE:
+        return jsonify({
+            'error': 'Scanner module not available',
+            'message': 'The unified scanner could not be imported'
+        }), 500
     
-    # AI provider arguments
-    ai_group = parser.add_argument_group('AI Integration Options')
-    ai_group.add_argument("--gemini-key", help="Gemini API key for AI-powered endpoint discovery")
-    ai_group.add_argument("--openai-key", help="OpenAI API key for AI-powered endpoint discovery")
-    ai_group.add_argument("--anthropic-key", help="Anthropic Claude API key for AI-powered endpoint discovery")
-    ai_group.add_argument("--async", dest="use_async", action="store_true", help="Use asynchronous processing for AI endpoint generation")
-    ai_group.add_argument("--cache-size", type=int, default=128, help="Size of AI response cache")
-    
-    # Module-specific arguments
-    module_group = parser.add_argument_group('Module-Specific Options')
-    module_group.add_argument("--wordlist-path", help="Path to wordlist file for subdomain discovery or directory bruteforce")
-    module_group.add_argument("--crawl-level", choices=['quick', 'smart', 'deep'], 
-                             default='smart', help="Level of web crawling")
-    module_group.add_argument("--recursive", action="store_true", help="Enable recursive directory scanning")
-    module_group.add_argument("--max-depth", type=int, default=2, help="Maximum recursion depth for directory bruteforce")
-    module_group.add_argument("--max-endpoints", type=int, default=500, help="Maximum number of API endpoints to test")
-    module_group.add_argument("--extensions", nargs='+', help="File extensions to check in directory bruteforce")
-    
-    # Advanced configuration
-    advanced_group = parser.add_argument_group('Advanced Configuration')
-    advanced_group.add_argument("--config-file", help="Path to JSON configuration file for advanced settings")
-    
-    args = parser.parse_args()
-    
-    # Load advanced configuration from file if provided
-    module_config = None
-    if args.config_file and os.path.exists(args.config_file):
-        try:
-            with open(args.config_file, 'r') as f:
-                module_config = json.load(f)
-            print(f"📋 Loaded configuration from {args.config_file}")
-        except json.JSONDecodeError:
-            print(f"⚠️ Error parsing configuration file. Using default settings.")
-    
-    print(f"🎯 Starting reconnaissance for {args.domain}")
-    
-    if args.mode == 'pipeline':
-        print(f"🔄 Running pipeline mode")
-        print(f"📊 Port scan mode: {args.scan_mode.upper()}")
-        if args.scan_mode == 'quick':
-            print("   - Scanning common ports only (fastest)")
-        elif args.scan_mode == 'smart':
-            print("   - Intelligent fuzzing and extended port discovery")
-        elif args.scan_mode == 'deep':
-            print("   - Comprehensive scan using external tools (nmap/rustscan)")
+    try:
+        # Get JSON data
+        if not request.is_json:
+            return jsonify({'error': 'Content-Type must be application/json'}), 400
         
-        # Initialize and run pipeline
-        recon = DomainRecon(
-            args.domain, 
-            gemini_api_key=args.gemini_key,
-            openai_api_key=args.openai_key,
-            anthropic_api_key=args.anthropic_key,
-            use_async=args.use_async,
-            module_config=module_config
-        )
+        data = request.get_json()
+        if not data:
+            return jsonify({'error': 'Empty JSON body'}), 400
         
-        if args.modules:
-            print(f"🧩 Running selected modules: {', '.join(args.modules)}")
-            recon.run_all(args.scan_mode, modules_to_run=args.modules)
-        else:
-            print(f"🧩 Running all modules")
-            recon.run_all(args.scan_mode)
+        # Validate parameters
+        is_valid, error_message = validate_scan_parameters(data)
+        if not is_valid:
+            return jsonify({'error': error_message}), 400
+        
+        # Generate unique job ID
+        job_id = str(uuid.uuid4())
+        
+        # Create job
+        job = ScanJob(job_id, data)
+        
+        # Store job
+        with job_lock:
+            jobs[job_id] = job
+        
+        # Start job in background thread
+        thread = threading.Thread(target=execute_scan_job, args=(job,))
+        thread.daemon = True
+        thread.start()
+        
+        logger.info(f"Job {job_id}: Submitted with domain {data['domain']}")
+        
+        return jsonify({
+            'job_id': job_id,
+            'status': job.status,
+            'message': 'Job submitted successfully',
+            'created_at': job.created_at.isoformat(),
+            'parameters': {
+                'domain': data['domain'],
+                'enabled_modules': data.get('enabled_modules', ['domain_enumeration', 'service_discovery', 'web_analysis']),
+                'scan_mode': data.get('scan_mode', 'smart')
+            }
+        }), 202
+        
+    except Exception as e:
+        logger.error(f"Error submitting scan job: {e}")
+        logger.error(f"Traceback: {traceback.format_exc()}")
+        return jsonify({
+            'error': 'Internal server error',
+            'message': str(e)
+        }), 500
+
+
+@app.route('/api/status/<job_id>', methods=['GET'])
+def check_status(job_id: str):
+    """
+    Check job status and get results
+    
+    Returns:
+    {
+        "job_id": "uuid",
+        "status": "running|completed|failed|pending",
+        "current_module": "domain_enumeration",  # If running
+        "progress": {...},  # Progress information
+        "results": {...},  # If completed
+        "error": "...",  # If failed
+        "verbose_logs": [...]  # Recent log entries
+    }
+    """
+    
+    try:
+        # Check if job exists
+        with job_lock:
+            if job_id not in jobs:
+                return jsonify({
+                    'error': 'Job not found',
+                    'message': f'Job ID {job_id} does not exist'
+                }), 404
             
-    elif args.mode == 'module':
-        if not args.module:
-            parser.error("--module is required when using --mode=module")
+            job = jobs[job_id]
+            job_data = job.to_dict()
         
-        print(f"🧩 Running individual module: {args.module}")
+        # Include additional metadata
+        response = {
+            **job_data,
+            'message': {
+                JobStatus.PENDING: 'Job is waiting to start',
+                JobStatus.RUNNING: f'Job is running - {job.current_module or "initializing"}',
+                JobStatus.COMPLETED: 'Job completed successfully',
+                JobStatus.FAILED: 'Job failed'
+            }.get(job.status, 'Unknown status')
+        }
         
-        # Prepare module-specific parameters
-        module_params = {}
+        # Add execution time if available
+        if job.started_at:
+            if job.completed_at:
+                execution_time = (job.completed_at - job.started_at).total_seconds()
+                response['execution_time_seconds'] = execution_time
+            else:
+                running_time = (datetime.now() - job.started_at).total_seconds()
+                response['running_time_seconds'] = running_time
         
-        if args.module == 'subdomain_discovery':
-            if args.wordlist_path:
-                module_params['wordlist'] = args.wordlist_path
-                
-        elif args.module == 'service_discovery':
-            module_params['scan_mode'] = args.scan_mode
-            
-        elif args.module == 'web_crawl':
-            module_params['crawl_level'] = args.crawl_level
-            if args.wordlist_path:
-                module_params['wordlist_path'] = args.wordlist_path
-                
-        elif args.module == 'directory_bruteforce':
-            if args.wordlist_path:
-                module_params['wordlist_path'] = args.wordlist_path
-            module_params['recursive'] = args.recursive
-            module_params['depth'] = args.max_depth
-            if args.extensions:
-                module_params['extensions'] = args.extensions
-                
-        elif args.module == 'api_discovery':
-            if args.wordlist_path:
-                module_params['wordlist_path'] = args.wordlist_path
-            module_params['max_endpoints'] = args.max_endpoints
+        logger.info(f"Job {job_id}: Status checked - {job.status}")
+        return jsonify(response), 200
         
-        # Initialize and run individual module
-        recon = DomainRecon(
-            args.domain, 
-            gemini_api_key=args.gemini_key,
-            openai_api_key=args.openai_key,
-            anthropic_api_key=args.anthropic_key,
-            use_async=args.use_async,
-            module_config=module_config
-        )
+    except Exception as e:
+        logger.error(f"Error checking job status {job_id}: {e}")
+        logger.error(f"Traceback: {traceback.format_exc()}")
+        return jsonify({
+            'error': 'Internal server error',
+            'message': str(e)
+        }), 500
+
+
+@app.route('/api/jobs', methods=['GET'])
+def list_jobs():
+    """
+    List all jobs (for debugging/monitoring)
+    
+    Returns:
+    {
+        "jobs": [
+            {
+                "job_id": "uuid",
+                "status": "completed",
+                "domain": "example.com",
+                "created_at": "2024-01-01T12:00:00"
+            }
+        ],
+        "total_jobs": 5
+    }
+    """
+    
+    try:
+        with job_lock:
+            job_list = []
+            for job_id, job in jobs.items():
+                job_list.append({
+                    'job_id': job_id,
+                    'status': job.status,
+                    'domain': job.parameters.get('domain'),
+                    'created_at': job.created_at.isoformat(),
+                    'started_at': job.started_at.isoformat() if job.started_at else None,
+                    'completed_at': job.completed_at.isoformat() if job.completed_at else None
+                })
         
-        # Run the module and display results
-        result = recon.run_module(args.module, **module_params)
-        print(f"✅ Module execution complete. Results saved to {recon.output_dir}/{args.module}_report.json")
+        # Sort by creation time (newest first)
+        job_list.sort(key=lambda x: x['created_at'], reverse=True)
+        
+        return jsonify({
+            'jobs': job_list,
+            'total_jobs': len(job_list)
+        }), 200
+        
+    except Exception as e:
+        logger.error(f"Error listing jobs: {e}")
+        return jsonify({
+            'error': 'Internal server error',
+            'message': str(e)
+        }), 500
+
+
+@app.route('/api/health', methods=['GET'])
+def health_check():
+    """
+    Health check endpoint
+    
+    Returns:
+    {
+        "status": "healthy",
+        "scanner_available": true,
+        "timestamp": "2024-01-01T12:00:00Z"
+    }
+    """
+    
+    return jsonify({
+        'status': 'healthy',
+        'scanner_available': SCANNER_AVAILABLE,
+        'timestamp': datetime.now().isoformat(),
+        'version': '1.0.0'
+    }), 200
+
+
+@app.errorhandler(404)
+def not_found(error):
+    """Handle 404 errors"""
+    return jsonify({
+        'error': 'Not found',
+        'message': 'The requested endpoint does not exist'
+    }), 404
+
+
+@app.errorhandler(500)
+def internal_error(error):
+    """Handle 500 errors"""
+    return jsonify({
+        'error': 'Internal server error',
+        'message': 'An unexpected error occurred'
+    }), 500
+
+
+def cleanup_old_jobs():
+    """Clean up old completed jobs (run periodically)"""
+    current_time = datetime.now()
+    jobs_to_remove = []
+    
+    with job_lock:
+        for job_id, job in jobs.items():
+            # Remove jobs older than 24 hours
+            if job.completed_at and (current_time - job.completed_at).total_seconds() > 86400:
+                jobs_to_remove.append(job_id)
+        
+        for job_id in jobs_to_remove:
+            del jobs[job_id]
+            logger.info(f"Cleaned up old job: {job_id}")
+
+
+if __name__ == '__main__':
+    print("="*60)
+    print("UNIFIED WEB DOMAIN SCANNER - FLASK SERVER")
+    print("="*60)
+    print(f"Scanner Available: {SCANNER_AVAILABLE}")
+    print(f"Server Starting: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("="*60)
+    print("\nAPI Endpoints:")
+    print("  POST /api/scan          - Submit new scan job")
+    print("  GET  /api/status/<id>   - Check job status")
+    print("  GET  /api/jobs          - List all jobs")
+    print("  GET  /api/health        - Health check")
+    print("\nExample Usage:")
+    print('  curl -X POST http://localhost:5000/api/scan \\')
+    print('       -H "Content-Type: application/json" \\')
+    print('       -d \'{"domain": "example.com", "verbose": true}\'')
+    print("="*60)
+    
+    # Start periodic cleanup (every hour)
+    cleanup_thread = threading.Thread(target=lambda: [time.sleep(3600) or cleanup_old_jobs() for _ in iter(int, 1)])
+    cleanup_thread.daemon = True
+    cleanup_thread.start()
+    
+    # Start Flask server
+    app.run(
+        host='0.0.0.0',
+        port=5000,
+        debug=True,
+        threaded=True
+    )
