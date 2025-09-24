@@ -1,151 +1,151 @@
 # Service Identification Module
 
 ## Overview
-The Service Identification module provides advanced service identification and fingerprinting capabilities including banner grabbing, protocol-specific probing, and comprehensive service analysis.
+The Service Identification module provides comprehensive service identification and fingerprinting capabilities by analyzing open ports, grabbing service banners, and performing protocol-specific probing. It integrates with port scanner results to identify services, versions, and security configurations.
 
 ## Features
-- **Advanced Banner Grabbing**: Multi-protocol banner collection
-- **Service Fingerprinting**: Pattern-based service identification
-- **Protocol Probing**: Protocol-specific connection attempts
-- **SSL/TLS Analysis**: Certificate and cipher suite detection
-- **Web Technology Detection**: Framework and technology identification
-- **Version Detection**: Software version extraction from banners
+- **Banner Grabbing**: Automated banner collection from open ports with protocol-specific probes
+- **Service Fingerprinting**: Pattern-based service identification using banner analysis
+- **SSL/TLS Detection**: Automatic SSL/TLS service detection and certificate analysis
+- **HTTP Service Analysis**: Web server identification with status code and header analysis
+- **Version Extraction**: Software version detection from service banners
+- **Port Scanner Integration**: Seamless integration with existing port scanning results
 
-## Identification Methods
+## Installation
 
-### Port-Based Identification
-- Uses standard port-to-service mappings
-- Provides baseline service identification
-- Fast and reliable for standard services
+### Prerequisites
+- Python 3.6 or higher
+- Standard Python libraries (socket, ssl, urllib, json, logging)
+- Network connectivity to target systems
+- Appropriate permissions for network connections
 
-### Banner Analysis
-- Analyzes service banners for detailed information
-- Pattern matching against known service signatures
-- Version and product information extraction
-
-### Protocol Probing
-- HTTP/HTTPS specific probing
-- SSH version detection
-- FTP welcome message analysis
-- SMTP greeting collection
-
-### SSL/TLS Analysis
-- Certificate information extraction
-- Cipher suite identification
-- Protocol version detection
-- Security configuration assessment
-
-## Main Classes
-
-### ServiceIdentifier
-Primary class for comprehensive service identification.
-
-**Key Methods:**
-- `identify_service(ip, port, banner)`: Complete service identification
-- `grab_banner(ip, port, timeout)`: Banner grabbing functionality
-
-### BannerGrabber
-Specialized class for banner collection operations.
-
-**Key Methods:**
-- `grab_banners(ip, ports)`: Multi-port banner grabbing
-- `get_errors()`: Error information retrieval
-
-## Service Detection Capabilities
-
-### Web Services
-- Server software identification (nginx, Apache, IIS)
-- Framework detection (WordPress, Joomla, Drupal)
-- Technology stack analysis (PHP, ASP.NET, Node.js)
-- JavaScript library identification
-
-### Database Services
-- MySQL, PostgreSQL, MSSQL detection
-- MongoDB and Redis identification
-- Version information extraction
-- Connection security analysis
-
-### Remote Access Services
-- SSH version and configuration
-- RDP service detection
-- VNC identification
-- Telnet service analysis
+### Installation Steps
+1. Clone or download the web-domain-scanner repository
+2. Navigate to the service identification module directory
+3. No additional package installation required (uses built-in libraries)
+4. Ensure proper network permissions for scanning activities
 
 ## Configuration
-Uses `ServiceDiscoveryConfig` for:
-- Banner grabbing timeouts
-- Maximum banner size limits
-- Protocol-specific probe settings
-- SSL/TLS analysis parameters
 
-## Usage Example
+### Configuration Options
+- **Timeout**: Connection timeout for banner grabbing (default: 5 seconds)
+- **SSL Context**: Unverified SSL context for HTTPS probing
+- **Protocol Probes**: Custom probe data for different services
+- **Common Ports**: Pre-defined service-to-port mappings
+
+### Service Detection Methods
+
+#### Port-Based Identification
+- Uses standard port-to-service mappings for 17 common services
+- Provides baseline service identification for FTP, SSH, HTTP, HTTPS, databases, etc.
+- Fast and reliable for standard services on default ports
+
+#### Banner Analysis
+- Analyzes service banners using pattern matching
+- Identifies services like SSH, HTTP, FTP, SMTP, MySQL, PostgreSQL, Redis
+- Extracts version information using regex patterns
+- Handles encoding errors gracefully
+
+#### SSL/TLS Detection
+- Automatic SSL/TLS service detection for common encrypted ports
+- Certificate and cipher information extraction
+- Support for both standard SSL ports and SSL-enabled services on custom ports
+
+#### HTTP Service Analysis
+- HTTP/HTTPS specific probing with HEAD requests
+- Server header identification and content-type detection
+- Status code analysis and response handling
+
+## Usage
+
+### Basic Usage
+```bash
+# Identify services on common ports
+python service_identification.py example.com
+
+# Identify services on specific ports
+python service_identification.py 192.168.1.1 -p 80,443,22
+
+# Identify services with custom timeout
+python service_identification.py target.com -p 1-1000 -t 10
+```
+
+### Advanced Usage
+```bash
+# Verbose output with detailed logging
+python service_identification.py example.com -p 80,443,22,21,25 --verbose
+
+# Save results to JSON file
+python service_identification.py target.com -p 1-100 --output results.json
+
+# Integration with port scanner results (programmatic)
+python service_identification.py example.com -p 80,443 -v -o detailed_scan.json
+```
 
 ### Programmatic Usage
 ```python
-from service_discovery.service_identification import ServiceIdentifier
-from service_discovery.config import ServiceDiscoveryConfig
+from service_identification import SimpleServiceIdentifier, identify_services_from_scanner
 
-# Initialize identifier
-config = ServiceDiscoveryConfig()
-identifier = ServiceIdentifier(config)
+# Direct service identification
+identifier = SimpleServiceIdentifier(timeout=5)
+results = identifier.identify_services("example.com", [80, 443, 22])
 
-# Identify service on specific port
-result = identifier.identify_service("192.168.1.1", 80)
+# Integration with port scanner
+port_scan_results = {
+    'method': 'quick',
+    'open_ports': [22, 80, 443, 3306],
+    'output': "Nmap scan results..."
+}
 
-# Access identification results
-service = result.get('service')
-version = result.get('version')
-confidence = result.get('confidence')
+service_results = identify_services_from_scanner("example.com", port_scan_results)
+print(service_results)
 ```
 
-### Standalone Command Line Usage
-The module can be run independently for service identification:
+## Methods
 
-```bash
-# Basic service identification
-python service_identification.py example.com --port 80
+### identify_services(target, ports)
+Identifies services on multiple ports, returning comprehensive information including banners, versions, and SSL status.
 
-# Force SSL analysis
-python service_identification.py 192.168.1.1 --port 443 --ssl
+### identify_services_from_scanner(target, scan_results)
+Integrates with port scanner results to perform service identification on discovered open ports.
 
-# Banner-only mode for faster results
-python service_identification.py example.com --port 22 --banner-only
+### _grab_banner(target, port)
+Performs banner grabbing with protocol-specific probes for enhanced service detection.
 
-# Verbose output with custom timeout
-python service_identification.py target.com --port 80 --timeout 10 --verbose
+## Output
 
-# Save detailed results to file
-python service_identification.py example.com --port 443 --ssl --output results.json
-```
-
-### Command Line Options
-- `target`: Target IP address or hostname
-- `--port`: Port number to identify service on (required)
-- `--ssl`: Force SSL/TLS analysis
-- `--banner-only`: Only grab banner, skip advanced identification
-- `--timeout`: Connection timeout in seconds (default: 5)
-- `--output`: Save results to JSON file
-- `--verbose`: Enable verbose logging
-
-### Output Information
-The standalone mode provides detailed service information including:
-- Service name and confidence level
+### Output Format
+Returns structured JSON data containing:
+- Target information and scan metadata
+- Service identification results per port
 - Banner information and version detection
-- Protocol-specific details (HTTP headers, SSH version, etc.)
-- SSL/TLS certificate information (when applicable)
-- Detected technologies for web services
-- Security notes and recommendations
+- SSL/TLS status and certificate details
+- HTTP service information (headers, status codes)
+- Summary statistics and service distribution
 
-## Error Handling
-Comprehensive error handling for:
-- Connection failures
-- Timeout conditions
-- SSL/TLS handshake errors
-- Malformed banner responses
-- Protocol-specific errors
+### Results Interpretation
+- **Service Name**: Identified service type (SSH, HTTP, MySQL, etc.)
+- **Banner**: Raw service banner or greeting message
+- **Version**: Extracted version information when available
+- **SSL Status**: Whether the service supports SSL/TLS encryption
+- **Protocol Info**: Additional protocol-specific details (HTTP headers, SSL certificates)
+- **Error Messages**: Connection or identification error details
 
-## Dependencies
-- Python standard library (socket, ssl, re)
-- Service discovery base utilities
-- Configuration module
-- Optional: requests library for HTTP probing
+## Examples
+
+### Example 1: Basic Service Identification
+```bash
+python service_identification.py scanme.nmap.org -p 22,80,443
+```
+
+### Example 2: Comprehensive Service Analysis
+```bash
+python service_identification.py 192.168.1.100 -p 21,22,23,25,53,80,110,143,443,993,995 -v -o scan_results.json
+```
+
+### Example 3: Integration with Port Scanner
+```bash
+# First run port scanner, then identify services
+python ../port_scanning/port_scanner.py example.com quick
+python service_identification.py example.com -p 80,443,22 -v
+```
