@@ -1,0 +1,1048 @@
+{
+  "target_domain": "stanford.edu",
+  "scan_timestamp": "2025-10-01T21:16:08.922256",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "stanford.edu",
+      "timestamp": "2025-10-01T21:16:08.922753",
+      "modules": {
+        "passive": {
+          "domain": "stanford.edu",
+          "timestamp": 1759333625.3907857,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 56.46080923080444,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "stanford.edu",
+          "timestamp": 1759333628.2369206,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "171.67.215.200"
+            ],
+            "AAAA": [
+              "2607:f6d0:0:925a::ab43:d7c8"
+            ],
+            "MX": [
+              "mxb-00000d07.gslb.pphosted.com",
+              "mxa-00000d07.gslb.pphosted.com"
+            ],
+            "NS": [
+              "ns7.dnsmadeeasy.com",
+              "ns6.dnsmadeeasy.com",
+              "avallone.stanford.edu",
+              "ns5.dnsmadeeasy.com",
+              "argus.stanford.edu",
+              "atalante.stanford.edu"
+            ],
+            "TXT": [
+              "e2ma-verification=c00eb",
+              "e2ma-verification=w4lgb",
+              "pardot604641=4bbe27c356474886816017d9b5aea8f21f2d3c3b651096960379a441342c51fb",
+              "airtable-verification=13ac52fb202035dbad35b0ab24e598b4",
+              "airtable-verification=7cdd67720483f4801fc65d998968476e",
+              "e2ma-verification=7x8eb",
+              "airtable-verification=b8f5e3c2468d582f896b4a8f0839dd8a",
+              "e2ma-verification=ey8eb",
+              "v=spf1 ip4:171.67.219.64/27 ip4:171.67.224.0/28 ip4:171.67.43.137 ip4:171.67.43.138 ip4:171.67.43.139 ip4:171.67.43.140 ip4:171.67.43.141  \" \"include:_spf.google.com include:_spf.qualtrics.com include:icpbounce.com include:spf.protection.outlook.com ip4:1\" \"48.163.149.245 ip4:148.163.153.235  ip4:148.163.135.119 ip4:148.163.139.119 ip4:67.231.149.169 ip4:67.231.157.125 ip4:67.231.152.67 ip4:208.84.65.155 ?all",
+              "google-site-verification=p4uNfSaD7rr13xbA1Q1yW6I0DckXOv1ujjc0FQGjGEM",
+              "e2ma-verification=m0ggb",
+              "htBOpqv5il135Xfa09GRiVHY09Xb9qXNj6o5lAfj8gNoBvyyGu5rSb4gvSj9lCUwY1NF0+wL2BO1ZDIcGIpADQ==",
+              "atlassian-domain-verification=C9ho3V/RWWifTCqh8sF3L0PI7jVZWAL9dCxVL1gzJvr6SYJCKBQ8nCX38z50vRQ6",
+              "e2ma-verification=diffb",
+              "e2ma-verification=n4agb",
+              "airtable-verification=6ae90a183923b17d9f1c76e90e31b4e4",
+              "e2ma-verification=d1ueb",
+              "brevo-code:09357c2630559d902817770f34dbf0b1",
+              "google-site-verification=1HuKdQQTxv1R8v4dxihLzji-mH23d2KchIeaxsljN6Q",
+              "6ce2e56c0743c0db12fbb8d03c7359",
+              "e2ma-verification=4pjbb",
+              "e2ma-verification=nw5fb",
+              "onetrust-domain-verification=2983144927f6450ea12b5557b2080dae",
+              "airtable-verification=bf58597802ed6d32ee6bcb86a575a186",
+              "google-site-verification=bamHrkKBqpOQ8ouXQe0uFSuvVUFTB_TLju7gSCNq_Qw",
+              "adobe-idp-site-verification=4c872117a60d5c3b7d132914730b3f3e2189c67a217450a2f3bc18a683a98f78",
+              "stripe-verification=984c5a4eb98ae34bbaf60c12403c1d8889d4ad02b2dc672232a89b21f905bc20",
+              "jamf-site-verification=YL4ixnZvLipoTrfg2RUwsg",
+              "e2ma-verification=98lgb",
+              "e2ma-verification=vnjbb",
+              "e2ma-verification=qmrgb",
+              "airtable-verification=94cdd68161a8e41e92cc5dd7abde8eae",
+              "blitz=mu-0e24b17b-23dce65a-c0b14b75-e742cd66",
+              "SFMC-6lLIlwvbCaTM80Tq1R1zsnKi9CqM3R6ZPPvoE6sK",
+              "e2ma-verification=vaogb",
+              "airtable-verification=22e64691170fba22a576b309bf587b87",
+              "e2ma-verification=gu1ab",
+              "e2ma-verification=q57fb",
+              "autodesk-domain-verification=pXMpLf7JP-86kN9Zt5jI",
+              "sending_domain1097582=7dcf00de01f5fc8307de59194e0a8b462cbfa2b5e32d35bfc9e5269b93dca7a6",
+              "pexip-ms-tenant-domain-verification=3f0ac106-a365-4d3b-9fb9-2a124f04d0b6",
+              "airtable-verification=6deae5f718f685ac8c8c3c37418aafcf",
+              "airtable-verification=0a746053a028476f6d1671cbc9016585",
+              "google-site-verification=kyvps-t3mjXwz5HBQa7oO40qvObbV8z_B1IoySwe-GY",
+              "e2ma-verification=8uqeb",
+              "google-site-verification=C6QZVcR4K-mSTqLE_9uVC7twZdys_BRJLLVFwgGIG3E",
+              "e2ma-verification=5g5eb",
+              "e2ma-verification=zv1eb",
+              "h1-domain-verification=aV4vQvSRHvQxGhvdz29L2ozsKDTReL7qKDgdjhPgzA5E7UC6",
+              "e2ma-verification=nbxfb-remove",
+              "e2ma-verification=b00eb",
+              "mgverify=c7c142ba8b95199619ad561a75f165ad285c322b3892f9621c083b0293fd0da0",
+              "e2ma-verification=8z0eb",
+              "e2ma-verification=avqab",
+              "e2ma-verification=k4dgb",
+              "google-site-verification=zwyVSZ2CSXXUndqTu5itEDFvp58bOFVBPAbtrIondBU",
+              "e2ma-verification=7z0eb",
+              "e2ma-verification=v4lgb",
+              "amazonses:7IodrIPH40wdjQxliaAOOqSX8rn4q7lSiSvuFZPwUnY=",
+              "detectify-verification=bc8e96f8fbf64ced057d0f44eff83381",
+              "e2ma-verification=dy8eb",
+              "e2ma-verification=4x8eb",
+              "e2ma-verification=fq1fb-remove",
+              "e2ma-verification=a00eb",
+              "google-site-verification=n-cl_O68vbC-_UmufTZMmLLQb9wKnuUo-4FPom4m3iA",
+              "e2ma-verification=6uqeb",
+              "e2ma-verification=cvnbb",
+              "onetrust-domain-verification=1e6b4a2989b7412499dca24f8188396b",
+              "Sendinblue-code:bde1f306529e82fd2ccf9857fc09aa98",
+              "e2ma-verification=fq1fb",
+              "pardot884873=1b7cebffc22a290049b6710c0620e741a3f4d3a720196287a95816f9afaa7695",
+              "google-site-verification=hIsj3ke1PYviQQm1ig-VMAlmA07GWc5vYeh2qJT56OA",
+              "e2ma-verification=nbxfb",
+              "wiz-domain-verification=2957e22f41cc73b19d44177ecf39bd1a1926a1e6362011b8f83e65aab5d6ef1a",
+              "notion-domain-verification=zGjaM9fWZoGRyOnvaxST0hfeCzfxvxzJnKMTN69sYJw",
+              "bwZknJMLNV1XuaJAyUmKlAFrdZo+p5yDlTNACmDUWhgtyihfJc8oWMnK7hWLreN+ozU3mX91yHHzZx0adJPPPg=="
+            ],
+            "SOA": [
+              "argus.stanford.edu. hostmaster.stanford.edu. 2025155480 1200 600 1296000 1800"
+            ]
+          },
+          "subdomains": [
+            "argus.stanford.edu",
+            "atalante.stanford.edu",
+            "avallone.stanford.edu"
+          ],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 ip4:171.67.219.64/27 ip4:171.67.224.0/28 ip4:171.67.43.137 ip4:171.67.43.138 ip4:171.67.43.139 ip4:171.67.43.140 ip4:171.67.43.141  \" \"include:_spf.google.com include:_spf.qualtrics.com include:icpbounce.com include:spf.protection.outlook.com ip4:1\" \"48.163.149.245 ip4:148.163.153.235  ip4:148.163.135.119 ip4:148.163.139.119 ip4:67.231.149.169 ip4:67.231.157.125 ip4:67.231.152.67 ip4:208.84.65.155 ?all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=p4uNfSaD7rr13xbA1Q1yW6I0DckXOv1ujjc0FQGjGEM",
+                "google-site-verification=1HuKdQQTxv1R8v4dxihLzji-mH23d2KchIeaxsljN6Q",
+                "google-site-verification=bamHrkKBqpOQ8ouXQe0uFSuvVUFTB_TLju7gSCNq_Qw",
+                "google-site-verification=kyvps-t3mjXwz5HBQa7oO40qvObbV8z_B1IoySwe-GY",
+                "google-site-verification=C6QZVcR4K-mSTqLE_9uVC7twZdys_BRJLLVFwgGIG3E",
+                "google-site-verification=zwyVSZ2CSXXUndqTu5itEDFvp58bOFVBPAbtrIondBU",
+                "google-site-verification=n-cl_O68vbC-_UmufTZMmLLQb9wKnuUo-4FPom4m3iA",
+                "google-site-verification=hIsj3ke1PYviQQm1ig-VMAlmA07GWc5vYeh2qJT56OA"
+              ],
+              "other": [
+                "e2ma-verification=c00eb",
+                "e2ma-verification=w4lgb",
+                "pardot604641=4bbe27c356474886816017d9b5aea8f21f2d3c3b651096960379a441342c51fb",
+                "airtable-verification=13ac52fb202035dbad35b0ab24e598b4",
+                "airtable-verification=7cdd67720483f4801fc65d998968476e",
+                "e2ma-verification=7x8eb",
+                "airtable-verification=b8f5e3c2468d582f896b4a8f0839dd8a",
+                "e2ma-verification=ey8eb",
+                "e2ma-verification=m0ggb",
+                "htBOpqv5il135Xfa09GRiVHY09Xb9qXNj6o5lAfj8gNoBvyyGu5rSb4gvSj9lCUwY1NF0+wL2BO1ZDIcGIpADQ==",
+                "atlassian-domain-verification=C9ho3V/RWWifTCqh8sF3L0PI7jVZWAL9dCxVL1gzJvr6SYJCKBQ8nCX38z50vRQ6",
+                "e2ma-verification=diffb",
+                "e2ma-verification=n4agb",
+                "airtable-verification=6ae90a183923b17d9f1c76e90e31b4e4",
+                "e2ma-verification=d1ueb",
+                "brevo-code:09357c2630559d902817770f34dbf0b1",
+                "6ce2e56c0743c0db12fbb8d03c7359",
+                "e2ma-verification=4pjbb",
+                "e2ma-verification=nw5fb",
+                "onetrust-domain-verification=2983144927f6450ea12b5557b2080dae",
+                "airtable-verification=bf58597802ed6d32ee6bcb86a575a186",
+                "adobe-idp-site-verification=4c872117a60d5c3b7d132914730b3f3e2189c67a217450a2f3bc18a683a98f78",
+                "stripe-verification=984c5a4eb98ae34bbaf60c12403c1d8889d4ad02b2dc672232a89b21f905bc20",
+                "jamf-site-verification=YL4ixnZvLipoTrfg2RUwsg",
+                "e2ma-verification=98lgb",
+                "e2ma-verification=vnjbb",
+                "e2ma-verification=qmrgb",
+                "airtable-verification=94cdd68161a8e41e92cc5dd7abde8eae",
+                "blitz=mu-0e24b17b-23dce65a-c0b14b75-e742cd66",
+                "SFMC-6lLIlwvbCaTM80Tq1R1zsnKi9CqM3R6ZPPvoE6sK",
+                "e2ma-verification=vaogb",
+                "airtable-verification=22e64691170fba22a576b309bf587b87",
+                "e2ma-verification=gu1ab",
+                "e2ma-verification=q57fb",
+                "autodesk-domain-verification=pXMpLf7JP-86kN9Zt5jI",
+                "sending_domain1097582=7dcf00de01f5fc8307de59194e0a8b462cbfa2b5e32d35bfc9e5269b93dca7a6",
+                "pexip-ms-tenant-domain-verification=3f0ac106-a365-4d3b-9fb9-2a124f04d0b6",
+                "airtable-verification=6deae5f718f685ac8c8c3c37418aafcf",
+                "airtable-verification=0a746053a028476f6d1671cbc9016585",
+                "e2ma-verification=8uqeb",
+                "e2ma-verification=5g5eb",
+                "e2ma-verification=zv1eb",
+                "h1-domain-verification=aV4vQvSRHvQxGhvdz29L2ozsKDTReL7qKDgdjhPgzA5E7UC6",
+                "e2ma-verification=nbxfb-remove",
+                "e2ma-verification=b00eb",
+                "mgverify=c7c142ba8b95199619ad561a75f165ad285c322b3892f9621c083b0293fd0da0",
+                "e2ma-verification=8z0eb",
+                "e2ma-verification=avqab",
+                "e2ma-verification=k4dgb",
+                "e2ma-verification=7z0eb",
+                "e2ma-verification=v4lgb",
+                "amazonses:7IodrIPH40wdjQxliaAOOqSX8rn4q7lSiSvuFZPwUnY=",
+                "detectify-verification=bc8e96f8fbf64ced057d0f44eff83381",
+                "e2ma-verification=dy8eb",
+                "e2ma-verification=4x8eb",
+                "e2ma-verification=fq1fb-remove",
+                "e2ma-verification=a00eb",
+                "e2ma-verification=6uqeb",
+                "e2ma-verification=cvnbb",
+                "onetrust-domain-verification=1e6b4a2989b7412499dca24f8188396b",
+                "Sendinblue-code:bde1f306529e82fd2ccf9857fc09aa98",
+                "e2ma-verification=fq1fb",
+                "pardot884873=1b7cebffc22a290049b6710c0620e741a3f4d3a720196287a95816f9afaa7695",
+                "e2ma-verification=nbxfb",
+                "wiz-domain-verification=2957e22f41cc73b19d44177ecf39bd1a1926a1e6362011b8f83e65aab5d6ef1a",
+                "notion-domain-verification=zGjaM9fWZoGRyOnvaxST0hfeCzfxvxzJnKMTN69sYJw",
+                "bwZknJMLNV1XuaJAyUmKlAFrdZo+p5yDlTNACmDUWhgtyihfJc8oWMnK7hWLreN+ozU3mX91yHHzZx0adJPPPg=="
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 2.01953387260437,
+            "total_records": 87,
+            "total_subdomains": 3,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "stanford.edu",
+          "timestamp": 1759333635.6700568,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://stanford.edu": {
+              "url": "http://stanford.edu",
+              "timestamp": 1759333628.4972324,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 143170,
+                "url": "https://www.stanford.edu/",
+                "redirect_chain": [
+                  "http://stanford.edu/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.stanford.edu/",
+                "content_preview": "<!DOCTYPE html>\n<html lang=\"en-US\" prefix=\"og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#\" class=\"no-js\">\n<head>\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n  <meta charset=\"UTF-8\"><scri...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "nginx",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=300",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "public, max-age=604800",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Nginx",
+                  "raw_header": "nginx",
+                  "components": [
+                    "nginx"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Google Tag Manager",
+                  "jQuery Migrate",
+                  "MariaDB",
+                  "MySQL",
+                  "Pantheon",
+                  "PHP",
+                  "WordPress",
+                  "Google Font API",
+                  "Varnish",
+                  "jQuery",
+                  "Nginx"
+                ],
+                "header_detected": [
+                  "Nginx"
+                ],
+                "content_detected": [
+                  "Google Analytics",
+                  "Font Awesome",
+                  "Wordpress",
+                  "Jquery"
+                ],
+                "url_patterns": [
+                  "Google Services"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=300",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 28.57142857142857,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 2.312373161315918,
+                "content_length": 143170,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Nginx"
+                  ],
+                  "programming_language": [
+                    "PHP"
+                  ],
+                  "framework": [],
+                  "cms": [
+                    "WordPress",
+                    "Wordpress"
+                  ],
+                  "javascript_libraries": [
+                    "Jquery",
+                    "jQuery Migrate",
+                    "jQuery"
+                  ],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://www.stanford.edu": {
+              "url": "http://www.stanford.edu",
+              "timestamp": 1759333630.8105588,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 143170,
+                "url": "https://www.stanford.edu/",
+                "redirect_chain": [
+                  "http://www.stanford.edu/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.stanford.edu/",
+                "content_preview": "<!DOCTYPE html>\n<html lang=\"en-US\" prefix=\"og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#\" class=\"no-js\">\n<head>\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n  <meta charset=\"UTF-8\"><scri...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "nginx",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=300",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "public, max-age=604800",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Nginx",
+                  "raw_header": "nginx",
+                  "components": [
+                    "nginx"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Google Tag Manager",
+                  "jQuery Migrate",
+                  "MariaDB",
+                  "MySQL",
+                  "Pantheon",
+                  "PHP",
+                  "WordPress",
+                  "Google Font API",
+                  "Varnish",
+                  "jQuery",
+                  "Nginx"
+                ],
+                "header_detected": [
+                  "Nginx"
+                ],
+                "content_detected": [
+                  "Google Analytics",
+                  "Font Awesome",
+                  "Wordpress",
+                  "Jquery"
+                ],
+                "url_patterns": [
+                  "Google Services"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=300",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 28.57142857142857,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 1.0014278888702393,
+                "content_length": 143170,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Nginx"
+                  ],
+                  "programming_language": [
+                    "PHP"
+                  ],
+                  "framework": [],
+                  "cms": [
+                    "WordPress",
+                    "Wordpress"
+                  ],
+                  "javascript_libraries": [
+                    "Jquery",
+                    "jQuery Migrate",
+                    "jQuery"
+                  ],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.stanford.edu": {
+              "url": "https://www.stanford.edu",
+              "timestamp": 1759333631.8125696,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 143170,
+                "url": "https://www.stanford.edu/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://www.stanford.edu/",
+                "content_preview": "<!DOCTYPE html>\n<html lang=\"en-US\" prefix=\"og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#\" class=\"no-js\">\n<head>\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n  <meta charset=\"UTF-8\"><scri...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "nginx",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=300",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "public, max-age=604800",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Nginx",
+                  "raw_header": "nginx",
+                  "components": [
+                    "nginx"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Google Tag Manager",
+                  "jQuery Migrate",
+                  "MariaDB",
+                  "MySQL",
+                  "Pantheon",
+                  "PHP",
+                  "WordPress",
+                  "Google Font API",
+                  "Varnish",
+                  "jQuery",
+                  "Nginx"
+                ],
+                "header_detected": [
+                  "Nginx"
+                ],
+                "content_detected": [
+                  "Google Analytics",
+                  "Font Awesome",
+                  "Wordpress",
+                  "Jquery"
+                ],
+                "url_patterns": [
+                  "Google Services"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=300",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 28.57142857142857,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 0.6809742450714111,
+                "content_length": 143170,
+                "status_code": 200,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Nginx"
+                  ],
+                  "programming_language": [
+                    "PHP"
+                  ],
+                  "framework": [],
+                  "cms": [
+                    "WordPress",
+                    "Wordpress"
+                  ],
+                  "javascript_libraries": [
+                    "Jquery",
+                    "jQuery Migrate",
+                    "jQuery"
+                  ],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://stanford.edu": {
+              "url": "https://stanford.edu",
+              "timestamp": 1759333632.4939933,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 143170,
+                "url": "https://www.stanford.edu/",
+                "redirect_chain": [
+                  "https://stanford.edu/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.stanford.edu/",
+                "content_preview": "<!DOCTYPE html>\n<html lang=\"en-US\" prefix=\"og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#\" class=\"no-js\">\n<head>\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n  <meta charset=\"UTF-8\"><scri...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "nginx",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=300",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "public, max-age=604800",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Nginx",
+                  "raw_header": "nginx",
+                  "components": [
+                    "nginx"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Google Tag Manager",
+                  "jQuery Migrate",
+                  "MariaDB",
+                  "MySQL",
+                  "Pantheon",
+                  "PHP",
+                  "WordPress",
+                  "Google Font API",
+                  "Varnish",
+                  "jQuery",
+                  "Nginx"
+                ],
+                "header_detected": [
+                  "Nginx"
+                ],
+                "content_detected": [
+                  "Google Analytics",
+                  "Font Awesome",
+                  "Wordpress",
+                  "Jquery"
+                ],
+                "url_patterns": [
+                  "Google Services"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=300",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 28.57142857142857,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 3.169260263442993,
+                "content_length": 143170,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Nginx"
+                  ],
+                  "programming_language": [
+                    "PHP"
+                  ],
+                  "framework": [],
+                  "cms": [
+                    "WordPress",
+                    "Wordpress"
+                  ],
+                  "javascript_libraries": [
+                    "Jquery",
+                    "jQuery Migrate",
+                    "jQuery"
+                  ],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Google Tag Manager",
+              "Jquery",
+              "MariaDB",
+              "jQuery Migrate",
+              "MySQL",
+              "Google Analytics",
+              "Pantheon",
+              "PHP",
+              "WordPress",
+              "Wordpress",
+              "Google Services",
+              "Google Font API",
+              "Font Awesome",
+              "Varnish",
+              "jQuery",
+              "Nginx"
+            ],
+            "security_score_avg": 28.57142857142857,
+            "common_issues": [
+              "X-Content-Type-Options",
+              "Content-Security-Policy",
+              "X-XSS-Protection",
+              "Referrer-Policy",
+              "Permissions-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 7.422462701797485,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 3,
+          "records_found": 87,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 16
+        }
+      },
+      "all_subdomains": [
+        "argus.stanford.edu",
+        "atalante.stanford.edu",
+        "avallone.stanford.edu",
+        "www.stanford.edu"
+      ],
+      "statistics": {
+        "total_subdomains": 4,
+        "unique_subdomains": 4,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 66.75,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 16,
+        "security_issues_found": 5,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "stanford.edu",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 21:17 +0530\nNmap scan report for stanford.edu (171.67.215.200)\nHost is up (0.29s latency).\nOther addresses for stanford.edu (not scanned): 2607:f6d0:0:925a::ab43:d7c8\nrDNS record for 171.67.215.200: web.stanford.edu\nNot shown: 998 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 18.19 seconds\n",
+        "scan_duration": 18.19
+      },
+      "service_results": {
+        "target": "stanford.edu",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 200 OK\r\nDate: Wed, 01 Oct 2025 15:47:34 GMT\r\nServer: Apache\r\nAccept-Ranges: bytes\r\nConnection: close\r\nContent-Type: text/html\r\n\r\n<!DOCTYPE html>\n<!--[if IE 7]> <html lang=\"en\" class=\"ie7\"> <![endif]-->\n<!--[if IE 8]> <html lang=\"en\" class=\"ie8\"> <![endif]-->\n<!--[if IE 9]> <html lang=\"en\" class=\"ie9\"> <![endif]-->\n<!--[if !IE]><!-->\n<html lang=\"en\">\n<!--<![endif]-->\n\n<head>\n<title>Stanford University</title>\n\n<!-- Meta -->\n<meta charset=\"utf-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n<meta name=\"description\" content=\"Stanford University is one of the world's leading research and teaching institutions.  It is located in Stanford, California.\" />\n<meta name=\"author\" content=\"Stanford Office of University Commmunications\" />\n<meta property=\"og:title\" content=\"Stanford University\" />\n<meta property=\"og:type\" content=\"website\" />\n<meta property=\"og:description\" content=\"Stanford University, one of the world's leading teaching and research universities, is dedicated to f",
+            "version": "1.1",
+            "ssl": false,
+            "protocol_info": {
+              "http": {
+                "status_code": 200,
+                "server": "nginx",
+                "content_type": "text/html; charset=UTF-8"
+              }
+            }
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": null,
+            "version": null,
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES128-GCM-SHA256"
+              },
+              "http": {
+                "status_code": 200,
+                "server": "nginx",
+                "content_type": "text/html; charset=UTF-8"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 18.19
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Google CDN",
+        "detection_method": "content",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "stanford.edu",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/stanford_edu_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 4,
+    "total_open_ports": 2,
+    "cdn_detected": true,
+    "technologies_detected": 16,
+    "apis_discovered": 0
+  },
+  "execution_time": 94.20432806015015
+}

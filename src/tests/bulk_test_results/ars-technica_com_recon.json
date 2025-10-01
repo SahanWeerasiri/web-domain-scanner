@@ -1,0 +1,34 @@
+{
+  "cdn_detection": {
+    "cdn_detected": false,
+    "cdn_name": null,
+    "detection_method": null,
+    "bypass_attempted": false,
+    "bypass_successful": false,
+    "content": null
+  },
+  "web_crawl": {
+    "pages": [],
+    "apis": [],
+    "discovered_urls": [],
+    "api_discovery": {
+      "rest_apis": [],
+      "graphql_endpoints": [],
+      "swagger_endpoints": [],
+      "other_apis": []
+    },
+    "crawl_level": "smart",
+    "crawl_config": {
+      "max_pages": 30,
+      "max_api_endpoints": 100,
+      "use_ai": true
+    }
+  },
+  "execution_info": {
+    "domain": "ars-technica.com",
+    "bypass_cdn": false,
+    "deep_crawl": false,
+    "output_dir": "bulk_test_results",
+    "save_to_file": true
+  }
+}

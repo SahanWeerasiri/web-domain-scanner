@@ -1,0 +1,808 @@
+{
+  "target_domain": "linkedin.com",
+  "scan_timestamp": "2025-10-01T19:42:05.519950",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "linkedin.com",
+      "timestamp": "2025-10-01T19:42:05.520422",
+      "modules": {
+        "passive": {
+          "domain": "linkedin.com",
+          "timestamp": 1759327973.2798367,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 47.755924463272095,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "linkedin.com",
+          "timestamp": 1759327974.1847672,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "150.171.22.12"
+            ],
+            "AAAA": [
+              "2620:1ec:50::12"
+            ],
+            "MX": [
+              "mail.linkedin.com",
+              "mail-d.linkedin.com",
+              "mail-c.linkedin.com",
+              "mail-a.linkedin.com"
+            ],
+            "NS": [
+              "dns2.p09.nsone.net",
+              "dns1.p09.nsone.net",
+              "ns2-42.azure-dns.net",
+              "ns4-42.azure-dns.info",
+              "dns4.p09.nsone.net",
+              "ns1-42.azure-dns.com",
+              "ns3-42.azure-dns.org",
+              "dns3.p09.nsone.net"
+            ],
+            "TXT": [
+              "bf5fl8sny79w4c70jxp6cp3crkqtr7qk",
+              "docusign=11f01284-dffc-40f9-8d56-57e5261ede3f",
+              "elevenlabs=hRLt8nemUjAWJSL_xhBIsKFyK4yYV089AvwkOB0cxYY",
+              "vmware-cloud-verification-f4d7c1c7-ad66-450f-82fa-c17b9ee79459",
+              "google-site-verification=8LaIeBMwr6K8qWeaGa4CEmfPKiZDwaT38t5mIrtaroI",
+              "miro-verification=260f00146b6d2ad1bb70d6dc07a077b672badd28",
+              "google-site-verification=0Vs9yf1V6RGkuzow85OzIXKEnjpRswpDkI6RgDVspMg",
+              "atlassian-domain-verification=dDed2VFvlDajBX8X22w52Jx/W/YLHR81SxUuraa9zNdz4aLjDS/RpfN11w2bxpRc",
+              "google-site-verification=vfmYHwjzUIFPzxFcyuwEToh_1kG9wvcpGgJnB-MhQn8",
+              "atlassian-domain-verification=juKdSE4GGphSmzPkhmnRJUNIn0ALdb0vsP7VSPM8TmTP7WgbgUQPLFdNicP7bF58",
+              "google-site-verification=anx3jpa6VKkTWRJKnglUIzm7UEn-ZCT2WqAfG7h-xOg",
+              "v=spf1 ip4:199.101.162.0/25 ip4:108.174.3.0/24 ip4:108.174.6.0/24 ip4:108.174.0.0/24 ip6:2620:109:c00d:104::/64 ip6:2620:109:c006:104::/64 ip6:2620:109:c003:104::/64 ip6:2620:119:50c0:207::/64 ip4:199.101.161.130 mx mx:docusign.net ~all",
+              "bluebeam-verification=02px6k8snlrzd6gx3b3oqkeatbzawd",
+              "_cthqqp5zj8g86qf3h97heqitg2zc32b",
+              "google-site-verification=VE9BWhjbPPNmbr3ZJcwn5hLTsz7c5KPt3zXdYyaSnSQ",
+              "atlassian-sending-domain-verification=3bdb0597-814d-4e10-a552-5cf78f92ab3c",
+              "AFDVALIDATION=LinkedIn",
+              "google-site-verification=xAGz495k8RbGclhamQx1TkZSHDxOaEd95fOjc8xpbTA",
+              "google-site-verification=X0LoSQsAMzR-TK4o-ULrYAwLi_fyopfRLkm_C-4N4Ts",
+              "448e0dc03e935ecf66d81f1ce3c26b2f2fea13756c031ffc4be91749107f3a79"
+            ],
+            "SOA": [
+              "dns1.p09.nsone.net. hostmaster.linkedin.com. 1660274653 3600 600 604800 300"
+            ]
+          },
+          "subdomains": [
+            "mail.linkedin.com",
+            "mail-d.linkedin.com",
+            "mail-c.linkedin.com",
+            "mail-a.linkedin.com"
+          ],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 ip4:199.101.162.0/25 ip4:108.174.3.0/24 ip4:108.174.6.0/24 ip4:108.174.0.0/24 ip6:2620:109:c00d:104::/64 ip6:2620:109:c006:104::/64 ip6:2620:109:c003:104::/64 ip6:2620:119:50c0:207::/64 ip4:199.101.161.130 mx mx:docusign.net ~all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=8LaIeBMwr6K8qWeaGa4CEmfPKiZDwaT38t5mIrtaroI",
+                "google-site-verification=0Vs9yf1V6RGkuzow85OzIXKEnjpRswpDkI6RgDVspMg",
+                "google-site-verification=vfmYHwjzUIFPzxFcyuwEToh_1kG9wvcpGgJnB-MhQn8",
+                "google-site-verification=anx3jpa6VKkTWRJKnglUIzm7UEn-ZCT2WqAfG7h-xOg",
+                "google-site-verification=VE9BWhjbPPNmbr3ZJcwn5hLTsz7c5KPt3zXdYyaSnSQ",
+                "google-site-verification=xAGz495k8RbGclhamQx1TkZSHDxOaEd95fOjc8xpbTA",
+                "google-site-verification=X0LoSQsAMzR-TK4o-ULrYAwLi_fyopfRLkm_C-4N4Ts"
+              ],
+              "other": [
+                "bf5fl8sny79w4c70jxp6cp3crkqtr7qk",
+                "docusign=11f01284-dffc-40f9-8d56-57e5261ede3f",
+                "elevenlabs=hRLt8nemUjAWJSL_xhBIsKFyK4yYV089AvwkOB0cxYY",
+                "vmware-cloud-verification-f4d7c1c7-ad66-450f-82fa-c17b9ee79459",
+                "miro-verification=260f00146b6d2ad1bb70d6dc07a077b672badd28",
+                "atlassian-domain-verification=dDed2VFvlDajBX8X22w52Jx/W/YLHR81SxUuraa9zNdz4aLjDS/RpfN11w2bxpRc",
+                "atlassian-domain-verification=juKdSE4GGphSmzPkhmnRJUNIn0ALdb0vsP7VSPM8TmTP7WgbgUQPLFdNicP7bF58",
+                "bluebeam-verification=02px6k8snlrzd6gx3b3oqkeatbzawd",
+                "_cthqqp5zj8g86qf3h97heqitg2zc32b",
+                "atlassian-sending-domain-verification=3bdb0597-814d-4e10-a552-5cf78f92ab3c",
+                "AFDVALIDATION=LinkedIn",
+                "448e0dc03e935ecf66d81f1ce3c26b2f2fea13756c031ffc4be91749107f3a79"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 0.4197056293487549,
+            "total_records": 35,
+            "total_subdomains": 4,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "linkedin.com",
+          "timestamp": 1759327981.0122995,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://linkedin.com": {
+              "url": "http://linkedin.com",
+              "timestamp": 1759327974.201104,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 141675,
+                "url": "https://www.linkedin.com/",
+                "redirect_chain": [
+                  "http://linkedin.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.linkedin.com/",
+                "content_preview": "<!DOCTYPE html>\n\n\n    \n    \n    \n    \n    \n    \n    \n    \n\n    \n    \n    \n    \n\n    \n    <html lang=\"en\">\n      <head>\n        <meta name=\"pageKey\" content=\"d_homepage-guest-home\">\n<!----><!----><!---...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "sameorigin",
+                "content_security_policy": "default-src 'none'; connect-src 'self' *.licdn.com *.linkedin.com cdn.linkedin.oribi.io dpm.demdex.net/id lnkd.demdex.net blob: accounts.google.com/gsi/ linkedin.sc.omtrdc.net/b/ss/ v.clarity.ms/collect *.microsoft.com *.adnxs.com *.tealiumiq.com login.microsoftonline.com www.google.com google.com adservice.google.com pagead2.googlesyndication.com td.doubleclick.net www.googletagmanager.com www.googleadservices.com ad.doubleclick.net; script-src 'report-sample' 'sha256-th47JTnh6tX15SUn/I+GGmsOSXpa7dh5Skner77gxlY=' 'sha256-SSoodjUD3LGm2FfFCVHGqEb8D4UM3OOigidT2UKDcYg=' 'sha256-cKTgdnmO6+hXd85a9wKg1effVfVzenUAtUCyOKY9bQE=' 'sha256-DwtT8+ZZKpxH9pqZNAmJ3GdbLAh5SsYaXR3omTXPCns=' 'sha256-sV9jZa797T0QWBzcU/CNd4tpBhTnh+TFdLnfjlitl28=' 'sha256-aa/Q8CRBDSqTQbCIyioPhZaz+G+dbPyu7BzsjInEmiU=' 'sha256-THuVhwbXPeTR0HszASqMOnIyxqEgvGyBwSPBKBF/iMc=' 'sha256-zTIusdVJJeXz9+iox2a+pdDglzbpRpFVRzEwvW4AONk=' 'sha256-iC8MPqNLw0FDnsBf4DlSkFLNTwhkI85aouiAEB819ic=' 'sha256-2EqrEvcPzl8c6/TSGVvaVMEe7lg700MAz/te4/3kTYY=' 'sha256-y5uW69VItKj51mcc7UD9qfptDVUqicZL+bItEpvVNDw=' 'sha256-DatsFGoJ8gFkzzxo47Ou76WZ+3QBPOQHtBu9p9b3DhA=' 'sha256-k95cyM8gFgPziZe5VQ2IvJvBUVyd5zFt2CokIUwqdHE=' 'sha256-PyCXNcEkzRWqbiNr087fizmiBBrq9O6GGD8eV3P09Ik=' 'sha256-RFqsjmAF1N5LnfpaHFvPqFlVkeIS/DtTAFor+JjJJVc=' 'sha256-2SQ55Erm3CPCb+k03EpNxU9bdV3XL9TnVTriDs7INZ4=' 'sha256-S/KSPe186K/1B0JEjbIXcCdpB97krdzX05S+dHnQjUs=' 'sha256-9pXOIwF4N0gPltLd3AI69lkCjSC2H/Eb3sc5zdmUyYU=' 'sha256-jou6v/Nleyzoc+LXktAv1Fp8M807dVVxy7E/yzVljHc=' 'sha256-6E4e/3dSvj/8JZT2S2yR91mspqM6MyOpKl5lrhHsZa8=' 'sha256-3woF8BZ54TeXM+czaH3aXoaJsVpiamuAKFsXDykAR/Q=' 'sha256-vIfNcKb8ixJg1cfJIoNNYjWcm0lezj1/XpUNFiZyVsU=' 'sha256-cLsHUHFgT/VGX04cZrJ9xgm4HbzTR7ptutkxK+7BlMk=' 'sha256-BwU8jMnQYUhjOpsDVABpfddV/DlP1ZYrFcTumYw7x54=' 'sha256-wz6ika9i3WU3bpUPdhYDZeO/NrDQniDyiscN0LWnyaY=' 'sha256-3RIGhhApBii1KY+aW1xk7kFyoQY8vSVE5DfT7E9SJUc=' static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com platform.linkedin.com platform-akam.linkedin.com platform-ecst.linkedin.com platform-azur.linkedin.com snap.licdn.com www.google.com/recaptcha/enterprise.js www.gstatic.com/recaptcha/releases/ www.googletagmanager.com/gtag/js www.googleadservices.com/pagead/ www.google.com/pagead/ googleads.g.doubleclick.net/pagead/ adservice.google.com/pagead/ pagead2.googlesyndication.com/pagead/ www.googletagmanager.com/gtag/destination merchantpool1.linkedin.com/mdt.js; img-src data: blob: * android-webview-video-poster:; font-src data: *; style-src 'self' 'unsafe-inline' static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com; media-src 'self' *.licdn.com *.lynda.com; worker-src 'self' blob: static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com; frame-src 'self' www.youtube.com/embed/ www.youtube-nocookie.com/embed/ lnkd.demdex.net smartlock.google.com accounts.google.com player.vimeo.com *.linkedin.com www.slideshare.net *.megaphone.fm *.omny.fm *.sounder.fm msit.powerbi.com app.powerbi.com linkedin.github.io *.licdn.com *.adnxs.com acdn.adnxs-simple.com radar.cedexis.com edge-auth.microsoft.com flo.uri.sh play.vidyard.com www.google.com/recaptcha/ *.fls.doubleclick.net www.googletagmanager.com td.doubleclick.net li.protechts.net *.xlgmedia.com *.px-cloud.net merchantpool1.linkedin.com; frame-ancestors 'self' *.www.linkedin.com:*; manifest-src 'self'; report-uri https://www.linkedin.com/security/csp?f=gg",
+                "strict_transport_security": "max-age=31536000",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "JSESSIONID=ajax:4746232465251288346; SameSite=None; Path=/; Domain=.www.linkedin.com; Secure, lang=v=2&lang=en-us; SameSite=None; Path=/; Domain=linkedin.com; Secure, bcookie=\"v=2&88d37491-baf0-434d-89b0-427eddae9f6d\"; domain=.linkedin.com; Path=/; Secure; Expires=Thu, 01-Oct-2026 14:12:54 GMT; SameSite=None, bscookie=\"v=1&202510011412540677fc96-a792-41e3-8723-c231f955f8c9AQFq8H0Ye7V5--fllNvrdhewakTiI9TZ\"; domain=.www.linkedin.com; Path=/; Secure; Expires=Thu, 01-Oct-2026 14:12:54 GMT; HttpOnly; SameSite=None, lidc=\"b=TGST06:s=T:r=T:a=T:p=T:g=3265:u=1:x=1:i=1759327974:t=1759414374:v=2:sig=AQEsSe8RXFoo8ANrQYgHyJZF77HxMl0c\"; Expires=Thu, 02 Oct 2025 14:12:54 GMT; domain=.linkedin.com; Path=/; SameSite=None; Secure, __cf_bm=3gkYY4z64UspoWMmPH9m5cSdOd7ORZhHrrqfYY0g4Q8-1759327975-1.0.1.1-aqU3BkZL18O8RzMK0Xgpw00apJ7M_rhjAdlZR6PUS.98YEdMj6hkVDaVeuloAJoAhXYokMfRMVrYvmOgrZaUxH8jOtZlDE2vDt_NqdCnQO0; path=/; expires=Wed, 01-Oct-25 14:42:55 GMT; domain=.linkedin.com; HttpOnly; Secure; SameSite=None",
+                "cache_control": "no-cache, no-store",
+                "expires": "Thu, 01 Jan 1970 00:00:00 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Cloudflare"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [],
+                "url_patterns": [
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "sameorigin",
+                  "Content-Security-Policy": "default-src 'none'; connect-src 'self' *.licdn.com *.linkedin.com cdn.linkedin.oribi.io dpm.demdex.net/id lnkd.demdex.net blob: accounts.google.com/gsi/ linkedin.sc.omtrdc.net/b/ss/ v.clarity.ms/collect *.microsoft.com *.adnxs.com *.tealiumiq.com login.microsoftonline.com www.google.com google.com adservice.google.com pagead2.googlesyndication.com td.doubleclick.net www.googletagmanager.com www.googleadservices.com ad.doubleclick.net; script-src 'report-sample' 'sha256-th47JTnh6tX15SUn/I+GGmsOSXpa7dh5Skner77gxlY=' 'sha256-SSoodjUD3LGm2FfFCVHGqEb8D4UM3OOigidT2UKDcYg=' 'sha256-cKTgdnmO6+hXd85a9wKg1effVfVzenUAtUCyOKY9bQE=' 'sha256-DwtT8+ZZKpxH9pqZNAmJ3GdbLAh5SsYaXR3omTXPCns=' 'sha256-sV9jZa797T0QWBzcU/CNd4tpBhTnh+TFdLnfjlitl28=' 'sha256-aa/Q8CRBDSqTQbCIyioPhZaz+G+dbPyu7BzsjInEmiU=' 'sha256-THuVhwbXPeTR0HszASqMOnIyxqEgvGyBwSPBKBF/iMc=' 'sha256-zTIusdVJJeXz9+iox2a+pdDglzbpRpFVRzEwvW4AONk=' 'sha256-iC8MPqNLw0FDnsBf4DlSkFLNTwhkI85aouiAEB819ic=' 'sha256-2EqrEvcPzl8c6/TSGVvaVMEe7lg700MAz/te4/3kTYY=' 'sha256-y5uW69VItKj51mcc7UD9qfptDVUqicZL+bItEpvVNDw=' 'sha256-DatsFGoJ8gFkzzxo47Ou76WZ+3QBPOQHtBu9p9b3DhA=' 'sha256-k95cyM8gFgPziZe5VQ2IvJvBUVyd5zFt2CokIUwqdHE=' 'sha256-PyCXNcEkzRWqbiNr087fizmiBBrq9O6GGD8eV3P09Ik=' 'sha256-RFqsjmAF1N5LnfpaHFvPqFlVkeIS/DtTAFor+JjJJVc=' 'sha256-2SQ55Erm3CPCb+k03EpNxU9bdV3XL9TnVTriDs7INZ4=' 'sha256-S/KSPe186K/1B0JEjbIXcCdpB97krdzX05S+dHnQjUs=' 'sha256-9pXOIwF4N0gPltLd3AI69lkCjSC2H/Eb3sc5zdmUyYU=' 'sha256-jou6v/Nleyzoc+LXktAv1Fp8M807dVVxy7E/yzVljHc=' 'sha256-6E4e/3dSvj/8JZT2S2yR91mspqM6MyOpKl5lrhHsZa8=' 'sha256-3woF8BZ54TeXM+czaH3aXoaJsVpiamuAKFsXDykAR/Q=' 'sha256-vIfNcKb8ixJg1cfJIoNNYjWcm0lezj1/XpUNFiZyVsU=' 'sha256-cLsHUHFgT/VGX04cZrJ9xgm4HbzTR7ptutkxK+7BlMk=' 'sha256-BwU8jMnQYUhjOpsDVABpfddV/DlP1ZYrFcTumYw7x54=' 'sha256-wz6ika9i3WU3bpUPdhYDZeO/NrDQniDyiscN0LWnyaY=' 'sha256-3RIGhhApBii1KY+aW1xk7kFyoQY8vSVE5DfT7E9SJUc=' static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com platform.linkedin.com platform-akam.linkedin.com platform-ecst.linkedin.com platform-azur.linkedin.com snap.licdn.com www.google.com/recaptcha/enterprise.js www.gstatic.com/recaptcha/releases/ www.googletagmanager.com/gtag/js www.googleadservices.com/pagead/ www.google.com/pagead/ googleads.g.doubleclick.net/pagead/ adservice.google.com/pagead/ pagead2.googlesyndication.com/pagead/ www.googletagmanager.com/gtag/destination merchantpool1.linkedin.com/mdt.js; img-src data: blob: * android-webview-video-poster:; font-src data: *; style-src 'self' 'unsafe-inline' static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com; media-src 'self' *.licdn.com *.lynda.com; worker-src 'self' blob: static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com; frame-src 'self' www.youtube.com/embed/ www.youtube-nocookie.com/embed/ lnkd.demdex.net smartlock.google.com accounts.google.com player.vimeo.com *.linkedin.com www.slideshare.net *.megaphone.fm *.omny.fm *.sounder.fm msit.powerbi.com app.powerbi.com linkedin.github.io *.licdn.com *.adnxs.com acdn.adnxs-simple.com radar.cedexis.com edge-auth.microsoft.com flo.uri.sh play.vidyard.com www.google.com/recaptcha/ *.fls.doubleclick.net www.googletagmanager.com td.doubleclick.net li.protechts.net *.xlgmedia.com *.px-cloud.net merchantpool1.linkedin.com; frame-ancestors 'self' *.www.linkedin.com:*; manifest-src 'self'; report-uri https://www.linkedin.com/security/csp?f=gg",
+                  "Strict-Transport-Security": "max-age=31536000",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": true,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 1.8344366550445557,
+                "content_length": 141675,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.linkedin.com": {
+              "url": "https://www.linkedin.com",
+              "timestamp": 1759327976.0359228,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 141675,
+                "url": "https://www.linkedin.com/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://www.linkedin.com/",
+                "content_preview": "<!DOCTYPE html>\n\n\n    \n    \n    \n    \n    \n    \n    \n    \n\n    \n    \n    \n    \n\n    \n    <html lang=\"en\">\n      <head>\n        <meta name=\"pageKey\" content=\"d_homepage-guest-home\">\n<!----><!----><!---...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "sameorigin",
+                "content_security_policy": "default-src 'none'; connect-src 'self' *.licdn.com *.linkedin.com cdn.linkedin.oribi.io dpm.demdex.net/id lnkd.demdex.net blob: accounts.google.com/gsi/ linkedin.sc.omtrdc.net/b/ss/ v.clarity.ms/collect *.microsoft.com *.adnxs.com *.tealiumiq.com login.microsoftonline.com www.google.com google.com adservice.google.com pagead2.googlesyndication.com td.doubleclick.net www.googletagmanager.com www.googleadservices.com ad.doubleclick.net; script-src 'report-sample' 'sha256-th47JTnh6tX15SUn/I+GGmsOSXpa7dh5Skner77gxlY=' 'sha256-SSoodjUD3LGm2FfFCVHGqEb8D4UM3OOigidT2UKDcYg=' 'sha256-cKTgdnmO6+hXd85a9wKg1effVfVzenUAtUCyOKY9bQE=' 'sha256-DwtT8+ZZKpxH9pqZNAmJ3GdbLAh5SsYaXR3omTXPCns=' 'sha256-sV9jZa797T0QWBzcU/CNd4tpBhTnh+TFdLnfjlitl28=' 'sha256-aa/Q8CRBDSqTQbCIyioPhZaz+G+dbPyu7BzsjInEmiU=' 'sha256-THuVhwbXPeTR0HszASqMOnIyxqEgvGyBwSPBKBF/iMc=' 'sha256-zTIusdVJJeXz9+iox2a+pdDglzbpRpFVRzEwvW4AONk=' 'sha256-iC8MPqNLw0FDnsBf4DlSkFLNTwhkI85aouiAEB819ic=' 'sha256-2EqrEvcPzl8c6/TSGVvaVMEe7lg700MAz/te4/3kTYY=' 'sha256-y5uW69VItKj51mcc7UD9qfptDVUqicZL+bItEpvVNDw=' 'sha256-DatsFGoJ8gFkzzxo47Ou76WZ+3QBPOQHtBu9p9b3DhA=' 'sha256-k95cyM8gFgPziZe5VQ2IvJvBUVyd5zFt2CokIUwqdHE=' 'sha256-PyCXNcEkzRWqbiNr087fizmiBBrq9O6GGD8eV3P09Ik=' 'sha256-RFqsjmAF1N5LnfpaHFvPqFlVkeIS/DtTAFor+JjJJVc=' 'sha256-2SQ55Erm3CPCb+k03EpNxU9bdV3XL9TnVTriDs7INZ4=' 'sha256-S/KSPe186K/1B0JEjbIXcCdpB97krdzX05S+dHnQjUs=' 'sha256-9pXOIwF4N0gPltLd3AI69lkCjSC2H/Eb3sc5zdmUyYU=' 'sha256-jou6v/Nleyzoc+LXktAv1Fp8M807dVVxy7E/yzVljHc=' 'sha256-6E4e/3dSvj/8JZT2S2yR91mspqM6MyOpKl5lrhHsZa8=' 'sha256-3woF8BZ54TeXM+czaH3aXoaJsVpiamuAKFsXDykAR/Q=' 'sha256-vIfNcKb8ixJg1cfJIoNNYjWcm0lezj1/XpUNFiZyVsU=' 'sha256-cLsHUHFgT/VGX04cZrJ9xgm4HbzTR7ptutkxK+7BlMk=' 'sha256-BwU8jMnQYUhjOpsDVABpfddV/DlP1ZYrFcTumYw7x54=' 'sha256-wz6ika9i3WU3bpUPdhYDZeO/NrDQniDyiscN0LWnyaY=' 'sha256-3RIGhhApBii1KY+aW1xk7kFyoQY8vSVE5DfT7E9SJUc=' static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com platform.linkedin.com platform-akam.linkedin.com platform-ecst.linkedin.com platform-azur.linkedin.com snap.licdn.com www.google.com/recaptcha/enterprise.js www.gstatic.com/recaptcha/releases/ www.googletagmanager.com/gtag/js www.googleadservices.com/pagead/ www.google.com/pagead/ googleads.g.doubleclick.net/pagead/ adservice.google.com/pagead/ pagead2.googlesyndication.com/pagead/ www.googletagmanager.com/gtag/destination merchantpool1.linkedin.com/mdt.js; img-src data: blob: * android-webview-video-poster:; font-src data: *; style-src 'self' 'unsafe-inline' static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com; media-src 'self' *.licdn.com *.lynda.com; worker-src 'self' blob: static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com; frame-src 'self' www.youtube.com/embed/ www.youtube-nocookie.com/embed/ lnkd.demdex.net smartlock.google.com accounts.google.com player.vimeo.com *.linkedin.com www.slideshare.net *.megaphone.fm *.omny.fm *.sounder.fm msit.powerbi.com app.powerbi.com linkedin.github.io *.licdn.com *.adnxs.com acdn.adnxs-simple.com radar.cedexis.com edge-auth.microsoft.com flo.uri.sh play.vidyard.com www.google.com/recaptcha/ *.fls.doubleclick.net www.googletagmanager.com td.doubleclick.net li.protechts.net *.xlgmedia.com *.px-cloud.net merchantpool1.linkedin.com; frame-ancestors 'self' *.www.linkedin.com:*; manifest-src 'self'; report-uri https://www.linkedin.com/security/csp?f=gg",
+                "strict_transport_security": "max-age=31536000",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "no-cache, no-store",
+                "expires": "Thu, 01 Jan 1970 00:00:00 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Cloudflare"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [],
+                "url_patterns": [
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "sameorigin",
+                  "Content-Security-Policy": "default-src 'none'; connect-src 'self' *.licdn.com *.linkedin.com cdn.linkedin.oribi.io dpm.demdex.net/id lnkd.demdex.net blob: accounts.google.com/gsi/ linkedin.sc.omtrdc.net/b/ss/ v.clarity.ms/collect *.microsoft.com *.adnxs.com *.tealiumiq.com login.microsoftonline.com www.google.com google.com adservice.google.com pagead2.googlesyndication.com td.doubleclick.net www.googletagmanager.com www.googleadservices.com ad.doubleclick.net; script-src 'report-sample' 'sha256-th47JTnh6tX15SUn/I+GGmsOSXpa7dh5Skner77gxlY=' 'sha256-SSoodjUD3LGm2FfFCVHGqEb8D4UM3OOigidT2UKDcYg=' 'sha256-cKTgdnmO6+hXd85a9wKg1effVfVzenUAtUCyOKY9bQE=' 'sha256-DwtT8+ZZKpxH9pqZNAmJ3GdbLAh5SsYaXR3omTXPCns=' 'sha256-sV9jZa797T0QWBzcU/CNd4tpBhTnh+TFdLnfjlitl28=' 'sha256-aa/Q8CRBDSqTQbCIyioPhZaz+G+dbPyu7BzsjInEmiU=' 'sha256-THuVhwbXPeTR0HszASqMOnIyxqEgvGyBwSPBKBF/iMc=' 'sha256-zTIusdVJJeXz9+iox2a+pdDglzbpRpFVRzEwvW4AONk=' 'sha256-iC8MPqNLw0FDnsBf4DlSkFLNTwhkI85aouiAEB819ic=' 'sha256-2EqrEvcPzl8c6/TSGVvaVMEe7lg700MAz/te4/3kTYY=' 'sha256-y5uW69VItKj51mcc7UD9qfptDVUqicZL+bItEpvVNDw=' 'sha256-DatsFGoJ8gFkzzxo47Ou76WZ+3QBPOQHtBu9p9b3DhA=' 'sha256-k95cyM8gFgPziZe5VQ2IvJvBUVyd5zFt2CokIUwqdHE=' 'sha256-PyCXNcEkzRWqbiNr087fizmiBBrq9O6GGD8eV3P09Ik=' 'sha256-RFqsjmAF1N5LnfpaHFvPqFlVkeIS/DtTAFor+JjJJVc=' 'sha256-2SQ55Erm3CPCb+k03EpNxU9bdV3XL9TnVTriDs7INZ4=' 'sha256-S/KSPe186K/1B0JEjbIXcCdpB97krdzX05S+dHnQjUs=' 'sha256-9pXOIwF4N0gPltLd3AI69lkCjSC2H/Eb3sc5zdmUyYU=' 'sha256-jou6v/Nleyzoc+LXktAv1Fp8M807dVVxy7E/yzVljHc=' 'sha256-6E4e/3dSvj/8JZT2S2yR91mspqM6MyOpKl5lrhHsZa8=' 'sha256-3woF8BZ54TeXM+czaH3aXoaJsVpiamuAKFsXDykAR/Q=' 'sha256-vIfNcKb8ixJg1cfJIoNNYjWcm0lezj1/XpUNFiZyVsU=' 'sha256-cLsHUHFgT/VGX04cZrJ9xgm4HbzTR7ptutkxK+7BlMk=' 'sha256-BwU8jMnQYUhjOpsDVABpfddV/DlP1ZYrFcTumYw7x54=' 'sha256-wz6ika9i3WU3bpUPdhYDZeO/NrDQniDyiscN0LWnyaY=' 'sha256-3RIGhhApBii1KY+aW1xk7kFyoQY8vSVE5DfT7E9SJUc=' static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com platform.linkedin.com platform-akam.linkedin.com platform-ecst.linkedin.com platform-azur.linkedin.com snap.licdn.com www.google.com/recaptcha/enterprise.js www.gstatic.com/recaptcha/releases/ www.googletagmanager.com/gtag/js www.googleadservices.com/pagead/ www.google.com/pagead/ googleads.g.doubleclick.net/pagead/ adservice.google.com/pagead/ pagead2.googlesyndication.com/pagead/ www.googletagmanager.com/gtag/destination merchantpool1.linkedin.com/mdt.js; img-src data: blob: * android-webview-video-poster:; font-src data: *; style-src 'self' 'unsafe-inline' static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com; media-src 'self' *.licdn.com *.lynda.com; worker-src 'self' blob: static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com; frame-src 'self' www.youtube.com/embed/ www.youtube-nocookie.com/embed/ lnkd.demdex.net smartlock.google.com accounts.google.com player.vimeo.com *.linkedin.com www.slideshare.net *.megaphone.fm *.omny.fm *.sounder.fm msit.powerbi.com app.powerbi.com linkedin.github.io *.licdn.com *.adnxs.com acdn.adnxs-simple.com radar.cedexis.com edge-auth.microsoft.com flo.uri.sh play.vidyard.com www.google.com/recaptcha/ *.fls.doubleclick.net www.googletagmanager.com td.doubleclick.net li.protechts.net *.xlgmedia.com *.px-cloud.net merchantpool1.linkedin.com; frame-ancestors 'self' *.www.linkedin.com:*; manifest-src 'self'; report-uri https://www.linkedin.com/security/csp?f=gg",
+                  "Strict-Transport-Security": "max-age=31536000",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 1.2873241901397705,
+                "content_length": 141675,
+                "status_code": 200,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://www.linkedin.com": {
+              "url": "http://www.linkedin.com",
+              "timestamp": 1759327977.323576,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 141671,
+                "url": "https://www.linkedin.com/hp",
+                "redirect_chain": [
+                  "http://www.linkedin.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.linkedin.com/hp",
+                "content_preview": "<!DOCTYPE html>\n\n\n    \n    \n    \n    \n    \n    \n    \n    \n\n    \n    \n    \n    \n\n    \n    <html lang=\"en\">\n      <head>\n        <meta name=\"pageKey\" content=\"d_homepage-guest-home\">\n<!----><!----><!---...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "sameorigin",
+                "content_security_policy": "default-src 'none'; connect-src 'self' *.licdn.com *.linkedin.com cdn.linkedin.oribi.io dpm.demdex.net/id lnkd.demdex.net blob: accounts.google.com/gsi/ linkedin.sc.omtrdc.net/b/ss/ v.clarity.ms/collect *.microsoft.com *.adnxs.com *.tealiumiq.com login.microsoftonline.com www.google.com google.com adservice.google.com pagead2.googlesyndication.com td.doubleclick.net www.googletagmanager.com www.googleadservices.com ad.doubleclick.net; script-src 'report-sample' 'sha256-th47JTnh6tX15SUn/I+GGmsOSXpa7dh5Skner77gxlY=' 'sha256-SSoodjUD3LGm2FfFCVHGqEb8D4UM3OOigidT2UKDcYg=' 'sha256-cKTgdnmO6+hXd85a9wKg1effVfVzenUAtUCyOKY9bQE=' 'sha256-DwtT8+ZZKpxH9pqZNAmJ3GdbLAh5SsYaXR3omTXPCns=' 'sha256-sV9jZa797T0QWBzcU/CNd4tpBhTnh+TFdLnfjlitl28=' 'sha256-aa/Q8CRBDSqTQbCIyioPhZaz+G+dbPyu7BzsjInEmiU=' 'sha256-THuVhwbXPeTR0HszASqMOnIyxqEgvGyBwSPBKBF/iMc=' 'sha256-zTIusdVJJeXz9+iox2a+pdDglzbpRpFVRzEwvW4AONk=' 'sha256-iC8MPqNLw0FDnsBf4DlSkFLNTwhkI85aouiAEB819ic=' 'sha256-2EqrEvcPzl8c6/TSGVvaVMEe7lg700MAz/te4/3kTYY=' 'sha256-y5uW69VItKj51mcc7UD9qfptDVUqicZL+bItEpvVNDw=' 'sha256-DatsFGoJ8gFkzzxo47Ou76WZ+3QBPOQHtBu9p9b3DhA=' 'sha256-k95cyM8gFgPziZe5VQ2IvJvBUVyd5zFt2CokIUwqdHE=' 'sha256-PyCXNcEkzRWqbiNr087fizmiBBrq9O6GGD8eV3P09Ik=' 'sha256-RFqsjmAF1N5LnfpaHFvPqFlVkeIS/DtTAFor+JjJJVc=' 'sha256-2SQ55Erm3CPCb+k03EpNxU9bdV3XL9TnVTriDs7INZ4=' 'sha256-S/KSPe186K/1B0JEjbIXcCdpB97krdzX05S+dHnQjUs=' 'sha256-9pXOIwF4N0gPltLd3AI69lkCjSC2H/Eb3sc5zdmUyYU=' 'sha256-jou6v/Nleyzoc+LXktAv1Fp8M807dVVxy7E/yzVljHc=' 'sha256-6E4e/3dSvj/8JZT2S2yR91mspqM6MyOpKl5lrhHsZa8=' 'sha256-3woF8BZ54TeXM+czaH3aXoaJsVpiamuAKFsXDykAR/Q=' 'sha256-vIfNcKb8ixJg1cfJIoNNYjWcm0lezj1/XpUNFiZyVsU=' 'sha256-cLsHUHFgT/VGX04cZrJ9xgm4HbzTR7ptutkxK+7BlMk=' 'sha256-BwU8jMnQYUhjOpsDVABpfddV/DlP1ZYrFcTumYw7x54=' 'sha256-wz6ika9i3WU3bpUPdhYDZeO/NrDQniDyiscN0LWnyaY=' 'sha256-3RIGhhApBii1KY+aW1xk7kFyoQY8vSVE5DfT7E9SJUc=' static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com platform.linkedin.com platform-akam.linkedin.com platform-ecst.linkedin.com platform-azur.linkedin.com snap.licdn.com www.google.com/recaptcha/enterprise.js www.gstatic.com/recaptcha/releases/ www.googletagmanager.com/gtag/js www.googleadservices.com/pagead/ www.google.com/pagead/ googleads.g.doubleclick.net/pagead/ adservice.google.com/pagead/ pagead2.googlesyndication.com/pagead/ www.googletagmanager.com/gtag/destination merchantpool1.linkedin.com/mdt.js; img-src data: blob: * android-webview-video-poster:; font-src data: *; style-src 'self' 'unsafe-inline' static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com; media-src 'self' *.licdn.com *.lynda.com; worker-src 'self' blob: static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com; frame-src 'self' www.youtube.com/embed/ www.youtube-nocookie.com/embed/ lnkd.demdex.net smartlock.google.com accounts.google.com player.vimeo.com *.linkedin.com www.slideshare.net *.megaphone.fm *.omny.fm *.sounder.fm msit.powerbi.com app.powerbi.com linkedin.github.io *.licdn.com *.adnxs.com acdn.adnxs-simple.com radar.cedexis.com edge-auth.microsoft.com flo.uri.sh play.vidyard.com www.google.com/recaptcha/ *.fls.doubleclick.net www.googletagmanager.com td.doubleclick.net li.protechts.net *.xlgmedia.com *.px-cloud.net merchantpool1.linkedin.com; frame-ancestors 'self' *.www.linkedin.com:*; manifest-src 'self'; report-uri https://www.linkedin.com/security/csp?f=gg",
+                "strict_transport_security": "max-age=31536000",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "no-cache, no-store",
+                "expires": "Thu, 01 Jan 1970 00:00:00 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Cloudflare"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [],
+                "url_patterns": [
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "sameorigin",
+                  "Content-Security-Policy": "default-src 'none'; connect-src 'self' *.licdn.com *.linkedin.com cdn.linkedin.oribi.io dpm.demdex.net/id lnkd.demdex.net blob: accounts.google.com/gsi/ linkedin.sc.omtrdc.net/b/ss/ v.clarity.ms/collect *.microsoft.com *.adnxs.com *.tealiumiq.com login.microsoftonline.com www.google.com google.com adservice.google.com pagead2.googlesyndication.com td.doubleclick.net www.googletagmanager.com www.googleadservices.com ad.doubleclick.net; script-src 'report-sample' 'sha256-th47JTnh6tX15SUn/I+GGmsOSXpa7dh5Skner77gxlY=' 'sha256-SSoodjUD3LGm2FfFCVHGqEb8D4UM3OOigidT2UKDcYg=' 'sha256-cKTgdnmO6+hXd85a9wKg1effVfVzenUAtUCyOKY9bQE=' 'sha256-DwtT8+ZZKpxH9pqZNAmJ3GdbLAh5SsYaXR3omTXPCns=' 'sha256-sV9jZa797T0QWBzcU/CNd4tpBhTnh+TFdLnfjlitl28=' 'sha256-aa/Q8CRBDSqTQbCIyioPhZaz+G+dbPyu7BzsjInEmiU=' 'sha256-THuVhwbXPeTR0HszASqMOnIyxqEgvGyBwSPBKBF/iMc=' 'sha256-zTIusdVJJeXz9+iox2a+pdDglzbpRpFVRzEwvW4AONk=' 'sha256-iC8MPqNLw0FDnsBf4DlSkFLNTwhkI85aouiAEB819ic=' 'sha256-2EqrEvcPzl8c6/TSGVvaVMEe7lg700MAz/te4/3kTYY=' 'sha256-y5uW69VItKj51mcc7UD9qfptDVUqicZL+bItEpvVNDw=' 'sha256-DatsFGoJ8gFkzzxo47Ou76WZ+3QBPOQHtBu9p9b3DhA=' 'sha256-k95cyM8gFgPziZe5VQ2IvJvBUVyd5zFt2CokIUwqdHE=' 'sha256-PyCXNcEkzRWqbiNr087fizmiBBrq9O6GGD8eV3P09Ik=' 'sha256-RFqsjmAF1N5LnfpaHFvPqFlVkeIS/DtTAFor+JjJJVc=' 'sha256-2SQ55Erm3CPCb+k03EpNxU9bdV3XL9TnVTriDs7INZ4=' 'sha256-S/KSPe186K/1B0JEjbIXcCdpB97krdzX05S+dHnQjUs=' 'sha256-9pXOIwF4N0gPltLd3AI69lkCjSC2H/Eb3sc5zdmUyYU=' 'sha256-jou6v/Nleyzoc+LXktAv1Fp8M807dVVxy7E/yzVljHc=' 'sha256-6E4e/3dSvj/8JZT2S2yR91mspqM6MyOpKl5lrhHsZa8=' 'sha256-3woF8BZ54TeXM+czaH3aXoaJsVpiamuAKFsXDykAR/Q=' 'sha256-vIfNcKb8ixJg1cfJIoNNYjWcm0lezj1/XpUNFiZyVsU=' 'sha256-cLsHUHFgT/VGX04cZrJ9xgm4HbzTR7ptutkxK+7BlMk=' 'sha256-BwU8jMnQYUhjOpsDVABpfddV/DlP1ZYrFcTumYw7x54=' 'sha256-wz6ika9i3WU3bpUPdhYDZeO/NrDQniDyiscN0LWnyaY=' 'sha256-3RIGhhApBii1KY+aW1xk7kFyoQY8vSVE5DfT7E9SJUc=' static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com platform.linkedin.com platform-akam.linkedin.com platform-ecst.linkedin.com platform-azur.linkedin.com snap.licdn.com www.google.com/recaptcha/enterprise.js www.gstatic.com/recaptcha/releases/ www.googletagmanager.com/gtag/js www.googleadservices.com/pagead/ www.google.com/pagead/ googleads.g.doubleclick.net/pagead/ adservice.google.com/pagead/ pagead2.googlesyndication.com/pagead/ www.googletagmanager.com/gtag/destination merchantpool1.linkedin.com/mdt.js; img-src data: blob: * android-webview-video-poster:; font-src data: *; style-src 'self' 'unsafe-inline' static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com; media-src 'self' *.licdn.com *.lynda.com; worker-src 'self' blob: static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com; frame-src 'self' www.youtube.com/embed/ www.youtube-nocookie.com/embed/ lnkd.demdex.net smartlock.google.com accounts.google.com player.vimeo.com *.linkedin.com www.slideshare.net *.megaphone.fm *.omny.fm *.sounder.fm msit.powerbi.com app.powerbi.com linkedin.github.io *.licdn.com *.adnxs.com acdn.adnxs-simple.com radar.cedexis.com edge-auth.microsoft.com flo.uri.sh play.vidyard.com www.google.com/recaptcha/ *.fls.doubleclick.net www.googletagmanager.com td.doubleclick.net li.protechts.net *.xlgmedia.com *.px-cloud.net merchantpool1.linkedin.com; frame-ancestors 'self' *.www.linkedin.com:*; manifest-src 'self'; report-uri https://www.linkedin.com/security/csp?f=gg",
+                  "Strict-Transport-Security": "max-age=31536000",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 1.7120323181152344,
+                "content_length": 141671,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://linkedin.com": {
+              "url": "https://linkedin.com",
+              "timestamp": 1759327979.0361602,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 141671,
+                "url": "https://www.linkedin.com/",
+                "redirect_chain": [
+                  "https://linkedin.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.linkedin.com/",
+                "content_preview": "<!DOCTYPE html>\n\n\n    \n    \n    \n    \n    \n    \n    \n    \n\n    \n    \n    \n    \n\n    \n    <html lang=\"en\">\n      <head>\n        <meta name=\"pageKey\" content=\"d_homepage-guest-home\">\n<!----><!----><!---...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "sameorigin",
+                "content_security_policy": "default-src 'none'; connect-src 'self' *.licdn.com *.linkedin.com cdn.linkedin.oribi.io dpm.demdex.net/id lnkd.demdex.net blob: accounts.google.com/gsi/ linkedin.sc.omtrdc.net/b/ss/ v.clarity.ms/collect *.microsoft.com *.adnxs.com *.tealiumiq.com login.microsoftonline.com www.google.com google.com adservice.google.com pagead2.googlesyndication.com td.doubleclick.net www.googletagmanager.com www.googleadservices.com ad.doubleclick.net; script-src 'report-sample' 'sha256-th47JTnh6tX15SUn/I+GGmsOSXpa7dh5Skner77gxlY=' 'sha256-SSoodjUD3LGm2FfFCVHGqEb8D4UM3OOigidT2UKDcYg=' 'sha256-cKTgdnmO6+hXd85a9wKg1effVfVzenUAtUCyOKY9bQE=' 'sha256-DwtT8+ZZKpxH9pqZNAmJ3GdbLAh5SsYaXR3omTXPCns=' 'sha256-sV9jZa797T0QWBzcU/CNd4tpBhTnh+TFdLnfjlitl28=' 'sha256-aa/Q8CRBDSqTQbCIyioPhZaz+G+dbPyu7BzsjInEmiU=' 'sha256-THuVhwbXPeTR0HszASqMOnIyxqEgvGyBwSPBKBF/iMc=' 'sha256-zTIusdVJJeXz9+iox2a+pdDglzbpRpFVRzEwvW4AONk=' 'sha256-iC8MPqNLw0FDnsBf4DlSkFLNTwhkI85aouiAEB819ic=' 'sha256-2EqrEvcPzl8c6/TSGVvaVMEe7lg700MAz/te4/3kTYY=' 'sha256-y5uW69VItKj51mcc7UD9qfptDVUqicZL+bItEpvVNDw=' 'sha256-DatsFGoJ8gFkzzxo47Ou76WZ+3QBPOQHtBu9p9b3DhA=' 'sha256-k95cyM8gFgPziZe5VQ2IvJvBUVyd5zFt2CokIUwqdHE=' 'sha256-PyCXNcEkzRWqbiNr087fizmiBBrq9O6GGD8eV3P09Ik=' 'sha256-RFqsjmAF1N5LnfpaHFvPqFlVkeIS/DtTAFor+JjJJVc=' 'sha256-2SQ55Erm3CPCb+k03EpNxU9bdV3XL9TnVTriDs7INZ4=' 'sha256-S/KSPe186K/1B0JEjbIXcCdpB97krdzX05S+dHnQjUs=' 'sha256-9pXOIwF4N0gPltLd3AI69lkCjSC2H/Eb3sc5zdmUyYU=' 'sha256-jou6v/Nleyzoc+LXktAv1Fp8M807dVVxy7E/yzVljHc=' 'sha256-6E4e/3dSvj/8JZT2S2yR91mspqM6MyOpKl5lrhHsZa8=' 'sha256-3woF8BZ54TeXM+czaH3aXoaJsVpiamuAKFsXDykAR/Q=' 'sha256-vIfNcKb8ixJg1cfJIoNNYjWcm0lezj1/XpUNFiZyVsU=' 'sha256-cLsHUHFgT/VGX04cZrJ9xgm4HbzTR7ptutkxK+7BlMk=' 'sha256-BwU8jMnQYUhjOpsDVABpfddV/DlP1ZYrFcTumYw7x54=' 'sha256-wz6ika9i3WU3bpUPdhYDZeO/NrDQniDyiscN0LWnyaY=' 'sha256-3RIGhhApBii1KY+aW1xk7kFyoQY8vSVE5DfT7E9SJUc=' static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com platform.linkedin.com platform-akam.linkedin.com platform-ecst.linkedin.com platform-azur.linkedin.com snap.licdn.com www.google.com/recaptcha/enterprise.js www.gstatic.com/recaptcha/releases/ www.googletagmanager.com/gtag/js www.googleadservices.com/pagead/ www.google.com/pagead/ googleads.g.doubleclick.net/pagead/ adservice.google.com/pagead/ pagead2.googlesyndication.com/pagead/ www.googletagmanager.com/gtag/destination merchantpool1.linkedin.com/mdt.js; img-src data: blob: * android-webview-video-poster:; font-src data: *; style-src 'self' 'unsafe-inline' static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com; media-src 'self' *.licdn.com *.lynda.com; worker-src 'self' blob: static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com; frame-src 'self' www.youtube.com/embed/ www.youtube-nocookie.com/embed/ lnkd.demdex.net smartlock.google.com accounts.google.com player.vimeo.com *.linkedin.com www.slideshare.net *.megaphone.fm *.omny.fm *.sounder.fm msit.powerbi.com app.powerbi.com linkedin.github.io *.licdn.com *.adnxs.com acdn.adnxs-simple.com radar.cedexis.com edge-auth.microsoft.com flo.uri.sh play.vidyard.com www.google.com/recaptcha/ *.fls.doubleclick.net www.googletagmanager.com td.doubleclick.net li.protechts.net *.xlgmedia.com *.px-cloud.net merchantpool1.linkedin.com; frame-ancestors 'self' *.www.linkedin.com:*; manifest-src 'self'; report-uri https://www.linkedin.com/security/csp?f=gg",
+                "strict_transport_security": "max-age=31536000",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "no-cache, no-store",
+                "expires": "Thu, 01 Jan 1970 00:00:00 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Cloudflare"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [],
+                "url_patterns": [
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "sameorigin",
+                  "Content-Security-Policy": "default-src 'none'; connect-src 'self' *.licdn.com *.linkedin.com cdn.linkedin.oribi.io dpm.demdex.net/id lnkd.demdex.net blob: accounts.google.com/gsi/ linkedin.sc.omtrdc.net/b/ss/ v.clarity.ms/collect *.microsoft.com *.adnxs.com *.tealiumiq.com login.microsoftonline.com www.google.com google.com adservice.google.com pagead2.googlesyndication.com td.doubleclick.net www.googletagmanager.com www.googleadservices.com ad.doubleclick.net; script-src 'report-sample' 'sha256-th47JTnh6tX15SUn/I+GGmsOSXpa7dh5Skner77gxlY=' 'sha256-SSoodjUD3LGm2FfFCVHGqEb8D4UM3OOigidT2UKDcYg=' 'sha256-cKTgdnmO6+hXd85a9wKg1effVfVzenUAtUCyOKY9bQE=' 'sha256-DwtT8+ZZKpxH9pqZNAmJ3GdbLAh5SsYaXR3omTXPCns=' 'sha256-sV9jZa797T0QWBzcU/CNd4tpBhTnh+TFdLnfjlitl28=' 'sha256-aa/Q8CRBDSqTQbCIyioPhZaz+G+dbPyu7BzsjInEmiU=' 'sha256-THuVhwbXPeTR0HszASqMOnIyxqEgvGyBwSPBKBF/iMc=' 'sha256-zTIusdVJJeXz9+iox2a+pdDglzbpRpFVRzEwvW4AONk=' 'sha256-iC8MPqNLw0FDnsBf4DlSkFLNTwhkI85aouiAEB819ic=' 'sha256-2EqrEvcPzl8c6/TSGVvaVMEe7lg700MAz/te4/3kTYY=' 'sha256-y5uW69VItKj51mcc7UD9qfptDVUqicZL+bItEpvVNDw=' 'sha256-DatsFGoJ8gFkzzxo47Ou76WZ+3QBPOQHtBu9p9b3DhA=' 'sha256-k95cyM8gFgPziZe5VQ2IvJvBUVyd5zFt2CokIUwqdHE=' 'sha256-PyCXNcEkzRWqbiNr087fizmiBBrq9O6GGD8eV3P09Ik=' 'sha256-RFqsjmAF1N5LnfpaHFvPqFlVkeIS/DtTAFor+JjJJVc=' 'sha256-2SQ55Erm3CPCb+k03EpNxU9bdV3XL9TnVTriDs7INZ4=' 'sha256-S/KSPe186K/1B0JEjbIXcCdpB97krdzX05S+dHnQjUs=' 'sha256-9pXOIwF4N0gPltLd3AI69lkCjSC2H/Eb3sc5zdmUyYU=' 'sha256-jou6v/Nleyzoc+LXktAv1Fp8M807dVVxy7E/yzVljHc=' 'sha256-6E4e/3dSvj/8JZT2S2yR91mspqM6MyOpKl5lrhHsZa8=' 'sha256-3woF8BZ54TeXM+czaH3aXoaJsVpiamuAKFsXDykAR/Q=' 'sha256-vIfNcKb8ixJg1cfJIoNNYjWcm0lezj1/XpUNFiZyVsU=' 'sha256-cLsHUHFgT/VGX04cZrJ9xgm4HbzTR7ptutkxK+7BlMk=' 'sha256-BwU8jMnQYUhjOpsDVABpfddV/DlP1ZYrFcTumYw7x54=' 'sha256-wz6ika9i3WU3bpUPdhYDZeO/NrDQniDyiscN0LWnyaY=' 'sha256-3RIGhhApBii1KY+aW1xk7kFyoQY8vSVE5DfT7E9SJUc=' static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com platform.linkedin.com platform-akam.linkedin.com platform-ecst.linkedin.com platform-azur.linkedin.com snap.licdn.com www.google.com/recaptcha/enterprise.js www.gstatic.com/recaptcha/releases/ www.googletagmanager.com/gtag/js www.googleadservices.com/pagead/ www.google.com/pagead/ googleads.g.doubleclick.net/pagead/ adservice.google.com/pagead/ pagead2.googlesyndication.com/pagead/ www.googletagmanager.com/gtag/destination merchantpool1.linkedin.com/mdt.js; img-src data: blob: * android-webview-video-poster:; font-src data: *; style-src 'self' 'unsafe-inline' static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com; media-src 'self' *.licdn.com *.lynda.com; worker-src 'self' blob: static.licdn.com static-exp1.licdn.com static-exp2.licdn.com static-exp3.licdn.com; frame-src 'self' www.youtube.com/embed/ www.youtube-nocookie.com/embed/ lnkd.demdex.net smartlock.google.com accounts.google.com player.vimeo.com *.linkedin.com www.slideshare.net *.megaphone.fm *.omny.fm *.sounder.fm msit.powerbi.com app.powerbi.com linkedin.github.io *.licdn.com *.adnxs.com acdn.adnxs-simple.com radar.cedexis.com edge-auth.microsoft.com flo.uri.sh play.vidyard.com www.google.com/recaptcha/ *.fls.doubleclick.net www.googletagmanager.com td.doubleclick.net li.protechts.net *.xlgmedia.com *.px-cloud.net merchantpool1.linkedin.com; frame-ancestors 'self' *.www.linkedin.com:*; manifest-src 'self'; report-uri https://www.linkedin.com/security/csp?f=gg",
+                  "Strict-Transport-Security": "max-age=31536000",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 1.9716036319732666,
+                "content_length": 141671,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Cloudflare",
+              "CDN"
+            ],
+            "security_score_avg": 57.14285714285714,
+            "common_issues": [
+              "X-XSS-Protection",
+              "Referrer-Policy",
+              "Permissions-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 6.821544647216797,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 4,
+          "records_found": 35,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 2
+        }
+      },
+      "all_subdomains": [
+        "mail-a.linkedin.com",
+        "mail-c.linkedin.com",
+        "mail-d.linkedin.com",
+        "mail.linkedin.com",
+        "www.linkedin.com"
+      ],
+      "statistics": {
+        "total_subdomains": 5,
+        "unique_subdomains": 5,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 55.49,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 2,
+        "security_issues_found": 3,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "linkedin.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 19:43 +0530\nNmap scan report for linkedin.com (150.171.22.12)\nHost is up (0.047s latency).\nOther addresses for linkedin.com (not scanned): 2620:1ec:50::12\nNot shown: 997 filtered tcp ports (no-response), 1 closed tcp port (reset)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 10.12 seconds\n",
+        "scan_duration": 10.12
+      },
+      "service_results": {
+        "target": "linkedin.com",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 400 Bad Request\r\nX-MSEdge-Ref: 09zbdaAAAAACUYHpAPiusQYtcCrY7DH/zU0cyQUExMDQwNTE4MDExAEVkZ2U=\r\nDate: Wed, 01 Oct 2025 14:13:11 GMT\r\nConnection: close\r\n\r\n<h2>Our services aren't available right now</h2><p>We're working to restore all services as soon as possible. Please check back soon.</p>09zbdaAAAAACUYHpAPiusQYtcCrY7DH/zU0cyQUExMDQwNTE4MDExAEVkZ2U=",
+            "version": "1.1",
+            "ssl": false,
+            "protocol_info": {}
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "No banner ([WinError 10054] An existing connection was forcibly closed by the remote host)",
+            "version": null,
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384"
+              },
+              "http": {
+                "status_code": 200,
+                "server": "cloudflare",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 10.12
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Cloudflare",
+        "detection_method": "headers",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "linkedin.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/linkedin_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 5,
+    "total_open_ports": 2,
+    "cdn_detected": true,
+    "technologies_detected": 2,
+    "apis_discovered": 0
+  },
+  "execution_time": 68.98693799972534
+}

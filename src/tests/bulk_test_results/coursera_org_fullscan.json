@@ -1,0 +1,1300 @@
+{
+  "target_domain": "coursera.org",
+  "scan_timestamp": "2025-10-01T21:11:46.157293",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "coursera.org",
+      "timestamp": "2025-10-01T21:11:46.158154",
+      "modules": {
+        "passive": {
+          "domain": "coursera.org",
+          "timestamp": 1759333373.22153,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [
+                  "dev4.labs-dev.coursera.org",
+                  "op-it-tools.corp.coursera.org",
+                  "op-onepassword-connect.corp.coursera.org",
+                  "aws2-avx-scep-prod.corp.coursera.org",
+                  "servicedesk-sb.corp.coursera.org",
+                  "dev3.labs-dev.coursera.org",
+                  "status.coursera.org",
+                  "dev8.labs-dev.coursera.org",
+                  "app50.corp.coursera.org",
+                  "corp.coursera.org",
+                  "www.coursera.org",
+                  "labs-dr.coursera.org",
+                  "apply.coursera.org",
+                  "zentral.corp.coursera.org",
+                  "click.email.coursera.org",
+                  "s3antivirus.corp.coursera.org",
+                  "aws2-avx-scep-dev.corp.coursera.org",
+                  "hello.coursera.org",
+                  "pages.coursera.org",
+                  "cloud.email.coursera.org",
+                  "businesstest.coursera.org",
+                  "services.api.coursera.org",
+                  "op-scim-bridge.corp.coursera.org",
+                  "dev5.labs-dev.coursera.org",
+                  "coursera.org",
+                  "mv-vpn.coursera.org",
+                  "gp.coursera.org",
+                  "dev1.labs-dev.coursera.org",
+                  "testlaunch.coursera.org",
+                  "testlaunch1.coursera.org",
+                  "dev7.labs-dev.coursera.org",
+                  "www.vcenter.corp.coursera.org",
+                  "op1-scim-bridge.corp.coursera.org",
+                  "helpdesk.coursera.org",
+                  "image.email.coursera.org",
+                  "view.email.coursera.org",
+                  "vcenter.corp.coursera.org",
+                  "services.coursera.org",
+                  "www.mv-vpn.coursera.org",
+                  "op-datasets-ecs.corp.coursera.org",
+                  "skillsfuture.coursera.org",
+                  "class.coursera.org",
+                  "logui.corp.coursera.org",
+                  "dev2.labs-dev.coursera.org",
+                  "labs.coursera.org",
+                  "servicedesk.corp.coursera.org",
+                  "quantil.cdn.coursera.org",
+                  "university-looker.coursera.org",
+                  "business.coursera.org",
+                  "dev6.labs-dev.coursera.org",
+                  "servicedesk-test.corp.coursera.org",
+                  "servicedesk-dev.corp.coursera.org",
+                  "www.clearpass.corp.coursera.org",
+                  "dev9.labs-dev.coursera.org",
+                  "clearpass.corp.coursera.org",
+                  "labs-dev.coursera.org",
+                  "link.coursera.org"
+                ],
+                "source": "crt.sh",
+                "certificates": {
+                  "21340204686": {
+                    "id": 21340204686,
+                    "detail_url": "https://crt.sh/?id=21340204686",
+                    "ct_logs": [
+                      {
+                        "date": "2025-09-28",
+                        "time": "15:09:48 UTC",
+                        "entry_number": "149374593",
+                        "log_operator": "Google",
+                        "log_url": "https://ct.googleapis.com/logs/us1/argon2026h2"
+                      },
+                      {
+                        "date": "2025-09-28",
+                        "time": "15:09:48 UTC",
+                        "entry_number": "109175441",
+                        "log_operator": "DigiCert",
+                        "log_url": "https://sphinx.ct.digicert.com/2026h2"
+                      },
+                      {
+                        "date": "2025-09-28",
+                        "time": "15:09:49 UTC",
+                        "entry_number": "92807620",
+                        "log_operator": "Let's Encrypt",
+                        "log_url": "https://oak.ct.letsencrypt.org/2026h2"
+                      },
+                      {
+                        "date": "2025-09-28",
+                        "time": "15:09:55 UTC",
+                        "entry_number": "3822885",
+                        "log_operator": "IPng Networks",
+                        "log_url": "https://halloumi2026h2a.mon.ct.ipng.ch"
+                      },
+                      {
+                        "date": "2025-09-28",
+                        "time": "15:09:55 UTC",
+                        "entry_number": "113596190",
+                        "log_operator": "Google",
+                        "log_url": "https://ct.googleapis.com/logs/eu1/xenon2026h2"
+                      },
+                      {
+                        "date": "2025-09-28",
+                        "time": "15:09:55 UTC",
+                        "entry_number": "61548355",
+                        "log_operator": "Sectigo",
+                        "log_url": "https://elephant2026h2.ct.sectigo.com"
+                      },
+                      {
+                        "date": "2025-09-28",
+                        "time": "15:09:55 UTC",
+                        "entry_number": "546798597",
+                        "log_operator": "Cloudflare",
+                        "log_url": "https://ct.cloudflare.com/logs/nimbus2026"
+                      },
+                      {
+                        "date": "2025-09-28",
+                        "time": "15:09:55 UTC",
+                        "entry_number": "9548938",
+                        "log_operator": "Let's Encrypt",
+                        "log_url": "https://mon.willow.ct.letsencrypt.org/2026h2"
+                      },
+                      {
+                        "date": "2025-09-28",
+                        "time": "15:09:55 UTC",
+                        "entry_number": "61063455",
+                        "log_operator": "Sectigo",
+                        "log_url": "https://tiger2026h2.ct.sectigo.com"
+                      },
+                      {
+                        "date": "2025-09-28",
+                        "time": "15:09:55 UTC",
+                        "entry_number": "110161110",
+                        "log_operator": "DigiCert",
+                        "log_url": "https://wyvern.ct.digicert.com/2026h2"
+                      },
+                      {
+                        "date": "2025-09-28",
+                        "time": "15:09:55 UTC",
+                        "entry_number": "31509703",
+                        "log_operator": "Cloudflare",
+                        "log_url": "https://raio2026h2a.ct.cloudflare.com"
+                      },
+                      {
+                        "date": "2025-09-28",
+                        "time": "15:09:55 UTC",
+                        "entry_number": "9546328",
+                        "log_operator": "Let's Encrypt",
+                        "log_url": "https://mon.sycamore.ct.letsencrypt.org/2026h2"
+                      },
+                      {
+                        "date": "2025-09-28",
+                        "time": "15:09:56 UTC",
+                        "entry_number": "36573446",
+                        "log_operator": "IPng Networks",
+                        "log_url": "https://gouda2026h2.mon.ct.ipng.ch"
+                      }
+                    ],
+                    "certificate_data": {
+                      "sha256_fingerprint": "E68770CE4C857F6E031531A2AA5634833FE8F5E69C8F665C6D7350B3561EEA39",
+                      "sha1_fingerprint": "F242E10BD1CE3BF91053375F2C4AA712E6A2E9B6"
+                    },
+                    "subject_alternative_names": [
+                      "clearpass.corp.coursera.org",
+                      "www.clearpass.corp.coursera.org"
+                    ],
+                    "additional_domains_found": 53
+                  }
+                },
+                "total_certificates": 1579,
+                "analyzed_certificate_id": 21340204686
+              }
+            }
+          },
+          "certificates": {
+            "21340204686": {
+              "id": 21340204686,
+              "detail_url": "https://crt.sh/?id=21340204686",
+              "ct_logs": [
+                {
+                  "date": "2025-09-28",
+                  "time": "15:09:48 UTC",
+                  "entry_number": "149374593",
+                  "log_operator": "Google",
+                  "log_url": "https://ct.googleapis.com/logs/us1/argon2026h2"
+                },
+                {
+                  "date": "2025-09-28",
+                  "time": "15:09:48 UTC",
+                  "entry_number": "109175441",
+                  "log_operator": "DigiCert",
+                  "log_url": "https://sphinx.ct.digicert.com/2026h2"
+                },
+                {
+                  "date": "2025-09-28",
+                  "time": "15:09:49 UTC",
+                  "entry_number": "92807620",
+                  "log_operator": "Let's Encrypt",
+                  "log_url": "https://oak.ct.letsencrypt.org/2026h2"
+                },
+                {
+                  "date": "2025-09-28",
+                  "time": "15:09:55 UTC",
+                  "entry_number": "3822885",
+                  "log_operator": "IPng Networks",
+                  "log_url": "https://halloumi2026h2a.mon.ct.ipng.ch"
+                },
+                {
+                  "date": "2025-09-28",
+                  "time": "15:09:55 UTC",
+                  "entry_number": "113596190",
+                  "log_operator": "Google",
+                  "log_url": "https://ct.googleapis.com/logs/eu1/xenon2026h2"
+                },
+                {
+                  "date": "2025-09-28",
+                  "time": "15:09:55 UTC",
+                  "entry_number": "61548355",
+                  "log_operator": "Sectigo",
+                  "log_url": "https://elephant2026h2.ct.sectigo.com"
+                },
+                {
+                  "date": "2025-09-28",
+                  "time": "15:09:55 UTC",
+                  "entry_number": "546798597",
+                  "log_operator": "Cloudflare",
+                  "log_url": "https://ct.cloudflare.com/logs/nimbus2026"
+                },
+                {
+                  "date": "2025-09-28",
+                  "time": "15:09:55 UTC",
+                  "entry_number": "9548938",
+                  "log_operator": "Let's Encrypt",
+                  "log_url": "https://mon.willow.ct.letsencrypt.org/2026h2"
+                },
+                {
+                  "date": "2025-09-28",
+                  "time": "15:09:55 UTC",
+                  "entry_number": "61063455",
+                  "log_operator": "Sectigo",
+                  "log_url": "https://tiger2026h2.ct.sectigo.com"
+                },
+                {
+                  "date": "2025-09-28",
+                  "time": "15:09:55 UTC",
+                  "entry_number": "110161110",
+                  "log_operator": "DigiCert",
+                  "log_url": "https://wyvern.ct.digicert.com/2026h2"
+                },
+                {
+                  "date": "2025-09-28",
+                  "time": "15:09:55 UTC",
+                  "entry_number": "31509703",
+                  "log_operator": "Cloudflare",
+                  "log_url": "https://raio2026h2a.ct.cloudflare.com"
+                },
+                {
+                  "date": "2025-09-28",
+                  "time": "15:09:55 UTC",
+                  "entry_number": "9546328",
+                  "log_operator": "Let's Encrypt",
+                  "log_url": "https://mon.sycamore.ct.letsencrypt.org/2026h2"
+                },
+                {
+                  "date": "2025-09-28",
+                  "time": "15:09:56 UTC",
+                  "entry_number": "36573446",
+                  "log_operator": "IPng Networks",
+                  "log_url": "https://gouda2026h2.mon.ct.ipng.ch"
+                }
+              ],
+              "certificate_data": {
+                "sha256_fingerprint": "E68770CE4C857F6E031531A2AA5634833FE8F5E69C8F665C6D7350B3561EEA39",
+                "sha1_fingerprint": "F242E10BD1CE3BF91053375F2C4AA712E6A2E9B6"
+              },
+              "subject_alternative_names": [
+                "clearpass.corp.coursera.org",
+                "www.clearpass.corp.coursera.org"
+              ],
+              "additional_domains_found": 53
+            }
+          },
+          "subdomains": [
+            "dev4.labs-dev.coursera.org",
+            "op-it-tools.corp.coursera.org",
+            "op-onepassword-connect.corp.coursera.org",
+            "aws2-avx-scep-prod.corp.coursera.org",
+            "servicedesk-sb.corp.coursera.org",
+            "dev3.labs-dev.coursera.org",
+            "status.coursera.org",
+            "dev8.labs-dev.coursera.org",
+            "app50.corp.coursera.org",
+            "link.coursera.org",
+            "corp.coursera.org",
+            "www.coursera.org",
+            "apply.coursera.org",
+            "labs-dr.coursera.org",
+            "zentral.corp.coursera.org",
+            "click.email.coursera.org",
+            "s3antivirus.corp.coursera.org",
+            "aws2-avx-scep-dev.corp.coursera.org",
+            "hello.coursera.org",
+            "pages.coursera.org",
+            "cloud.email.coursera.org",
+            "businesstest.coursera.org",
+            "services.api.coursera.org",
+            "op-scim-bridge.corp.coursera.org",
+            "dev5.labs-dev.coursera.org",
+            "coursera.org",
+            "mv-vpn.coursera.org",
+            "gp.coursera.org",
+            "dev1.labs-dev.coursera.org",
+            "testlaunch.coursera.org",
+            "testlaunch1.coursera.org",
+            "dev7.labs-dev.coursera.org",
+            "www.vcenter.corp.coursera.org",
+            "op1-scim-bridge.corp.coursera.org",
+            "helpdesk.coursera.org",
+            "image.email.coursera.org",
+            "view.email.coursera.org",
+            "vcenter.corp.coursera.org",
+            "services.coursera.org",
+            "www.mv-vpn.coursera.org",
+            "op-datasets-ecs.corp.coursera.org",
+            "skillsfuture.coursera.org",
+            "class.coursera.org",
+            "dev2.labs-dev.coursera.org",
+            "labs.coursera.org",
+            "servicedesk.corp.coursera.org",
+            "quantil.cdn.coursera.org",
+            "university-looker.coursera.org",
+            "business.coursera.org",
+            "dev6.labs-dev.coursera.org",
+            "servicedesk-test.corp.coursera.org",
+            "servicedesk-dev.corp.coursera.org",
+            "www.clearpass.corp.coursera.org",
+            "dev9.labs-dev.coursera.org",
+            "clearpass.corp.coursera.org",
+            "labs-dev.coursera.org",
+            "logui.corp.coursera.org"
+          ],
+          "statistics": {
+            "total_duration": 67.0480444431305,
+            "total_subdomains": 57,
+            "certificates_analyzed": 1,
+            "ct_logs_processed": 1579,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "coursera.org",
+          "timestamp": 1759333374.9277909,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "13.33.88.119",
+              "13.33.88.53",
+              "13.33.88.33",
+              "13.33.88.124"
+            ],
+            "MX": [
+              "aspmx.l.google.com",
+              "aspmx5.googlemail.com",
+              "aspmx2.googlemail.com",
+              "aspmx3.googlemail.com",
+              "alt1.aspmx.l.google.com",
+              "alt2.aspmx.l.google.com",
+              "aspmx4.googlemail.com"
+            ],
+            "NS": [
+              "ns-688.awsdns-22.net",
+              "ns-1590.awsdns-06.co.uk",
+              "ns-1481.awsdns-57.org",
+              "ns-258.awsdns-32.com"
+            ],
+            "TXT": [
+              "v=spf1 include:sendgrid.net ip4:24.6.102.21 ip4:50.16.53.44 include:_spf.google.com include:amazonses.com include:spf.mtasv.net include:_spf.salesforce.com -all",
+              "openai-domain-verification=dv-ykQklEbL6szace8vG1l7ejkQ",
+              "miro-verification=d5e807f40d602cde4051496eaaa95234e158ada0",
+              "hubspot-domain-verification=ZTM1ZDk4NGEtNWU5Ny00NDJiLWIwNTQtZTA1NGJhZmU3MzZh",
+              "google-site-verification=BbSjFsQN-aTkQDOiar6q3O4fPzSlgepoOdM3fMuCXFA",
+              "376174617-10056694",
+              "google-site-verification=l-IugqqOHDGlHpUHfv3e6z8J1koLgfGSem04lqBA_B8",
+              "stripe-verification=0f6967e13ea84d76953d1c3f2dc9eb80e82f090fff99161cd2fa957f55a71d60",
+              "stripe-verification=95449f6ae01b02ef7f65b59ee2f3ed14bac52c49aaa1519e57b864b70baede3a",
+              "stripe-verification=34fd6b74183c244d59d572c162e5b77fe6eed5e5205296151f49dda7b68670eb",
+              "yandex-verification: 7472d03e746e191a",
+              "cursor-domain-verification-kg2va5=P61NAJ77jH4Kuavd9jaD3I4Bw",
+              "MS=ms91657421",
+              "google-site-verification=UGpuPtZLCcMKFmgAeN4q6EbvxJn56A8Jz0sgW3yVKmA",
+              "facebook-domain-verification=46dep9ql4m6it0wahwkhiou7xit57h",
+              "google-site-verification=H2oN7Mv4QCzOClwXz1j30f-4544byEDxyEk0o3eluE0",
+              "canva-site-verification=m3eGQL4tz88BqXJO92JRpw",
+              "atlassian-domain-verification=OwoxnU5JeeEeNB3PXqTmPOsZNFUYTd05tar4PX8ZNNjps+mMWto+OyyA/50W5+B1",
+              "paloaltonetworks-site-verification=3d8b8eeec8974a6c2b181f7decddc8a96d9cbdcb8f39e4923c53d477a96f6d37",
+              "google-site-verification=874wxzrE4FAJO81XTCXyH6WYnWZAMdlbMRXI3lfI0bw",
+              "docker-verification=6792a290-383f-4d78-9f9b-71f46df7b6b2",
+              "apple-domain-verification=8gxy28dzSlSOYkUI",
+              "rzp-site-verification=0e1f055c2e81430150efedded50e7992",
+              "spf2.0/pra include:amazonses.com include:sendgrid.net include:_spf.google.com include:spf.mtasv.net -all",
+              "atlassian-domain-verification=pwnyCbGEmC6E08lYJGO/SYkQvbjFS+OXy03eVMG75U52Edj0vbZGBjdaorxh+PUE",
+              "google-site-verification=tbpsWy5oBEvo-Kod36Lqsb3qRK0h_divcCGAeUdVZlk",
+              "zoom-domain-verification=6fb6c268-238e-477b-ba40-2f0164695cd7",
+              "google-site-verification=61uiBFuqY-MYJHWt_8qbU00Rsn7Nq_njU5eMUG0NlrY",
+              "docusign=05d7ee1b-a029-4b94-912a-25bb3c4a2bed",
+              "cisco-ci-domain-verification=5b418d2526e560d4ec96988886c86e7930c6936b68215183295356a4e4bf36d7",
+              "BthfBdp8W7Bqmm87eNGy",
+              "jamf-site-verification=AmVhIhwqDzkoVxg_B0K81w",
+              "google-site-verification=nLfEbuY6OaO0lfas7ywHqpPnOMnobNONSJ0hnbJO9co",
+              "google-site-verification=PDgfi1HUgagq2NZOh86B3PpGnjDyNXdUr9iyWzDjONM",
+              "google-site-verification=fFsckLsIOub_171zkeWLBQ72SvjwGSPsz209wwTtmX4",
+              "onetrust-domain-verification=bc353cda9f49402e8b2ac8a3b3e86286"
+            ],
+            "SOA": [
+              "ns-1590.awsdns-06.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"
+            ]
+          },
+          "subdomains": [],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 include:sendgrid.net ip4:24.6.102.21 ip4:50.16.53.44 include:_spf.google.com include:amazonses.com include:spf.mtasv.net include:_spf.salesforce.com -all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=BbSjFsQN-aTkQDOiar6q3O4fPzSlgepoOdM3fMuCXFA",
+                "google-site-verification=l-IugqqOHDGlHpUHfv3e6z8J1koLgfGSem04lqBA_B8",
+                "google-site-verification=UGpuPtZLCcMKFmgAeN4q6EbvxJn56A8Jz0sgW3yVKmA",
+                "facebook-domain-verification=46dep9ql4m6it0wahwkhiou7xit57h",
+                "google-site-verification=H2oN7Mv4QCzOClwXz1j30f-4544byEDxyEk0o3eluE0",
+                "google-site-verification=874wxzrE4FAJO81XTCXyH6WYnWZAMdlbMRXI3lfI0bw",
+                "google-site-verification=tbpsWy5oBEvo-Kod36Lqsb3qRK0h_divcCGAeUdVZlk",
+                "google-site-verification=61uiBFuqY-MYJHWt_8qbU00Rsn7Nq_njU5eMUG0NlrY",
+                "google-site-verification=nLfEbuY6OaO0lfas7ywHqpPnOMnobNONSJ0hnbJO9co",
+                "google-site-verification=PDgfi1HUgagq2NZOh86B3PpGnjDyNXdUr9iyWzDjONM",
+                "google-site-verification=fFsckLsIOub_171zkeWLBQ72SvjwGSPsz209wwTtmX4"
+              ],
+              "other": [
+                "openai-domain-verification=dv-ykQklEbL6szace8vG1l7ejkQ",
+                "miro-verification=d5e807f40d602cde4051496eaaa95234e158ada0",
+                "hubspot-domain-verification=ZTM1ZDk4NGEtNWU5Ny00NDJiLWIwNTQtZTA1NGJhZmU3MzZh",
+                "376174617-10056694",
+                "stripe-verification=0f6967e13ea84d76953d1c3f2dc9eb80e82f090fff99161cd2fa957f55a71d60",
+                "stripe-verification=95449f6ae01b02ef7f65b59ee2f3ed14bac52c49aaa1519e57b864b70baede3a",
+                "stripe-verification=34fd6b74183c244d59d572c162e5b77fe6eed5e5205296151f49dda7b68670eb",
+                "yandex-verification: 7472d03e746e191a",
+                "cursor-domain-verification-kg2va5=P61NAJ77jH4Kuavd9jaD3I4Bw",
+                "MS=ms91657421",
+                "canva-site-verification=m3eGQL4tz88BqXJO92JRpw",
+                "atlassian-domain-verification=OwoxnU5JeeEeNB3PXqTmPOsZNFUYTd05tar4PX8ZNNjps+mMWto+OyyA/50W5+B1",
+                "paloaltonetworks-site-verification=3d8b8eeec8974a6c2b181f7decddc8a96d9cbdcb8f39e4923c53d477a96f6d37",
+                "docker-verification=6792a290-383f-4d78-9f9b-71f46df7b6b2",
+                "apple-domain-verification=8gxy28dzSlSOYkUI",
+                "rzp-site-verification=0e1f055c2e81430150efedded50e7992",
+                "spf2.0/pra include:amazonses.com include:sendgrid.net include:_spf.google.com include:spf.mtasv.net -all",
+                "atlassian-domain-verification=pwnyCbGEmC6E08lYJGO/SYkQvbjFS+OXy03eVMG75U52Edj0vbZGBjdaorxh+PUE",
+                "zoom-domain-verification=6fb6c268-238e-477b-ba40-2f0164695cd7",
+                "docusign=05d7ee1b-a029-4b94-912a-25bb3c4a2bed",
+                "cisco-ci-domain-verification=5b418d2526e560d4ec96988886c86e7930c6936b68215183295356a4e4bf36d7",
+                "BthfBdp8W7Bqmm87eNGy",
+                "jamf-site-verification=AmVhIhwqDzkoVxg_B0K81w",
+                "onetrust-domain-verification=bc353cda9f49402e8b2ac8a3b3e86286"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 0.7595553398132324,
+            "total_records": 52,
+            "total_subdomains": 0,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "coursera.org",
+          "timestamp": 1759333390.969419,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://coursera.org": {
+              "url": "http://coursera.org",
+              "timestamp": 1759333374.953158,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "ISO-8859-1",
+                "content_type": "text/html",
+                "content_length": 597718,
+                "url": "https://www.coursera.org/",
+                "redirect_chain": [
+                  "http://coursera.org/",
+                  "https://coursera.org/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.coursera.org/",
+                "content_preview": "<!DOCTYPE html><html xmlns:fb=\"http://ogp.me/ns/fb#\" itemtype=\"http://schema.org\" lang=\"en\" dir=\"ltr\" data-color-theme=\"{{{colorTheme}}}\"><head><link rel=\"preconnect\" href=\"https://d3njjcbhbojbot.clou...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "envoy",
+                "x_powered_by": "Express",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=31536000; includeSubDomains; preload",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "1; mode=block",
+                "set_cookie": "Not found",
+                "cache_control": "private, no-cache, no-store, must-revalidate, max-age=0",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "W/\"91ed6-9puxNYvdCRovmU1bhRZQC+WDzZY\"",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "envoy",
+                  "components": [
+                    "envoy"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Express.js",
+                  "raw_header": "Express"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Contentful",
+                  "Envoy",
+                  "Express",
+                  "Amazon Cloudfront",
+                  "Node.js",
+                  "React"
+                ],
+                "header_detected": [
+                  "Express"
+                ],
+                "content_detected": [
+                  "Google Analytics",
+                  "Wordpress"
+                ],
+                "url_patterns": [
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "1; mode=block",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 5.1877360343933105,
+                "content_length": 597718,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [
+                    "Node.js"
+                  ],
+                  "framework": [
+                    "Express"
+                  ],
+                  "cms": [
+                    "Wordpress"
+                  ],
+                  "javascript_libraries": [
+                    "React"
+                  ],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://coursera.org": {
+              "url": "https://coursera.org",
+              "timestamp": 1759333380.1419919,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "ISO-8859-1",
+                "content_type": "text/html",
+                "content_length": 598025,
+                "url": "https://www.coursera.org/",
+                "redirect_chain": [
+                  "https://coursera.org/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.coursera.org/",
+                "content_preview": "<!DOCTYPE html><html xmlns:fb=\"http://ogp.me/ns/fb#\" itemtype=\"http://schema.org\" lang=\"en\" dir=\"ltr\" data-color-theme=\"{{{colorTheme}}}\"><head><link rel=\"preconnect\" href=\"https://d3njjcbhbojbot.clou...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "envoy",
+                "x_powered_by": "Express",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=31536000; includeSubDomains; preload",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "1; mode=block",
+                "set_cookie": "Not found",
+                "cache_control": "private, no-cache, no-store, must-revalidate, max-age=0",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "W/\"92009-lIxQJ+WflgHuDc3/+yxQfcTZvlI\"",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "envoy",
+                  "components": [
+                    "envoy"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Express.js",
+                  "raw_header": "Express"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Contentful",
+                  "Envoy",
+                  "Express",
+                  "Amazon Cloudfront",
+                  "Node.js",
+                  "React"
+                ],
+                "header_detected": [
+                  "Express"
+                ],
+                "content_detected": [
+                  "Google Analytics",
+                  "Wordpress"
+                ],
+                "url_patterns": [
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "1; mode=block",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 4.6692094802856445,
+                "content_length": 598025,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [
+                    "Node.js"
+                  ],
+                  "framework": [
+                    "Express"
+                  ],
+                  "cms": [
+                    "Wordpress"
+                  ],
+                  "javascript_libraries": [
+                    "React"
+                  ],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.coursera.org": {
+              "url": "https://www.coursera.org",
+              "timestamp": 1759333384.8118675,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "ISO-8859-1",
+                "content_type": "text/html",
+                "content_length": 597695,
+                "url": "https://www.coursera.org/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://www.coursera.org/",
+                "content_preview": "<!DOCTYPE html><html xmlns:fb=\"http://ogp.me/ns/fb#\" itemtype=\"http://schema.org\" lang=\"en\" dir=\"ltr\" data-color-theme=\"{{{colorTheme}}}\"><head><link rel=\"preconnect\" href=\"https://d3njjcbhbojbot.clou...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "envoy",
+                "x_powered_by": "Express",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=31536000; includeSubDomains; preload",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "1; mode=block",
+                "set_cookie": "Not found",
+                "cache_control": "private, no-cache, no-store, must-revalidate, max-age=0",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "W/\"91ebf-xj39r87mIddlPL1Zc4w1E2sn9B0\"",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "envoy",
+                  "components": [
+                    "envoy"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Express.js",
+                  "raw_header": "Express"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Contentful",
+                  "Envoy",
+                  "Express",
+                  "Amazon Cloudfront",
+                  "Node.js",
+                  "React"
+                ],
+                "header_detected": [
+                  "Express"
+                ],
+                "content_detected": [
+                  "Google Analytics",
+                  "Wordpress"
+                ],
+                "url_patterns": [
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "1; mode=block",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 3.076508045196533,
+                "content_length": 597695,
+                "status_code": 200,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [
+                    "Node.js"
+                  ],
+                  "framework": [
+                    "Express"
+                  ],
+                  "cms": [
+                    "Wordpress"
+                  ],
+                  "javascript_libraries": [
+                    "React"
+                  ],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://www.coursera.org": {
+              "url": "http://www.coursera.org",
+              "timestamp": 1759333387.889078,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "ISO-8859-1",
+                "content_type": "text/html",
+                "content_length": 597738,
+                "url": "https://www.coursera.org/",
+                "redirect_chain": [
+                  "http://www.coursera.org/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.coursera.org/",
+                "content_preview": "<!DOCTYPE html><html xmlns:fb=\"http://ogp.me/ns/fb#\" itemtype=\"http://schema.org\" lang=\"en\" dir=\"ltr\" data-color-theme=\"{{{colorTheme}}}\"><head><link rel=\"preconnect\" href=\"https://d3njjcbhbojbot.clou...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "envoy",
+                "x_powered_by": "Express",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=31536000; includeSubDomains; preload",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "1; mode=block",
+                "set_cookie": "Not found",
+                "cache_control": "private, no-cache, no-store, must-revalidate, max-age=0",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "W/\"91eea-kwM6hBrPkvLZiJLZpMY4rEBWRNw\"",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "envoy",
+                  "components": [
+                    "envoy"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Express.js",
+                  "raw_header": "Express"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Contentful",
+                  "Envoy",
+                  "Express",
+                  "Amazon Cloudfront",
+                  "Node.js",
+                  "React"
+                ],
+                "header_detected": [
+                  "Express"
+                ],
+                "content_detected": [
+                  "Google Analytics",
+                  "Wordpress"
+                ],
+                "url_patterns": [
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "1; mode=block",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 3.075277090072632,
+                "content_length": 597738,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [
+                    "Node.js"
+                  ],
+                  "framework": [
+                    "Express"
+                  ],
+                  "cms": [
+                    "Wordpress"
+                  ],
+                  "javascript_libraries": [
+                    "React"
+                  ],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Amazon Web Services",
+              "Google Analytics",
+              "Contentful",
+              "Envoy",
+              "Express",
+              "Amazon Cloudfront",
+              "Node.js",
+              "CDN",
+              "React",
+              "Wordpress"
+            ],
+            "security_score_avg": 57.14285714285714,
+            "common_issues": [
+              "Content-Security-Policy",
+              "Referrer-Policy",
+              "Permissions-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 16.029521465301514,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 57,
+          "certificates_analyzed": 1,
+          "ct_logs_processed": 1579
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 0,
+          "records_found": 52,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 10
+        }
+      },
+      "all_subdomains": [
+        "app50.corp.coursera.org",
+        "apply.coursera.org",
+        "aws2-avx-scep-dev.corp.coursera.org",
+        "aws2-avx-scep-prod.corp.coursera.org",
+        "business.coursera.org",
+        "businesstest.coursera.org",
+        "class.coursera.org",
+        "clearpass.corp.coursera.org",
+        "click.email.coursera.org",
+        "cloud.email.coursera.org",
+        "corp.coursera.org",
+        "coursera.org",
+        "dev1.labs-dev.coursera.org",
+        "dev2.labs-dev.coursera.org",
+        "dev3.labs-dev.coursera.org",
+        "dev4.labs-dev.coursera.org",
+        "dev5.labs-dev.coursera.org",
+        "dev6.labs-dev.coursera.org",
+        "dev7.labs-dev.coursera.org",
+        "dev8.labs-dev.coursera.org",
+        "dev9.labs-dev.coursera.org",
+        "gp.coursera.org",
+        "hello.coursera.org",
+        "helpdesk.coursera.org",
+        "image.email.coursera.org",
+        "labs-dev.coursera.org",
+        "labs-dr.coursera.org",
+        "labs.coursera.org",
+        "link.coursera.org",
+        "logui.corp.coursera.org",
+        "mv-vpn.coursera.org",
+        "op-datasets-ecs.corp.coursera.org",
+        "op-it-tools.corp.coursera.org",
+        "op-onepassword-connect.corp.coursera.org",
+        "op-scim-bridge.corp.coursera.org",
+        "op1-scim-bridge.corp.coursera.org",
+        "pages.coursera.org",
+        "quantil.cdn.coursera.org",
+        "s3antivirus.corp.coursera.org",
+        "servicedesk-dev.corp.coursera.org",
+        "servicedesk-sb.corp.coursera.org",
+        "servicedesk-test.corp.coursera.org",
+        "servicedesk.corp.coursera.org",
+        "services.api.coursera.org",
+        "services.coursera.org",
+        "skillsfuture.coursera.org",
+        "status.coursera.org",
+        "testlaunch.coursera.org",
+        "testlaunch1.coursera.org",
+        "university-looker.coursera.org",
+        "vcenter.corp.coursera.org",
+        "view.email.coursera.org",
+        "www.clearpass.corp.coursera.org",
+        "www.coursera.org",
+        "www.mv-vpn.coursera.org",
+        "www.vcenter.corp.coursera.org",
+        "zentral.corp.coursera.org"
+      ],
+      "statistics": {
+        "total_subdomains": 57,
+        "unique_subdomains": 57,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 84.81,
+        "certificates_analyzed": 1,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 10,
+        "security_issues_found": 3,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "coursera.org",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 21:13 +0530\nNmap scan report for coursera.org (13.33.88.124)\nHost is up (0.048s latency).\nOther addresses for coursera.org (not scanned): 13.33.88.119 13.33.88.53 13.33.88.33\nrDNS record for 13.33.88.124: server-13-33-88-124.sin2.r.cloudfront.net\nNot shown: 998 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 8.36 seconds\n",
+        "scan_duration": 8.36
+      },
+      "service_results": {
+        "target": "coursera.org",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 400 Bad Request\r\nServer: CloudFront\r\nDate: Wed, 01 Oct 2025 15:43:19 GMT\r\nContent-Type: text/html\r\nContent-Length: 915\r\nConnection: close\r\nX-Cache: Error from cloudfront\r\nVia: 1.1 d349739893df3b59b8ea4953ff21a5e8.cloudfront.net (CloudFront)\r\nX-Amz-Cf-Pop: SIN2-P2\r\nX-Amz-Cf-Id: IKm7iPUjFsuSrOPzWPj3EHjl36I0BMzqwwWck8c1vskyy1BuorF_ew==\r\n\r\n<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n<HTML><HEAD><META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n<TITLE>ERROR: The request could not be satisfied</TITLE>\n</HEAD><BODY>\n<H1>400 ERROR</H1>\n<H2>The request could not be satisfied.</H2>\n<HR noshade size=\"1px\">\nBad request.\nWe can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner.\n<BR clear=\"all\">\nIf you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error",
+            "version": "1.1",
+            "ssl": false,
+            "protocol_info": {
+              "http": {
+                "status_code": 200,
+                "server": "envoy",
+                "content_type": "text/html"
+              }
+            }
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "HTTP/1.1 400 Bad Request\r\nServer: CloudFront\r\nDate: Wed, 01 Oct 2025 15:43:20 GMT\r\nContent-Type: text/html\r\nContent-Length: 915\r\nConnection: close\r\nX-Cache: Error from cloudfront\r\nVia: 1.1 9b42888bacc8273877421321cf54240a.cloudfront.net (CloudFront)\r\nX-Amz-Cf-Pop: SIN2-P2\r\nX-Amz-Cf-Id: b79JaCTgZjGOz5mr_JvjTBMWVp2eQZcFwGLcczDCt-Rpes4WAqQ-tA==\r\n\r\n<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n<HTML><HEAD><META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n<TITLE>ERROR: The request could not be satisfied</TITLE>\n</HEAD><BODY>\n<H1>400 ERROR</H1>\n<H2>The request could not be satisfied.</H2>\n<HR noshade size=\"1px\">\nBad request.\nWe can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner.\n<BR clear=\"all\">\nIf you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error",
+            "version": "1.1",
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_128_GCM_SHA256"
+              },
+              "http": {
+                "status_code": 200,
+                "server": "envoy",
+                "content_type": "text/html"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 8.36
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Amazon CloudFront",
+        "detection_method": "headers",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "coursera.org",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/coursera_org_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 57,
+    "total_open_ports": 2,
+    "cdn_detected": true,
+    "technologies_detected": 10,
+    "apis_discovered": 0
+  },
+  "execution_time": 97.70632982254028
+}

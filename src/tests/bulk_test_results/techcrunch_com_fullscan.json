@@ -1,0 +1,851 @@
+{
+  "target_domain": "techcrunch.com",
+  "scan_timestamp": "2025-10-01T20:24:52.347729",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "techcrunch.com",
+      "timestamp": "2025-10-01T20:24:52.348442",
+      "modules": {
+        "passive": {
+          "domain": "techcrunch.com",
+          "timestamp": 1759330548.7113564,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 56.35587978363037,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "techcrunch.com",
+          "timestamp": 1759330549.8879664,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "192.0.66.220"
+            ],
+            "AAAA": [
+              "2a04:fa87:fffd::c000:42dc"
+            ],
+            "MX": [
+              "usb-smtp-inbound-1.mimecast.com",
+              "usb-smtp-inbound-2.mimecast.com"
+            ],
+            "NS": [
+              "elly.ns.cloudflare.com",
+              "gordon.ns.cloudflare.com"
+            ],
+            "TXT": [
+              "google-site-verification=VZcuQE1gCO7Zg1W2g_uzOzDXXICzPt74_eE-w0SRpt4",
+              "0ed1fe018a18c01fd51bff49e5bd633fade441856b",
+              "MS=ms48927658",
+              "google-site-verification=KsXJcvhk00hppwpZ3oNMk0GzB9M2GFUxA7XjdRVpc1U",
+              "zeplin",
+              "google-site-verification=HgtRMjw2Jm4kQso_oGLMcQ7ndEv8wNcGa0Kquhm9KK0",
+              "atlassian-domain-verification=Aqj2sFhPdaXKuzHfHJVnoasFSVYVdbez8ftp2whI0J1jaUmUtrid54s1pLurPbiM",
+              "yahoo-verification-key=nBRGLDZQzTUnUA7c6taNupK6RrG3ZGZs0PjHJmWAkqM=",
+              "docusign=1ad1e6cd-4dfe-4b34-8689-5797102f132e",
+              "dropbox-domain-verification=sh3f8kienale",
+              "knowbe4-site-verification=bc3830115833f4f956e30f506f1da8c8",
+              "b42c6b9e-33ca-44c0-a919-3152d6b3ddfa",
+              "134052hpsyz5k73sv39m0sgxljsqyls7",
+              "airtable-verification=e989fdaedddc09c0e5c782dd036dd08a",
+              "slido-domain-verification=87b6e1fe-2406-444f-90df-2cd87a594a34",
+              "google-site-verification=NgMXk6BZ-jqt9XTrgnGt_O7hY4xD-NEAWsfSSD2VuZQ",
+              "MS=ms36891426",
+              "v=spf1 a mx include:usb._netblocks.mimecast.com include:spf.protection.outlook.com include:_spf.google.com include:amazonses.com include:44101848.spf06.hubspotemail.net include:aspmx.sailthru.com include:mktomail.com ip4:148.163.135.35 ip4:148.163.139.55 \" \"-all",
+              "google-site-verification=DhlHJ_81bZLsrh5TLvK7ac04EG4QvEAa8hjtsiMpUTQ",
+              "google-site-verification=8tVHhkiXUNoPjI09EcLgjl9V7TwSXxLV0bnIjcEmpFw",
+              "google-site-verification=JJNsJJsmpgH6VoKlFj7qG9V223pIrsduvb7qQ31GNC0",
+              "_globalsign-domain-verification=esDvs5Msz39F5o97VaHcZxyKR4A6NPHRpuo9du1Tro"
+            ],
+            "SOA": [
+              "elly.ns.cloudflare.com. dns.cloudflare.com. 2384742128 10000 2400 604800 1800"
+            ]
+          },
+          "subdomains": [],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 a mx include:usb._netblocks.mimecast.com include:spf.protection.outlook.com include:_spf.google.com include:amazonses.com include:44101848.spf06.hubspotemail.net include:aspmx.sailthru.com include:mktomail.com ip4:148.163.135.35 ip4:148.163.139.55 \" \"-all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=VZcuQE1gCO7Zg1W2g_uzOzDXXICzPt74_eE-w0SRpt4",
+                "google-site-verification=KsXJcvhk00hppwpZ3oNMk0GzB9M2GFUxA7XjdRVpc1U",
+                "google-site-verification=HgtRMjw2Jm4kQso_oGLMcQ7ndEv8wNcGa0Kquhm9KK0",
+                "google-site-verification=NgMXk6BZ-jqt9XTrgnGt_O7hY4xD-NEAWsfSSD2VuZQ",
+                "google-site-verification=DhlHJ_81bZLsrh5TLvK7ac04EG4QvEAa8hjtsiMpUTQ",
+                "google-site-verification=8tVHhkiXUNoPjI09EcLgjl9V7TwSXxLV0bnIjcEmpFw",
+                "google-site-verification=JJNsJJsmpgH6VoKlFj7qG9V223pIrsduvb7qQ31GNC0"
+              ],
+              "other": [
+                "0ed1fe018a18c01fd51bff49e5bd633fade441856b",
+                "MS=ms48927658",
+                "zeplin",
+                "atlassian-domain-verification=Aqj2sFhPdaXKuzHfHJVnoasFSVYVdbez8ftp2whI0J1jaUmUtrid54s1pLurPbiM",
+                "yahoo-verification-key=nBRGLDZQzTUnUA7c6taNupK6RrG3ZGZs0PjHJmWAkqM=",
+                "docusign=1ad1e6cd-4dfe-4b34-8689-5797102f132e",
+                "dropbox-domain-verification=sh3f8kienale",
+                "knowbe4-site-verification=bc3830115833f4f956e30f506f1da8c8",
+                "b42c6b9e-33ca-44c0-a919-3152d6b3ddfa",
+                "134052hpsyz5k73sv39m0sgxljsqyls7",
+                "airtable-verification=e989fdaedddc09c0e5c782dd036dd08a",
+                "slido-domain-verification=87b6e1fe-2406-444f-90df-2cd87a594a34",
+                "MS=ms36891426",
+                "_globalsign-domain-verification=esDvs5Msz39F5o97VaHcZxyKR4A6NPHRpuo9du1Tro"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 0.38619351387023926,
+            "total_records": 29,
+            "total_subdomains": 0,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "techcrunch.com",
+          "timestamp": 1759330557.1329398,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "https://www.techcrunch.com": {
+              "url": "https://www.techcrunch.com",
+              "timestamp": 1759330549.912143,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 442111,
+                "url": "https://techcrunch.com/",
+                "redirect_chain": [
+                  "https://www.techcrunch.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://techcrunch.com/",
+                "content_preview": "<!DOCTYPE html>\n<html lang=\"en-US\">\n<head>\n\t<meta charset=\"UTF-8\" />\n\t<script>(function(html){html.className = html.className.replace(/\\bno-js\\b/,'js')})(document.documentElement);</script>\n<meta name...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": true,
+                "title": "TechCrunch | Startup and Technology News",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "TechCrunch | Reporting on the business of technology, startups, venture capital funding, and Silicon",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "nginx",
+                "x_powered_by": "WordPress VIP <https://wpvip.com>",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "default-src 'self' *.techcrunch.com; frame-ancestors 'self'; frame-src 'self' https: data:; style-src 'self' 'unsafe-inline' *; img-src 'self' * data:; connect-src 'self' https:; object-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; worker-src 'self' blob:; media-src 'self' *.youtube.com *.jetpackdigital.com; font-src 'self' * data:; upgrade-insecure-requests; block-all-mixed-content; sandbox allow-forms allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox;",
+                "strict_transport_security": "max-age=300;includeSubdomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "max-age=300, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Nginx",
+                  "raw_header": "nginx",
+                  "components": [
+                    "nginx"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "raw_header": "WordPress VIP <https://wpvip.com>"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Google Tag Manager",
+                  "Nginx",
+                  "MySQL",
+                  "PHP",
+                  "reCAPTCHA",
+                  "WordPress"
+                ],
+                "header_detected": [
+                  "Nginx"
+                ],
+                "content_detected": [
+                  "Angular",
+                  "Wordpress"
+                ],
+                "url_patterns": [
+                  "Google Services"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "default-src 'self' *.techcrunch.com; frame-ancestors 'self'; frame-src 'self' https: data:; style-src 'self' 'unsafe-inline' *; img-src 'self' * data:; connect-src 'self' https:; object-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; worker-src 'self' blob:; media-src 'self' *.youtube.com *.jetpackdigital.com; font-src 'self' * data:; upgrade-insecure-requests; block-all-mixed-content; sandbox allow-forms allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox;",
+                  "Strict-Transport-Security": "max-age=300;includeSubdomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "no-referrer-when-downgrade",
+                  "Permissions-Policy": "autoplay=(), camera=(), fullscreen=*, geolocation=*, display-capture=(self), microphone=()"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 85.71428571428571,
+                "missing_headers": [
+                  "X-XSS-Protection"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 2.1052043437957764,
+                "content_length": 442111,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Nginx"
+                  ],
+                  "programming_language": [
+                    "PHP"
+                  ],
+                  "framework": [],
+                  "cms": [
+                    "WordPress",
+                    "Wordpress"
+                  ],
+                  "javascript_libraries": [
+                    "Angular"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://techcrunch.com": {
+              "url": "https://techcrunch.com",
+              "timestamp": 1759330552.01773,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 442111,
+                "url": "https://techcrunch.com/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://techcrunch.com/",
+                "content_preview": "<!DOCTYPE html>\n<html lang=\"en-US\">\n<head>\n\t<meta charset=\"UTF-8\" />\n\t<script>(function(html){html.className = html.className.replace(/\\bno-js\\b/,'js')})(document.documentElement);</script>\n<meta name...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": true,
+                "title": "TechCrunch | Startup and Technology News",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "TechCrunch | Reporting on the business of technology, startups, venture capital funding, and Silicon",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "nginx",
+                "x_powered_by": "WordPress VIP <https://wpvip.com>",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "default-src 'self' *.techcrunch.com; frame-ancestors 'self'; frame-src 'self' https: data:; style-src 'self' 'unsafe-inline' *; img-src 'self' * data:; connect-src 'self' https:; object-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; worker-src 'self' blob:; media-src 'self' *.youtube.com *.jetpackdigital.com; font-src 'self' * data:; upgrade-insecure-requests; block-all-mixed-content; sandbox allow-forms allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox;",
+                "strict_transport_security": "max-age=300;includeSubdomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "max-age=300, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Nginx",
+                  "raw_header": "nginx",
+                  "components": [
+                    "nginx"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "raw_header": "WordPress VIP <https://wpvip.com>"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Google Tag Manager",
+                  "Nginx",
+                  "MySQL",
+                  "PHP",
+                  "reCAPTCHA",
+                  "WordPress"
+                ],
+                "header_detected": [
+                  "Nginx"
+                ],
+                "content_detected": [
+                  "Angular",
+                  "Wordpress"
+                ],
+                "url_patterns": [
+                  "Google Services"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "default-src 'self' *.techcrunch.com; frame-ancestors 'self'; frame-src 'self' https: data:; style-src 'self' 'unsafe-inline' *; img-src 'self' * data:; connect-src 'self' https:; object-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; worker-src 'self' blob:; media-src 'self' *.youtube.com *.jetpackdigital.com; font-src 'self' * data:; upgrade-insecure-requests; block-all-mixed-content; sandbox allow-forms allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox;",
+                  "Strict-Transport-Security": "max-age=300;includeSubdomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "no-referrer-when-downgrade",
+                  "Permissions-Policy": "autoplay=(), camera=(), fullscreen=*, geolocation=*, display-capture=(self), microphone=()"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 85.71428571428571,
+                "missing_headers": [
+                  "X-XSS-Protection"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 1.5535039901733398,
+                "content_length": 442111,
+                "status_code": 200,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Nginx"
+                  ],
+                  "programming_language": [
+                    "PHP"
+                  ],
+                  "framework": [],
+                  "cms": [
+                    "WordPress",
+                    "Wordpress"
+                  ],
+                  "javascript_libraries": [
+                    "Angular"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://techcrunch.com": {
+              "url": "http://techcrunch.com",
+              "timestamp": 1759330553.5716546,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 442111,
+                "url": "https://techcrunch.com/",
+                "redirect_chain": [
+                  "http://techcrunch.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://techcrunch.com/",
+                "content_preview": "<!DOCTYPE html>\n<html lang=\"en-US\">\n<head>\n\t<meta charset=\"UTF-8\" />\n\t<script>(function(html){html.className = html.className.replace(/\\bno-js\\b/,'js')})(document.documentElement);</script>\n<meta name...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": true,
+                "title": "TechCrunch | Startup and Technology News",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "TechCrunch | Reporting on the business of technology, startups, venture capital funding, and Silicon",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "nginx",
+                "x_powered_by": "WordPress VIP <https://wpvip.com>",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "default-src 'self' *.techcrunch.com; frame-ancestors 'self'; frame-src 'self' https: data:; style-src 'self' 'unsafe-inline' *; img-src 'self' * data:; connect-src 'self' https:; object-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; worker-src 'self' blob:; media-src 'self' *.youtube.com *.jetpackdigital.com; font-src 'self' * data:; upgrade-insecure-requests; block-all-mixed-content; sandbox allow-forms allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox;",
+                "strict_transport_security": "max-age=300;includeSubdomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "max-age=300, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Nginx",
+                  "raw_header": "nginx",
+                  "components": [
+                    "nginx"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "raw_header": "WordPress VIP <https://wpvip.com>"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Google Tag Manager",
+                  "Nginx",
+                  "MySQL",
+                  "PHP",
+                  "reCAPTCHA",
+                  "WordPress"
+                ],
+                "header_detected": [
+                  "Nginx"
+                ],
+                "content_detected": [
+                  "Angular",
+                  "Wordpress"
+                ],
+                "url_patterns": [
+                  "Google Services"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "default-src 'self' *.techcrunch.com; frame-ancestors 'self'; frame-src 'self' https: data:; style-src 'self' 'unsafe-inline' *; img-src 'self' * data:; connect-src 'self' https:; object-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; worker-src 'self' blob:; media-src 'self' *.youtube.com *.jetpackdigital.com; font-src 'self' * data:; upgrade-insecure-requests; block-all-mixed-content; sandbox allow-forms allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox;",
+                  "Strict-Transport-Security": "max-age=300;includeSubdomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "no-referrer-when-downgrade",
+                  "Permissions-Policy": "autoplay=(), camera=(), fullscreen=*, geolocation=*, display-capture=(self), microphone=()"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 85.71428571428571,
+                "missing_headers": [
+                  "X-XSS-Protection"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 1.6799399852752686,
+                "content_length": 442111,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Nginx"
+                  ],
+                  "programming_language": [
+                    "PHP"
+                  ],
+                  "framework": [],
+                  "cms": [
+                    "WordPress",
+                    "Wordpress"
+                  ],
+                  "javascript_libraries": [
+                    "Angular"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://www.techcrunch.com": {
+              "url": "http://www.techcrunch.com",
+              "timestamp": 1759330555.2523348,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 442111,
+                "url": "https://techcrunch.com/",
+                "redirect_chain": [
+                  "http://www.techcrunch.com/",
+                  "https://www.techcrunch.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://techcrunch.com/",
+                "content_preview": "<!DOCTYPE html>\n<html lang=\"en-US\">\n<head>\n\t<meta charset=\"UTF-8\" />\n\t<script>(function(html){html.className = html.className.replace(/\\bno-js\\b/,'js')})(document.documentElement);</script>\n<meta name...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": true,
+                "title": "TechCrunch | Startup and Technology News",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "TechCrunch | Reporting on the business of technology, startups, venture capital funding, and Silicon",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "nginx",
+                "x_powered_by": "WordPress VIP <https://wpvip.com>",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "default-src 'self' *.techcrunch.com; frame-ancestors 'self'; frame-src 'self' https: data:; style-src 'self' 'unsafe-inline' *; img-src 'self' * data:; connect-src 'self' https:; object-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; worker-src 'self' blob:; media-src 'self' *.youtube.com *.jetpackdigital.com; font-src 'self' * data:; upgrade-insecure-requests; block-all-mixed-content; sandbox allow-forms allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox;",
+                "strict_transport_security": "max-age=300;includeSubdomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "max-age=300, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Nginx",
+                  "raw_header": "nginx",
+                  "components": [
+                    "nginx"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "raw_header": "WordPress VIP <https://wpvip.com>"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Google Tag Manager",
+                  "Nginx",
+                  "MySQL",
+                  "PHP",
+                  "reCAPTCHA",
+                  "WordPress"
+                ],
+                "header_detected": [
+                  "Nginx"
+                ],
+                "content_detected": [
+                  "Angular",
+                  "Wordpress"
+                ],
+                "url_patterns": [
+                  "Google Services"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "default-src 'self' *.techcrunch.com; frame-ancestors 'self'; frame-src 'self' https: data:; style-src 'self' 'unsafe-inline' *; img-src 'self' * data:; connect-src 'self' https:; object-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; worker-src 'self' blob:; media-src 'self' *.youtube.com *.jetpackdigital.com; font-src 'self' * data:; upgrade-insecure-requests; block-all-mixed-content; sandbox allow-forms allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox;",
+                  "Strict-Transport-Security": "max-age=300;includeSubdomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "no-referrer-when-downgrade",
+                  "Permissions-Policy": "autoplay=(), camera=(), fullscreen=*, geolocation=*, display-capture=(self), microphone=()"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 85.71428571428571,
+                "missing_headers": [
+                  "X-XSS-Protection"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 1.876443862915039,
+                "content_length": 442111,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Nginx"
+                  ],
+                  "programming_language": [
+                    "PHP"
+                  ],
+                  "framework": [],
+                  "cms": [
+                    "WordPress",
+                    "Wordpress"
+                  ],
+                  "javascript_libraries": [
+                    "Angular"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Google Tag Manager",
+              "Angular",
+              "MySQL",
+              "PHP",
+              "WordPress",
+              "Google Services",
+              "Wordpress",
+              "reCAPTCHA",
+              "Nginx"
+            ],
+            "security_score_avg": 85.71428571428571,
+            "common_issues": [
+              "X-XSS-Protection"
+            ]
+          },
+          "statistics": {
+            "total_duration": 7.2377378940582275,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 0,
+          "records_found": 29,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 9
+        }
+      },
+      "all_subdomains": [
+        "www.techcrunch.com"
+      ],
+      "statistics": {
+        "total_subdomains": 1,
+        "unique_subdomains": 1,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 64.79,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 9,
+        "security_issues_found": 1,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "techcrunch.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 20:25 +0530\nNmap scan report for techcrunch.com (192.0.66.220)\nHost is up (0.048s latency).\nOther addresses for techcrunch.com (not scanned): 2a04:fa87:fffd::c000:42dc\nNot shown: 998 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 6.89 seconds\n",
+        "scan_duration": 6.89
+      },
+      "service_results": {
+        "target": "techcrunch.com",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 404 Not Found\r\nServer: nginx\r\nDate: Wed, 01 Oct 2025 14:56:04 GMT\r\nContent-Type: text/html\r\nContent-Length: 146\r\nConnection: close\r\n\r\n<html>\r\n<head><title>404 Not Found</title></head>\r\n<body>\r\n<center><h1>404 Not Found</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>",
+            "version": "1.1",
+            "ssl": false,
+            "protocol_info": {
+              "http": {
+                "status_code": 200,
+                "server": "nginx",
+                "content_type": "text/html; charset=UTF-8"
+              }
+            }
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "HTTP/1.1 400 Bad Request\r\nServer: nginx\r\nDate: Wed, 01 Oct 2025 14:56:05 GMT\r\nContent-Type: text/html\r\nContent-Length: 248\r\nConnection: close\r\n\r\n<html>\r\n<head><title>400 The plain HTTP request was sent to HTTPS port</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<center>The plain HTTP request was sent to HTTPS port</center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>",
+            "version": "1.1",
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384"
+              },
+              "http": {
+                "status_code": 200,
+                "server": "nginx",
+                "content_type": "text/html; charset=UTF-8"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 6.89
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Google CDN",
+        "detection_method": "content",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "techcrunch.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/techcrunch_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 1,
+    "total_open_ports": 2,
+    "cdn_detected": true,
+    "technologies_detected": 9,
+    "apis_discovered": 0
+  },
+  "execution_time": 73.90374302864075
+}

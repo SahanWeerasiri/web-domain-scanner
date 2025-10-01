@@ -1,0 +1,1872 @@
+{
+  "target_domain": "etsy.com",
+  "scan_timestamp": "2025-10-01T20:34:53.110615",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "etsy.com",
+      "timestamp": "2025-10-01T20:34:53.111176",
+      "modules": {
+        "passive": {
+          "domain": "etsy.com",
+          "timestamp": 1759331129.1000557,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 35.97606945037842,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "etsy.com",
+          "timestamp": 1759331130.7180347,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "151.101.193.224",
+              "151.101.65.224",
+              "151.101.1.224",
+              "151.101.129.224"
+            ],
+            "MX": [
+              "aspmx.l.google.com",
+              "aspmx2.googlemail.com",
+              "aspmx3.googlemail.com",
+              "alt1.aspmx.l.google.com",
+              "alt2.aspmx.l.google.com"
+            ],
+            "NS": [
+              "ns-162.awsdns-20.com",
+              "ns-1264.awsdns-30.org",
+              "dns3.p03.nsone.net",
+              "dns1.p03.nsone.net"
+            ],
+            "TXT": [
+              "openai-domain-verification=dv-kBkaf6OFwgohxPZc4YIjOD6t",
+              "docker-verification=40052c18-7a84-4d01-a294-9fed0866066e",
+              "segment-site-verification=qK8Hs2slX9yMAAiKpgMoNP6bJCKq0cqQ",
+              "cursor-domain-verification-vyqnwm=JyRGj2Bcnbk8QqNAclaAE8mHY",
+              "google-site-verification=mpVLpWjH_tjbc5eK6pmVTZjq4xmHhzoE3crE0rKFULs",
+              "jamf-site-verification=lUaUDNLb-GDzmbIbaCg_lg",
+              "datadome-domain-verify=BNtk7vonAvB8fhBLjp0E2orOzns71WB1",
+              "adobe-idp-site-verification=1858581c5ab657f77e067d14de03dd297c85f0b6b2916dbe0adeca4fac539e6b",
+              "apple-domain-verification=qgAwoHpdlhEv-3QiQ3G11S5xHj60JbTSzecxszntlvo",
+              "stripe-verification=5e8773ee85575b784fc2a6868da2b17b165e2e59f62d067f77bfd40c0ad5cdc5",
+              "wrike-verification=NDMwNDc4NDo3YzVlMGVmM2RhZGU0NjRkZTIxZTBjYmU5Mjc2NGZmODRmNzVhMDc2NjRmMTI0NThhYzlhZTdhMzhkNzkyY2Uw",
+              "MS=ms91667443",
+              "miro-verification=31250d3fe2c000cf1f892588d27dcf9eeb6afdd8",
+              "onetrust-domain-verification=9f4716cb45f046429764b34174392ce2",
+              "stripe-verification=fe491048e654bcc35d8f194964540604a3a4108e3191ffd27a9ea4c232d5bcf1",
+              "facebook-domain-verification=j81l6m6391dika9nlbuh2c8ji9nhye",
+              "v=spf1 ip4:66.3.159.0/24 ip4:192.147.0.0/24 ip4:173.46.67.72/29 ip4:192.147.1.0/24 ip4:38.106.64.0/24 ip4:38.76.1.0/24 ip4:38.76.2.0/24 ip4:162.220.28.32/27 ip4:162.220.28.64/28 ip4:208.74.204.0/22 ip4:46.19.168.0/23 include:servers.mcsv.net include:mail.\" \"zendesk.com include:amazonses.com include:_netblocks.google.com include:_netblocks2.google.com include:_netblocks3.google.com a:web.q4press.com include:cvent-planner.com include:mail.clinchtalent.com include:spf.redpoints.com -all",
+              "MS=61C0D53B132406B96613AF941D1FFB83A6CFCD73",
+              "_globalsign-domain-verification=xfkrv3yRwA5GGm0E4l5RlcNKTqVD8KAYsYdCYTBMF0",
+              "atlassian-domain-verification=cMcfcaBm3JNaxKiO2fok5oOn20qbqxLmjQdFrsLV25SQj8l5hTkX/pb21NqLPLP0",
+              "stripe-verification=660c4cdde58756c254bc46c26b92b6232ebc140156e6d2ba74cbb988b283b5ae",
+              "bugcrowd-verification=460ceee75155fa4965c62123bc9cd182",
+              "pinterest-site-verification=b92965d84ebb1103548fbd23e39baf66"
+            ],
+            "SOA": [
+              "dns1.p03.nsone.net. hostmaster.nsone.net. 1650565888 43200 7200 1209600 3600"
+            ]
+          },
+          "subdomains": [],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 ip4:66.3.159.0/24 ip4:192.147.0.0/24 ip4:173.46.67.72/29 ip4:192.147.1.0/24 ip4:38.106.64.0/24 ip4:38.76.1.0/24 ip4:38.76.2.0/24 ip4:162.220.28.32/27 ip4:162.220.28.64/28 ip4:208.74.204.0/22 ip4:46.19.168.0/23 include:servers.mcsv.net include:mail.\" \"zendesk.com include:amazonses.com include:_netblocks.google.com include:_netblocks2.google.com include:_netblocks3.google.com a:web.q4press.com include:cvent-planner.com include:mail.clinchtalent.com include:spf.redpoints.com -all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=mpVLpWjH_tjbc5eK6pmVTZjq4xmHhzoE3crE0rKFULs",
+                "facebook-domain-verification=j81l6m6391dika9nlbuh2c8ji9nhye"
+              ],
+              "other": [
+                "openai-domain-verification=dv-kBkaf6OFwgohxPZc4YIjOD6t",
+                "docker-verification=40052c18-7a84-4d01-a294-9fed0866066e",
+                "segment-site-verification=qK8Hs2slX9yMAAiKpgMoNP6bJCKq0cqQ",
+                "cursor-domain-verification-vyqnwm=JyRGj2Bcnbk8QqNAclaAE8mHY",
+                "jamf-site-verification=lUaUDNLb-GDzmbIbaCg_lg",
+                "datadome-domain-verify=BNtk7vonAvB8fhBLjp0E2orOzns71WB1",
+                "adobe-idp-site-verification=1858581c5ab657f77e067d14de03dd297c85f0b6b2916dbe0adeca4fac539e6b",
+                "apple-domain-verification=qgAwoHpdlhEv-3QiQ3G11S5xHj60JbTSzecxszntlvo",
+                "stripe-verification=5e8773ee85575b784fc2a6868da2b17b165e2e59f62d067f77bfd40c0ad5cdc5",
+                "wrike-verification=NDMwNDc4NDo3YzVlMGVmM2RhZGU0NjRkZTIxZTBjYmU5Mjc2NGZmODRmNzVhMDc2NjRmMTI0NThhYzlhZTdhMzhkNzkyY2Uw",
+                "MS=ms91667443",
+                "miro-verification=31250d3fe2c000cf1f892588d27dcf9eeb6afdd8",
+                "onetrust-domain-verification=9f4716cb45f046429764b34174392ce2",
+                "stripe-verification=fe491048e654bcc35d8f194964540604a3a4108e3191ffd27a9ea4c232d5bcf1",
+                "MS=61C0D53B132406B96613AF941D1FFB83A6CFCD73",
+                "_globalsign-domain-verification=xfkrv3yRwA5GGm0E4l5RlcNKTqVD8KAYsYdCYTBMF0",
+                "atlassian-domain-verification=cMcfcaBm3JNaxKiO2fok5oOn20qbqxLmjQdFrsLV25SQj8l5hTkX/pb21NqLPLP0",
+                "stripe-verification=660c4cdde58756c254bc46c26b92b6232ebc140156e6d2ba74cbb988b283b5ae",
+                "bugcrowd-verification=460ceee75155fa4965c62123bc9cd182",
+                "pinterest-site-verification=b92965d84ebb1103548fbd23e39baf66"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 0.638864278793335,
+            "total_records": 37,
+            "total_subdomains": 0,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "etsy.com",
+          "timestamp": 1759331133.3000283,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "https://www.etsy.com": {
+              "url": "https://www.etsy.com",
+              "timestamp": 1759331130.741662,
+              "response_analysis": {
+                "status_code": 403,
+                "reason": "Forbidden",
+                "encoding": "utf-8",
+                "content_type": "text/html;charset=utf-8",
+                "content_length": 771,
+                "url": "https://www.etsy.com/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://www.etsy.com/",
+                "content_preview": "<html lang=\"en\"><head><title>etsy.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style></head><body style=\"margin:0\"><p id=\"cmsg\">Please enable...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": true,
+                "title": "etsy.com",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "DataDome",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "datadome=rQqSyUJukRFIGvj3dQrtYSDdQs_1xhqZcCsTO1FNCDnuDG00JfOnvlSvlrYh7WtKxFCeYeKHrwLSEq2X~Y8oGhioMZycQ3dWgs3A8caOWbQm_Ra1FHD9Qw~stsXyJLj~; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=oAANs19bvq3k%2BGqTXcZeyMR2Liv0Wtjx8YQhtlt2rMU%3D,v=kU6Gdl4UfWC4JcS5M-Cs_NAPSjAvFZbM; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "cache_control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "DataDome",
+                  "components": [
+                    "DataDome"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Varnish",
+                  "Datadome"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 0.0,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking",
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 0.5807228088378906,
+                "content_length": 771,
+                "status_code": 403,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://etsy.com": {
+              "url": "https://etsy.com",
+              "timestamp": 1759331131.323142,
+              "response_analysis": {
+                "status_code": 403,
+                "reason": "Forbidden",
+                "encoding": "utf-8",
+                "content_type": "text/html;charset=utf-8",
+                "content_length": 771,
+                "url": "https://www.etsy.com/",
+                "redirect_chain": [
+                  "https://etsy.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.etsy.com/",
+                "content_preview": "<html lang=\"en\"><head><title>etsy.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style></head><body style=\"margin:0\"><p id=\"cmsg\">Please enable...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": true,
+                "title": "etsy.com",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "DataDome",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "datadome=FDyd4Bw2P6XEKo0JFPJmuallfMOLAMqzgHPekwzDBH6zCujEKRvjf3hVl6axV2ch1MujJQTWtOoneAu4hCI28_lyMUJPIGCTidG34X2I135Eo8HJ_ordEnyhIbFPopPJ; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=oAANs19bvq3k%2BGqTXcZeyMR2Liv0Wtjx8YQhtlt2rMU%3D,v=kU6Gdl4UfWC4JcS5M-Cs_NAPSjAvFZbM; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "cache_control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "DataDome",
+                  "components": [
+                    "DataDome"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Varnish",
+                  "Datadome"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 0.0,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking",
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 0.9259414672851562,
+                "content_length": 771,
+                "status_code": 403,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://etsy.com": {
+              "url": "http://etsy.com",
+              "timestamp": 1759331132.2496018,
+              "response_analysis": {
+                "status_code": 403,
+                "reason": "Forbidden",
+                "encoding": "utf-8",
+                "content_type": "text/html;charset=utf-8",
+                "content_length": 771,
+                "url": "https://www.etsy.com/",
+                "redirect_chain": [
+                  "http://etsy.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.etsy.com/",
+                "content_preview": "<html lang=\"en\"><head><title>etsy.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style></head><body style=\"margin:0\"><p id=\"cmsg\">Please enable...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": true,
+                "title": "etsy.com",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "DataDome",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "datadome=l3vcvH~xvnATUV96BV2BGho7PZT~xWgpiO2LkI18pjfZGINq9LOgNPBMgwDIgDBrmG23D2oJcP3D0uSsVgvzZgoe9j_DF7JCei7LEc~17YxkR41I2ATaozI3MaAxqPQP; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=oAANs19bvq3k%2BGqTXcZeyMR2Liv0Wtjx8YQhtlt2rMU%3D,v=kU6Gdl4UfWC4JcS5M-Cs_NAPSjAvFZbM; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "cache_control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "DataDome",
+                  "components": [
+                    "DataDome"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Varnish",
+                  "Datadome"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 0.0,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking",
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 0.6208395957946777,
+                "content_length": 771,
+                "status_code": 403,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://www.etsy.com": {
+              "url": "http://www.etsy.com",
+              "timestamp": 1759331132.8709488,
+              "response_analysis": {
+                "status_code": 403,
+                "reason": "Forbidden",
+                "encoding": "utf-8",
+                "content_type": "text/html;charset=utf-8",
+                "content_length": 771,
+                "url": "http://www.etsy.com/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "http://www.etsy.com/",
+                "content_preview": "<html lang=\"en\"><head><title>etsy.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style></head><body style=\"margin:0\"><p id=\"cmsg\">Please enable...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": true,
+                "title": "etsy.com",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "DataDome",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "datadome=2sykOrOZp3GJ9C7O5NYNUVCvnn7L8IJgaQTqxbyUQ8P5U6AN3SocdyuQ04NMjhr0y~aIvHYTbNKoiUbSFORc~~G8mAFBZKiyuFIJhSmqATMZkeyUWx45hLMYjcwBKnFt; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=1CIyaB6GeSaeimDCotcHlaW%2FPtjgBi45xaJriYCxQ30%3D,v=b-zxcRLfXETHGicCN-5G5mX4KzO36nLu; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "cache_control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "DataDome",
+                  "components": [
+                    "DataDome"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Varnish",
+                  "Datadome"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": false,
+                  "url_scheme": "http",
+                  "ssl_grade": "Poor - No SSL"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 0.0,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking",
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS",
+                  "Enable HTTPS/SSL for secure communication"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 0.41617703437805176,
+                "content_length": 771,
+                "status_code": 403,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Varnish",
+              "Datadome"
+            ],
+            "security_score_avg": 0.0,
+            "common_issues": [
+              "X-Frame-Options",
+              "X-Content-Type-Options",
+              "Strict-Transport-Security",
+              "X-XSS-Protection",
+              "Content-Security-Policy",
+              "Referrer-Policy",
+              "Permissions-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 2.562608003616333,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 0,
+          "records_found": 37,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 2
+        }
+      },
+      "all_subdomains": [
+        "www.etsy.com"
+      ],
+      "statistics": {
+        "total_subdomains": 1,
+        "unique_subdomains": 1,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 40.19,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 2,
+        "security_issues_found": 7,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "etsy.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 20:35 +0530\nNmap scan report for etsy.com (151.101.193.224)\nHost is up (0.048s latency).\nOther addresses for etsy.com (not scanned): 151.101.129.224 151.101.1.224 151.101.65.224\nNot shown: 998 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 7.06 seconds\n",
+        "scan_duration": 7.06
+      },
+      "service_results": {
+        "target": "etsy.com",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 500 Domain Not Found\r\nConnection: close\r\nContent-Length: 246\r\nServer: Varnish\r\nRetry-After: 0\r\ncontent-type: text/html\r\nCache-Control: private, no-cache\r\nX-Served-By: cache-sin-wsss1830027-SIN\r\nAccept-Ranges: bytes\r\nDate: Wed, 01 Oct 2025 15:05:40 GMT\r\nVia: 1.1 varnish\r\n\r\n\n<html>\n<head>\n<title>Fastly error: unknown domain </title>\n</head>\n<body>\n<p>Fastly error: unknown domain: . Please check that this domain has been added to a service.</p>\n<p>Details: cache-sin-wsss1830027-SIN (151.101.193.224)</p></body></html>",
+            "version": "151.101.193",
+            "ssl": false,
+            "protocol_info": {}
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": null,
+            "version": null,
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES128-GCM-SHA256"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 7.06
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": false,
+        "cdn_name": null,
+        "detection_method": null,
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "web_crawl": {
+        "pages": [
+          {
+            "url": "https://etsy.com",
+            "title": "Etsy Sri Lanka - Shop for handmade, vintage, custom, and unique gifts for everyone",
+            "meta_description": "Shop Etsy Sri Lanka. Find handmade gifts, vintage & on-trend clothes, unique jewelry, and more.",
+            "links": [
+              "https://etsy.com/?ref=lgo",
+              "https://etsy.com/c/accessories?ref=catnav-1",
+              "https://etsy.com/c/art-and-collectibles?ref=catnav-66",
+              "https://etsy.com/c/baby?ref=catnav-12545",
+              "https://etsy.com/c/bags-and-purses?ref=catnav-132",
+              "https://etsy.com/c/bath-and-beauty?ref=catnav-199",
+              "https://etsy.com/c/books-movies-and-music?ref=catnav-323",
+              "https://etsy.com/c/clothing?ref=catnav-374",
+              "https://etsy.com/c/craft-supplies-and-tools?ref=catnav-562",
+              "https://etsy.com/c/electronics-and-accessories?ref=catnav-825",
+              "https://etsy.com/c/gifts?ref=catnav-12584",
+              "https://etsy.com/c/home-and-living?ref=catnav-891",
+              "https://etsy.com/c/jewelry?ref=catnav-1179",
+              "https://etsy.com/c/paper-and-party-supplies?ref=catnav-1250",
+              "https://etsy.com/c/pet-supplies?ref=catnav-1351",
+              "https://etsy.com/c/shoes?ref=catnav-1429",
+              "https://etsy.com/c/toys-and-games?ref=catnav-1552",
+              "https://etsy.com/c/weddings?ref=catnav-1633",
+              "https://etsy.com#content",
+              "https://www.etsy.com/guest/favorites?ref=hdr-fav",
+              "https://etsy.com/gift-mode?ref=gm_utility_nav",
+              "https://www.etsy.com/cart?ref=hdr-cart",
+              "https://etsy.com/gift-mode?ref=gm_global_nav",
+              "https://www.etsy.com/featured/hub/halloween-costumes-and-decor-ideas?ref=Halloween25_cat_nav",
+              "https://etsy.com/featured/hub/home-favorites?ref=contentful_promo_cat_nav-4",
+              "https://etsy.com/featured/hub/fashion-favorites?ref=contentful_promo_cat_nav-5",
+              "https://etsy.com/registry?ref=contentful_promo_cat_nav-7",
+              "https://www.etsy.com/featured/hub/halloween-costumes-and-decor-ideas?ref=hp_shoppable_hero_primary",
+              "https://www.etsy.com/featured/hub/halloween-costumes-and-decor-ideas?ref=hp_shoppable_hero_primary",
+              "https://www.etsy.com/featured/hub/halloween-costumes-and-decor-ideas?ref=hp_shoppable_hero_primary",
+              "https://www.etsy.com/search/paper-and-party-supplies?q=halloween+party&anchor_listing_id=560064567&mosv=sese&moci=1392999373934&mosi=1393000315646&is_merch_library=true&ref=hp_shoppable_hero_secondary",
+              "https://www.etsy.com/r/themes/1368461679224?anchor_listings=1022636486&ref=hp_themes_module-1",
+              "https://www.etsy.com/r/themes/1368461678858?anchor_listings=1516051653&ref=hp_themes_module-2",
+              "https://www.etsy.com/r/themes/1368461663516?anchor_listings=1137501118&ref=hp_themes_module-3",
+              "https://www.etsy.com/r/themes/1368497645281?anchor_listings=1803997060&ref=hp_themes_module-4",
+              "https://www.etsy.com/r/curated/new-arrivals?sections%5B1353072841526%5D=&sections%5B1351320746435%5D=&sections%5B1371356542530%5D=&sections%5B1371354636406%5D=&sections%5B1371409929893%5D=&sections%5B1351321072071%5D=&sections%5B1363824172656%5D=&ref=hp_g-1",
+              "https://www.etsy.com/r/curated/fall-hosting-and-decor?sections=1407721696144&ref=hp_g-2",
+              "https://www.etsy.com/r/curated/best-of-family-traditions?sections=1410717528977&ref=hp_g-3",
+              "https://www.etsy.com/r/themes/1409604855542?ref=hp_g-4",
+              "https://www.etsy.com/r/themes/1314285277606?ref=hp_g-5",
+              "https://www.etsy.com/gift-mode/occasion/halloween?ref=hp_gifting_occasion",
+              "https://www.etsy.com/gift-mode/gift-idea/1270233189527/halloween-craft-kits?ref=hp_gifting_occasion",
+              "https://www.etsy.com/gift-mode/gift-idea/1270195991104/coffee-cauldrons?ref=hp_gifting_occasion",
+              "https://www.etsy.com/gift-mode/gift-idea/1270311971849/spooky-treats?ref=hp_gifting_occasion",
+              "https://www.etsy.com/listing/1775708583/enchanted-forest-witch-fairytale?click_key=5b9b474569206e996c8e1d3519802973aa93f40d%3A1775708583&click_sum=704f7a8f&external=1&ref=hp_consolidated_gifting_listings-1",
+              "https://www.etsy.com/listing/1749996106/cat-pillow-sewing-pattern-spooky?click_key=b558f55c88feb1b52dc2a298536ebd12cd3247fa%3A1749996106&click_sum=cd763c1b&external=1&ref=hp_consolidated_gifting_listings-2&pro=1&sts=1",
+              "https://www.etsy.com/listing/1028648404/halloween-tiered-tray-decor-witches-brew?click_key=3a2bfd1526786d5a1db4e14b7b02f3cebdb1398a%3A1028648404&click_sum=0237ed19&external=1&ref=hp_consolidated_gifting_listings-3&sts=1",
+              "https://www.etsy.com/listing/485382017/witch-hat-in-solid-black-with-curly?click_key=5f66a6f1ad5e1a486dee3207b799ea1db4971145%3A485382017&click_sum=09ce2571&external=1&ref=hp_consolidated_gifting_listings-4",
+              "https://www.etsy.com/listing/1567228295/witchy-woman-8x10-cowgirl-halloween-art?click_key=c40e429ade946bb46c9c061ea7c98fae06be627f%3A1567228295&click_sum=fa383c22&external=1&ref=hp_consolidated_gifting_listings-5",
+              "https://www.etsy.com/listing/249885366/witch-squirrel-moon-printable-halloween?click_key=f9c0dbb1f3cae57898dbc7d1aea7acd42dc2874d%3A249885366&click_sum=ee2e725a&external=1&ref=hp_consolidated_gifting_listings-6&sts=1",
+              "https://www.etsy.com/search?q=Cozy+Accessories+Gift&anchor_listing_id=4337911734&ref=hp_bubbles_Cozyfall25&mosv=sese&moci=1391250649434&mosi=1409456847981&is_merch_library=true",
+              "https://www.etsy.com/search?q=Fall+Decor+Gifts&anchor_listing_id=664572719&ref=hp_bubbles_Cozyfall25&mosv=sese&moci=1391250649434&mosi=1409456956603&is_merch_library=true",
+              "https://www.etsy.com/search?q=Libra+Gifts&anchor_listing_id=1618477857&ref=hp_bubbles_Cozyfall25&mosv=sese&moci=1391250649434&mosi=1409178826868&is_merch_library=true",
+              "https://www.etsy.com/search?q=Jewelry+Gifts&anchor_listing_id=4356064485&ref=hp_bubbles_Cozyfall25&mosv=sese&moci=1391250649434&mosi=1409178862844&is_merch_library=true",
+              "https://www.etsy.com/search?q=Wedding+Gifts&anchor_listing_id=50119494&ref=hp_bubbles_Cozyfall25&mosv=sese&moci=1391250649434&mosi=1409178901516&is_merch_library=true",
+              "https://www.etsy.com/search?q=Toy+Gifts&anchor_listing_id=1693118990&ref=hp_bubbles_Cozyfall25&mosv=sese&moci=1391250649434&mosi=1409457139235&is_merch_library=true",
+              "https://www.etsy.com/c/home-and-living/home-decor/wall-decor?explicit=1&ref=hp_top_in_taxo_categories-1",
+              "https://www.etsy.com/c/paper-and-party-supplies/paper/stickers-labels-and-tags/stickers?explicit=1&ref=hp_top_in_taxo_categories-2",
+              "https://www.etsy.com/c/home-and-living/kitchen-and-dining/drink-and-barware/drinkware/tumblers-and-water-glasses?explicit=1&ref=hp_top_in_taxo_categories-3",
+              "https://www.etsy.com/c/craft-supplies-and-tools/sewing-and-fiber/sewing-and-needlecraft/embroidery/kits-and-how-to/patterns?explicit=1&ref=hp_top_in_taxo_categories-4",
+              "https://www.etsy.com/c/home-and-living?explicit=1&ref=hp_top_in_taxo_categories-5",
+              "https://www.etsy.com/c/art-and-collectibles/prints/digital-prints?explicit=1&ref=hp_top_in_taxo_categories-6",
+              "https://www.etsy.com/featured/hub/personalization-shop?ref=hp_editors_picks_primary",
+              "https://www.etsy.com/listing/1768580032/custom-toi-et-moi-gemstone-ring-emerald?click_key=fb2c02add7d00db974e3a6d5f1e04fc7718ffce8%3A1768580032&click_sum=88f8f433&ref=hp_editors_picks_primary-1&sts=1",
+              "https://www.etsy.com/listing/532848422/leather-keychain-handbag-tassel-purse?click_key=ae3a7e39d76997a98b3b06b8215b4e371bf078ba%3A532848422&click_sum=93bcc6e3&ref=hp_editors_picks_primary-2&sts=1",
+              "https://www.etsy.com/listing/1382196280/custom-boat-tote-bag-canvas-tote-bag?click_key=b688dcd76b7f146b95dcfec20230457258e10e9d%3A1382196280&click_sum=dafa5ebf&ref=hp_editors_picks_primary-3",
+              "https://www.etsy.com/listing/1807127723/custom-badly-drawn-pet-portrait?click_key=7227f279eda191cbc68e46942695667eca0e5b11%3A1807127723&click_sum=4a31507f&ref=hp_editors_picks_primary-4&sts=1&dd=1",
+              "https://www.etsy.com/listing/1889958409/stained-glass-birth-month-flower?click_key=0eba11f4cc021e3d0fab4589f366943729982880%3A1889958409&click_sum=062fa2e7&ref=hp_editors_picks_primary-5&sts=1",
+              "https://www.etsy.com/listing/1187668988/zodiac-heart-cake-jewelry-box-y2k?click_key=38460dc3943d19384af451d63ef736faf58f9814%3A1187668988&click_sum=475afdb3&ref=hp_editors_picks_primary-6",
+              "https://www.etsy.com/featured/hub/personalization-shop?ref=hp_editors_picks_primary",
+              "https://www.etsy.com/search?q=kids+costumes&anchor_listing_id=1873263143&ref=hp_g_DealsRow_9_22_25-1&mosv=sese&moci=1363084652851&mosi=1407489154903&is_discounted=true&pct_discount_max=20&is_merch_library=true",
+              "https://www.etsy.com/search/jewelry?q=jewelry&anchor_listing_id=1557484464&ref=hp_g_DealsRow_9_22_25-2&mosv=sese&moci=1363084652851&mosi=1363084822171&min=100&is_merch_library=true&is_star_seller=true&infb=mt_9%2Cmt_8%2Cmt_7%2Cmt_6%2Cmt_4&is_discounted=true&pct_discount_max=15",
+              "https://www.etsy.com/search/home-and-living?q=fall+candle&anchor_listing_id=1807373001&ref=hp_g_DealsRow_9_22_25-3&mosv=sese&moci=1363084652851&mosi=1407489425925&is_discounted=true&is_merch_library=true",
+              "https://www.etsy.com/search?q=Vintage+Home+Decor&anchor_listing_id=1879797768&ref=hp_g_DealsRow_9_22_25-4&mosv=sese&moci=1363084652851&mosi=1407210974438&is_discounted=true&is_merch_library=true&pct_discount_max=20",
+              "https://www.etsy.com/search?q=gift+for+her&anchor_listing_id=1775532367&ref=hp_g_DealsRow_9_22_25-5&mosv=sese&moci=1363084652851&mosi=1370104020804&is_discounted=true&is_merch_library=true&pct_discount_max=25",
+              "https://etsy.com/about",
+              "https://www.etsy.com/help?ref=hp_what_is_etsy_help_center",
+              "https://www.etsy.com/legal/privacy/",
+              "https://etsy.com/signin?from_page=https%3A%2F%2Fwww.etsy.com%2F&workflow=c3Vic2NyaWJlX3RvX2VtYWlsX2xpc3Q6bmV3X2F0X2V0c3k6MTc1OTMzMTc0Nzo5OTgxMmE5YWI5YzFjNTBhYzBhYjc5MGQ2MjVkNjRhZg==",
+              "https://etsy.com/join?from_url=https%3A%2F%2Fwww.etsy.com%2F",
+              "https://www.etsy.com/giftcards?ref=ftr",
+              "https://www.etsy.com/registry?ref=ftr",
+              "https://www.etsy.com/categories",
+              "https://etsy.com/blog/en/?ref=ftr",
+              "https://www.etsy.com/uk?locale_override=GBP%7Cen-GB%7CGB",
+              "https://www.etsy.com/de?locale_override=EUR%7Cde%7CDE",
+              "https://www.etsy.com/ca?locale_override=CAD%7Cen-US%7CCA",
+              "https://www.etsy.com/sell?ref=ftr",
+              "https://www.etsy.com/sso-community?return_to=https%3A%2F%2Fcommunity.etsy.com%2Ft5%2FEtsy-Teams%2Fct-p%2Fteams",
+              "https://www.etsy.com/sso-community?return_to=https%3A%2F%2Fcommunity.etsy.com%2Ft5%2FEtsy-Forums%2Fct-p%2Fforums",
+              "https://www.etsy.com/affiliates?ref=ftr",
+              "https://www.etsy.com/about?ref=ftr",
+              "https://www.etsy.com/legal?ref=ftr",
+              "https://investors.etsy.com",
+              "https://www.etsy.com/careers?ref=ftr",
+              "https://www.etsy.com/press?ref=ftr",
+              "https://www.etsy.com/impact?ref=ftr",
+              "https://www.etsy.com/help/article/25840304230?ref=ftr",
+              "https://www.etsy.com/help?ref=ftr",
+              "https://etsy.com",
+              "https://etsy.com/social-tracking?network=instagram",
+              "https://etsy.com/social-tracking?network=facebook",
+              "https://etsy.com/social-tracking?network=pinterest",
+              "https://etsy.com/social-tracking?network=youtube",
+              "https://etsy.app.link/d7nDUdp49V",
+              "https://etsy.app.link/d7nDUdp49V",
+              "https://www.etsy.com/your/account/locale_preferences?from_page=https%3A%2F%2Fwww.etsy.com%2F",
+              "https://etsy.com/legal/terms-of-use?ref=ftr",
+              "https://etsy.com/legal/privacy/?ref=ftr",
+              "https://etsy.com/legal/policy/cookies-tracking-technologies/44797645975?ref=ftr#marketing-services",
+              "https://etsy.com/search/shops",
+              "https://www.etsy.com/au?locale_override=AUD%7Cen-GB%7CAU",
+              "https://www.etsy.com/at?locale_override=EUR%7Cde%7CAT",
+              "https://www.etsy.com/be?locale_override=EUR%7Cnl%7CBE",
+              "https://www.etsy.com/ca?locale_override=CAD%7Cen-GB%7CCA",
+              "https://www.etsy.com/ca-fr?locale_override=CAD%7Cfr%7CCA",
+              "https://www.etsy.com/dk-en?locale_override=DKK%7Cen-GB%7CDK",
+              "https://www.etsy.com/fi-en?locale_override=EUR%7Cen-US%7CFI",
+              "https://www.etsy.com/fr?locale_override=EUR%7Cfr%7CFR",
+              "https://www.etsy.com/de?locale_override=EUR%7Cde%7CDE",
+              "https://www.etsy.com/hk-en?locale_override=HKD%7Cen-GB%7CHK",
+              "https://www.etsy.com/in-en?locale_override=INR%7Cen-IN%7CIN",
+              "https://www.etsy.com/ie?locale_override=EUR%7Cen-GB%7CIE",
+              "https://www.etsy.com/il-en?locale_override=ILS%7Cen-GB%7CIL",
+              "https://www.etsy.com/it?locale_override=EUR%7Cit%7CIT",
+              "https://www.etsy.com/jp?locale_override=JPY%7Cja%7CJP",
+              "https://www.etsy.com/mx?locale_override=MXN%7Ces%7CMX",
+              "https://www.etsy.com/nz?locale_override=NZD%7Cen-GB%7CNZ",
+              "https://www.etsy.com/no-en?locale_override=NOK%7Cen-GB%7CNO",
+              "https://www.etsy.com/pl?locale_override=PLN%7Cpl%7CPL",
+              "https://www.etsy.com/pt?locale_override=EUR%7Cpt%7CPT",
+              "https://www.etsy.com/sg-en?locale_override=SGD%7Cen-GB%7CSG",
+              "https://www.etsy.com/es?locale_override=EUR%7Ces%7CES",
+              "https://www.etsy.com/se-en?locale_override=SEK%7Cen-GB%7CSE",
+              "https://www.etsy.com/ch?locale_override=CHF%7Cde%7CCH",
+              "https://www.etsy.com/nl?locale_override=EUR%7Cnl%7CNL",
+              "https://www.etsy.com/uk?locale_override=GBP%7Cen-GB%7CGB",
+              "https://www.etsy.com/?locale_override=USD%7Cen-US%7CUS",
+              "https://www.etsy.com/help/article/493",
+              "https://www.etsy.com/legal/cookies-and-tracking-technologies",
+              "https://www.etsy.com/legal/privacy",
+              "https://www.etsy.com/legal/privacy/",
+              "https://help.etsy.com/hc/en-us/articles/360042433614-How-to-Opt-out-of-Personalized-Advertising",
+              "https://www.etsy.com/legal/cookies"
+            ],
+            "forms": [
+              "https://etsy.com/search.php",
+              "https://etsy.com/email-subscriptions/form?from_page=https%3A%2F%2Fwww.etsy.com%2F",
+              "https://etsy.com"
+            ],
+            "api_references": [],
+            "javascript_files": [
+              "https://ct.pinterest.com/static/ct/token_create.js",
+              "https://s.pinimg.com/ct/lib/main.817db39b.js",
+              "https://s.pinimg.com/ct/lib/main.817db39b.js",
+              "https://www.googletagmanager.com/gtag/destination?id=AW-1001213127&cx=c&gtm=4e59t1",
+              "https://www.googletagmanager.com/gtag/destination?id=DC-9910951&cx=c&gtm=4e59t1",
+              "https://s.pinimg.com/ct/core.js",
+              "https://web.btncdn.com/v1/button.js",
+              "https://s.pinimg.com/ct/core.js",
+              "https://bat.bing.com/bat.js",
+              "https://www.googletagmanager.com/gtag/js?id=G-KR3J610VYM&cx=c&gtm=4e59t1",
+              "https://www.googletagmanager.com/gtag/destination?id=AW-658194373&cx=c&gtm=4e59t1",
+              "https://www.googletagmanager.com/gtm.js?id=GTM-KWW5SS",
+              "https://www.etsy.com/include/tags.js",
+              "https://transcend-cdn.com/cm/ac71e058-41b7-4026-b482-3d9b8e31a6d0/airgap.js",
+              "https://resources.xg4ken.com/js/v2/ktag.js?tid=KT-N3E88-3EB",
+              "https://bat.bing.com/p/action/20013160.js",
+              "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/1001213127/?random=1759331149329&cv=11&fst=1759331149329&bg=ffffff&guid=ON&async=1&gtm=45be59t1v879674188z86935543za200zb6935543zd6935543xea&gcd=13t3t3t3t5l1&dma=0&tag_exp=101509157~103116026~103200004~103233427~104527906~104528500~104684208~104684211~104948813~115480709~115616986&u_w=800&u_h=600&url=https%3A%2F%2Fwww.etsy.com%2F&frm=0&tiba=Etsy%20Sri%20Lanka%20-%20Shop%20for%20handmade%2C%20vintage%2C%20custom%2C%20and%20unique%20gifts%20for%20everyone&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=759552901.1759331149&uaa=&uab=&uafvl=&uamb=0&uam=&uap=Windows&uapv=&uaw=0&_tu=KA&data=ecomm_prodid%3D%3Becomm_pagetype%3Dhome%3Becomm_totalvalue%3D%3Becomm_rec_prodid%3D%3Becomm_category%3D%3Becomm_pvalue%3D%3Becomm_quantity%3D%3Ba%3D%3Bg%3D%3Bhasaccount%3Dfalse%3Bcqs%3D%3Brp%3D%3Bly%3D%3Bhs%3D%3B_google_crm_id%3D%3Bads_data_redaction%3Dfalse&rfmt=3&fmt=4",
+              "https://www.etsy.com/ac/evergreenVendor/js/en-US/vendor_bundle.4b28aa70c9cca35746a4.js",
+              "https://www.etsy.com/ac/evergreenVendor/js/en-US/etsy_libs.c64ae31996bf3d1e6bf1.js",
+              "https://www.etsy.com/paula/v3/polyfill.min.js?etsy-v=v5&flags=gated&features=AbortController%2CDOMTokenList.prototype.@@iterator%2CDOMTokenList.prototype.forEach%2CIntersectionObserver%2CIntersectionObserverEntry%2CNodeList.prototype.@@iterator%2CNodeList.prototype.forEach%2CObject.preventExtensions%2CString.prototype.anchor%2CString.raw%2Cdefault%2Ces2015%2Ces2016%2Ces2017%2Ces2018%2Ces2019%2Ces2020%2Ces2021%2Ces2022%2Cfetch%2CgetComputedStyle%2CmatchMedia%2Cperformance.now",
+              "https://www.etsy.com/ac/evergreenVendor/js/en-US/app-shell/globals/index.961c6d8272c56268ed07.js",
+              "https://www.etsy.com/ac/evergreenVendor/js/en-US/@etsy-modules/ConsentManagement/Transcend-Integration.c3fc1d40893f000b5088.js",
+              "https://www.etsy.com/ac/evergreenVendor/js/en-US/vesta_homepage/bootstrap.ce146d16aaab78d67101.js",
+              "https://www.etsy.com/ac/evergreenVendor/js/en-US/neu/favorite-listing-button/bootstrap.348eeea8e432dc19ae87.js",
+              "https://www.dwin1.com/6220.js",
+              "https://lantern.roeyecdn.com/lantern_global_6220.min.js"
+            ],
+            "text_content": "Etsy Sri Lanka - Shop for handmade, vintage, custom, and unique gifts for everyone Etsy Categories Accessories Art & Collectibles Baby Bags & Purses Bath & Beauty Books, Movies & Music Clothing Craft ...",
+            "potential_endpoints": [
+              "https://ct.pinterest.com/static/ct/token_create.js",
+              "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/1001213127/?random=1759331149329&cv=11&fst=1759331149329&bg=ffffff&guid=ON&async=1&gtm=45be59t1v879674188z86935543za200zb6935543zd6935543xea&gcd=13t3t3t3t5l1&dma=0&tag_exp=101509157~103116026~103200004~103233427~104527906~104528500~104684208~104684211~104948813~115480709~115616986&u_w=800&u_h=600&url=https%3A%2F%2Fwww.etsy.com%2F&frm=0&tiba=Etsy%20Sri%20Lanka%20-%20Shop%20for%20handmade%2C%20vintage%2C%20custom%2C%20and%20unique%20gifts%20for%20everyone&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=759552901.1759331149&uaa=&uab=&uafvl=&uamb=0&uam=&uap=Windows&uapv=&uaw=0&_tu=KA&data=ecomm_prodid%3D%3Becomm_pagetype%3Dhome%3Becomm_totalvalue%3D%3Becomm_rec_prodid%3D%3Becomm_category%3D%3Becomm_pvalue%3D%3Becomm_quantity%3D%3Ba%3D%3Bg%3D%3Bhasaccount%3Dfalse%3Bcqs%3D%3Brp%3D%3Bly%3D%3Bhs%3D%3B_google_crm_id%3D%3Bads_data_redaction%3Dfalse&rfmt=3&fmt=4"
+            ]
+          }
+        ],
+        "apis": [
+          "https://etsy.com/api/v1/categories",
+          "http://etsy.com/api/v1/api/v1/categories",
+          "https://etsy.com/api/v1/api/v1/categories",
+          "https://etsy.com/api/v1",
+          "http://etsy.com/api/v1/api/v1/products",
+          "https://etsy.com/api/v1/shops",
+          "https://etsy.com/api/v1/users",
+          "https://etsy.com/api/v1/api/v1/users",
+          "http://etsy.com/api/v1/search.php",
+          "http://etsy.com/api/v1/shops",
+          "http://etsy.com/search.php",
+          "https://etsy.com/api/v1/search.php",
+          "https://etsy.com/search.php",
+          "https://etsy.com/api/v1/api/v1/products",
+          "http://etsy.com/api/v1/api/v1/shops",
+          "http://etsy.com/api/v1/api/v1/users",
+          "https://etsy.com/api/v1/api/v1/shops",
+          "http://etsy.com/api/v1/users",
+          "http://etsy.com/api/v1/categories",
+          "http://etsy.com/api/v1",
+          "https://etsy.com/api/v1/products",
+          "http://etsy.com/api/v1/products"
+        ],
+        "discovered_urls": [
+          "https://www.etsy.com/cart?ref=hdr-cart",
+          "https://www.etsy.com/legal/cookies",
+          "https://www.etsy.com/c/home-and-living/home-decor/wall-decor?explicit=1&ref=hp_top_in_taxo_categories-1",
+          "https://www.etsy.com/listing/1889958409/stained-glass-birth-month-flower?click_key=0eba11f4cc021e3d0fab4589f366943729982880%3A1889958409&click_sum=062fa2e7&ref=hp_editors_picks_primary-5&sts=1",
+          "https://www.etsy.com/giftcards?ref=ftr",
+          "https://etsy.com/c/gifts?ref=catnav-12584",
+          "https://www.etsy.com/ca-fr?locale_override=CAD%7Cfr%7CCA",
+          "https://etsy.com/social-tracking?network=facebook",
+          "https://www.etsy.com/it?locale_override=EUR%7Cit%7CIT",
+          "https://www.etsy.com/legal/privacy",
+          "https://etsy.com/join?from_url=https%3A%2F%2Fwww.etsy.com%2F",
+          "https://www.etsy.com/be?locale_override=EUR%7Cnl%7CBE",
+          "https://www.etsy.com/pl?locale_override=PLN%7Cpl%7CPL",
+          "https://etsy.com/gift-mode?ref=gm_utility_nav",
+          "https://www.etsy.com/hk-en?locale_override=HKD%7Cen-GB%7CHK",
+          "https://etsy.com/c/toys-and-games?ref=catnav-1552",
+          "https://etsy.com/legal/policy/cookies-tracking-technologies/44797645975?ref=ftr#marketing-services",
+          "https://www.etsy.com/search?q=Cozy+Accessories+Gift&anchor_listing_id=4337911734&ref=hp_bubbles_Cozyfall25&mosv=sese&moci=1391250649434&mosi=1409456847981&is_merch_library=true",
+          "https://www.etsy.com/gift-mode/gift-idea/1270311971849/spooky-treats?ref=hp_gifting_occasion",
+          "https://www.etsy.com/c/paper-and-party-supplies/paper/stickers-labels-and-tags/stickers?explicit=1&ref=hp_top_in_taxo_categories-2",
+          "https://etsy.com/legal/privacy/?ref=ftr",
+          "https://www.etsy.com/se-en?locale_override=SEK%7Cen-GB%7CSE",
+          "https://www.etsy.com/help/article/493",
+          "https://www.etsy.com/listing/1775708583/enchanted-forest-witch-fairytale?click_key=5b9b474569206e996c8e1d3519802973aa93f40d%3A1775708583&click_sum=704f7a8f&external=1&ref=hp_consolidated_gifting_listings-1",
+          "https://www.etsy.com/impact?ref=ftr",
+          "https://www.etsy.com/?locale_override=USD%7Cen-US%7CUS",
+          "https://www.etsy.com/au?locale_override=AUD%7Cen-GB%7CAU",
+          "https://www.etsy.com/ca?locale_override=CAD%7Cen-GB%7CCA",
+          "https://www.etsy.com/search?q=Wedding+Gifts&anchor_listing_id=50119494&ref=hp_bubbles_Cozyfall25&mosv=sese&moci=1391250649434&mosi=1409178901516&is_merch_library=true",
+          "https://www.etsy.com/legal/privacy/",
+          "https://etsy.com#content",
+          "https://www.etsy.com/r/curated/best-of-family-traditions?sections=1410717528977&ref=hp_g-3",
+          "https://etsy.com",
+          "https://www.etsy.com/in-en?locale_override=INR%7Cen-IN%7CIN",
+          "https://www.etsy.com/affiliates?ref=ftr",
+          "https://www.etsy.com/uk?locale_override=GBP%7Cen-GB%7CGB",
+          "https://www.etsy.com/mx?locale_override=MXN%7Ces%7CMX",
+          "https://www.etsy.com/c/art-and-collectibles/prints/digital-prints?explicit=1&ref=hp_top_in_taxo_categories-6",
+          "https://www.etsy.com/nz?locale_override=NZD%7Cen-GB%7CNZ",
+          "https://www.etsy.com/dk-en?locale_override=DKK%7Cen-GB%7CDK",
+          "https://etsy.com/c/bags-and-purses?ref=catnav-132",
+          "https://www.etsy.com/de?locale_override=EUR%7Cde%7CDE",
+          "https://www.etsy.com/nl?locale_override=EUR%7Cnl%7CNL",
+          "https://etsy.com/c/craft-supplies-and-tools?ref=catnav-562",
+          "https://www.etsy.com/gift-mode/gift-idea/1270233189527/halloween-craft-kits?ref=hp_gifting_occasion",
+          "https://www.etsy.com/listing/1567228295/witchy-woman-8x10-cowgirl-halloween-art?click_key=c40e429ade946bb46c9c061ea7c98fae06be627f%3A1567228295&click_sum=fa383c22&external=1&ref=hp_consolidated_gifting_listings-5",
+          "https://etsy.com/social-tracking?network=instagram",
+          "https://www.etsy.com/r/themes/1368461679224?anchor_listings=1022636486&ref=hp_themes_module-1",
+          "https://www.etsy.com/listing/1187668988/zodiac-heart-cake-jewelry-box-y2k?click_key=38460dc3943d19384af451d63ef736faf58f9814%3A1187668988&click_sum=475afdb3&ref=hp_editors_picks_primary-6",
+          "https://www.etsy.com/listing/485382017/witch-hat-in-solid-black-with-curly?click_key=5f66a6f1ad5e1a486dee3207b799ea1db4971145%3A485382017&click_sum=09ce2571&external=1&ref=hp_consolidated_gifting_listings-4",
+          "https://etsy.com/c/electronics-and-accessories?ref=catnav-825",
+          "https://www.etsy.com/r/themes/1368461678858?anchor_listings=1516051653&ref=hp_themes_module-2",
+          "https://www.etsy.com/c/home-and-living?explicit=1&ref=hp_top_in_taxo_categories-5",
+          "https://etsy.com/about",
+          "https://www.etsy.com/careers?ref=ftr",
+          "https://www.etsy.com/gift-mode/occasion/halloween?ref=hp_gifting_occasion",
+          "https://www.etsy.com/ch?locale_override=CHF%7Cde%7CCH",
+          "https://www.etsy.com/listing/1749996106/cat-pillow-sewing-pattern-spooky?click_key=b558f55c88feb1b52dc2a298536ebd12cd3247fa%3A1749996106&click_sum=cd763c1b&external=1&ref=hp_consolidated_gifting_listings-2&pro=1&sts=1",
+          "https://www.etsy.com/sso-community?return_to=https%3A%2F%2Fcommunity.etsy.com%2Ft5%2FEtsy-Forums%2Fct-p%2Fforums",
+          "https://www.etsy.com/ie?locale_override=EUR%7Cen-GB%7CIE",
+          "https://www.etsy.com/ca?locale_override=CAD%7Cen-US%7CCA",
+          "https://www.etsy.com/no-en?locale_override=NOK%7Cen-GB%7CNO",
+          "https://www.etsy.com/legal/cookies-and-tracking-technologies",
+          "https://www.etsy.com/legal?ref=ftr",
+          "https://etsy.com/social-tracking?network=pinterest",
+          "https://www.etsy.com/gift-mode/gift-idea/1270195991104/coffee-cauldrons?ref=hp_gifting_occasion",
+          "https://www.etsy.com/registry?ref=ftr",
+          "https://www.etsy.com/sso-community?return_to=https%3A%2F%2Fcommunity.etsy.com%2Ft5%2FEtsy-Teams%2Fct-p%2Fteams",
+          "https://www.etsy.com/search?q=kids+costumes&anchor_listing_id=1873263143&ref=hp_g_DealsRow_9_22_25-1&mosv=sese&moci=1363084652851&mosi=1407489154903&is_discounted=true&pct_discount_max=20&is_merch_library=true",
+          "https://www.etsy.com/r/themes/1368497645281?anchor_listings=1803997060&ref=hp_themes_module-4",
+          "https://www.etsy.com/il-en?locale_override=ILS%7Cen-GB%7CIL",
+          "https://www.etsy.com/help/article/25840304230?ref=ftr",
+          "https://etsy.com/c/weddings?ref=catnav-1633",
+          "https://www.etsy.com/listing/532848422/leather-keychain-handbag-tassel-purse?click_key=ae3a7e39d76997a98b3b06b8215b4e371bf078ba%3A532848422&click_sum=93bcc6e3&ref=hp_editors_picks_primary-2&sts=1",
+          "https://etsy.com/c/books-movies-and-music?ref=catnav-323",
+          "https://www.etsy.com/guest/favorites?ref=hdr-fav",
+          "https://www.etsy.com/your/account/locale_preferences?from_page=https%3A%2F%2Fwww.etsy.com%2F",
+          "https://etsy.com/c/bath-and-beauty?ref=catnav-199",
+          "https://etsy.com/legal/terms-of-use?ref=ftr",
+          "https://etsy.com/c/home-and-living?ref=catnav-891",
+          "https://etsy.com/c/jewelry?ref=catnav-1179",
+          "https://www.etsy.com/fi-en?locale_override=EUR%7Cen-US%7CFI",
+          "https://www.etsy.com/listing/1768580032/custom-toi-et-moi-gemstone-ring-emerald?click_key=fb2c02add7d00db974e3a6d5f1e04fc7718ffce8%3A1768580032&click_sum=88f8f433&ref=hp_editors_picks_primary-1&sts=1",
+          "https://etsy.com/c/paper-and-party-supplies?ref=catnav-1250",
+          "https://www.etsy.com/jp?locale_override=JPY%7Cja%7CJP",
+          "https://www.etsy.com/featured/hub/personalization-shop?ref=hp_editors_picks_primary",
+          "https://etsy.com/c/accessories?ref=catnav-1",
+          "https://help.etsy.com/hc/en-us/articles/360042433614-How-to-Opt-out-of-Personalized-Advertising",
+          "https://www.etsy.com/r/curated/fall-hosting-and-decor?sections=1407721696144&ref=hp_g-2",
+          "https://www.etsy.com/listing/1028648404/halloween-tiered-tray-decor-witches-brew?click_key=3a2bfd1526786d5a1db4e14b7b02f3cebdb1398a%3A1028648404&click_sum=0237ed19&external=1&ref=hp_consolidated_gifting_listings-3&sts=1",
+          "https://www.etsy.com/fr?locale_override=EUR%7Cfr%7CFR",
+          "https://www.etsy.com/search/paper-and-party-supplies?q=halloween+party&anchor_listing_id=560064567&mosv=sese&moci=1392999373934&mosi=1393000315646&is_merch_library=true&ref=hp_shoppable_hero_secondary",
+          "https://www.etsy.com/search?q=Fall+Decor+Gifts&anchor_listing_id=664572719&ref=hp_bubbles_Cozyfall25&mosv=sese&moci=1391250649434&mosi=1409456956603&is_merch_library=true",
+          "https://www.etsy.com/r/themes/1368461663516?anchor_listings=1137501118&ref=hp_themes_module-3",
+          "https://www.etsy.com/c/home-and-living/kitchen-and-dining/drink-and-barware/drinkware/tumblers-and-water-glasses?explicit=1&ref=hp_top_in_taxo_categories-3",
+          "https://etsy.app.link/d7nDUdp49V",
+          "https://etsy.com/c/baby?ref=catnav-12545",
+          "https://www.etsy.com/listing/1382196280/custom-boat-tote-bag-canvas-tote-bag?click_key=b688dcd76b7f146b95dcfec20230457258e10e9d%3A1382196280&click_sum=dafa5ebf&ref=hp_editors_picks_primary-3",
+          "https://www.etsy.com/search?q=Libra+Gifts&anchor_listing_id=1618477857&ref=hp_bubbles_Cozyfall25&mosv=sese&moci=1391250649434&mosi=1409178826868&is_merch_library=true",
+          "https://etsy.com/blog/en/?ref=ftr",
+          "https://www.etsy.com/es?locale_override=EUR%7Ces%7CES",
+          "https://etsy.com/?ref=lgo",
+          "https://www.etsy.com/r/curated/new-arrivals?sections%5B1353072841526%5D=&sections%5B1351320746435%5D=&sections%5B1371356542530%5D=&sections%5B1371354636406%5D=&sections%5B1371409929893%5D=&sections%5B1351321072071%5D=&sections%5B1363824172656%5D=&ref=hp_g-1",
+          "https://etsy.com/c/art-and-collectibles?ref=catnav-66",
+          "https://www.etsy.com/r/themes/1409604855542?ref=hp_g-4",
+          "https://www.etsy.com/search?q=Toy+Gifts&anchor_listing_id=1693118990&ref=hp_bubbles_Cozyfall25&mosv=sese&moci=1391250649434&mosi=1409457139235&is_merch_library=true",
+          "https://www.etsy.com/search?q=Jewelry+Gifts&anchor_listing_id=4356064485&ref=hp_bubbles_Cozyfall25&mosv=sese&moci=1391250649434&mosi=1409178862844&is_merch_library=true",
+          "https://etsy.com/signin?from_page=https%3A%2F%2Fwww.etsy.com%2F&workflow=c3Vic2NyaWJlX3RvX2VtYWlsX2xpc3Q6bmV3X2F0X2V0c3k6MTc1OTMzMTc0Nzo5OTgxMmE5YWI5YzFjNTBhYzBhYjc5MGQ2MjVkNjRhZg==",
+          "https://www.etsy.com/search/jewelry?q=jewelry&anchor_listing_id=1557484464&ref=hp_g_DealsRow_9_22_25-2&mosv=sese&moci=1363084652851&mosi=1363084822171&min=100&is_merch_library=true&is_star_seller=true&infb=mt_9%2Cmt_8%2Cmt_7%2Cmt_6%2Cmt_4&is_discounted=true&pct_discount_max=15",
+          "https://www.etsy.com/at?locale_override=EUR%7Cde%7CAT",
+          "https://www.etsy.com/search/home-and-living?q=fall+candle&anchor_listing_id=1807373001&ref=hp_g_DealsRow_9_22_25-3&mosv=sese&moci=1363084652851&mosi=1407489425925&is_discounted=true&is_merch_library=true",
+          "https://etsy.com/c/pet-supplies?ref=catnav-1351",
+          "https://www.etsy.com/help?ref=ftr",
+          "https://www.etsy.com/listing/249885366/witch-squirrel-moon-printable-halloween?click_key=f9c0dbb1f3cae57898dbc7d1aea7acd42dc2874d%3A249885366&click_sum=ee2e725a&external=1&ref=hp_consolidated_gifting_listings-6&sts=1",
+          "https://www.etsy.com/sell?ref=ftr",
+          "https://investors.etsy.com",
+          "https://etsy.com/c/clothing?ref=catnav-374",
+          "https://www.etsy.com/press?ref=ftr",
+          "https://www.etsy.com/listing/1807127723/custom-badly-drawn-pet-portrait?click_key=7227f279eda191cbc68e46942695667eca0e5b11%3A1807127723&click_sum=4a31507f&ref=hp_editors_picks_primary-4&sts=1&dd=1",
+          "https://www.etsy.com/about?ref=ftr",
+          "https://www.etsy.com/categories",
+          "https://etsy.com/gift-mode?ref=gm_global_nav",
+          "https://etsy.com/featured/hub/home-favorites?ref=contentful_promo_cat_nav-4",
+          "https://www.etsy.com/search?q=Vintage+Home+Decor&anchor_listing_id=1879797768&ref=hp_g_DealsRow_9_22_25-4&mosv=sese&moci=1363084652851&mosi=1407210974438&is_discounted=true&is_merch_library=true&pct_discount_max=20",
+          "https://etsy.com/c/shoes?ref=catnav-1429",
+          "https://etsy.com/social-tracking?network=youtube",
+          "https://www.etsy.com/featured/hub/halloween-costumes-and-decor-ideas?ref=Halloween25_cat_nav",
+          "https://www.etsy.com/help?ref=hp_what_is_etsy_help_center",
+          "https://etsy.com/registry?ref=contentful_promo_cat_nav-7",
+          "https://www.etsy.com/r/themes/1314285277606?ref=hp_g-5",
+          "https://www.etsy.com/sg-en?locale_override=SGD%7Cen-GB%7CSG",
+          "https://www.etsy.com/c/craft-supplies-and-tools/sewing-and-fiber/sewing-and-needlecraft/embroidery/kits-and-how-to/patterns?explicit=1&ref=hp_top_in_taxo_categories-4",
+          "https://www.etsy.com/search?q=gift+for+her&anchor_listing_id=1775532367&ref=hp_g_DealsRow_9_22_25-5&mosv=sese&moci=1363084652851&mosi=1370104020804&is_discounted=true&is_merch_library=true&pct_discount_max=25",
+          "https://etsy.com/search/shops",
+          "https://etsy.com/featured/hub/fashion-favorites?ref=contentful_promo_cat_nav-5",
+          "https://www.etsy.com/featured/hub/halloween-costumes-and-decor-ideas?ref=hp_shoppable_hero_primary",
+          "https://www.etsy.com/pt?locale_override=EUR%7Cpt%7CPT"
+        ],
+        "api_discovery": {
+          "rest_apis": [
+            {
+              "url": "https://etsy.com/api/v1/products",
+              "status_code": 403,
+              "headers": {
+                "Connection": "keep-alive",
+                "Content-Length": "768",
+                "Content-Type": "text/html;charset=utf-8",
+                "Server": "DataDome",
+                "X-DataDome": "protected",
+                "Accept-CH": "Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory",
+                "Charset": "utf-8",
+                "Cache-Control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Expose-Headers": "x-dd-b, x-set-cookie",
+                "Access-Control-Allow-Origin": "*",
+                "X-DataDome-CID": "AHrlqAAAAAMAIH7G2bIWDJUAcIbL3A==",
+                "X-DD-B": "2",
+                "Set-Cookie": "datadome=eUT~TxUDuV1TAFTztLu3nNYB0V7LA14SEkbrLfPMl8~G7eeHc~oOJhPjJ0t9Pk1j8RJIfFZ5PvxU~n43UqYxLOUpr2x0_rd5tm7F1Nwhta4Yytj5Sp8O65oXRhIvIu4U; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=ZWWDun6hVr%2BaO4aaejm8w2YkPusbTQ%2Ff0yKIk6jF%2BFc%3D,v=vGpVN8xkjAGvrukAfWJtCDDxrQdk7bkv; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "x-fastly-backend-reqs": "292",
+                "Accept-Ranges": "bytes",
+                "Date": "Wed, 01 Oct 2025 15:06:02 GMT",
+                "Via": "1.1 varnish",
+                "X-Served-By": "cache-sin-wsss1830040-SIN",
+                "X-Cache": "MISS",
+                "X-Cache-Hits": "0",
+                "X-Timer": "S1759331162.352001,VS0,VE5",
+                "Location": "https://www.etsy.com/"
+              },
+              "content_type": "text/html;charset=utf-8",
+              "server": "DataDome"
+            },
+            {
+              "url": "https://etsy.com/api/v1/api/v1/shops",
+              "status_code": 403,
+              "headers": {
+                "Connection": "keep-alive",
+                "Content-Length": "768",
+                "Content-Type": "text/html;charset=utf-8",
+                "Server": "DataDome",
+                "X-DataDome": "protected",
+                "Accept-CH": "Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory",
+                "Charset": "utf-8",
+                "Cache-Control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Expose-Headers": "x-dd-b, x-set-cookie",
+                "Access-Control-Allow-Origin": "*",
+                "X-DataDome-CID": "AHrlqAAAAAMAaQHHmUFSrbAAcIbL3A==",
+                "X-DD-B": "2",
+                "Set-Cookie": "datadome=2tGi7_i7n7zSV_LoSSBud84J1wevVmmpW4KIIeAugp109o1LQGivNv9peeBdK4OLVWzr7826ghbwjtEapJda6GBxxKIZFlbY_hR3bama_QJ_I8lW2L8QrTrxuLnjKtNj; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=j8wF%2BS4S3LFEiWbJQbEGNC6SlxDOSSBLHaCrPvIWLfM%3D,v=yhgJnGhMDTFmIEOXf6-IRit9esVFGPrT; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "x-fastly-backend-reqs": "24",
+                "Accept-Ranges": "bytes",
+                "Date": "Wed, 01 Oct 2025 15:06:03 GMT",
+                "Via": "1.1 varnish",
+                "X-Served-By": "cache-sin-wsss1830044-SIN",
+                "X-Cache": "MISS",
+                "X-Cache-Hits": "0",
+                "X-Timer": "S1759331164.793615,VS0,VE6",
+                "Location": "https://www.etsy.com/"
+              },
+              "content_type": "text/html;charset=utf-8",
+              "server": "DataDome"
+            },
+            {
+              "url": "https://etsy.com/api/v1/search.php",
+              "status_code": 403,
+              "headers": {
+                "Connection": "keep-alive",
+                "Content-Length": "768",
+                "Content-Type": "text/html;charset=utf-8",
+                "Server": "DataDome",
+                "X-DataDome": "protected",
+                "Accept-CH": "Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory",
+                "Charset": "utf-8",
+                "Cache-Control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Expose-Headers": "x-dd-b, x-set-cookie",
+                "Access-Control-Allow-Origin": "*",
+                "X-DataDome-CID": "AHrlqAAAAAMAE1Ci518CWSMAcIbL3A==",
+                "X-DD-B": "2",
+                "Set-Cookie": "datadome=5b~OMqMCQQxVdGcBqF8oZ6pHLyQKwkD46phcr5eBO~8eVmA_meeN0ZFkQPGN3yQKuUIUe1SMIb3xKbUppiJ3SkfOmWSToz72xZA5f5AByzhBLu6cMwcEXwK7wpzBpasZ; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=tkaqCaoSIfxqXhQQoE3kDMetpMlfN%2FxL7Zhw8aUtNVM%3D,v=EDwJ7UCtRO6uMo3VmX8d_0twjNUAn46u; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "x-fastly-backend-reqs": "62",
+                "Accept-Ranges": "bytes",
+                "Date": "Wed, 01 Oct 2025 15:06:08 GMT",
+                "Via": "1.1 varnish",
+                "X-Served-By": "cache-sin-wsss1830053-SIN",
+                "X-Cache": "MISS",
+                "X-Cache-Hits": "0",
+                "X-Timer": "S1759331169.876578,VS0,VE4",
+                "Location": "https://www.etsy.com/"
+              },
+              "content_type": "text/html;charset=utf-8",
+              "server": "DataDome"
+            },
+            {
+              "url": "https://etsy.com/api/v1",
+              "status_code": 403,
+              "headers": {
+                "Connection": "keep-alive",
+                "Content-Length": "768",
+                "Content-Type": "text/html;charset=utf-8",
+                "Server": "DataDome",
+                "X-DataDome": "protected",
+                "Accept-CH": "Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory",
+                "Charset": "utf-8",
+                "Cache-Control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Expose-Headers": "x-dd-b, x-set-cookie",
+                "Access-Control-Allow-Origin": "*",
+                "X-DataDome-CID": "AHrlqAAAAAMAI-O5hIndUiIAcIbL3A==",
+                "X-DD-B": "2",
+                "Set-Cookie": "datadome=KXRjHIfp7_WAxg4cXranOnaH~NHSw9GjfysH1c2NyBYSylx0fOSfB7eM3bckGvTYZ554yepy4dSaMzMDT9CvBxG2sfRfPeDLrlSS8WcRYCr_QBFWpV1SKKeRbqDife4p; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=oqbEyD8hi2AtYN2Y93%2BS7JrTN%2FLiJ9n5sNnvG3mGPIc%3D,v=ImP3x1yh2t8XXiYPOwMAKdxaY5D6pPZW; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "x-fastly-backend-reqs": "10",
+                "Accept-Ranges": "bytes",
+                "Date": "Wed, 01 Oct 2025 15:06:13 GMT",
+                "Via": "1.1 varnish",
+                "X-Served-By": "cache-sin-wsss1830073-SIN",
+                "X-Cache": "MISS",
+                "X-Cache-Hits": "0",
+                "X-Timer": "S1759331173.234873,VS0,VE5",
+                "Location": "https://www.etsy.com/"
+              },
+              "content_type": "text/html;charset=utf-8",
+              "server": "DataDome"
+            },
+            {
+              "url": "https://etsy.com/api/v1/api/v1/users",
+              "status_code": 403,
+              "headers": {
+                "Connection": "keep-alive",
+                "Content-Length": "768",
+                "Content-Type": "text/html;charset=utf-8",
+                "Server": "DataDome",
+                "X-DataDome": "protected",
+                "Accept-CH": "Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory",
+                "Charset": "utf-8",
+                "Cache-Control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Expose-Headers": "x-dd-b, x-set-cookie",
+                "Access-Control-Allow-Origin": "*",
+                "X-DataDome-CID": "AHrlqAAAAAMA18LT0TEIlTcAcIbL3A==",
+                "X-DD-B": "2",
+                "Set-Cookie": "datadome=AB_~mPN7GfaOMwd~a3rWoaWPgkXNC184DqD~oz8ObSmQIXamkXRygnavqVmVEoN_KbP0QEOFd6ZJAilgEDQDsgdxIqBSRoHw25LR00~kNTdlz_kVWv5Z0ouJ~9_JPTbm; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=%2Fe30v%2B3VPDsWRcfUa%2FUS546JMPWELC%2Bty19LZqgzRbI%3D,v=JAdE8skc-vf7oAvpgAUEQOtFAUYNKpyW; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "x-fastly-backend-reqs": "17",
+                "Accept-Ranges": "bytes",
+                "Date": "Wed, 01 Oct 2025 15:06:21 GMT",
+                "Via": "1.1 varnish",
+                "X-Served-By": "cache-sin-wsss1830072-SIN",
+                "X-Cache": "MISS",
+                "X-Cache-Hits": "0",
+                "X-Timer": "S1759331182.609914,VS0,VE4",
+                "Location": "https://www.etsy.com/"
+              },
+              "content_type": "text/html;charset=utf-8",
+              "server": "DataDome"
+            },
+            {
+              "url": "https://etsy.com/api/v1/users",
+              "status_code": 403,
+              "headers": {
+                "Connection": "keep-alive",
+                "Content-Length": "768",
+                "Content-Type": "text/html;charset=utf-8",
+                "Server": "DataDome",
+                "X-DataDome": "protected",
+                "Accept-CH": "Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory",
+                "Charset": "utf-8",
+                "Cache-Control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Expose-Headers": "x-dd-b, x-set-cookie",
+                "Access-Control-Allow-Origin": "*",
+                "X-DataDome-CID": "AHrlqAAAAAMAVnc7vZHL6uUAcIbL3A==",
+                "X-DD-B": "2",
+                "Set-Cookie": "datadome=8s9QORIxkuphueS3L5nQUIT7lS6R5qUuwUVlzYOQPoAsMEgvGjZLAaDCZYhaaeaIkgH2AykS25v~nAFJrC16teAwlw1phl6vWFLnEI1CBcMVb0GM96tetgYmC~RuuzAo; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=cLViduDCoLbe%2FsESTqor59rYFsqfl8BNBgcBiThXDis%3D,v=4vL11OiiXjkPSt-6VDGXu1MrC7TFhRPZ; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "x-fastly-backend-reqs": "30",
+                "Accept-Ranges": "bytes",
+                "Date": "Wed, 01 Oct 2025 15:06:23 GMT",
+                "Via": "1.1 varnish",
+                "X-Served-By": "cache-sin-wsss1830027-SIN",
+                "X-Cache": "MISS",
+                "X-Cache-Hits": "0",
+                "X-Timer": "S1759331183.042877,VS0,VE5",
+                "Location": "https://www.etsy.com/"
+              },
+              "content_type": "text/html;charset=utf-8",
+              "server": "DataDome"
+            },
+            {
+              "url": "https://etsy.com/api/v1/api/v1/products",
+              "status_code": 403,
+              "headers": {
+                "Connection": "keep-alive",
+                "Content-Length": "768",
+                "Content-Type": "text/html;charset=utf-8",
+                "Server": "DataDome",
+                "X-DataDome": "protected",
+                "Accept-CH": "Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory",
+                "Charset": "utf-8",
+                "Cache-Control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Expose-Headers": "x-dd-b, x-set-cookie",
+                "Access-Control-Allow-Origin": "*",
+                "X-DataDome-CID": "AHrlqAAAAAMATdbX3cHlQUcAcIbL3A==",
+                "X-DD-B": "2",
+                "Set-Cookie": "datadome=42JZ90djcKE70gwNE_u4tEE0NvM7VCggqJJdkNb5VSoPnVxIoaiQZ6786D7qyTdeyWMTq6KkaKZ~eleW3I2vh6Y7rM1u13WrT07u_IH~pxBG6HnV44EEcyFNK9ANcZI_; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=6m5eUCGzgk9C0JlbhrlP%2BWsJ26HVqlcsVptfEbwlLuE%3D,v=lIwLAIAp3O8vk3959UxyVcpJkgUmyrNa; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "x-fastly-backend-reqs": "12",
+                "Accept-Ranges": "bytes",
+                "Date": "Wed, 01 Oct 2025 15:06:27 GMT",
+                "Via": "1.1 varnish",
+                "X-Served-By": "cache-sin-wsss1830089-SIN",
+                "X-Cache": "MISS",
+                "X-Cache-Hits": "0",
+                "X-Timer": "S1759331187.284950,VS0,VE10",
+                "Location": "https://www.etsy.com/"
+              },
+              "content_type": "text/html;charset=utf-8",
+              "server": "DataDome"
+            },
+            {
+              "url": "https://etsy.com/api/v1/shops",
+              "status_code": 403,
+              "headers": {
+                "Connection": "keep-alive",
+                "Content-Length": "768",
+                "Content-Type": "text/html;charset=utf-8",
+                "Server": "DataDome",
+                "X-DataDome": "protected",
+                "Accept-CH": "Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory",
+                "Charset": "utf-8",
+                "Cache-Control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Expose-Headers": "x-dd-b, x-set-cookie",
+                "Access-Control-Allow-Origin": "*",
+                "X-DataDome-CID": "AHrlqAAAAAMA_y1WfGjZTsAAcIbL3A==",
+                "X-DD-B": "2",
+                "Set-Cookie": "datadome=_3x3Uoopbwu4QsS7OuJVQpR8syAcATIKiCakfrfL2GTR3aDX6sUzNb5Tf127K95L_lZ1F72zwrHuwD9va60SXYx5NfV5waoIRHxSJFdZ9wCeQSvZ1sSMkyPivW0VTZyS; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=z7MmJpxvuT6wMn6leKnJGOEjDkqCxfUSZRdOevVXCv4%3D,v=dwL9MicKR3RiotGyGxjb_7jNRzkScnl7; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "x-fastly-backend-reqs": "19",
+                "Accept-Ranges": "bytes",
+                "Date": "Wed, 01 Oct 2025 15:06:30 GMT",
+                "Via": "1.1 varnish",
+                "X-Served-By": "cache-sin-wsss1830038-SIN",
+                "X-Cache": "MISS",
+                "X-Cache-Hits": "0",
+                "X-Timer": "S1759331190.093776,VS0,VE4",
+                "Location": "https://www.etsy.com/"
+              },
+              "content_type": "text/html;charset=utf-8",
+              "server": "DataDome"
+            },
+            {
+              "url": "https://etsy.com/api/v1/categories",
+              "status_code": 403,
+              "headers": {
+                "Connection": "keep-alive",
+                "Content-Length": "768",
+                "Content-Type": "text/html;charset=utf-8",
+                "Server": "DataDome",
+                "X-DataDome": "protected",
+                "Accept-CH": "Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory",
+                "Charset": "utf-8",
+                "Cache-Control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Expose-Headers": "x-dd-b, x-set-cookie",
+                "Access-Control-Allow-Origin": "*",
+                "X-DataDome-CID": "AHrlqAAAAAMA1McAXdN7keoAcIbL3A==",
+                "X-DD-B": "2",
+                "Set-Cookie": "datadome=LY1cM70AtfTa~WXfpeDjjtNDSyUa~dmYoYNOWcl3SJ3svgJmwvK7Ru_GHtOxBMk2g8RfJeEwBo3cgXDOcLfE7BlGLYFxR2U_ZgA2But9uXDJD3k4QZWVISOupXfgEpa6; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=11VOgX9fps3z07u3oZ1vStbCebyLR6lzw5daHij%2FaN8%3D,v=qayFVffeVmAoCuOJSY29QhA-PI-uCeRl; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "x-fastly-backend-reqs": "240",
+                "Accept-Ranges": "bytes",
+                "Date": "Wed, 01 Oct 2025 15:06:32 GMT",
+                "Via": "1.1 varnish",
+                "X-Served-By": "cache-sin-wsss1830042-SIN",
+                "X-Cache": "MISS",
+                "X-Cache-Hits": "0",
+                "X-Timer": "S1759331192.282986,VS0,VE4",
+                "Location": "https://www.etsy.com/"
+              },
+              "content_type": "text/html;charset=utf-8",
+              "server": "DataDome"
+            },
+            {
+              "url": "https://etsy.com/api/v1/api/v1/categories",
+              "status_code": 403,
+              "headers": {
+                "Connection": "keep-alive",
+                "Content-Length": "768",
+                "Content-Type": "text/html;charset=utf-8",
+                "Server": "DataDome",
+                "X-DataDome": "protected",
+                "Accept-CH": "Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory",
+                "Charset": "utf-8",
+                "Cache-Control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Expose-Headers": "x-dd-b, x-set-cookie",
+                "Access-Control-Allow-Origin": "*",
+                "X-DataDome-CID": "AHrlqAAAAAMAWi8uqD4FhpIAcIbL3A==",
+                "X-DD-B": "2",
+                "Set-Cookie": "datadome=yXHgpUnwCWTpsCqQT3oGpjKmwUq9Tyshqaj8tQ8An0fbOni3ObN2NfEy8Yb_KVK6RW8C~TjJduqchiNneURw0lXBaWGBDOSssLTOYxTl4n6qF~XCxw7MR5~DCdSyTedP; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=0FGgstHa3iwKOK57hTjJCuyXH%2Fo7eAIsjA%2FjvxIloVc%3D,v=0yN2SCn3aJvOiMy9xaE-lIf0Ie2jBWFO; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "x-fastly-backend-reqs": "59",
+                "Accept-Ranges": "bytes",
+                "Date": "Wed, 01 Oct 2025 15:06:33 GMT",
+                "Via": "1.1 varnish",
+                "X-Served-By": "cache-sin-wsss1830056-SIN",
+                "X-Cache": "MISS",
+                "X-Cache-Hits": "0",
+                "X-Timer": "S1759331193.002625,VS0,VE6",
+                "Location": "https://www.etsy.com/"
+              },
+              "content_type": "text/html;charset=utf-8",
+              "server": "DataDome"
+            },
+            {
+              "url": "http://etsy.com/api/v1/products",
+              "status_code": 403,
+              "headers": {
+                "Connection": "keep-alive",
+                "Content-Length": "768",
+                "Content-Type": "text/html;charset=utf-8",
+                "Server": "DataDome",
+                "X-DataDome": "protected",
+                "Accept-CH": "Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory",
+                "Charset": "utf-8",
+                "Cache-Control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Expose-Headers": "x-dd-b, x-set-cookie",
+                "Access-Control-Allow-Origin": "*",
+                "X-DataDome-CID": "AHrlqAAAAAMAFdaDXFBVEzIAcIbL3A==",
+                "X-DD-B": "2",
+                "Set-Cookie": "datadome=5B7lAjdnytEN6APHIGfu3PBdeW2SrkOwAL4ww2GAO2NBCyPsl1WutXNW7mTvZ8tJBELDycBraak6w5ZyEvue9_KdumknguLC5nygS1Dchg8MH913bS5fkPV6k7J6S5FL; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=196cw7ZD7gIEM4ZzxAOndwCo4x6ssAJohfcTNHyxLuo%3D,v=dquQmaxUp-ISsOPuxq_etbfx6T5X3ZzY; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "x-fastly-backend-reqs": "10",
+                "Accept-Ranges": "bytes",
+                "Date": "Wed, 01 Oct 2025 15:06:34 GMT",
+                "Via": "1.1 varnish",
+                "X-Served-By": "cache-sin-wsss1830032-SIN",
+                "X-Cache": "MISS",
+                "X-Cache-Hits": "0",
+                "X-Timer": "S1759331194.310253,VS0,VE5",
+                "Location": "https://www.etsy.com/"
+              },
+              "content_type": "text/html;charset=utf-8",
+              "server": "DataDome"
+            },
+            {
+              "url": "http://etsy.com/api/v1/api/v1/shops",
+              "status_code": 403,
+              "headers": {
+                "Connection": "keep-alive",
+                "Content-Length": "768",
+                "Content-Type": "text/html;charset=utf-8",
+                "Server": "DataDome",
+                "X-DataDome": "protected",
+                "Accept-CH": "Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory",
+                "Charset": "utf-8",
+                "Cache-Control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Expose-Headers": "x-dd-b, x-set-cookie",
+                "Access-Control-Allow-Origin": "*",
+                "X-DataDome-CID": "AHrlqAAAAAMAg4jmLlx8FQwAcIbL3A==",
+                "X-DD-B": "2",
+                "Set-Cookie": "datadome=GtznerT4FAx0lfVFrRAfggiM2N~lQGWq7Ijq9KMK11DWon5HcasqdSg2UjBQrcsaTEb4I_gmiCg_4ADFUXmsVLlVgZCBQ1QuprM2jUuLtooS_hgDkLw1q_iDTu_6KkY9; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=bvHj4INe0Pce3aTKAXa%2Fds4MrGHO%2BHf9E7iZZ8qOKys%3D,v=Er1uPkabM8A5PeCImOauz39OcPZnj_-D; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "x-fastly-backend-reqs": "88",
+                "Accept-Ranges": "bytes",
+                "Date": "Wed, 01 Oct 2025 15:06:35 GMT",
+                "Via": "1.1 varnish",
+                "X-Served-By": "cache-sin-wsss1830023-SIN",
+                "X-Cache": "MISS",
+                "X-Cache-Hits": "0",
+                "X-Timer": "S1759331196.569293,VS0,VE6",
+                "Location": "https://www.etsy.com/"
+              },
+              "content_type": "text/html;charset=utf-8",
+              "server": "DataDome"
+            },
+            {
+              "url": "http://etsy.com/api/v1/search.php",
+              "status_code": 403,
+              "headers": {
+                "Connection": "keep-alive",
+                "Content-Length": "768",
+                "Content-Type": "text/html;charset=utf-8",
+                "Server": "DataDome",
+                "X-DataDome": "protected",
+                "Accept-CH": "Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory",
+                "Charset": "utf-8",
+                "Cache-Control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Expose-Headers": "x-dd-b, x-set-cookie",
+                "Access-Control-Allow-Origin": "*",
+                "X-DataDome-CID": "AHrlqAAAAAMAHj5yP3tndHQAcIbL3A==",
+                "X-DD-B": "2",
+                "Set-Cookie": "datadome=KbtNY5sHYBsMhliFoEgz3LscnCT3NL79Kj~51ZUn2xdMVWuau3SWWQOewQ1KM6pNIay5sO9C~ptfX15zsMMQwlVqPDN4Hcm1p2RLsE5gnBS1CscHAvRFVN3GyFDtjqWS; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=hSInbve9nPIdz6ZqwPHnJWzqSCuA0JmWWVXvOEFkzMI%3D,v=oa4Vb1nfaVdrtLVQGbBqB4g5sPAfz7DZ; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "x-fastly-backend-reqs": "45",
+                "Accept-Ranges": "bytes",
+                "Date": "Wed, 01 Oct 2025 15:06:39 GMT",
+                "Via": "1.1 varnish",
+                "X-Served-By": "cache-sin-wsss1830062-SIN",
+                "X-Cache": "MISS",
+                "X-Cache-Hits": "0",
+                "X-Timer": "S1759331200.815513,VS0,VE9",
+                "Location": "https://www.etsy.com/"
+              },
+              "content_type": "text/html;charset=utf-8",
+              "server": "DataDome"
+            },
+            {
+              "url": "http://etsy.com/api/v1",
+              "status_code": 403,
+              "headers": {
+                "Connection": "keep-alive",
+                "Content-Length": "768",
+                "Content-Type": "text/html;charset=utf-8",
+                "Server": "DataDome",
+                "X-DataDome": "protected",
+                "Accept-CH": "Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory",
+                "Charset": "utf-8",
+                "Cache-Control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Expose-Headers": "x-dd-b, x-set-cookie",
+                "Access-Control-Allow-Origin": "*",
+                "X-DataDome-CID": "AHrlqAAAAAMA8B0rt7PD7t4AcIbL3A==",
+                "X-DD-B": "2",
+                "Set-Cookie": "datadome=Xps8~nUjXBy54Bsyy6FkBHZ0RC5Kh1NUF5RzMUkZrEha0lwLrwJla1BN6fCojxO2W~DQpbX~_MqRlDFjnQNCuw3AHRJXGq7p67xMgA~JET8BawjO7wqXUsX92W4w82zY; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=nni%2BNUC%2FbEvUWQSytwl9ySNqfH6VExeadeTL1LlELjk%3D,v=cpDon34O043pBFSP5HUauBYtcW5x_ZgA; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "x-fastly-backend-reqs": "61",
+                "Accept-Ranges": "bytes",
+                "Date": "Wed, 01 Oct 2025 15:06:43 GMT",
+                "Via": "1.1 varnish",
+                "X-Served-By": "cache-sin-wsss1830089-SIN",
+                "X-Cache": "MISS",
+                "X-Cache-Hits": "0",
+                "X-Timer": "S1759331203.443613,VS0,VE5",
+                "Location": "https://www.etsy.com/"
+              },
+              "content_type": "text/html;charset=utf-8",
+              "server": "DataDome"
+            },
+            {
+              "url": "http://etsy.com/api/v1/api/v1/users",
+              "status_code": 403,
+              "headers": {
+                "Connection": "keep-alive",
+                "Content-Length": "768",
+                "Content-Type": "text/html;charset=utf-8",
+                "Server": "DataDome",
+                "X-DataDome": "protected",
+                "Accept-CH": "Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory",
+                "Charset": "utf-8",
+                "Cache-Control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Expose-Headers": "x-dd-b, x-set-cookie",
+                "Access-Control-Allow-Origin": "*",
+                "X-DataDome-CID": "AHrlqAAAAAMAG_YlZ1NLigIAcIbL3A==",
+                "X-DD-B": "2",
+                "Set-Cookie": "datadome=1uQsJbYaTLPVBBHKFIJy~xfeu2RdsbTf2VHMur9ennPGxDIywIKmMsuVZ4R~0jnqGcUytCGNQT4FaHg~9T9Bg2IuUazPqzdULkX12gr3JqE1Ugq2NJa8W0lrZLPVCchT; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=mgAONywe6uEBsibwKcIpIE8Bx2%2Bc6fbpnHetJ0gvJyc%3D,v=GqvT9ilPzrdeEgAY9j4jpzoJlicN2N2E; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "x-fastly-backend-reqs": "105",
+                "Accept-Ranges": "bytes",
+                "Date": "Wed, 01 Oct 2025 15:06:50 GMT",
+                "Via": "1.1 varnish",
+                "X-Served-By": "cache-sin-wsss1830034-SIN",
+                "X-Cache": "MISS",
+                "X-Cache-Hits": "0",
+                "X-Timer": "S1759331211.657127,VS0,VE4",
+                "Location": "https://www.etsy.com/"
+              },
+              "content_type": "text/html;charset=utf-8",
+              "server": "DataDome"
+            },
+            {
+              "url": "http://etsy.com/api/v1/users",
+              "status_code": 403,
+              "headers": {
+                "Connection": "keep-alive",
+                "Content-Length": "768",
+                "Content-Type": "text/html;charset=utf-8",
+                "Server": "DataDome",
+                "X-DataDome": "protected",
+                "Accept-CH": "Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory",
+                "Charset": "utf-8",
+                "Cache-Control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Expose-Headers": "x-dd-b, x-set-cookie",
+                "Access-Control-Allow-Origin": "*",
+                "X-DataDome-CID": "AHrlqAAAAAMA1Pzy5Xv_a4oAcIbL3A==",
+                "X-DD-B": "2",
+                "Set-Cookie": "datadome=TaJEGEexm6nEXBeK2WsjJQJdfkhST9PwVR~DEmkpttN0w3BBJgbCJ9b8ktgKTg8n7b3a3ryJGelWl1RsYWV5x2LVDpZHv3MaMYC2pyml1JccYs28YvCS~pDADPbalwep; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=XUTmnEeBDseGnTxP9fbBZJs2ntAzm2BvTJJwdt6kMCQ%3D,v=qPfHcz2ALmHfriepih-wBtD9CgM_xbk2; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "x-fastly-backend-reqs": "26",
+                "Accept-Ranges": "bytes",
+                "Date": "Wed, 01 Oct 2025 15:06:51 GMT",
+                "Via": "1.1 varnish",
+                "X-Served-By": "cache-sin-wsss1830046-SIN",
+                "X-Cache": "MISS",
+                "X-Cache-Hits": "0",
+                "X-Timer": "S1759331212.956809,VS0,VE5",
+                "Location": "https://www.etsy.com/"
+              },
+              "content_type": "text/html;charset=utf-8",
+              "server": "DataDome"
+            },
+            {
+              "url": "http://etsy.com/api/v1/api/v1/products",
+              "status_code": 403,
+              "headers": {
+                "Connection": "keep-alive",
+                "Content-Length": "768",
+                "Content-Type": "text/html;charset=utf-8",
+                "Server": "DataDome",
+                "X-DataDome": "protected",
+                "Accept-CH": "Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory",
+                "Charset": "utf-8",
+                "Cache-Control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Expose-Headers": "x-dd-b, x-set-cookie",
+                "Access-Control-Allow-Origin": "*",
+                "X-DataDome-CID": "AHrlqAAAAAMANTWEdOoaUvkAcIbL3A==",
+                "X-DD-B": "2",
+                "Set-Cookie": "datadome=p96y3WRNouXInENX3dg_FjIz0MjHcR0ophP9rjzacMi6ywTb7F6FqQllL1zC3JQj5uoaJhv0bZSFW4YxiteU0q38gSjTO9zTl_5gQEIOp7pKLk2bA0SMcRfaHiia8UkN; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=kl8CghpdUYgCXkRFiQ4lF6TvoP7ofCtvzrSYtxSTbLc%3D,v=EM5DuoCDYA74mBbLcJYxARCVWt07mq9x; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "x-fastly-backend-reqs": "68",
+                "Accept-Ranges": "bytes",
+                "Date": "Wed, 01 Oct 2025 15:06:55 GMT",
+                "Via": "1.1 varnish",
+                "X-Served-By": "cache-sin-wsss1830036-SIN",
+                "X-Cache": "MISS",
+                "X-Cache-Hits": "0",
+                "X-Timer": "S1759331216.562643,VS0,VE6",
+                "Location": "https://www.etsy.com/"
+              },
+              "content_type": "text/html;charset=utf-8",
+              "server": "DataDome"
+            },
+            {
+              "url": "http://etsy.com/api/v1/shops",
+              "status_code": 403,
+              "headers": {
+                "Connection": "keep-alive",
+                "Content-Length": "768",
+                "Content-Type": "text/html;charset=utf-8",
+                "Server": "DataDome",
+                "X-DataDome": "protected",
+                "Accept-CH": "Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory",
+                "Charset": "utf-8",
+                "Cache-Control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Expose-Headers": "x-dd-b, x-set-cookie",
+                "Access-Control-Allow-Origin": "*",
+                "X-DataDome-CID": "AHrlqAAAAAMAgDbYhnbv0yYAcIbL3A==",
+                "X-DD-B": "2",
+                "Set-Cookie": "datadome=vl~yxaWvV1Ux3zBy97t6peEuwOR_ydgFnslpyRzPNhQ~UuhNF0_H3eYKNsj2XLmCraPLcaqPj71IoYb2Ek5Itm~oBG05sQVve2r8m~_3245g1CpTFjJUQw6suDxnR73G; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=aqeUXPUHXQjHvUDG1Ztd%2Fegh3iDGFyB410bf%2BqV3jOI%3D,v=sKueXKUUMAQjKD93v0DZeHf46wWcPMD2; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "x-fastly-backend-reqs": "15",
+                "Accept-Ranges": "bytes",
+                "Date": "Wed, 01 Oct 2025 15:06:58 GMT",
+                "Via": "1.1 varnish",
+                "X-Served-By": "cache-sin-wsss1830040-SIN",
+                "X-Cache": "MISS",
+                "X-Cache-Hits": "0",
+                "X-Timer": "S1759331218.085469,VS0,VE4",
+                "Location": "https://www.etsy.com/"
+              },
+              "content_type": "text/html;charset=utf-8",
+              "server": "DataDome"
+            },
+            {
+              "url": "http://etsy.com/api/v1/categories",
+              "status_code": 403,
+              "headers": {
+                "Connection": "keep-alive",
+                "Content-Length": "768",
+                "Content-Type": "text/html;charset=utf-8",
+                "Server": "DataDome",
+                "X-DataDome": "protected",
+                "Accept-CH": "Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory",
+                "Charset": "utf-8",
+                "Cache-Control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Expose-Headers": "x-dd-b, x-set-cookie",
+                "Access-Control-Allow-Origin": "*",
+                "X-DataDome-CID": "AHrlqAAAAAMAfL6z-2mwxDMAcIbL3A==",
+                "X-DD-B": "2",
+                "Set-Cookie": "datadome=v3aeaBdMgNLB3w1rith9wl5y9FWRnNZj_4qr5pLWl3sTGfxl04brDl3PjqI2SGTIiV6HfLKoRdXVT7MGc~gnv7Uc7Xi8b7wVNOaF0KXMVVZEU4K1f1~8oFTRt_Iah~Wl; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=9nUIuXgOGVCXHpl8%2BDXvPhdXca8%2BlAI9DL3VLVBYEvY%3D,v=XACRPKta0BfiSmEcOo9Nje6Qd3dKJwMw; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "x-fastly-backend-reqs": "36",
+                "Accept-Ranges": "bytes",
+                "Date": "Wed, 01 Oct 2025 15:06:59 GMT",
+                "Via": "1.1 varnish",
+                "X-Served-By": "cache-sin-wsss1830033-SIN",
+                "X-Cache": "MISS",
+                "X-Cache-Hits": "0",
+                "X-Timer": "S1759331220.871181,VS0,VE5",
+                "Location": "https://www.etsy.com/"
+              },
+              "content_type": "text/html;charset=utf-8",
+              "server": "DataDome"
+            },
+            {
+              "url": "http://etsy.com/api/v1/api/v1/categories",
+              "status_code": 403,
+              "headers": {
+                "Connection": "keep-alive",
+                "Content-Length": "768",
+                "Content-Type": "text/html;charset=utf-8",
+                "Server": "DataDome",
+                "X-DataDome": "protected",
+                "Accept-CH": "Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory",
+                "Charset": "utf-8",
+                "Cache-Control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Expose-Headers": "x-dd-b, x-set-cookie",
+                "Access-Control-Allow-Origin": "*",
+                "X-DataDome-CID": "AHrlqAAAAAMAwSRYWcSjIfkAcIbL3A==",
+                "X-DD-B": "2",
+                "Set-Cookie": "datadome=U~vmr3NDJDofGEfIPqtSM47Hl45S86i8GnvFO9m4R6jyqF25oK2iAHxtrCysoUejTI01ERzHce2Kwvz58p0RmrzFi4WDxuOyiMb1vsCui60WAjF83kbwGQVqAXFhHFCR; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=dq5kDeS3CApXEAhOgbBAm%2F18YJZAVgaOCVLQJGsZpVU%3D,v=sAvF3e9c8ifTDvPdp0khIugo5N8P7mlb; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "x-fastly-backend-reqs": "35",
+                "Accept-Ranges": "bytes",
+                "Date": "Wed, 01 Oct 2025 15:07:00 GMT",
+                "Via": "1.1 varnish",
+                "X-Served-By": "cache-sin-wsss1830052-SIN",
+                "X-Cache": "MISS",
+                "X-Cache-Hits": "0",
+                "X-Timer": "S1759331221.533721,VS0,VE5",
+                "Location": "https://www.etsy.com/"
+              },
+              "content_type": "text/html;charset=utf-8",
+              "server": "DataDome"
+            }
+          ],
+          "graphql_endpoints": [],
+          "swagger_endpoints": [],
+          "other_apis": [
+            {
+              "url": "https://etsy.com/search.php",
+              "status_code": 403,
+              "headers": {
+                "Connection": "keep-alive",
+                "Content-Length": "811",
+                "Content-Type": "text/html;charset=utf-8",
+                "Server": "DataDome",
+                "X-DataDome": "protected",
+                "Accept-CH": "Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory",
+                "Charset": "utf-8",
+                "Cache-Control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Expose-Headers": "x-dd-b, x-set-cookie",
+                "Access-Control-Allow-Origin": "*",
+                "X-DataDome-CID": "AHrlqAAAAAMA49_eUASmZAUAcIbL3A==",
+                "X-DD-B": "2",
+                "Set-Cookie": "datadome=NMqV9fc01CAq~DVOaivugDt2FcLqJ63xj6Jftoi0APc0TY009JiDihWaEjZv_jWltPulXyHwEwxRWKbSwCq0YD3zB7HtTYJjut7UZ_CXcscp~eL~J3X53k4Oo84TwDVx; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=oF9Dt%2BE2GWSbCf7Ml4R3iXCv2lhRkXd2bdu6QgWZm%2B4%3D,v=_Wkq5DSq61nn3os_WPQcxGm61ujQIFst; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "x-fastly-backend-reqs": "21",
+                "Accept-Ranges": "bytes",
+                "Date": "Wed, 01 Oct 2025 15:06:15 GMT",
+                "Via": "1.1 varnish",
+                "X-Served-By": "cache-sin-wsss1830045-SIN",
+                "X-Cache": "MISS",
+                "X-Cache-Hits": "0",
+                "X-Timer": "S1759331175.333399,VS0,VE4"
+              },
+              "content_type": "text/html;charset=utf-8",
+              "server": "DataDome"
+            },
+            {
+              "url": "http://etsy.com/search.php",
+              "status_code": 403,
+              "headers": {
+                "Connection": "keep-alive",
+                "Content-Length": "811",
+                "Content-Type": "text/html;charset=utf-8",
+                "Server": "DataDome",
+                "X-DataDome": "protected",
+                "Accept-CH": "Sec-CH-UA,Sec-CH-UA-Mobile,Sec-CH-UA-Platform,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-Device-Memory",
+                "Charset": "utf-8",
+                "Cache-Control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Expose-Headers": "x-dd-b, x-set-cookie",
+                "Access-Control-Allow-Origin": "*",
+                "X-DataDome-CID": "AHrlqAAAAAMANUjiXoTMi2kAcIbL3A==",
+                "X-DD-B": "2",
+                "Set-Cookie": "datadome=8vr1ugtnamuyIgqHQasBSabaxZP9AWPn3tmlsprgHT8fTzc6HvrbOAA3DPz1kKMENLqqd8ic0HM79RBJt59OUCxcl6ADzie3KaGfTnatYYEKyIiVpMBPjM12k1CxRlNR; Max-Age=31536000; Domain=.etsy.com; Path=/; Secure; SameSite=Lax, exp_ebid=m=2HoRcCSZgmBK375cttuVo78UMAy2%2FW%2BO6dENAOOIMf8%3D,v=EkMu_n82BU74rUSFWxC4cFMvrr83lww4; domain=.etsy.com; path=/; Secure; max-age=5184000",
+                "x-fastly-backend-reqs": "59",
+                "Accept-Ranges": "bytes",
+                "Date": "Wed, 01 Oct 2025 15:06:45 GMT",
+                "Via": "1.1 varnish",
+                "X-Served-By": "cache-sin-wsss1830091-SIN",
+                "X-Cache": "MISS",
+                "X-Cache-Hits": "0",
+                "X-Timer": "S1759331205.211220,VS0,VE5"
+              },
+              "content_type": "text/html;charset=utf-8",
+              "server": "DataDome"
+            }
+          ]
+        },
+        "crawl_level": "smart",
+        "crawl_config": {
+          "max_pages": 30,
+          "max_api_endpoints": 100,
+          "use_ai": true
+        }
+      },
+      "execution_info": {
+        "domain": "etsy.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/etsy_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 1,
+    "total_open_ports": 2,
+    "cdn_detected": false,
+    "technologies_detected": 2,
+    "apis_discovered": 22
+  },
+  "execution_time": 131.21713948249817
+}

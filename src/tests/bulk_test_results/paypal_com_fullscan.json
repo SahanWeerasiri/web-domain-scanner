@@ -1,0 +1,812 @@
+{
+  "target_domain": "paypal.com",
+  "scan_timestamp": "2025-10-01T20:38:33.511685",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "paypal.com",
+      "timestamp": "2025-10-01T20:38:33.512064",
+      "modules": {
+        "passive": {
+          "domain": "paypal.com",
+          "timestamp": 1759331363.2404785,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 49.72341251373291,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "paypal.com",
+          "timestamp": 1759331365.183338,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "151.101.195.1",
+              "162.159.141.96",
+              "151.101.3.1"
+            ],
+            "MX": [
+              "mx2.paypalcorp.com",
+              "mx1.paypalcorp.com"
+            ],
+            "NS": [
+              "pdns100.ultradns.com",
+              "ns2.p57.dynect.net",
+              "pdns100.ultradns.net",
+              "ns1.p57.dynect.net"
+            ],
+            "TXT": [
+              "intersight=6d86ec09a7c6926c6f9b8eff8ef0ef06679d84aab4999756a0920a8d430ed8ae",
+              "workplace-domain-verification=F7ezsH9uapvYDGd2VtPARy1qq9ymN6",
+              "mgf84gx1cv1c759pmjqx0wnths9ss9f6",
+              "v=spf1 include:pp._spf.paypal.com include:3ph1._spf.paypal.com include:3ph2._spf.paypal.com include:3ph3._spf.paypal.com include:3ph4._spf.paypal.com include:sendgrid.net include:aspmx.pardot.com ~all",
+              "atlassian-domain-verification=Q8BdHlO6NYSN5njfC2rlbPQxksVfADlcxarxq4fesYJErtGKylvfcfyfwrPD/wnv",
+              "Notion_verify_uVqjH2PpjVthR9xxfR5BZGsuYGtqb6Za4uDHPaA917v5Cg5J0rRwiATz84PWHZh8Px7vFK",
+              "MS=ms95960309",
+              "docker-verification=2deb3c1f-56d2-4fe4-8a09-d48b7bf8a918",
+              "globalsign-domain-verification=KXa3jn_dNODlTVQ4eg1Wx3vA-RrHZ2K7iLQN0vdJBx",
+              "stripe-verification=549bef27619f14f935a84c6a23492e80f49ff57a341d9ddc74d8486881cd0d8c",
+              "mgverify=e00c4bf7480ee22be851faa9acd20e41b8fd0f7b75b434bbe38aa257e5aae3a0",
+              "adobe-idp-site-verification=11600efbec96c0e73dd8820cd33ca906ec4302aea4487d208a42a2b01806144c"
+            ],
+            "SOA": [
+              "ppdns.paypal.com. hostmaster.paypal.com. 2012390154 7200 600 1209600 300"
+            ]
+          },
+          "subdomains": [],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 include:pp._spf.paypal.com include:3ph1._spf.paypal.com include:3ph2._spf.paypal.com include:3ph3._spf.paypal.com include:3ph4._spf.paypal.com include:sendgrid.net include:aspmx.pardot.com ~all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [],
+              "other": [
+                "intersight=6d86ec09a7c6926c6f9b8eff8ef0ef06679d84aab4999756a0920a8d430ed8ae",
+                "workplace-domain-verification=F7ezsH9uapvYDGd2VtPARy1qq9ymN6",
+                "mgf84gx1cv1c759pmjqx0wnths9ss9f6",
+                "atlassian-domain-verification=Q8BdHlO6NYSN5njfC2rlbPQxksVfADlcxarxq4fesYJErtGKylvfcfyfwrPD/wnv",
+                "Notion_verify_uVqjH2PpjVthR9xxfR5BZGsuYGtqb6Za4uDHPaA917v5Cg5J0rRwiATz84PWHZh8Px7vFK",
+                "MS=ms95960309",
+                "docker-verification=2deb3c1f-56d2-4fe4-8a09-d48b7bf8a918",
+                "globalsign-domain-verification=KXa3jn_dNODlTVQ4eg1Wx3vA-RrHZ2K7iLQN0vdJBx",
+                "stripe-verification=549bef27619f14f935a84c6a23492e80f49ff57a341d9ddc74d8486881cd0d8c",
+                "mgverify=e00c4bf7480ee22be851faa9acd20e41b8fd0f7b75b434bbe38aa257e5aae3a0",
+                "adobe-idp-site-verification=11600efbec96c0e73dd8820cd33ca906ec4302aea4487d208a42a2b01806144c"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 1.4679901599884033,
+            "total_records": 22,
+            "total_subdomains": 0,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "paypal.com",
+          "timestamp": 1759331382.7920816,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://www.paypal.com": {
+              "url": "http://www.paypal.com",
+              "timestamp": 1759331365.1999342,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 44192,
+                "url": "https://www.paypal.com/lk/home",
+                "redirect_chain": [
+                  "http://www.paypal.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.paypal.com/lk/home",
+                "content_preview": "<!DOCTYPE html>\n<html lang=\"en-LK\" class=\"no-js\" data-device-type=\"dedicated\">\n  <head><script async src=\"https://www.paypalobjects.com/webcaptcha/ngrlCaptcha.min.js\"></script>\n    \n\n\n\n\n<title>A Simpl...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "A Simple and Safer Way to Pay and Get Paid  | PayPal LK",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "Not found",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "default-src 'self' https://*.paypal.com https://*.paypalobjects.com; frame-src 'self' https://*.paypal.com https://*.paypalobjects.com https://www.youtube-nocookie.com https://www.xoom.com https://*.paypal-mktg.com https://*.qualtrics.com; script-src 'nonce-iJlTvr9D383B7jFV34Y/XYZzJDpgIGMhOhNztpWn+kkpf6+l' 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com https://pypd.paypal-mktg.com 'unsafe-inline'; connect-src 'self' https://nominatim.openstreetmap.org https://*.paypal.com https://*.paypalobjects.com https://www.google-analytics.com https://www.analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com https://*.salesforce.com https://*.force.com https://nexus.ensighten.com https://api.paypal-retaillocator.com https://paypal.us-4.evergage.com https://browser-intake-us5-datadoghq.com https://*.qualtrics.com; style-src 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com 'unsafe-inline'; font-src 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com data:; img-src 'self' https: data: https://www.google-analytics.com https://www.analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com; form-action 'self' https://*.paypal.com https://*.salesforce.com https://secure.opinionlab.com https://*.paypal-mktg.com https://*.paypal-corp.com https://signup.partnerize.com; base-uri 'self' https://*.paypal.com; object-src 'none'; frame-ancestors 'self' https://*.paypal.com; upgrade-insecure-requests;; report-uri https://www.paypal.com/csplog/api/log/csp",
+                "strict_transport_security": "max-age=63072000; includeSubDomains; preload",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "1; mode=block",
+                "set_cookie": "enforce_policy=ccpa; Max-Age=31536000; Domain=.paypal.com; Path=/; Expires=Thu, 01 Oct 2026 15:09:26 GMT; Secure; SameSite=None, cookie_check=yes; Max-Age=315532799; Domain=.paypal.com; Path=/; Expires=Mon, 01 Oct 2035 15:09:25 GMT; HttpOnly; Secure; SameSite=None, LANG=si_LK%3BLK; Max-Age=31556; Domain=.paypal.com; Path=/; Expires=Wed, 01 Oct 2025 23:55:22 GMT; HttpOnly; Secure; SameSite=None, tsrce=mppnodeweb; Max-Age=259199; Domain=.paypal.com; Path=/; Expires=Sat, 04 Oct 2025 15:09:25 GMT; HttpOnly; Secure; SameSite=None, x-pp-s=eyJ0IjoiMTc1OTMzMTM2NjUzNSIsImwiOiIwIiwibSI6IjAifQ; Domain=.paypal.com; Path=/; HttpOnly; Secure; SameSite=None, tsrce=mppnodeweb; Domain=.paypal.com; Path=/; Expires=Sat, 04 Oct 2025 15:09:26 GMT; HttpOnly; Secure; SameSite=None, nsid=s%3Ai2IAVDT--Q3dzjnZ9T5-f3IfPAcc2cvr.qbTlLFfnvNzn8juCbfq5CIKNrE738OjqImrUlrc02KQ; Path=/; HttpOnly; Secure; SameSite=None, ts=vreXpYrS%3D1790867365%26vteXpYrS%3D1759333165%26vr%3Da05233651990a552b06c6b25fe62686a%26vt%3Da05233651990a552b06c6b25fe626869%26vtyp%3Dnew; Path=/; Domain=paypal.com; Expires=Thu, 01 Oct 2026 15:09:26 GMT; HttpOnly; Secure; SameSite=None, ts_c=vr%3Da05233651990a552b06c6b25fe62686a%26vt%3Da05233651990a552b06c6b25fe626869; Path=/; Domain=paypal.com; Expires=Thu, 01 Oct 2026 15:09:26 GMT; Secure; SameSite=None",
+                "cache_control": "max-age=0, no-cache, no-store, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "W/\"4f78-YK0C1lq4GN3z0/MJi6yyO8Bt4H0\"",
+                "server_info": {
+                  "name": "Unknown",
+                  "version": "Unknown",
+                  "components": []
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Varnish",
+                  "PayPal"
+                ],
+                "header_detected": [],
+                "content_detected": [
+                  "Google Analytics"
+                ],
+                "url_patterns": [
+                  "Google Services"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": "default-src 'self' https://*.paypal.com https://*.paypalobjects.com; frame-src 'self' https://*.paypal.com https://*.paypalobjects.com https://www.youtube-nocookie.com https://www.xoom.com https://*.paypal-mktg.com https://*.qualtrics.com; script-src 'nonce-iJlTvr9D383B7jFV34Y/XYZzJDpgIGMhOhNztpWn+kkpf6+l' 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com https://pypd.paypal-mktg.com 'unsafe-inline'; connect-src 'self' https://nominatim.openstreetmap.org https://*.paypal.com https://*.paypalobjects.com https://www.google-analytics.com https://www.analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com https://*.salesforce.com https://*.force.com https://nexus.ensighten.com https://api.paypal-retaillocator.com https://paypal.us-4.evergage.com https://browser-intake-us5-datadoghq.com https://*.qualtrics.com; style-src 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com 'unsafe-inline'; font-src 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com data:; img-src 'self' https: data: https://www.google-analytics.com https://www.analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com; form-action 'self' https://*.paypal.com https://*.salesforce.com https://secure.opinionlab.com https://*.paypal-mktg.com https://*.paypal-corp.com https://signup.partnerize.com; base-uri 'self' https://*.paypal.com; object-src 'none'; frame-ancestors 'self' https://*.paypal.com; upgrade-insecure-requests;; report-uri https://www.paypal.com/csplog/api/log/csp",
+                  "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "1; mode=block",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": "ch-ua-platform-version=(self \"https://c.paypal.com\"),ch-ua-arch=(self \"https://c.paypal.com\"),ch-ua-wow64=(self \"https://c.paypal.com\"),ch-ua-model=(self \"https://c.paypal.com\"),ch-ua-bitness=(self \"https://c.paypal.com\"),ch-ua-full-version=(self \"https://c.paypal.com\"),ch-ua-full-version-list=(self \"https://c.paypal.com\")"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": true,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Referrer-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 3.6447463035583496,
+                "content_length": 44192,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.paypal.com": {
+              "url": "https://www.paypal.com",
+              "timestamp": 1759331368.8450918,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 44192,
+                "url": "https://www.paypal.com/lk/home",
+                "redirect_chain": [
+                  "https://www.paypal.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.paypal.com/lk/home",
+                "content_preview": "<!DOCTYPE html>\n<html lang=\"en-LK\" class=\"no-js\" data-device-type=\"dedicated\">\n  <head><script async src=\"https://www.paypalobjects.com/webcaptcha/ngrlCaptcha.min.js\"></script>\n    \n\n\n\n\n<title>A Simpl...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "A Simple and Safer Way to Pay and Get Paid  | PayPal LK",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "Not found",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "default-src 'self' https://*.paypal.com https://*.paypalobjects.com; frame-src 'self' https://*.paypal.com https://*.paypalobjects.com https://www.youtube-nocookie.com https://www.xoom.com https://*.paypal-mktg.com https://*.qualtrics.com; script-src 'nonce-YuhrENFdlgWRLoDxkqoEGBcVsvwWFr5rl2jHRjHEJsO9FH3f' 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com https://pypd.paypal-mktg.com 'unsafe-inline'; connect-src 'self' https://nominatim.openstreetmap.org https://*.paypal.com https://*.paypalobjects.com https://www.google-analytics.com https://www.analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com https://*.salesforce.com https://*.force.com https://nexus.ensighten.com https://api.paypal-retaillocator.com https://paypal.us-4.evergage.com https://browser-intake-us5-datadoghq.com https://*.qualtrics.com; style-src 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com 'unsafe-inline'; font-src 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com data:; img-src 'self' https: data: https://www.google-analytics.com https://www.analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com; form-action 'self' https://*.paypal.com https://*.salesforce.com https://secure.opinionlab.com https://*.paypal-mktg.com https://*.paypal-corp.com https://signup.partnerize.com; base-uri 'self' https://*.paypal.com; object-src 'none'; frame-ancestors 'self' https://*.paypal.com; upgrade-insecure-requests;; report-uri https://www.paypal.com/csplog/api/log/csp",
+                "strict_transport_security": "max-age=63072000; includeSubDomains; preload",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "1; mode=block",
+                "set_cookie": "LANG=si_LK%3BLK; Max-Age=31556; Domain=.paypal.com; Path=/; Expires=Wed, 01 Oct 2025 23:55:26 GMT; HttpOnly; Secure; SameSite=None, enforce_policy=ccpa; Max-Age=31536000; Domain=.paypal.com; Path=/; Expires=Thu, 01 Oct 2026 15:09:30 GMT; Secure; SameSite=None, x-pp-s=eyJ0IjoiMTc1OTMzMTM3MDUwNSIsImwiOiIwIiwibSI6IjAifQ; Domain=.paypal.com; Path=/; HttpOnly; Secure; SameSite=None, ts=vreXpYrS%3D1790867369%26vteXpYrS%3D1759333169%26vr%3Da05233651990a552b06c6b25fe62686a%26vt%3Da05233651990a552b06c6b25fe626869%26vtyp%3Dnew; Path=/; Domain=paypal.com; Expires=Thu, 01 Oct 2026 15:09:30 GMT; HttpOnly; Secure; SameSite=None, ts_c=vr%3Da05233651990a552b06c6b25fe62686a%26vt%3Da05233651990a552b06c6b25fe626869; Path=/; Domain=paypal.com; Expires=Thu, 01 Oct 2026 15:09:30 GMT; Secure; SameSite=None",
+                "cache_control": "max-age=0, no-cache, no-store, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "W/\"4f78-d8n8pIPmEDW9slkyy32Jh0TIJRM\"",
+                "server_info": {
+                  "name": "Unknown",
+                  "version": "Unknown",
+                  "components": []
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Varnish",
+                  "PayPal"
+                ],
+                "header_detected": [],
+                "content_detected": [
+                  "Google Analytics"
+                ],
+                "url_patterns": [
+                  "Google Services"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": "default-src 'self' https://*.paypal.com https://*.paypalobjects.com; frame-src 'self' https://*.paypal.com https://*.paypalobjects.com https://www.youtube-nocookie.com https://www.xoom.com https://*.paypal-mktg.com https://*.qualtrics.com; script-src 'nonce-YuhrENFdlgWRLoDxkqoEGBcVsvwWFr5rl2jHRjHEJsO9FH3f' 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com https://pypd.paypal-mktg.com 'unsafe-inline'; connect-src 'self' https://nominatim.openstreetmap.org https://*.paypal.com https://*.paypalobjects.com https://www.google-analytics.com https://www.analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com https://*.salesforce.com https://*.force.com https://nexus.ensighten.com https://api.paypal-retaillocator.com https://paypal.us-4.evergage.com https://browser-intake-us5-datadoghq.com https://*.qualtrics.com; style-src 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com 'unsafe-inline'; font-src 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com data:; img-src 'self' https: data: https://www.google-analytics.com https://www.analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com; form-action 'self' https://*.paypal.com https://*.salesforce.com https://secure.opinionlab.com https://*.paypal-mktg.com https://*.paypal-corp.com https://signup.partnerize.com; base-uri 'self' https://*.paypal.com; object-src 'none'; frame-ancestors 'self' https://*.paypal.com; upgrade-insecure-requests;; report-uri https://www.paypal.com/csplog/api/log/csp",
+                  "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "1; mode=block",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": "ch-ua-platform-version=(self \"https://c.paypal.com\"),ch-ua-arch=(self \"https://c.paypal.com\"),ch-ua-wow64=(self \"https://c.paypal.com\"),ch-ua-model=(self \"https://c.paypal.com\"),ch-ua-bitness=(self \"https://c.paypal.com\"),ch-ua-full-version=(self \"https://c.paypal.com\"),ch-ua-full-version-list=(self \"https://c.paypal.com\")"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": true,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Referrer-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 4.19126558303833,
+                "content_length": 44192,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://paypal.com": {
+              "url": "https://paypal.com",
+              "timestamp": 1759331373.0367763,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 44192,
+                "url": "https://www.paypal.com/lk/home",
+                "redirect_chain": [
+                  "https://paypal.com/",
+                  "https://www.paypal.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.paypal.com/lk/home",
+                "content_preview": "<!DOCTYPE html>\n<html lang=\"en-LK\" class=\"no-js\" data-device-type=\"dedicated\">\n  <head><script async src=\"https://www.paypalobjects.com/webcaptcha/ngrlCaptcha.min.js\"></script>\n    \n\n\n\n\n<title>A Simpl...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "A Simple and Safer Way to Pay and Get Paid  | PayPal LK",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "Not found",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "default-src 'self' https://*.paypal.com https://*.paypalobjects.com; frame-src 'self' https://*.paypal.com https://*.paypalobjects.com https://www.youtube-nocookie.com https://www.xoom.com https://*.paypal-mktg.com https://*.qualtrics.com; script-src 'nonce-E+MCD4/gLH6eRb0bq0k6hYmVZ4RwOLlj7Z/cpYEtyHTzzSTU' 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com https://pypd.paypal-mktg.com 'unsafe-inline'; connect-src 'self' https://nominatim.openstreetmap.org https://*.paypal.com https://*.paypalobjects.com https://www.google-analytics.com https://www.analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com https://*.salesforce.com https://*.force.com https://nexus.ensighten.com https://api.paypal-retaillocator.com https://paypal.us-4.evergage.com https://browser-intake-us5-datadoghq.com https://*.qualtrics.com; style-src 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com 'unsafe-inline'; font-src 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com data:; img-src 'self' https: data: https://www.google-analytics.com https://www.analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com; form-action 'self' https://*.paypal.com https://*.salesforce.com https://secure.opinionlab.com https://*.paypal-mktg.com https://*.paypal-corp.com https://signup.partnerize.com; base-uri 'self' https://*.paypal.com; object-src 'none'; frame-ancestors 'self' https://*.paypal.com; upgrade-insecure-requests;; report-uri https://www.paypal.com/csplog/api/log/csp",
+                "strict_transport_security": "max-age=63072000; includeSubDomains; preload",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "1; mode=block",
+                "set_cookie": "LANG=si_LK%3BLK; Max-Age=31556; Domain=.paypal.com; Path=/; Expires=Wed, 01 Oct 2025 23:55:30 GMT; HttpOnly; Secure; SameSite=None, enforce_policy=ccpa; Max-Age=31536000; Domain=.paypal.com; Path=/; Expires=Thu, 01 Oct 2026 15:09:34 GMT; Secure; SameSite=None, x-pp-s=eyJ0IjoiMTc1OTMzMTM3NDk3NCIsImwiOiIwIiwibSI6IjAifQ; Domain=.paypal.com; Path=/; HttpOnly; Secure; SameSite=None, ts=vreXpYrS%3D1790867373%26vteXpYrS%3D1759333173%26vr%3Da05233651990a552b06c6b25fe62686a%26vt%3Da05233651990a552b06c6b25fe626869%26vtyp%3Dnew; Path=/; Domain=paypal.com; Expires=Thu, 01 Oct 2026 15:09:34 GMT; HttpOnly; Secure; SameSite=None, ts_c=vr%3Da05233651990a552b06c6b25fe62686a%26vt%3Da05233651990a552b06c6b25fe626869; Path=/; Domain=paypal.com; Expires=Thu, 01 Oct 2026 15:09:34 GMT; Secure; SameSite=None",
+                "cache_control": "max-age=0, no-cache, no-store, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "W/\"4f78-YkSZhLxdPDaLiUURylWjuHjbeqc\"",
+                "server_info": {
+                  "name": "Unknown",
+                  "version": "Unknown",
+                  "components": []
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Varnish",
+                  "PayPal"
+                ],
+                "header_detected": [],
+                "content_detected": [
+                  "Google Analytics"
+                ],
+                "url_patterns": [
+                  "Google Services"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": "default-src 'self' https://*.paypal.com https://*.paypalobjects.com; frame-src 'self' https://*.paypal.com https://*.paypalobjects.com https://www.youtube-nocookie.com https://www.xoom.com https://*.paypal-mktg.com https://*.qualtrics.com; script-src 'nonce-E+MCD4/gLH6eRb0bq0k6hYmVZ4RwOLlj7Z/cpYEtyHTzzSTU' 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com https://pypd.paypal-mktg.com 'unsafe-inline'; connect-src 'self' https://nominatim.openstreetmap.org https://*.paypal.com https://*.paypalobjects.com https://www.google-analytics.com https://www.analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com https://*.salesforce.com https://*.force.com https://nexus.ensighten.com https://api.paypal-retaillocator.com https://paypal.us-4.evergage.com https://browser-intake-us5-datadoghq.com https://*.qualtrics.com; style-src 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com 'unsafe-inline'; font-src 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com data:; img-src 'self' https: data: https://www.google-analytics.com https://www.analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com; form-action 'self' https://*.paypal.com https://*.salesforce.com https://secure.opinionlab.com https://*.paypal-mktg.com https://*.paypal-corp.com https://signup.partnerize.com; base-uri 'self' https://*.paypal.com; object-src 'none'; frame-ancestors 'self' https://*.paypal.com; upgrade-insecure-requests;; report-uri https://www.paypal.com/csplog/api/log/csp",
+                  "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "1; mode=block",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": "ch-ua-platform-version=(self \"https://c.paypal.com\"),ch-ua-arch=(self \"https://c.paypal.com\"),ch-ua-wow64=(self \"https://c.paypal.com\"),ch-ua-model=(self \"https://c.paypal.com\"),ch-ua-bitness=(self \"https://c.paypal.com\"),ch-ua-full-version=(self \"https://c.paypal.com\"),ch-ua-full-version-list=(self \"https://c.paypal.com\")"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": true,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Referrer-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 3.875699043273926,
+                "content_length": 44192,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://paypal.com": {
+              "url": "http://paypal.com",
+              "timestamp": 1759331376.9128084,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 44193,
+                "url": "https://www.paypal.com/lk/home",
+                "redirect_chain": [
+                  "http://paypal.com/",
+                  "https://paypal.com/",
+                  "https://www.paypal.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.paypal.com/lk/home",
+                "content_preview": "<!DOCTYPE html>\n<html lang=\"en-LK\" class=\"no-js\" data-device-type=\"dedicated\">\n  <head><script async src=\"https://www.paypalobjects.com/webcaptcha/ngrlCaptcha.min.js\"></script>\n    \n\n\n\n\n<title>A Simpl...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "A Simple and Safer Way to Pay and Get Paid  | PayPal LK",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "Not found",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "default-src 'self' https://*.paypal.com https://*.paypalobjects.com; frame-src 'self' https://*.paypal.com https://*.paypalobjects.com https://www.youtube-nocookie.com https://www.xoom.com https://*.paypal-mktg.com https://*.qualtrics.com; script-src 'nonce-hxvSnsOEXqYniSXkJ5l/HPheFne2eYPOdpfPrLKlIZloID1v' 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com https://pypd.paypal-mktg.com 'unsafe-inline'; connect-src 'self' https://nominatim.openstreetmap.org https://*.paypal.com https://*.paypalobjects.com https://www.google-analytics.com https://www.analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com https://*.salesforce.com https://*.force.com https://nexus.ensighten.com https://api.paypal-retaillocator.com https://paypal.us-4.evergage.com https://browser-intake-us5-datadoghq.com https://*.qualtrics.com; style-src 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com 'unsafe-inline'; font-src 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com data:; img-src 'self' https: data: https://www.google-analytics.com https://www.analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com; form-action 'self' https://*.paypal.com https://*.salesforce.com https://secure.opinionlab.com https://*.paypal-mktg.com https://*.paypal-corp.com https://signup.partnerize.com; base-uri 'self' https://*.paypal.com; object-src 'none'; frame-ancestors 'self' https://*.paypal.com; upgrade-insecure-requests;; report-uri https://www.paypal.com/csplog/api/log/csp",
+                "strict_transport_security": "max-age=63072000; includeSubDomains; preload",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "1; mode=block",
+                "set_cookie": "LANG=si_LK%3BLK; Max-Age=31556; Domain=.paypal.com; Path=/; Expires=Wed, 01 Oct 2025 23:55:35 GMT; HttpOnly; Secure; SameSite=None, enforce_policy=ccpa; Max-Age=31536000; Domain=.paypal.com; Path=/; Expires=Thu, 01 Oct 2026 15:09:39 GMT; Secure; SameSite=None, x-pp-s=eyJ0IjoiMTc1OTMzMTM3OTc1NSIsImwiOiIwIiwibSI6IjAifQ; Domain=.paypal.com; Path=/; HttpOnly; Secure; SameSite=None, ts=vreXpYrS%3D1790867377%26vteXpYrS%3D1759333177%26vr%3Da05233651990a552b06c6b25fe62686a%26vt%3Da05233651990a552b06c6b25fe626869%26vtyp%3Dnew; Path=/; Domain=paypal.com; Expires=Thu, 01 Oct 2026 15:09:39 GMT; HttpOnly; Secure; SameSite=None, ts_c=vr%3Da05233651990a552b06c6b25fe62686a%26vt%3Da05233651990a552b06c6b25fe626869; Path=/; Domain=paypal.com; Expires=Thu, 01 Oct 2026 15:09:39 GMT; Secure; SameSite=None",
+                "cache_control": "max-age=0, no-cache, no-store, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "W/\"4f78-q/17hiaD8g+0RTzwhe1AN1R69VY\"",
+                "server_info": {
+                  "name": "Unknown",
+                  "version": "Unknown",
+                  "components": []
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Varnish",
+                  "PayPal"
+                ],
+                "header_detected": [],
+                "content_detected": [
+                  "Google Analytics"
+                ],
+                "url_patterns": [
+                  "Google Services"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": "default-src 'self' https://*.paypal.com https://*.paypalobjects.com; frame-src 'self' https://*.paypal.com https://*.paypalobjects.com https://www.youtube-nocookie.com https://www.xoom.com https://*.paypal-mktg.com https://*.qualtrics.com; script-src 'nonce-hxvSnsOEXqYniSXkJ5l/HPheFne2eYPOdpfPrLKlIZloID1v' 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com https://pypd.paypal-mktg.com 'unsafe-inline'; connect-src 'self' https://nominatim.openstreetmap.org https://*.paypal.com https://*.paypalobjects.com https://www.google-analytics.com https://www.analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com https://*.salesforce.com https://*.force.com https://nexus.ensighten.com https://api.paypal-retaillocator.com https://paypal.us-4.evergage.com https://browser-intake-us5-datadoghq.com https://*.qualtrics.com; style-src 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com 'unsafe-inline'; font-src 'self' https://*.paypal.com https://*.paypalobjects.com https://assets-cdn.s-xoom.com data:; img-src 'self' https: data: https://www.google-analytics.com https://www.analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com; form-action 'self' https://*.paypal.com https://*.salesforce.com https://secure.opinionlab.com https://*.paypal-mktg.com https://*.paypal-corp.com https://signup.partnerize.com; base-uri 'self' https://*.paypal.com; object-src 'none'; frame-ancestors 'self' https://*.paypal.com; upgrade-insecure-requests;; report-uri https://www.paypal.com/csplog/api/log/csp",
+                  "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "1; mode=block",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": "ch-ua-platform-version=(self \"https://c.paypal.com\"),ch-ua-arch=(self \"https://c.paypal.com\"),ch-ua-wow64=(self \"https://c.paypal.com\"),ch-ua-model=(self \"https://c.paypal.com\"),ch-ua-bitness=(self \"https://c.paypal.com\"),ch-ua-full-version=(self \"https://c.paypal.com\"),ch-ua-full-version-list=(self \"https://c.paypal.com\")"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": true,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Referrer-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 5.8755481243133545,
+                "content_length": 44193,
+                "status_code": 200,
+                "redirect_count": 3
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Varnish",
+              "Google Analytics",
+              "Google Services",
+              "PayPal"
+            ],
+            "security_score_avg": 71.42857142857143,
+            "common_issues": [
+              "Referrer-Policy",
+              "X-Frame-Options"
+            ]
+          },
+          "statistics": {
+            "total_duration": 17.603522300720215,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 0,
+          "records_found": 22,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 4
+        }
+      },
+      "all_subdomains": [
+        "www.paypal.com"
+      ],
+      "statistics": {
+        "total_subdomains": 1,
+        "unique_subdomains": 1,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 69.28,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 4,
+        "security_issues_found": 2,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "paypal.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 20:39 +0530\nNmap scan report for paypal.com (162.159.141.96)\nHost is up (0.0091s latency).\nOther addresses for paypal.com (not scanned): 151.101.195.1 151.101.3.1\nNot shown: 996 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT     STATE SERVICE\n80/tcp   open  http\n443/tcp  open  https\n8080/tcp open  http-proxy\n8443/tcp open  https-alt\n\nNmap done: 1 IP address (1 host up) scanned in 6.44 seconds\n",
+        "scan_duration": 6.44
+      },
+      "service_results": {
+        "target": "paypal.com",
+        "scan_type": "quick",
+        "open_ports_count": 4,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 400 Bad Request\r\nDate: Wed, 01 Oct 2025 15:09:49 GMT\r\nContent-Length: 68\r\nConnection: close\r\nCache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0\r\nReferrer-Policy: same-origin\r\nExpires: Thu, 01 Jan 1970 00:00:01 GMT\r\nProxy-Status: Cloudflare-Proxy;error=http_request_error\r\nCF-RAY: 987ce21fdd825137-CMB\r\n\r\nCloudflare encountered an error processing this request: Bad Request",
+            "version": "1.1",
+            "ssl": false,
+            "protocol_info": {
+              "http": {
+                "status_code": 200,
+                "server": "Unknown",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "HTTP/1.1 400 Bad Request\r\nServer: cloudflare\r\nDate: Wed, 01 Oct 2025 15:09:51 GMT\r\nContent-Type: text/html\r\nContent-Length: 253\r\nConnection: close\r\nCF-RAY: -\r\n\r\n<html>\r\n<head><title>400 The plain HTTP request was sent to HTTPS port</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<center>The plain HTTP request was sent to HTTPS port</center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>",
+            "version": "1.1",
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_128_GCM_SHA256"
+              },
+              "http": {
+                "status_code": 200,
+                "server": "Unknown",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          },
+          "8080": {
+            "port": 8080,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 400 Bad Request\r\nDate: Wed, 01 Oct 2025 15:09:53 GMT\r\nContent-Length: 68\r\nConnection: close\r\nCache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0\r\nReferrer-Policy: same-origin\r\nExpires: Thu, 01 Jan 1970 00:00:01 GMT\r\nProxy-Status: Cloudflare-Proxy;error=http_request_error\r\nCF-RAY: 987ce239ec995138-CMB\r\n\r\nCloudflare encountered an error processing this request: Bad Request",
+            "version": "1.1",
+            "ssl": false,
+            "protocol_info": {
+              "http": {
+                "status_code": 200,
+                "server": "Unknown",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          },
+          "8443": {
+            "port": 8443,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 400 Bad Request\r\nServer: cloudflare\r\nDate: Wed, 01 Oct 2025 15:10:15 GMT\r\nContent-Type: text/html\r\nContent-Length: 253\r\nConnection: close\r\nCF-RAY: -\r\n\r\n<html>\r\n<head><title>400 The plain HTTP request was sent to HTTPS port</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<center>The plain HTTP request was sent to HTTPS port</center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>",
+            "version": "1.1",
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384"
+              },
+              "http": {
+                "status_code": 200,
+                "server": "Unknown",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 3,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)",
+            "HTTP (port 8443)"
+          ],
+          "total_services": 4
+        }
+      },
+      "summary": {
+        "open_ports_count": 4,
+        "services_identified": 4,
+        "scan_duration": 6.44
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Google CDN",
+        "detection_method": "content",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "paypal.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/paypal_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 1,
+    "total_open_ports": 4,
+    "cdn_detected": true,
+    "technologies_detected": 4,
+    "apis_discovered": 0
+  },
+  "execution_time": 130.56429624557495
+}

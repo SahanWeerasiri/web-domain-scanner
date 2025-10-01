@@ -1,0 +1,776 @@
+{
+  "target_domain": "target.com",
+  "scan_timestamp": "2025-10-01T20:43:48.095326",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "target.com",
+      "timestamp": "2025-10-01T20:43:48.095592",
+      "modules": {
+        "passive": {
+          "domain": "target.com",
+          "timestamp": 1759331664.3091063,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 36.208900451660156,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "target.com",
+          "timestamp": 1759331666.3709881,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "151.101.66.187",
+              "151.101.130.187",
+              "151.101.2.187",
+              "151.101.194.187"
+            ],
+            "MX": [
+              "mxb-0020ab02.gslb.pphosted.com",
+              "mxa-0020ab02.gslb.pphosted.com"
+            ],
+            "NS": [
+              "ns4-65.akam.net",
+              "ns1-168.akam.net",
+              "ns5-65.akam.net",
+              "ns7-64.akam.net"
+            ],
+            "TXT": [
+              "NS_monitor",
+              "cursor-domain-verification-24twda=do9ewEVwI4YsyRrgioGCPpp12",
+              "extensis-domain-verification=3911f3c0-e69c-4d75-aa8a-33afa0520d00",
+              "openai-domain-verification=dv-75YwqS2p7WZUZtnEA4VQmZpn",
+              "google-site-verification=2saealyvcdakrTY4LOg3GjblevTIYAJ4p_Ihwf3OrbU",
+              "uber-domain-verification=4caf1469-f454-49bf-b0b2-1bb84bbfeb02",
+              "dGFyZ2V0",
+              "stripe-verification=c52e56dae78932924b24e718a7850f861712da65458f8c40bab37393ccb56854",
+              "v=spf1 include:%{ir}.%{v}.%{d}.spf.has.pphosted.com include:aspmx.pardot.com ~all",
+              "9rHeUd6AiQ30jFgENxeGX6CKgbSmFB/NeV5oCOQS5PbafVN66NOLFLcsuixmOo1krFPgHLMt7TCEL3iJOUF1mQ==",
+              "atlassian-domain-verification=PrIDM+2UNKNbpMDoD3mux5NL3XcTt2tisHloieySUpQAJXBPCtBzvw2WP7tRzUvd",
+              "apple-domain-verification=oc-ywTgysCFxVjoVZ7Alg51HbTSY0D7HhKU_9om-EFg",
+              "brevo-code:7e6bbbf1fc671ea0755795690d17ba46",
+              "MS=ms72649311",
+              "ZOOM_verify_2p2yDsdgUYHCcfIzbyaTmE",
+              "1bsEs7Bmn7dTcejJKXlqr9CnnnHXScqfcjGCUs5JitlqKhuQG9jYszZ91XH+Q9LcoOY52FUopROI8LYUz5YeYQ==",
+              "stripe-verification=916f40ab1d809d427b07435525ec8efcd0fc24be25674d3cc1067de63aa0021c",
+              "uber-domain-verification=7fc32e4d-8ea0-466f-a1f9-d870b178b74d"
+            ],
+            "SOA": [
+              "ns1-168.akam.net. hostmaster.target.com. 2005143772 3600 3600 2419200 900"
+            ]
+          },
+          "subdomains": [],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 include:%{ir}.%{v}.%{d}.spf.has.pphosted.com include:aspmx.pardot.com ~all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=2saealyvcdakrTY4LOg3GjblevTIYAJ4p_Ihwf3OrbU"
+              ],
+              "other": [
+                "NS_monitor",
+                "cursor-domain-verification-24twda=do9ewEVwI4YsyRrgioGCPpp12",
+                "extensis-domain-verification=3911f3c0-e69c-4d75-aa8a-33afa0520d00",
+                "openai-domain-verification=dv-75YwqS2p7WZUZtnEA4VQmZpn",
+                "uber-domain-verification=4caf1469-f454-49bf-b0b2-1bb84bbfeb02",
+                "dGFyZ2V0",
+                "stripe-verification=c52e56dae78932924b24e718a7850f861712da65458f8c40bab37393ccb56854",
+                "9rHeUd6AiQ30jFgENxeGX6CKgbSmFB/NeV5oCOQS5PbafVN66NOLFLcsuixmOo1krFPgHLMt7TCEL3iJOUF1mQ==",
+                "atlassian-domain-verification=PrIDM+2UNKNbpMDoD3mux5NL3XcTt2tisHloieySUpQAJXBPCtBzvw2WP7tRzUvd",
+                "apple-domain-verification=oc-ywTgysCFxVjoVZ7Alg51HbTSY0D7HhKU_9om-EFg",
+                "brevo-code:7e6bbbf1fc671ea0755795690d17ba46",
+                "MS=ms72649311",
+                "ZOOM_verify_2p2yDsdgUYHCcfIzbyaTmE",
+                "1bsEs7Bmn7dTcejJKXlqr9CnnnHXScqfcjGCUs5JitlqKhuQG9jYszZ91XH+Q9LcoOY52FUopROI8LYUz5YeYQ==",
+                "stripe-verification=916f40ab1d809d427b07435525ec8efcd0fc24be25674d3cc1067de63aa0021c",
+                "uber-domain-verification=7fc32e4d-8ea0-466f-a1f9-d870b178b74d"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 1.536839485168457,
+            "total_records": 29,
+            "total_subdomains": 0,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "target.com",
+          "timestamp": 1759331684.4045665,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://www.target.com": {
+              "url": "http://www.target.com",
+              "timestamp": 1759331666.3891218,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 730842,
+                "url": "https://www.target.com/",
+                "redirect_chain": [
+                  "http://www.target.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.target.com/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en-US\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta charSet=\"utf-8\"/><meta content=\"width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2, interactiv...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Target : Expect More. Pay Less.",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "Not found",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "frame-ancestors 'self' https://*.target.com;",
+                "strict_transport_security": "max-age=31536000; includeSubDomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "TealeafAkaSid=aqkkc08_B4M2ieuQeu3F8EzVUQBOWaq5; Expires=FriTealeafAkaSid=aqkkc08_B4M2ieuQeu3F8EzVUQBOWaq5; Expires=Fri, 31 Oct 2025 15:14:27 GMT; Path=/; Domain=target.com;, adScriptData=01; Domain=target.com; Path=/; SameSite=none; Secure; Max-Age=86400;, idToken=eyJhbGciOiJub25lIn0.eyJzdWIiOiJhMTM3ZmI2NS05ZjVmLTQ4NjctOGVkNi02YTE5NTM3Mjg0ZTIiLCJpc3MiOiJNSTYiLCJleHAiOjE3NTk0MTgwNjcsImlhdCI6MTc1OTMzMTY2NywiYXNzIjoiTCIsInN1dCI6IkciLCJjbGkiOiJlY29tLXdlYi0xLjAuMCIsInBybyI6eyJmbiI6bnVsbCwiZm51IjpudWxsLCJlbSI6bnVsbCwicGgiOmZhbHNlLCJsZWQiOm51bGwsImx0eSI6ZmFsc2UsInN0IjoiMDEiLCJzbiI6bnVsbH19.; Domain=target.com; Path=/; SameSite=none; Secure;, sapphire=1; Max-Age=2629746; Expires=Sat, 01 Nov 2025 01:43:32 GMT; Path=/; Domain=.target.com; Secure; SameSite=None, GuestLocation=11000|7.090|79.990|1|LK;Path=/; Secure; Max-Age=86400, visitorId=0199A056CBC302018A229778B4B88FA3; Max-Age=63072000; Expires=Fri, 01 Oct 2027 15:14:26 GMT; Path=/; Domain=.target.com; Secure; SameSite=None, refreshToken=Vn9uVrAnLb4i65_-I7XEYadBYs0cKcRaiiIvFcDyF_ao1c9sqoZkaSzTbvEXJ6NKyn7QGv8chRCuMAGqAf6CTw; Domain=target.com; Path=/; SameSite=none; Secure; HttpOnly; Max-Age=15552000;, accessToken=eyJraWQiOiJlYXMyIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJhMTM3ZmI2NS05ZjVmLTQ4NjctOGVkNi02YTE5NTM3Mjg0ZTIiLCJpc3MiOiJNSTYiLCJleHAiOjE3NTk0MTgwNjcsImlhdCI6MTc1OTMzMTY2NywianRpIjoiVEdULjYwYmQ2ZGNhNDdmYjRjMGM4N2JmZmVlMzE2ZGZhZTc3LWwiLCJza3kiOiJlYXMyIiwic3V0IjoiRyIsImRpZCI6IjRiZTA5YjVkMGMzN2Q1NWY3ZTY5NGU0Y2VlNjFkMmRhNzhmYWU5MWEwYTcyZDcyNWQ2ODI0Y2Y3NDM3YmFlMTMiLCJzY28iOiJlY29tLm5vbmUsb3BlbmlkIiwiY2xpIjoiZWNvbS13ZWItMS4wLjAiLCJhc2wiOiJMIn0.vxzeptzmwl6v-Jed6YQPWIuaeAyaoZs-rIx5b-frqLcFgTH3_gQFcfqaKPALOw_BeDaAaactmOK3F78jZ1gNhP4x17RwT1p07huHaAhXWViPBeWbWNpnsZ_wV3hwGKQGhPHznZrZbiBklYXfmOIcFA2oHDeqtEjdDsgjgK9Zord7E8KTQINn1tzwLav4U1WpLagHmvpmAjAfg9D_o4CT_Rm3wEUsJx6pZU1YsTZOTauND_U9iYGv2uBOoDQr3CIGN9Vge51vCBA4hvnK2sILLwD6sTUPMp6tvGun3YHuPB9HzrFLaaosn_-ModGtyddMlcqGFodgCiR5tW498cvTmQ; Domain=target.com; Path=/; SameSite=none; Secure; HttpOnly;, egsSessionId=71a6e597-65d2-4d8c-b3fa-b85f93e0f412; Domain=target.com; Path=/; SameSite=none; Secure; HttpOnly; Max-Age=3600;",
+                "cache_control": "private, no-cache",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "\"14zoj77eh6ffnrl\"",
+                "server_info": {
+                  "name": "Unknown",
+                  "version": "Unknown",
+                  "components": []
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Cart Functionality"
+                ],
+                "header_detected": [],
+                "content_detected": [
+                  "Angular"
+                ],
+                "url_patterns": [
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "frame-ancestors 'self' https://*.target.com;",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "no-referrer-when-downgrade",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": true,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "X-XSS-Protection",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 4.616969108581543,
+                "content_length": 730842,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [
+                    "Angular"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://target.com": {
+              "url": "https://target.com",
+              "timestamp": 1759331671.0066314,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 730842,
+                "url": "https://www.target.com/",
+                "redirect_chain": [
+                  "https://target.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.target.com/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en-US\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta charSet=\"utf-8\"/><meta content=\"width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2, interactiv...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Target : Expect More. Pay Less.",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "Not found",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "frame-ancestors 'self' https://*.target.com;",
+                "strict_transport_security": "max-age=31536000; includeSubDomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "sapphire=1; Max-Age=2629746; Expires=Sat, 01 Nov 2025 01:43:37 GMT; Path=/; Domain=.target.com; Secure; SameSite=None, TealeafAkaSid=aqkkc08_B4M2ieuQeu3F8EzVUQBOWaq5; Expires=Fri, 31 Oct 2025 15:14:33 GMT; Path=/; Domain=target.com;",
+                "cache_control": "private, no-cache",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "\"14zoj77eh6ffnrl\"",
+                "server_info": {
+                  "name": "Unknown",
+                  "version": "Unknown",
+                  "components": []
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Cart Functionality"
+                ],
+                "header_detected": [],
+                "content_detected": [
+                  "Angular"
+                ],
+                "url_patterns": [
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "frame-ancestors 'self' https://*.target.com;",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "no-referrer-when-downgrade",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "X-XSS-Protection",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 4.336810827255249,
+                "content_length": 730842,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [
+                    "Angular"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.target.com": {
+              "url": "https://www.target.com",
+              "timestamp": 1759331675.343818,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 730842,
+                "url": "https://www.target.com/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://www.target.com/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en-US\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta charSet=\"utf-8\"/><meta content=\"width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2, interactiv...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Target : Expect More. Pay Less.",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "Not found",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "frame-ancestors 'self' https://*.target.com;",
+                "strict_transport_security": "max-age=31536000; includeSubDomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "sapphire=1; Max-Age=2629746; Expires=Sat, 01 Nov 2025 01:43:41 GMT; Path=/; Domain=.target.com; Secure; SameSite=None, TealeafAkaSid=aqkkc08_B4M2ieuQeu3F8EzVUQBOWaq5; Expires=Fri, 31 Oct 2025 15:14:37 GMT; Path=/; Domain=target.com;",
+                "cache_control": "private, no-cache",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "\"4z79s3frs4fnrl\"",
+                "server_info": {
+                  "name": "Unknown",
+                  "version": "Unknown",
+                  "components": []
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Cart Functionality"
+                ],
+                "header_detected": [],
+                "content_detected": [
+                  "Angular"
+                ],
+                "url_patterns": [
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "frame-ancestors 'self' https://*.target.com;",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "no-referrer-when-downgrade",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "X-XSS-Protection",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 4.235238075256348,
+                "content_length": 730842,
+                "status_code": 200,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [
+                    "Angular"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://target.com": {
+              "url": "http://target.com",
+              "timestamp": 1759331679.5796564,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 730842,
+                "url": "https://www.target.com/",
+                "redirect_chain": [
+                  "http://target.com/",
+                  "https://target.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.target.com/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en-US\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta charSet=\"utf-8\"/><meta content=\"width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2, interactiv...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Target : Expect More. Pay Less.",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "Not found",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "frame-ancestors 'self' https://*.target.com;",
+                "strict_transport_security": "max-age=31536000; includeSubDomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "sapphire=1; Max-Age=2629746; Expires=Sat, 01 Nov 2025 01:43:46 GMT; Path=/; Domain=.target.com; Secure; SameSite=None, TealeafAkaSid=aqkkc08_B4M2ieuQeu3F8EzVUQBOWaq5; Expires=Fri, 31 Oct 2025 15:14:41 GMT; Path=/; Domain=target.com;",
+                "cache_control": "private, no-cache",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "\"oxhbobjbkufnrl\"",
+                "server_info": {
+                  "name": "Unknown",
+                  "version": "Unknown",
+                  "components": []
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Cart Functionality"
+                ],
+                "header_detected": [],
+                "content_detected": [
+                  "Angular"
+                ],
+                "url_patterns": [
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "frame-ancestors 'self' https://*.target.com;",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "no-referrer-when-downgrade",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "X-XSS-Protection",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 4.820184707641602,
+                "content_length": 730842,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [
+                    "Angular"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Angular",
+              "Cart Functionality",
+              "CDN"
+            ],
+            "security_score_avg": 71.42857142857143,
+            "common_issues": [
+              "X-XSS-Protection",
+              "Permissions-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 18.02662467956543,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 0,
+          "records_found": 29,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 3
+        }
+      },
+      "all_subdomains": [
+        "www.target.com"
+      ],
+      "statistics": {
+        "total_subdomains": 1,
+        "unique_subdomains": 1,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 56.31,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 3,
+        "security_issues_found": 2,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "target.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 20:44 +0530\nNmap scan report for target.com (151.101.194.187)\nHost is up (0.049s latency).\nOther addresses for target.com (not scanned): 151.101.66.187 151.101.2.187 151.101.130.187\nNot shown: 998 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 8.36 seconds\n",
+        "scan_duration": 8.36
+      },
+      "service_results": {
+        "target": "target.com",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 500 Domain Not Found\r\nConnection: close\r\nContent-Length: 246\r\nServer: Varnish\r\nRetry-After: 0\r\ncontent-type: text/html\r\nCache-Control: private, no-cache\r\nX-Served-By: cache-sin-wsss1830081-SIN\r\nAccept-Ranges: bytes\r\nDate: Wed, 01 Oct 2025 15:14:52 GMT\r\nVia: 1.1 varnish\r\n\r\n\n<html>\n<head>\n<title>Fastly error: unknown domain </title>\n</head>\n<body>\n<p>Fastly error: unknown domain: . Please check that this domain has been added to a service.</p>\n<p>Details: cache-sin-wsss1830081-SIN (151.101.194.187)</p></body></html>",
+            "version": "151.101.194",
+            "ssl": false,
+            "protocol_info": {
+              "http": {
+                "status_code": 200,
+                "server": "Unknown",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "\u0015\u0003\u0003\u0000\u0002\u00022\u0015\u0003\u0003\u0000\u0002\u0001\u0000",
+            "version": null,
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_128_GCM_SHA256"
+              },
+              "http": {
+                "status_code": 200,
+                "server": "Unknown",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 8.36
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Fastly",
+        "detection_method": "content",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "target.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/target_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 1,
+    "total_open_ports": 2,
+    "cdn_detected": true,
+    "technologies_detected": 3,
+    "apis_discovered": 0
+  },
+  "execution_time": 73.14544916152954
+}

@@ -1,0 +1,785 @@
+{
+  "target_domain": "bloomberg.com",
+  "scan_timestamp": "2025-10-01T20:21:51.591961",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "bloomberg.com",
+      "timestamp": "2025-10-01T20:21:51.592250",
+      "modules": {
+        "passive": {
+          "domain": "bloomberg.com",
+          "timestamp": 1759330368.2672415,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 56.66963529586792,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "bloomberg.com",
+          "timestamp": 1759330369.862023,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "3.33.146.110",
+              "15.197.146.156"
+            ],
+            "MX": [
+              "mgcny2.bloomberg.com",
+              "mgcny1.bloomberg.com",
+              "mgcnj1.bloomberg.com",
+              "mgcnj2.bloomberg.com"
+            ],
+            "NS": [
+              "dns3.p01.nsone.net",
+              "pdns3.ultradns.org",
+              "dns4.p01.nsone.net",
+              "pdns1.ultradns.net",
+              "dns1.p01.nsone.net",
+              "dns2.p01.nsone.net",
+              "pdns5.ultradns.info"
+            ],
+            "TXT": [
+              "apple-domain-verification=9cs9hMRccEtbVb8h",
+              "2smsverify=08qXd7f0aUa5IPq0N4ETgQ",
+              "airtable-verification=15d4376d6d99cc906abbcb295b4245da",
+              "parallels-domain-verification=47460854911b478da11221dc20e8cc0340a92adf1e6b4ff08a5e941f5379c267",
+              "ZOOM_verify_8UDWCiGoiAVgGEuiZNG9Ld",
+              "ZOOM_verify_rl-mcFScS8W6864E30mlZg",
+              "QnH3utpbwmcXnxwnErM2by/pp37P7fYtF9si0rMmb9FgwB98zU8UAzdl1GbyQMdyNFLKobFRdX6FfLlH/LG+og==",
+              "F2QdzLTE6LTOyOQ7pQzoSY2pnwVM5pnfiqY3zOoYvS3LoVmIUr0J3op5vQI8Tg8VQwt24UK8v7oFWfbrCBWYYw==",
+              "google-site-verification=vH_zs-JrwvXxkyuUqmeN9t3iMYZqyt1-BJUsoyN3ca8",
+              "google-site-verification=ClT3QBQ-Rd4b3AAq2gmQ-u_94EliZRmC2e-Kb4t9zEo",
+              "OSSRH-64276",
+              "v=spf1 ip4:69.184.0.0/13 ip4:199.172.169.0/24 ip4:208.22.56.0/24 ip4:69.191.241.124 -all",
+              "atlassian-domain-verification=gK9LJEftkavNAe/keDgXDWOhGwUV02GQTz9BbfKLplkTTtpciOH5eL1W6u7BRfVR",
+              "MS=ms33692690",
+              "openai-domain-verification=dv-XaK3IjuwWpMmfss9VYKwn0eY",
+              "extensis-domain-verification=707df5b4-0868-499f-af75-51718e082698",
+              "jamf-site-verification=VJNRhgJ90SmyugkIPAdfCQ",
+              "MS=ms99943004"
+            ],
+            "SOA": [
+              "dns1.p01.nsone.net. dnsmaster.bloomberg.com. 2013085213 43200 3600 3600000 14400"
+            ]
+          },
+          "subdomains": [
+            "mgcny2.bloomberg.com",
+            "mgcny1.bloomberg.com",
+            "mgcnj1.bloomberg.com",
+            "mgcnj2.bloomberg.com"
+          ],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 ip4:69.184.0.0/13 ip4:199.172.169.0/24 ip4:208.22.56.0/24 ip4:69.191.241.124 -all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=vH_zs-JrwvXxkyuUqmeN9t3iMYZqyt1-BJUsoyN3ca8",
+                "google-site-verification=ClT3QBQ-Rd4b3AAq2gmQ-u_94EliZRmC2e-Kb4t9zEo"
+              ],
+              "other": [
+                "apple-domain-verification=9cs9hMRccEtbVb8h",
+                "2smsverify=08qXd7f0aUa5IPq0N4ETgQ",
+                "airtable-verification=15d4376d6d99cc906abbcb295b4245da",
+                "parallels-domain-verification=47460854911b478da11221dc20e8cc0340a92adf1e6b4ff08a5e941f5379c267",
+                "ZOOM_verify_8UDWCiGoiAVgGEuiZNG9Ld",
+                "ZOOM_verify_rl-mcFScS8W6864E30mlZg",
+                "QnH3utpbwmcXnxwnErM2by/pp37P7fYtF9si0rMmb9FgwB98zU8UAzdl1GbyQMdyNFLKobFRdX6FfLlH/LG+og==",
+                "F2QdzLTE6LTOyOQ7pQzoSY2pnwVM5pnfiqY3zOoYvS3LoVmIUr0J3op5vQI8Tg8VQwt24UK8v7oFWfbrCBWYYw==",
+                "OSSRH-64276",
+                "atlassian-domain-verification=gK9LJEftkavNAe/keDgXDWOhGwUV02GQTz9BbfKLplkTTtpciOH5eL1W6u7BRfVR",
+                "MS=ms33692690",
+                "openai-domain-verification=dv-XaK3IjuwWpMmfss9VYKwn0eY",
+                "extensis-domain-verification=707df5b4-0868-499f-af75-51718e082698",
+                "jamf-site-verification=VJNRhgJ90SmyugkIPAdfCQ",
+                "MS=ms99943004"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 0.7298142910003662,
+            "total_records": 32,
+            "total_subdomains": 4,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "bloomberg.com",
+          "timestamp": 1759330382.3409562,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://bloomberg.com": {
+              "url": "http://bloomberg.com",
+              "timestamp": 1759330369.9632778,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 4310409,
+                "url": "https://www.bloomberg.com/asia",
+                "redirect_chain": [
+                  "http://bloomberg.com/",
+                  "https://bloomberg.com:443/",
+                  "https://www.bloomberg.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.bloomberg.com/asia",
+                "content_preview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width\"/><title>Bloomberg Asia</title><link rel=\"icon\" type=\"image/png\" href=\"https://www.bloombe...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Bloomberg Asia",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Bloomberg delivers business and markets news, data, analysis, and video to the world, featuring stor",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "openresty",
+                "x_powered_by": "Next.js",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "frame-ancestors 'self' http://*.bloomberg.com https://*.bloomberg.com, upgrade-insecure-requests",
+                "strict_transport_security": "max-age=31557600",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "exp_pref=APAC; domain=bloomberg.com; path=/;, country_code=LK; domain=www.bloomberg.com; path=/;, _pxhd=0Rt3tdxosf5Wt4jsiBLC-jxGWa96eGlxHPly73ctIWpZhkFfXhtFqrZntGcN/RzUtbHKnq/v9OFS6fbcUfizvg==:uDNsvqXp2eOHUvXehksXCMR1J6soF0FUYr2GGfcSFBfIRIqxpD-uekReLWH3UPbnmeA6DJPlDejRTs5B9JBXul5k3IRa1KZvwCYEC2gN-No=; Max-Age=31536000; path=/; SameSite=Lax",
+                "cache_control": "public, max-age=120",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "W/\"nxdl4qlsn12kd34\"",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "openresty",
+                  "components": [
+                    "openresty"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "raw_header": "Next.js"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [],
+                "header_detected": [],
+                "content_detected": [
+                  "Google Analytics"
+                ],
+                "url_patterns": [
+                  "Google Services"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "frame-ancestors 'self' http://*.bloomberg.com https://*.bloomberg.com, upgrade-insecure-requests",
+                  "Strict-Transport-Security": "max-age=31557600",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "no-referrer-when-downgrade",
+                  "Permissions-Policy": "join-ad-interest-group=(), run-ad-auction=(), browsing-topics=()"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 85.71428571428571,
+                "missing_headers": [
+                  "X-XSS-Protection"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 6.618284463882446,
+                "content_length": 4310409,
+                "status_code": 200,
+                "redirect_count": 3
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://bloomberg.com": {
+              "url": "https://bloomberg.com",
+              "timestamp": 1759330376.5823307,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 4310409,
+                "url": "https://www.bloomberg.com/asia",
+                "redirect_chain": [
+                  "https://bloomberg.com/",
+                  "https://www.bloomberg.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.bloomberg.com/asia",
+                "content_preview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width\"/><title>Bloomberg Asia</title><link rel=\"icon\" type=\"image/png\" href=\"https://www.bloombe...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Bloomberg Asia",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Bloomberg delivers business and markets news, data, analysis, and video to the world, featuring stor",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "openresty",
+                "x_powered_by": "Next.js",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "frame-ancestors 'self' http://*.bloomberg.com https://*.bloomberg.com, upgrade-insecure-requests",
+                "strict_transport_security": "max-age=31557600",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "exp_pref=APAC; domain=bloomberg.com; path=/;, country_code=LK; domain=www.bloomberg.com; path=/;, _pxhd=0Rt3tdxosf5Wt4jsiBLC-jxGWa96eGlxHPly73ctIWpZhkFfXhtFqrZntGcN/RzUtbHKnq/v9OFS6fbcUfizvg==:uDNsvqXp2eOHUvXehksXCMR1J6soF0FUYr2GGfcSFBfIRIqxpD-uekReLWH3UPbnmeA6DJPlDejRTs5B9JBXul5k3IRa1KZvwCYEC2gN-No=; Max-Age=31536000; path=/; SameSite=Lax",
+                "cache_control": "public, max-age=120",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "W/\"nxdl4qlsn12kd34\"",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "openresty",
+                  "components": [
+                    "openresty"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "raw_header": "Next.js"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [],
+                "header_detected": [],
+                "content_detected": [
+                  "Google Analytics"
+                ],
+                "url_patterns": [
+                  "Google Services"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "frame-ancestors 'self' http://*.bloomberg.com https://*.bloomberg.com, upgrade-insecure-requests",
+                  "Strict-Transport-Security": "max-age=31557600",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "no-referrer-when-downgrade",
+                  "Permissions-Policy": "join-ad-interest-group=(), run-ad-auction=(), browsing-topics=()"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 85.71428571428571,
+                "missing_headers": [
+                  "X-XSS-Protection"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 3.0767416954040527,
+                "content_length": 4310409,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.bloomberg.com": {
+              "url": "https://www.bloomberg.com",
+              "timestamp": 1759330379.6597793,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 4310409,
+                "url": "https://www.bloomberg.com/asia",
+                "redirect_chain": [
+                  "https://www.bloomberg.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.bloomberg.com/asia",
+                "content_preview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width\"/><title>Bloomberg Asia</title><link rel=\"icon\" type=\"image/png\" href=\"https://www.bloombe...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Bloomberg Asia",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Bloomberg delivers business and markets news, data, analysis, and video to the world, featuring stor",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "openresty",
+                "x_powered_by": "Next.js",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "frame-ancestors 'self' http://*.bloomberg.com https://*.bloomberg.com, upgrade-insecure-requests",
+                "strict_transport_security": "max-age=31557600",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "exp_pref=APAC; domain=bloomberg.com; path=/;, country_code=LK; domain=www.bloomberg.com; path=/;, _pxhd=0Rt3tdxosf5Wt4jsiBLC-jxGWa96eGlxHPly73ctIWpZhkFfXhtFqrZntGcN/RzUtbHKnq/v9OFS6fbcUfizvg==:uDNsvqXp2eOHUvXehksXCMR1J6soF0FUYr2GGfcSFBfIRIqxpD-uekReLWH3UPbnmeA6DJPlDejRTs5B9JBXul5k3IRa1KZvwCYEC2gN-No=; Max-Age=31536000; path=/; SameSite=Lax",
+                "cache_control": "public, max-age=120",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "W/\"nxdl4qlsn12kd34\"",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "openresty",
+                  "components": [
+                    "openresty"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "raw_header": "Next.js"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [],
+                "header_detected": [],
+                "content_detected": [
+                  "Google Analytics"
+                ],
+                "url_patterns": [
+                  "Google Services"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "frame-ancestors 'self' http://*.bloomberg.com https://*.bloomberg.com, upgrade-insecure-requests",
+                  "Strict-Transport-Security": "max-age=31557600",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "no-referrer-when-downgrade",
+                  "Permissions-Policy": "join-ad-interest-group=(), run-ad-auction=(), browsing-topics=()"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 85.71428571428571,
+                "missing_headers": [
+                  "X-XSS-Protection"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 1.2599942684173584,
+                "content_length": 4310409,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://www.bloomberg.com": {
+              "url": "http://www.bloomberg.com",
+              "timestamp": 1759330380.9205933,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 4310409,
+                "url": "https://www.bloomberg.com/asia",
+                "redirect_chain": [
+                  "http://www.bloomberg.com/",
+                  "https://www.bloomberg.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.bloomberg.com/asia",
+                "content_preview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width\"/><title>Bloomberg Asia</title><link rel=\"icon\" type=\"image/png\" href=\"https://www.bloombe...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Bloomberg Asia",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Bloomberg delivers business and markets news, data, analysis, and video to the world, featuring stor",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "openresty",
+                "x_powered_by": "Next.js",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "frame-ancestors 'self' http://*.bloomberg.com https://*.bloomberg.com, upgrade-insecure-requests",
+                "strict_transport_security": "max-age=31557600",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "exp_pref=APAC; domain=bloomberg.com; path=/;, country_code=LK; domain=www.bloomberg.com; path=/;, _pxhd=0Rt3tdxosf5Wt4jsiBLC-jxGWa96eGlxHPly73ctIWpZhkFfXhtFqrZntGcN/RzUtbHKnq/v9OFS6fbcUfizvg==:uDNsvqXp2eOHUvXehksXCMR1J6soF0FUYr2GGfcSFBfIRIqxpD-uekReLWH3UPbnmeA6DJPlDejRTs5B9JBXul5k3IRa1KZvwCYEC2gN-No=; Max-Age=31536000; path=/; SameSite=Lax",
+                "cache_control": "public, max-age=120",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "W/\"nxdl4qlsn12kd34\"",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "openresty",
+                  "components": [
+                    "openresty"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "raw_header": "Next.js"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [],
+                "header_detected": [],
+                "content_detected": [
+                  "Google Analytics"
+                ],
+                "url_patterns": [
+                  "Google Services"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "frame-ancestors 'self' http://*.bloomberg.com https://*.bloomberg.com, upgrade-insecure-requests",
+                  "Strict-Transport-Security": "max-age=31557600",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "no-referrer-when-downgrade",
+                  "Permissions-Policy": "join-ad-interest-group=(), run-ad-auction=(), browsing-topics=()"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 85.71428571428571,
+                "missing_headers": [
+                  "X-XSS-Protection"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 1.4145328998565674,
+                "content_length": 4310409,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Google Analytics",
+              "Google Services"
+            ],
+            "security_score_avg": 85.71428571428571,
+            "common_issues": [
+              "X-XSS-Protection"
+            ]
+          },
+          "statistics": {
+            "total_duration": 12.466891527175903,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 4,
+          "records_found": 32,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 2
+        }
+      },
+      "all_subdomains": [
+        "mgcnj1.bloomberg.com",
+        "mgcnj2.bloomberg.com",
+        "mgcny1.bloomberg.com",
+        "mgcny2.bloomberg.com",
+        "www.bloomberg.com"
+      ],
+      "statistics": {
+        "total_subdomains": 5,
+        "unique_subdomains": 5,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 70.75,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 2,
+        "security_issues_found": 1,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "bloomberg.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 20:23 +0530\nNmap scan report for bloomberg.com (3.33.146.110)\nHost is up (0.045s latency).\nOther addresses for bloomberg.com (not scanned): 15.197.146.156\nrDNS record for 3.33.146.110: aa2f66099ca87b6fe.awsglobalaccelerator.com\nNot shown: 997 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n25/tcp  open  smtp\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 6.78 seconds\n",
+        "scan_duration": 6.78
+      },
+      "service_results": {
+        "target": "bloomberg.com",
+        "scan_type": "quick",
+        "open_ports_count": 3,
+        "services": {
+          "25": {
+            "port": 25,
+            "service": "SMTP",
+            "banner": "No banner (timeout)",
+            "version": null,
+            "ssl": false,
+            "protocol_info": {}
+          },
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 301 Moved Permanently\r\nServer: awselb/2.0\r\nDate: Wed, 01 Oct 2025 14:53:24 GMT\r\nContent-Type: text/html\r\nContent-Length: 134\r\nConnection: close\r\nLocation: https://68de020210628181502745000000001-1766050164.us-west-2.elb.amazonaws.com:443/\r\n\r\n<html>\r\n<head><title>301 Moved Permanently</title></head>\r\n<body>\r\n<center><h1>301 Moved Permanently</h1></center>\r\n</body>\r\n</html>",
+            "version": "1.1",
+            "ssl": false,
+            "protocol_info": {}
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "HTTP/1.1 400 Bad Request\r\nServer: awselb/2.0\r\nDate: Wed, 01 Oct 2025 14:53:26 GMT\r\nContent-Type: text/html\r\nContent-Length: 220\r\nConnection: close\r\n\r\n<html>\r\n<head><title>400 The plain HTTP request was sent to HTTPS port</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<center>The plain HTTP request was sent to HTTPS port</center>\r\n</body>\r\n</html>",
+            "version": "1.1",
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_128_GCM_SHA256"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "SMTP": 1,
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 3
+        }
+      },
+      "summary": {
+        "open_ports_count": 3,
+        "services_identified": 3,
+        "scan_duration": 6.78
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Google CDN",
+        "detection_method": "content",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 403
+      },
+      "execution_info": {
+        "domain": "bloomberg.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/bloomberg_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 5,
+    "total_open_ports": 3,
+    "cdn_detected": true,
+    "technologies_detected": 2,
+    "apis_discovered": 0
+  },
+  "execution_time": 99.08509993553162
+}

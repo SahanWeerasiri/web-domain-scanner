@@ -1,0 +1,780 @@
+{
+  "target_domain": "reuters.com",
+  "scan_timestamp": "2025-10-01T20:20:23.596131",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "reuters.com",
+      "timestamp": "2025-10-01T20:20:23.596328",
+      "modules": {
+        "passive": {
+          "domain": "reuters.com",
+          "timestamp": 1759330280.760443,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 57.157981634140015,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "reuters.com",
+          "timestamp": 1759330282.2656562,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "155.46.172.255"
+            ],
+            "MX": [
+              "mxb-00160c04.gslb.pphosted.com",
+              "mxa-00160c04.gslb.pphosted.com"
+            ],
+            "NS": [
+              "ns-aws-2.thomsonreuters.net",
+              "ns-aws-4.thomsonreuters.co.uk",
+              "ns-aws-3.thomsonreuters.org",
+              "ns-aws-1.thomsonreuters.com"
+            ],
+            "TXT": [
+              "MS=ms24417066",
+              "google-site-verification=LMfrSuyToK_ofO0MSu-lf5QJhLYITHNDX09ofoF7_FY",
+              "google-site-verification=7UwjlMmBYuyFWx01Pu6NEVEWRPD9W25PnwffZejseEg",
+              "google-site-verification=FZwUpO_E2LIEPLqcxfWRpQipxi2faQ4Qt4wyYJpJr1g",
+              "facebook-domain-verification=ra7bjxso3pnjy2p63mdc0002chquca",
+              "yahoo-verification-key=5bF6siWgzdkfub3ZLp8cnSL2ps44ipYuy28vgoM7qDA=",
+              "v=spf1 include:%{ir}.%{v}.%{d}.spf.has.pphosted.com -all",
+              "apple-domain-verification=cKpm3aVB5VEf9fQ0oxIIumulcv3CvTjrOGvqF8nUDO8",
+              "apple-domain-verification=voAz1fDhqIN4vRxG52m4VSOgLipH0OMyfJIprobVB1U",
+              "google-site-verification=O1A9GoZ5a23atyZjR2IBMnmdG-jz3mrsQ900uMn0sbY"
+            ],
+            "SOA": [
+              "ns-aws-1.thomsonreuters.com. domain.name.thomsonreuters.com. 2024093016 3600 900 1209600 300"
+            ]
+          },
+          "subdomains": [
+            "ns-aws-1.thomsonreuters.com"
+          ],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 include:%{ir}.%{v}.%{d}.spf.has.pphosted.com -all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=LMfrSuyToK_ofO0MSu-lf5QJhLYITHNDX09ofoF7_FY",
+                "google-site-verification=7UwjlMmBYuyFWx01Pu6NEVEWRPD9W25PnwffZejseEg",
+                "google-site-verification=FZwUpO_E2LIEPLqcxfWRpQipxi2faQ4Qt4wyYJpJr1g",
+                "facebook-domain-verification=ra7bjxso3pnjy2p63mdc0002chquca",
+                "google-site-verification=O1A9GoZ5a23atyZjR2IBMnmdG-jz3mrsQ900uMn0sbY"
+              ],
+              "other": [
+                "MS=ms24417066",
+                "yahoo-verification-key=5bF6siWgzdkfub3ZLp8cnSL2ps44ipYuy28vgoM7qDA=",
+                "apple-domain-verification=cKpm3aVB5VEf9fQ0oxIIumulcv3CvTjrOGvqF8nUDO8",
+                "apple-domain-verification=voAz1fDhqIN4vRxG52m4VSOgLipH0OMyfJIprobVB1U"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 0.7031028270721436,
+            "total_records": 18,
+            "total_subdomains": 1,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "reuters.com",
+          "timestamp": 1759330287.7872686,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://www.reuters.com": {
+              "url": "http://www.reuters.com",
+              "timestamp": 1759330282.2886517,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 914684,
+                "url": "https://www.reuters.com/",
+                "redirect_chain": [
+                  "http://www.reuters.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.reuters.com/",
+                "content_preview": "<!DOCTYPE html><html data-layout=\"slices\" data-rdr-ts=\"1759330225500\" data-site-lang=\"en\" lang=\"en\"><head><title>Reuters | Breaking International News &amp; Views</title><meta name=\"viewport\" content=...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": true,
+                "title": "Reuters | Breaking International News &amp; Views",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "openresty",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "frame-ancestors 'self'; report-uri https://reuters.report-uri.com/r/t/csp/enforce; report-to report-uri",
+                "strict_transport_security": "max-age=31536000",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "reuters-geo={\"country\":\"-\", \"region\":\"-\"}; path=/; secure",
+                "cache_control": "private, max-age=60",
+                "expires": "Wed, 01 Oct 2025 14:52:22 GMT",
+                "last_modified": "Wed, 01 Oct 2025 14:50:26 GMT",
+                "etag": "W/\"de29c-KOX4ta4ALB1NI3/zsgF7ZKw8QNU\"",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "openresty",
+                  "components": [
+                    "openresty"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Datadome",
+                  "Amazon Cloudfront"
+                ],
+                "header_detected": [],
+                "content_detected": [
+                  "React"
+                ],
+                "url_patterns": [
+                  "Google Services",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": "frame-ancestors 'self'; report-uri https://reuters.report-uri.com/r/t/csp/enforce; report-to report-uri",
+                  "Strict-Transport-Security": "max-age=31536000",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 28.57142857142857,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 1.019136667251587,
+                "content_length": 914684,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [
+                    "React"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://reuters.com": {
+              "url": "http://reuters.com",
+              "timestamp": 1759330283.308471,
+              "response_analysis": {
+                "status_code": 401,
+                "reason": "HTTP Forbidden",
+                "encoding": "utf-8",
+                "content_type": "text/html;charset=utf-8",
+                "content_length": 771,
+                "url": "https://www.reuters.com/",
+                "redirect_chain": [
+                  "http://reuters.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.reuters.com/",
+                "content_preview": "<html lang=\"en\"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style></head><body style=\"margin:0\"><p id=\"cmsg\">Please ena...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": true,
+                "title": "reuters.com",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "CloudFront",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "frame-ancestors 'self'; report-uri https://reuters.report-uri.com/r/t/csp/enforce; report-to report-uri",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "datadome=VY8mO2A_UTfMaXQuObq4ldb2wNSgIAEph4pMmjEzVJwibDqCkf4RC4tbU~~vVMfRFjw4zoZ0oQ7pU~QeDjt7~tOreGl62mQ_gzYefcTcIkp5ZRrq1nzB8OsQ5zESAhAw; Max-Age=31536000; Domain=.reuters.com; Path=/; Secure; SameSite=Lax",
+                "cache_control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "CloudFront",
+                  "components": [
+                    "CloudFront"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Datadome",
+                  "Amazon Cloudfront"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": "frame-ancestors 'self'; report-uri https://reuters.report-uri.com/r/t/csp/enforce; report-to report-uri",
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 14.285714285714285,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Strict-Transport-Security",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 1.5352566242218018,
+                "content_length": 771,
+                "status_code": 401,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://reuters.com": {
+              "url": "https://reuters.com",
+              "timestamp": 1759330284.8444033,
+              "response_analysis": {
+                "status_code": 401,
+                "reason": "HTTP Forbidden",
+                "encoding": "utf-8",
+                "content_type": "text/html;charset=utf-8",
+                "content_length": 771,
+                "url": "https://www.reuters.com/",
+                "redirect_chain": [
+                  "https://reuters.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.reuters.com/",
+                "content_preview": "<html lang=\"en\"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style></head><body style=\"margin:0\"><p id=\"cmsg\">Please ena...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": true,
+                "title": "reuters.com",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "CloudFront",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "frame-ancestors 'self'; report-uri https://reuters.report-uri.com/r/t/csp/enforce; report-to report-uri",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "datadome=9g1fCwWoFnZpCDql1aBSX~j6sKOWIHq~j6reqLMHMZK~FE6dlP3TRWSS67Wp67TQO8yVJdobmrQWi~7aSyTu91mRLfM7zF3Tpp48uLUvR3HcfZIa7lso7EZk5ebo928j; Max-Age=31536000; Domain=.reuters.com; Path=/; Secure; SameSite=Lax",
+                "cache_control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "CloudFront",
+                  "components": [
+                    "CloudFront"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Datadome",
+                  "Amazon Cloudfront"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": "frame-ancestors 'self'; report-uri https://reuters.report-uri.com/r/t/csp/enforce; report-to report-uri",
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 14.285714285714285,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Strict-Transport-Security",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 2.4904088973999023,
+                "content_length": 771,
+                "status_code": 401,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.reuters.com": {
+              "url": "https://www.reuters.com",
+              "timestamp": 1759330287.3353255,
+              "response_analysis": {
+                "status_code": 401,
+                "reason": "HTTP Forbidden",
+                "encoding": "utf-8",
+                "content_type": "text/html;charset=utf-8",
+                "content_length": 771,
+                "url": "https://www.reuters.com/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://www.reuters.com/",
+                "content_preview": "<html lang=\"en\"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style></head><body style=\"margin:0\"><p id=\"cmsg\">Please ena...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": true,
+                "title": "reuters.com",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "CloudFront",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "frame-ancestors 'self'; report-uri https://reuters.report-uri.com/r/t/csp/enforce; report-to report-uri",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "datadome=2n~zOJCJ1XzIxI2V8NKfvYuxZaYb1viz8q4TU~25WxLZBDpjK7xPP3jEtlYIpdnsICWJKBFauqJraYOlvYz2ZiwT_cj~4XiKR2wyT_0Nr4ZHrUwe0MB_l2B3KjCTrK9m; Max-Age=31536000; Domain=.reuters.com; Path=/; Secure; SameSite=Lax",
+                "cache_control": "max-age=0, private, no-cache, no-store, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "CloudFront",
+                  "components": [
+                    "CloudFront"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Datadome",
+                  "Amazon Cloudfront"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": "frame-ancestors 'self'; report-uri https://reuters.report-uri.com/r/t/csp/enforce; report-to report-uri",
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 14.285714285714285,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Strict-Transport-Security",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 0.43741655349731445,
+                "content_length": 771,
+                "status_code": 401,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Amazon Web Services",
+              "Datadome",
+              "Amazon Cloudfront",
+              "Google Services",
+              "CDN",
+              "React"
+            ],
+            "security_score_avg": 17.857142857142854,
+            "common_issues": [
+              "X-Frame-Options",
+              "X-Content-Type-Options",
+              "Strict-Transport-Security",
+              "X-XSS-Protection",
+              "Referrer-Policy",
+              "Permissions-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 5.5027174949646,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 1,
+          "records_found": 18,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 6
+        }
+      },
+      "all_subdomains": [
+        "ns-aws-1.thomsonreuters.com",
+        "www.reuters.com"
+      ],
+      "statistics": {
+        "total_subdomains": 2,
+        "unique_subdomains": 2,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 64.19,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 6,
+        "security_issues_found": 6,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "reuters.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 20:21 +0530\nNmap scan report for reuters.com (155.46.172.255)\nHost is up (0.25s latency).\nrDNS record for 155.46.172.255: thomsonreuters.com\nNot shown: 998 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 16.98 seconds\n",
+        "scan_duration": 16.98
+      },
+      "service_results": {
+        "target": "reuters.com",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.0 301 Moved Permanently\r\nLocation: http://www./\r\nServer: BigIP\r\nConnection: close\r\nContent-Length: 0",
+            "version": "1.0",
+            "ssl": false,
+            "protocol_info": {}
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": null,
+            "version": null,
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES128-GCM-SHA256"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 16.98
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Amazon CloudFront",
+        "detection_method": "headers",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 401
+      },
+      "execution_info": {
+        "domain": "reuters.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/reuters_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 2,
+    "total_open_ports": 2,
+    "cdn_detected": true,
+    "technologies_detected": 6,
+    "apis_discovered": 0
+  },
+  "execution_time": 87.98753547668457
+}

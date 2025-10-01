@@ -1,0 +1,753 @@
+{
+  "target_domain": "youtube.com",
+  "scan_timestamp": "2025-10-01T19:36:58.122081",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "youtube.com",
+      "timestamp": "2025-10-01T19:36:58.122505",
+      "modules": {
+        "passive": {
+          "domain": "youtube.com",
+          "timestamp": 1759327674.8570106,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 56.72943687438965,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "youtube.com",
+          "timestamp": 1759327676.0759466,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "172.253.118.93",
+              "172.253.118.136",
+              "172.253.118.91",
+              "172.253.118.190"
+            ],
+            "AAAA": [
+              "2404:6800:4003:c05::5b",
+              "2404:6800:4003:c05::5d",
+              "2404:6800:4003:c05::be",
+              "2404:6800:4003:c05::88"
+            ],
+            "MX": [
+              "smtp.google.com"
+            ],
+            "NS": [
+              "ns2.google.com",
+              "ns3.google.com",
+              "ns4.google.com",
+              "ns1.google.com"
+            ],
+            "TXT": [
+              "facebook-domain-verification=64jdes7le4h7e7lfpi22rijygx58j1",
+              "v=spf1 include:google.com mx -all",
+              "google-site-verification=QtQWEwHWM8tHiJ4s-jJWzEQrD_fF3luPnpzNDH-Nw-w"
+            ],
+            "SOA": [
+              "ns1.google.com. dns-admin.google.com. 813182507 900 900 1800 60"
+            ]
+          },
+          "subdomains": [],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 include:google.com mx -all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "facebook-domain-verification=64jdes7le4h7e7lfpi22rijygx58j1",
+                "google-site-verification=QtQWEwHWM8tHiJ4s-jJWzEQrD_fF3luPnpzNDH-Nw-w"
+              ],
+              "other": []
+            }
+          },
+          "statistics": {
+            "total_duration": 0.28547072410583496,
+            "total_records": 17,
+            "total_subdomains": 0,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "youtube.com",
+          "timestamp": 1759327685.1135323,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://youtube.com": {
+              "url": "http://youtube.com",
+              "timestamp": 1759327676.1024852,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 670035,
+                "url": "https://www.youtube.com/",
+                "redirect_chain": [
+                  "http://youtube.com/",
+                  "https://youtube.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.youtube.com/",
+                "content_preview": "<!DOCTYPE html><html style=\"font-size: 10px;font-family: Roboto, Arial, sans-serif;\" lang=\"en\" darker-dark-theme darker-dark-theme-deprecate system-icons typography typography-spacing><head><script da...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "ESF",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "require-trusted-types-for 'script'",
+                "strict_transport_security": "max-age=31536000",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "0",
+                "set_cookie": "GPS=1; Domain=.youtube.com; Expires=Wed, 01-Oct-2025 14:37:56 GMT; Path=/; Secure; HttpOnly, YSC=1bbjdhVEWwo; Domain=.youtube.com; Path=/; Secure; HttpOnly; SameSite=none; Partitioned, __Secure-ROLLOUT_TOKEN=CNukssCWibWtmQEQkevfqZaDkAMYkevfqZaDkAM%3D; Domain=youtube.com; Expires=Mon, 30-Mar-2026 14:07:56 GMT; Path=/; Secure; HttpOnly; SameSite=none; Partitioned, __Secure-YEC=; Domain=.youtube.com; Expires=Thu, 05-Jan-2023 14:07:56 GMT; Path=/; Secure; HttpOnly; SameSite=lax, VISITOR_INFO1_LIVE=KonLoxMaSMU; Domain=.youtube.com; Expires=Mon, 30-Mar-2026 14:07:56 GMT; Path=/; Secure; HttpOnly; SameSite=none; Partitioned, VISITOR_PRIVACY_METADATA=CgJMSxIEGgAgSw%3D%3D; Domain=.youtube.com; Expires=Mon, 30-Mar-2026 14:07:56 GMT; Path=/; Secure; HttpOnly; SameSite=none; Partitioned",
+                "cache_control": "no-cache, no-store, max-age=0, must-revalidate",
+                "expires": "Mon, 01 Jan 1990 00:00:00 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "ESF",
+                  "components": [
+                    "ESF"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Google Font API"
+                ],
+                "header_detected": [],
+                "content_detected": [
+                  "Bootstrap"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "Google Services"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "require-trusted-types-for 'script'",
+                  "Strict-Transport-Security": "max-age=31536000",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": "ch-ua-arch=*, ch-ua-bitness=*, ch-ua-full-version=*, ch-ua-full-version-list=*, ch-ua-model=*, ch-ua-wow64=*, ch-ua-form-factors=*, ch-ua-platform=*, ch-ua-platform-version=*"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": true,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 85.71428571428571,
+                "missing_headers": [
+                  "Referrer-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 2.808462381362915,
+                "content_length": 670035,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://www.youtube.com": {
+              "url": "http://www.youtube.com",
+              "timestamp": 1759327678.9116304,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 669995,
+                "url": "https://www.youtube.com/",
+                "redirect_chain": [
+                  "http://www.youtube.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.youtube.com/",
+                "content_preview": "<!DOCTYPE html><html style=\"font-size: 10px;font-family: Roboto, Arial, sans-serif;\" lang=\"en\" darker-dark-theme darker-dark-theme-deprecate system-icons typography typography-spacing><head><script da...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "ESF",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "require-trusted-types-for 'script'",
+                "strict_transport_security": "max-age=31536000",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "0",
+                "set_cookie": "__Secure-ROLLOUT_TOKEN=CNukssCWibWtmQEQkevfqZaDkAMY9b_2qpaDkAM%3D; Domain=youtube.com; Expires=Mon, 30-Mar-2026 14:07:59 GMT; Path=/; Secure; HttpOnly; SameSite=none; Partitioned, __Secure-YEC=; Domain=.youtube.com; Expires=Thu, 05-Jan-2023 14:07:59 GMT; Path=/; Secure; HttpOnly; SameSite=lax, VISITOR_INFO1_LIVE=KonLoxMaSMU; Domain=.youtube.com; Expires=Mon, 30-Mar-2026 14:07:59 GMT; Path=/; Secure; HttpOnly; SameSite=none; Partitioned, VISITOR_PRIVACY_METADATA=CgJMSxIEGgAgSw%3D%3D; Domain=.youtube.com; Expires=Mon, 30-Mar-2026 14:07:59 GMT; Path=/; Secure; HttpOnly; SameSite=none; Partitioned",
+                "cache_control": "no-cache, no-store, max-age=0, must-revalidate",
+                "expires": "Mon, 01 Jan 1990 00:00:00 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "ESF",
+                  "components": [
+                    "ESF"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Google Font API"
+                ],
+                "header_detected": [],
+                "content_detected": [
+                  "Bootstrap"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "Google Services"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "require-trusted-types-for 'script'",
+                  "Strict-Transport-Security": "max-age=31536000",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": "ch-ua-arch=*, ch-ua-bitness=*, ch-ua-full-version=*, ch-ua-full-version-list=*, ch-ua-model=*, ch-ua-wow64=*, ch-ua-form-factors=*, ch-ua-platform=*, ch-ua-platform-version=*"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": true,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 85.71428571428571,
+                "missing_headers": [
+                  "Referrer-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 2.309056043624878,
+                "content_length": 669995,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.youtube.com": {
+              "url": "https://www.youtube.com",
+              "timestamp": 1759327681.2212632,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 669488,
+                "url": "https://www.youtube.com/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://www.youtube.com/",
+                "content_preview": "<!DOCTYPE html><html style=\"font-size: 10px;font-family: Roboto, Arial, sans-serif;\" lang=\"en\" darker-dark-theme darker-dark-theme-deprecate system-icons typography typography-spacing><head><script da...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "ESF",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "require-trusted-types-for 'script'",
+                "strict_transport_security": "max-age=31536000",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "0",
+                "set_cookie": "__Secure-YEC=; Domain=.youtube.com; Expires=Thu, 05-Jan-2023 14:08:01 GMT; Path=/; Secure; HttpOnly; SameSite=lax, VISITOR_INFO1_LIVE=KonLoxMaSMU; Domain=.youtube.com; Expires=Mon, 30-Mar-2026 14:08:01 GMT; Path=/; Secure; HttpOnly; SameSite=none; Partitioned, VISITOR_PRIVACY_METADATA=CgJMSxIEGgAgSw%3D%3D; Domain=.youtube.com; Expires=Mon, 30-Mar-2026 14:08:01 GMT; Path=/; Secure; HttpOnly; SameSite=none; Partitioned",
+                "cache_control": "no-cache, no-store, max-age=0, must-revalidate",
+                "expires": "Mon, 01 Jan 1990 00:00:00 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "ESF",
+                  "components": [
+                    "ESF"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Google Font API"
+                ],
+                "header_detected": [],
+                "content_detected": [
+                  "Google Analytics",
+                  "Bootstrap"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "Google Services"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "require-trusted-types-for 'script'",
+                  "Strict-Transport-Security": "max-age=31536000",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": "ch-ua-arch=*, ch-ua-bitness=*, ch-ua-full-version=*, ch-ua-full-version-list=*, ch-ua-model=*, ch-ua-wow64=*, ch-ua-form-factors=*, ch-ua-platform=*, ch-ua-platform-version=*"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": true,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 85.71428571428571,
+                "missing_headers": [
+                  "Referrer-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 1.910487413406372,
+                "content_length": 669488,
+                "status_code": 200,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://youtube.com": {
+              "url": "https://youtube.com",
+              "timestamp": 1759327683.1323652,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 667918,
+                "url": "https://www.youtube.com/",
+                "redirect_chain": [
+                  "https://youtube.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.youtube.com/",
+                "content_preview": "<!DOCTYPE html><html style=\"font-size: 10px;font-family: Roboto, Arial, sans-serif;\" lang=\"en\" darker-dark-theme darker-dark-theme-deprecate system-icons typography typography-spacing><head><script da...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "ESF",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "require-trusted-types-for 'script'",
+                "strict_transport_security": "max-age=31536000",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "0",
+                "set_cookie": "__Secure-YEC=; Domain=.youtube.com; Expires=Thu, 05-Jan-2023 14:08:03 GMT; Path=/; Secure; HttpOnly; SameSite=lax, VISITOR_INFO1_LIVE=KonLoxMaSMU; Domain=.youtube.com; Expires=Mon, 30-Mar-2026 14:08:03 GMT; Path=/; Secure; HttpOnly; SameSite=none; Partitioned, VISITOR_PRIVACY_METADATA=CgJMSxIEGgAgSw%3D%3D; Domain=.youtube.com; Expires=Mon, 30-Mar-2026 14:08:03 GMT; Path=/; Secure; HttpOnly; SameSite=none; Partitioned",
+                "cache_control": "no-cache, no-store, max-age=0, must-revalidate",
+                "expires": "Mon, 01 Jan 1990 00:00:00 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "ESF",
+                  "components": [
+                    "ESF"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Google Font API"
+                ],
+                "header_detected": [],
+                "content_detected": [
+                  "Bootstrap"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "Google Services"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "require-trusted-types-for 'script'",
+                  "Strict-Transport-Security": "max-age=31536000",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": "ch-ua-arch=*, ch-ua-bitness=*, ch-ua-full-version=*, ch-ua-full-version-list=*, ch-ua-model=*, ch-ua-wow64=*, ch-ua-form-factors=*, ch-ua-platform=*, ch-ua-platform-version=*"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": true,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 85.71428571428571,
+                "missing_headers": [
+                  "Referrer-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 1.9737257957458496,
+                "content_length": 667918,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Google Analytics",
+              "Bootstrap",
+              "Google Services",
+              "Google Font API"
+            ],
+            "security_score_avg": 85.71428571428571,
+            "common_issues": [
+              "Referrer-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 9.022758960723877,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 0,
+          "records_found": 17,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 4
+        }
+      },
+      "all_subdomains": [
+        "www.youtube.com"
+      ],
+      "statistics": {
+        "total_subdomains": 1,
+        "unique_subdomains": 1,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 66.99,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 4,
+        "security_issues_found": 1,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "youtube.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 19:38 +0530\nNmap scan report for youtube.com (172.253.118.136)\nHost is up (0.051s latency).\nOther addresses for youtube.com (not scanned): 172.253.118.91 172.253.118.93 172.253.118.190 2404:6800:4003:c05::be 2404:6800:4003:c05::5d 2404:6800:4003:c05::5b 2404:6800:4003:c05::88\nrDNS record for 172.253.118.136: sl-in-f136.1e100.net\nNot shown: 997 filtered tcp ports (no-response), 1 filtered tcp ports (net-unreach)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 6.38 seconds\n",
+        "scan_duration": 6.38
+      },
+      "service_results": {
+        "target": "youtube.com",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.0 200 OK\r\nDate: Wed, 01 Oct 2025 14:08:11 GMT\r\nExpires: -1\r\nCache-Control: private, max-age=0\r\nContent-Type: text/html; charset=ISO-8859-1\r\nContent-Security-Policy-Report-Only: object-src 'none';base-uri 'self';script-src 'nonce-ATcj0OyYSHKwzQ-ZZJdx7g' 'strict-dynamic' 'report-sample' 'unsafe-eval' 'unsafe-inline' https: http:;report-uri https://csp.withgoogle.com/csp/gws/other-hp\r\nP3P: CP=\"This is not a P3P policy! See g.co/p3phelp for more info.\"\r\nServer: gws\r\nX-XSS-Protection: 0\r\nX-Frame-Options: SAMEORIGIN\r\nSet-Cookie: AEC=AaJma5ssidSQoIxWxJ_LIqnm3VG8psCxPQRb2mplzmgkZg1eewu-E8fbB8E; expires=Mon, 30-Mar-2026 14:08:11 GMT; path=/; domain=.google.com; Secure; HttpOnly; SameSite=lax\r\nSet-Cookie: NID=525=gdWsxvluNt590RlJ8vbX3WPRMGwoo4G4yzKp7p1QHiJXWetF0J5G_vW6ZN83rSJf1LPFZ2ihoqX7e6dUIKTAkcv9K3pZP3w2ZijxwHmi1Ar4AewA1sFom3YrMKBPpyVokHXeP9Ah9zhrzQeZuo29W5F10T0VklVLpHIFEphTeVxvFjLSqVQExAv4uohXR0Lge3O0wfuRLjI_q3FlEA; expires=Thu, 02-Apr-2026 14:08:11 GMT; path=/; domain=.google.com; HttpOnly\r\nAccept-Ranges:",
+            "version": "1.0",
+            "ssl": false,
+            "protocol_info": {
+              "http": {
+                "status_code": 200,
+                "server": "ESF",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": null,
+            "version": null,
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384"
+              },
+              "http": {
+                "status_code": 200,
+                "server": "ESF",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 6.38
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Google CDN",
+        "detection_method": "content",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "youtube.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/youtube_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 1,
+    "total_open_ports": 2,
+    "cdn_detected": true,
+    "technologies_detected": 4,
+    "apis_discovered": 0
+  },
+  "execution_time": 77.30275464057922
+}

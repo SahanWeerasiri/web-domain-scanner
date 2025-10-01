@@ -1,0 +1,885 @@
+{
+  "target_domain": "academia.edu",
+  "scan_timestamp": "2025-10-01T21:21:44.495387",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "academia.edu",
+      "timestamp": "2025-10-01T21:21:44.496115",
+      "modules": {
+        "passive": {
+          "domain": "academia.edu",
+          "timestamp": 1759333939.5835912,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 35.078226804733276,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "academia.edu",
+          "timestamp": 1759333940.9964905,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "108.157.254.8",
+              "108.157.254.49",
+              "108.157.254.61",
+              "108.157.254.9"
+            ],
+            "MX": [
+              "alt1.aspmx.l.google.com",
+              "aspmx3.googlemail.com",
+              "aspmx.l.google.com"
+            ],
+            "NS": [
+              "ns-629.awsdns-14.net",
+              "ns-1850.awsdns-39.co.uk",
+              "ns-1484.awsdns-57.org",
+              "ns-225.awsdns-28.com"
+            ],
+            "TXT": [
+              "google-site-verification=bbNdRV9xC7b5gnrehK88Rxa8TNdYzkZnMyQstWkWw3Q",
+              "google-site-verification=Ry_M11GJFUeZIFqvxYBpOdnlFv5wJER_unuoE3eOJKQ",
+              "google-site-verification=kUYM5LxN1rlEczyxiwp63widgRuH_IC-P7kRDzFH5TE",
+              "MS=03606EEC74485EE7659A765B95BA63F7E2F590A1",
+              "google-site-verification=ZMCHHISWOhk6ndz2l3_k1lILJ4ZbG5eO73VyiIDz-co",
+              "google-site-verification=lpjzdQ-e9XKCo3NmQ3bCXpbD1MaufmV0_gd7ObUNAUc",
+              "activeprospect-domain-verification=wIllccKTAz1V+rR5HMpvCQ==",
+              "google-site-verification=AdyiRTpxOqZiU8Jd0w8PahsA3_b_OcJgWzn0nfsDMmY",
+              "google-site-verification=irss24p48-LJzw7pzMnohWNsA1xgoE9NQ8vq-qcle48",
+              "v=spf1 mx include:_spf.google.com include:servers.mcsv.net include:mail.zendesk.com -all",
+              "ZOOM_verify_Rxzrf9pJxjR7JvgdFlk0Yd",
+              "google-site-verification=4vfGw0yCsksCUdAMWjGuiIkUYiEmO6WBOjBvNxLISgo",
+              "apple-domain-verification=1RjRckbT2g6y1YmT"
+            ],
+            "SOA": [
+              "ns-1484.awsdns-57.org. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"
+            ]
+          },
+          "subdomains": [],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 mx include:_spf.google.com include:servers.mcsv.net include:mail.zendesk.com -all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=bbNdRV9xC7b5gnrehK88Rxa8TNdYzkZnMyQstWkWw3Q",
+                "google-site-verification=Ry_M11GJFUeZIFqvxYBpOdnlFv5wJER_unuoE3eOJKQ",
+                "google-site-verification=kUYM5LxN1rlEczyxiwp63widgRuH_IC-P7kRDzFH5TE",
+                "google-site-verification=ZMCHHISWOhk6ndz2l3_k1lILJ4ZbG5eO73VyiIDz-co",
+                "google-site-verification=lpjzdQ-e9XKCo3NmQ3bCXpbD1MaufmV0_gd7ObUNAUc",
+                "google-site-verification=AdyiRTpxOqZiU8Jd0w8PahsA3_b_OcJgWzn0nfsDMmY",
+                "google-site-verification=irss24p48-LJzw7pzMnohWNsA1xgoE9NQ8vq-qcle48",
+                "google-site-verification=4vfGw0yCsksCUdAMWjGuiIkUYiEmO6WBOjBvNxLISgo"
+              ],
+              "other": [
+                "MS=03606EEC74485EE7659A765B95BA63F7E2F590A1",
+                "activeprospect-domain-verification=wIllccKTAz1V+rR5HMpvCQ==",
+                "ZOOM_verify_Rxzrf9pJxjR7JvgdFlk0Yd",
+                "apple-domain-verification=1RjRckbT2g6y1YmT"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 0.6705226898193359,
+            "total_records": 25,
+            "total_subdomains": 0,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "academia.edu",
+          "timestamp": 1759333953.53732,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://www.academia.edu": {
+              "url": "http://www.academia.edu",
+              "timestamp": 1759333941.0559304,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 156239,
+                "url": "https://www.academia.edu:443/",
+                "redirect_chain": [
+                  "http://www.academia.edu/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.academia.edu:443/",
+                "content_preview": "<!DOCTYPE html>\n<html lang=\"en\" xmlns:fb=\"http://www.facebook.com/2008/fbml\"  class=\"wf-loading\">\n  <head prefix=\"og: https://ogp.me/ns#\n                fb: https://ogp.me/ns/fb#\n                acade...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "nginx",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=63072000; includeSubDomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "0",
+                "set_cookie": "request_id=xhtfz7RXKtpj_CI6LowppgNwMuuCFP8ro9lvsBxxcdeBveMO24tdvw%3D%3D; max-age=600; secure, overridden_user_tests=%7B%7D; domain=academia.edu; path=/; expires=Thu, 01 Oct 2026 15:52:22 GMT; secure, auvid=MTc1OTMzMzk0MjQzMzowLjI1Njc2OTk2NTE1MDc4Ng%3D%3D; domain=.academia.edu; path=/; expires=Thu, 01 Oct 2026 15:52:22 GMT; SameSite=Lax; secure, single_request_tracker=null; domain=academia.edu; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax; secure, _cookie_session=Aks4hLpaG5A6KreVkSLRaDzwkRhC3HtmdQC3W0UxwZ3elK%2B0SpKTTPUwqntgkhMzw0SZsFlrou9F6RJnydorc1lK1v%2FNTEjjhRJMnWmmf7m9WD%2BkqecRds%2FQTTYMfuNq4XDGhyv55cCtDzwKvUaBuGGMM30l31xXpeTN8438aTP62w9kloL6lyw3lV%2FVGmqE6I7OD84oq54y9ZZyIn93IytYy3KIMV7NYsoqG4BEj7UEZB6iwy%2BQRAtZdTf%2FG5iJuRG0OVOW8yp3OQ2m0GEO1m0A0D6QpMA%2BTrQt3LUynyq9FYvcqKFXdl1Mw%2FGnOrUo9Uuqz9nCfys%2BOaCAFqJoh98KzfDl8KNw0bZIdKQruk7qIclgYF7U8hG2IQ7m36c%3D--jp9Jvd0AICi0pXuT--6wLLxgJzsV1%2Bo5rSdljMsQ%3D%3D; domain=.academia.edu; path=/; secure; HttpOnly; SameSite=None",
+                "cache_control": "max-age=0, private, must-revalidate",
+                "expires": "0",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Nginx",
+                  "raw_header": "nginx",
+                  "components": [
+                    "nginx"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Google Tag Manager",
+                  "Bootstrap",
+                  "comScore",
+                  "jQuery",
+                  "Ruby",
+                  "Google Sign-in",
+                  "Amazon Cloudfront",
+                  "Nginx",
+                  "Ruby on Rails",
+                  "Font Awesome"
+                ],
+                "header_detected": [
+                  "Nginx"
+                ],
+                "content_detected": [
+                  "Google Analytics",
+                  "Bootstrap",
+                  "Font Awesome"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "Google Services",
+                  "CDN",
+                  "Font Awesome"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=63072000; includeSubDomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": true,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 4.00020956993103,
+                "content_length": 156239,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Nginx"
+                  ],
+                  "programming_language": [],
+                  "framework": [
+                    "Ruby on Rails"
+                  ],
+                  "cms": [],
+                  "javascript_libraries": [
+                    "jQuery"
+                  ],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://academia.edu": {
+              "url": "https://academia.edu",
+              "timestamp": 1759333945.0566094,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 156239,
+                "url": "https://www.academia.edu/",
+                "redirect_chain": [
+                  "https://academia.edu/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.academia.edu/",
+                "content_preview": "<!DOCTYPE html>\n<html lang=\"en\" xmlns:fb=\"http://www.facebook.com/2008/fbml\"  class=\"wf-loading\">\n  <head prefix=\"og: https://ogp.me/ns#\n                fb: https://ogp.me/ns/fb#\n                acade...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "nginx",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=63072000; includeSubDomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "0",
+                "set_cookie": "request_id=sIwudbRH8UeIU0QltgOkSFmLONXcUBTUwdWZ8ieqDPExf96MxLSRNg%3D%3D; max-age=600; secure, overridden_user_tests=%7B%7D; domain=academia.edu; path=/; expires=Thu, 01 Oct 2026 15:52:26 GMT; secure, single_request_tracker=null; domain=academia.edu; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax; secure, _cookie_session=%2FHrOtZks7npAi6DxsEEtFJeCp6pqkAvvAzc23aiFMONPqBboRTIE4%2BkYG51iGWLdOJOJWtF21VZPyyBnRuV5gzsCw8dXEi%2FVVN2JAji9oKomspY4f%2Bk71vhh6FXHf4KIjAHwRCmlThwMwkGaGqObAicBplcNUDoXZaRlsARHv1CinnEgztQtXIOnlT9Sb6pM%2FO%2B7IDfo6vbydI9Dqn55EHgcx7Q%2B1oINwqcXkp0n5E8uCfaY12%2B6C6HNfNyr9EuR4s%2Boxk%2B1rh0vSDaSRvYhOfXEaRhOygkpJGoBR2SB%2BTVt58o4qQPZ5F1WAWWFCvWbirJ9tMq3vrIsfVHhrA98HZqluQBsGGcpBNlCDuUgW9t61iZTTlb7c%2FwO8VPc6aI%3D--AKDxbNnW7K5rfVzy--t4BB0Ef2r60ZBVuDFJineQ%3D%3D; domain=.academia.edu; path=/; secure; HttpOnly; SameSite=None",
+                "cache_control": "max-age=0, private, must-revalidate",
+                "expires": "0",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Nginx",
+                  "raw_header": "nginx",
+                  "components": [
+                    "nginx"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Google Tag Manager",
+                  "Bootstrap",
+                  "comScore",
+                  "jQuery",
+                  "Ruby",
+                  "Google Sign-in",
+                  "Amazon Cloudfront",
+                  "Nginx",
+                  "Ruby on Rails",
+                  "Font Awesome"
+                ],
+                "header_detected": [
+                  "Nginx"
+                ],
+                "content_detected": [
+                  "Google Analytics",
+                  "Bootstrap",
+                  "Font Awesome"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "Google Services",
+                  "CDN",
+                  "Font Awesome"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=63072000; includeSubDomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": true,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 3.5055274963378906,
+                "content_length": 156239,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Nginx"
+                  ],
+                  "programming_language": [],
+                  "framework": [
+                    "Ruby on Rails"
+                  ],
+                  "cms": [],
+                  "javascript_libraries": [
+                    "jQuery"
+                  ],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://academia.edu": {
+              "url": "http://academia.edu",
+              "timestamp": 1759333948.5625186,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 156239,
+                "url": "https://www.academia.edu/",
+                "redirect_chain": [
+                  "http://academia.edu/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.academia.edu/",
+                "content_preview": "<!DOCTYPE html>\n<html lang=\"en\" xmlns:fb=\"http://www.facebook.com/2008/fbml\"  class=\"wf-loading\">\n  <head prefix=\"og: https://ogp.me/ns#\n                fb: https://ogp.me/ns/fb#\n                acade...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "nginx",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=63072000; includeSubDomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "0",
+                "set_cookie": "request_id=ppFvXo26A8bWCV7cMeWV-vtkd7t3nhOFRextvNdGiA8vlKpwyQgcYA%3D%3D; max-age=600; secure, overridden_user_tests=%7B%7D; domain=academia.edu; path=/; expires=Thu, 01 Oct 2026 15:52:29 GMT; secure, single_request_tracker=null; domain=academia.edu; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax; secure, _cookie_session=erX%2FHzzvs5CAdkTMjXWt0heFcoaojHnBbkDSQCbEsj8Wtc7g4r4Qqu9f2S2Az6CNIl0e4nbOdSEx6x1wNYRHryCtY0l1zpjfw9vi9sgce4uEHmMER7j3J9KYF081nsd8GR6QwKvPeRSm%2B9ufcIVAx1ETK71Xal%2FLiqrrWjyEYw6LIJe5wO6L4Hu4lYYzBy2pLDZkaY4xm7U8iwTahnW6YoirrzT1eUg9v5ItlRAdVdTxFaAcG4DPdrtesxtcdUsqmOKwQHVxMLKjLwN7X7O6bCn57KZZvswqwbWPOAlsC7RqQw%2Fhl4rr781IuX0CuqsoW0AAZWB%2FirI5g6q9kqAxvHmONeqIGCwH5mq8SHfgU8wAQXVhq7FjDg3u0XxMQug%3D--0wmNew3yeBviSKSG--YNPuj%2BBCrYfpppgtuE59OQ%3D%3D; domain=.academia.edu; path=/; secure; HttpOnly; SameSite=None",
+                "cache_control": "max-age=0, private, must-revalidate",
+                "expires": "0",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Nginx",
+                  "raw_header": "nginx",
+                  "components": [
+                    "nginx"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Google Tag Manager",
+                  "Bootstrap",
+                  "comScore",
+                  "jQuery",
+                  "Ruby",
+                  "Google Sign-in",
+                  "Amazon Cloudfront",
+                  "Nginx",
+                  "Ruby on Rails",
+                  "Font Awesome"
+                ],
+                "header_detected": [
+                  "Nginx"
+                ],
+                "content_detected": [
+                  "Google Analytics",
+                  "Bootstrap",
+                  "Font Awesome"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "Google Services",
+                  "CDN",
+                  "Font Awesome"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=63072000; includeSubDomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": true,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 2.586803913116455,
+                "content_length": 156239,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Nginx"
+                  ],
+                  "programming_language": [],
+                  "framework": [
+                    "Ruby on Rails"
+                  ],
+                  "cms": [],
+                  "javascript_libraries": [
+                    "jQuery"
+                  ],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.academia.edu": {
+              "url": "https://www.academia.edu",
+              "timestamp": 1759333951.1497848,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 156239,
+                "url": "https://www.academia.edu/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://www.academia.edu/",
+                "content_preview": "<!DOCTYPE html>\n<html lang=\"en\" xmlns:fb=\"http://www.facebook.com/2008/fbml\"  class=\"wf-loading\">\n  <head prefix=\"og: https://ogp.me/ns#\n                fb: https://ogp.me/ns/fb#\n                acade...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "nginx",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=63072000; includeSubDomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "0",
+                "set_cookie": "request_id=A8mdjabmv-gD2ix682x7pUZjez0PujHk_clLe8J9XdwWMiKshLt3Zw%3D%3D; max-age=600; secure, overridden_user_tests=%7B%7D; domain=academia.edu; path=/; expires=Thu, 01 Oct 2026 15:52:31 GMT; secure, single_request_tracker=null; domain=academia.edu; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax; secure, _cookie_session=qhSH4vzkdMIifL6OiQ79F959eWRTa3nPrLY4PPPI7PcZ55WS97GvvGR6u7Mnu%2BjwwSwfzpFvRtS7vcar11P9ojisxR41sQLlJLYfHexmadh1hhdA5TlzFbGVnDePoL17ss0a7yPhGn5WwJPJ32jbW%2Ba3FHyaym7tDh383FBvj%2Bs1eR09liw%2Fv%2BKPTCkilBLiL6SdjCs4a2sKTja3nWiaHCThTAhUygIU9jTJJjrVG5TeirPVRC5Ex831xFJCGZiTRe30ra%2Blv3aIH6uEEmSs0YJhdcBH%2BwFtypvRjNTmj%2BXDMjUBAVA1qNos9EZ2IwUq2yPnzwehxR9xidEfOAkzSBtrc2kyIc2W9e8naGD5aLqIlU91g1ZB9jRhrdRckoU%3D--nYpeS8RE7jXHMCH8--8DQbaDw1C065fByfndID9A%3D%3D; domain=.academia.edu; path=/; secure; HttpOnly; SameSite=None",
+                "cache_control": "max-age=0, private, must-revalidate",
+                "expires": "0",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Nginx",
+                  "raw_header": "nginx",
+                  "components": [
+                    "nginx"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Google Tag Manager",
+                  "Bootstrap",
+                  "comScore",
+                  "jQuery",
+                  "Ruby",
+                  "Google Sign-in",
+                  "Amazon Cloudfront",
+                  "Nginx",
+                  "Ruby on Rails",
+                  "Font Awesome"
+                ],
+                "header_detected": [
+                  "Nginx"
+                ],
+                "content_detected": [
+                  "Google Analytics",
+                  "Bootstrap",
+                  "Font Awesome"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "Google Services",
+                  "CDN",
+                  "Font Awesome"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=63072000; includeSubDomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": true,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 2.3810789585113525,
+                "content_length": 156239,
+                "status_code": 200,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Nginx"
+                  ],
+                  "programming_language": [],
+                  "framework": [
+                    "Ruby on Rails"
+                  ],
+                  "cms": [],
+                  "javascript_libraries": [
+                    "jQuery"
+                  ],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Amazon Web Services",
+              "comScore",
+              "Google Tag Manager",
+              "Bootstrap",
+              "Google Analytics",
+              "Ruby",
+              "Google Sign-in",
+              "Amazon Cloudfront",
+              "Google Services",
+              "CDN",
+              "Font Awesome",
+              "Ruby on Rails",
+              "jQuery",
+              "Nginx"
+            ],
+            "security_score_avg": 71.42857142857143,
+            "common_issues": [
+              "Content-Security-Policy",
+              "Permissions-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 12.528399229049683,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 0,
+          "records_found": 25,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 14
+        }
+      },
+      "all_subdomains": [
+        "www.academia.edu"
+      ],
+      "statistics": {
+        "total_subdomains": 1,
+        "unique_subdomains": 1,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 49.04,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 14,
+        "security_issues_found": 2,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "academia.edu",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 21:22 +0530\nNmap scan report for academia.edu (108.157.254.9)\nHost is up (0.049s latency).\nOther addresses for academia.edu (not scanned): 108.157.254.49 108.157.254.8 108.157.254.61\nrDNS record for 108.157.254.9: server-108-157-254-9.sin2.r.cloudfront.net\nNot shown: 998 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 10.00 seconds\n",
+        "scan_duration": 10.0
+      },
+      "service_results": {
+        "target": "academia.edu",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 400 Bad Request\r\nServer: CloudFront\r\nDate: Wed, 01 Oct 2025 15:52:43 GMT\r\nContent-Type: text/html\r\nContent-Length: 915\r\nConnection: close\r\nX-Cache: Error from cloudfront\r\nVia: 1.1 55173a521db392ae0e2afe92a5766006.cloudfront.net (CloudFront)\r\nX-Amz-Cf-Pop: SIN2-P3\r\nX-Amz-Cf-Id: pqMFV0T2JbEd4VZuVXEY-nsxO-mPF0n-1UFC1HQ3EuLpyAlQwt15OA==\r\n\r\n<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n<HTML><HEAD><META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n<TITLE>ERROR: The request could not be satisfied</TITLE>\n</HEAD><BODY>\n<H1>400 ERROR</H1>\n<H2>The request could not be satisfied.</H2>\n<HR noshade size=\"1px\">\nBad request.\nWe can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner.\n<BR clear=\"all\">\nIf you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error",
+            "version": "1.1",
+            "ssl": false,
+            "protocol_info": {
+              "http": {
+                "status_code": 200,
+                "server": "nginx",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "HTTP/1.1 400 Bad Request\r\nServer: CloudFront\r\nDate: Wed, 01 Oct 2025 15:52:44 GMT\r\nContent-Type: text/html\r\nContent-Length: 915\r\nConnection: close\r\nX-Cache: Error from cloudfront\r\nVia: 1.1 b62dcf579674d1758cbe507a9f0f1cee.cloudfront.net (CloudFront)\r\nX-Amz-Cf-Pop: SIN2-P3\r\nX-Amz-Cf-Id: FFleo027a84CdTic5WGRTNQxTC5lvx6igMC-XDTbsztX56hPF6jFnA==\r\n\r\n<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n<HTML><HEAD><META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n<TITLE>ERROR: The request could not be satisfied</TITLE>\n</HEAD><BODY>\n<H1>400 ERROR</H1>\n<H2>The request could not be satisfied.</H2>\n<HR noshade size=\"1px\">\nBad request.\nWe can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner.\n<BR clear=\"all\">\nIf you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error",
+            "version": "1.1",
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_128_GCM_SHA256"
+              },
+              "http": {
+                "status_code": 200,
+                "server": "nginx",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 10.0
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Amazon CloudFront",
+        "detection_method": "headers",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "academia.edu",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/academia_edu_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 1,
+    "total_open_ports": 2,
+    "cdn_detected": true,
+    "technologies_detected": 14,
+    "apis_discovered": 0
+  },
+  "execution_time": 62.25976347923279
+}

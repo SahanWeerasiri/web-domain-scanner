@@ -1,0 +1,467 @@
+{
+  "target_domain": "adobe.com",
+  "scan_timestamp": "2025-10-01T19:55:30.757209",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "adobe.com",
+      "timestamp": "2025-10-01T19:55:30.757468",
+      "modules": {
+        "passive": {
+          "domain": "adobe.com",
+          "timestamp": 1759328788.2588937,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 57.49751281738281,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "adobe.com",
+          "timestamp": 1759328792.268108,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "23.193.114.8",
+              "23.193.114.43",
+              "23.193.114.26"
+            ],
+            "AAAA": [
+              "2600:1417:75::17cd:58c8",
+              "2600:1417:75::17cd:58b1",
+              "2600:1417:75::17cd:58ba"
+            ],
+            "MX": [
+              "adobe.mail.protection.outlook.com",
+              "adobe-com.mail.protection.outlook.com"
+            ],
+            "NS": [
+              "a13-65.akam.net",
+              "a28-67.akam.net",
+              "a7-64.akam.net",
+              "a10-64.akam.net",
+              "a26-66.akam.net",
+              "a1-217.akam.net"
+            ],
+            "TXT": [
+              "google-site-verification=gDyvme6Q3LVye5JqFODK2wmzdteJCvQ8M8F4hhclEuE",
+              "_github-challenge-adobe=94b215a3c7",
+              "fastly-domain-delegation-mcmjcm11052020-05-11-2020",
+              "anthropic-domain-verification-xjxses=aaN5uq8fdNr0u4oUdkOTRwdJl",
+              "elevenlabs=7WqXlRwQh8-jH2984SP4TQCS0MWL3IoSp8kynyVKVg8",
+              "stripe-verification=6fc5c32209614c905d88a1cff92d08be1eff034a63a75ebdf8da94e4cfb4c51a",
+              "google-site-verification=WlkKAHcmf9lr7GeIymdFUnFVnlZBe8EsaUc5t3UASuE",
+              "zapier-domain-verification-challenge=389e1047-a056-4e10-8f7b-e547e30d978d",
+              "mongodb-site-verification=9wz19h5hq4rETvHeWjbWVnTmNHgwaufJ",
+              "google-site-verification=B29h-nx4tgaIP-yB-xsD_JqsPObknGvdOxV0E-yhjhY",
+              "atlassian-domain-verification=MuhJPcv3bzIQ9BHg1GjhQfmq+1evcqT7fB9gGJn4aOmE2HExlRuwjr5EE7/nABXh",
+              "fastly-domain-delegation-rQNX3KD7DKL9hmeR-378696-2021-06-09",
+              "adobe-sign-verification=bb81bc75163acd737f022c8b8ac3958a5f3600ba3daaaa5fad01d44924f21fad",
+              "google-site-verification=V6qGlS2Yhp2Ua8FCIv2cYVgBEjXeQTl4UBNS07bKuSs",
+              "parallels-domain-verification=cbe7f671fa8c4726b984182169e51fed78687863a4e8476383b56e030a6c7037",
+              "neat-pulse-domain-verification-rXqzBGM=023e9dc4-e375-4205-8724-8d1a441e6d5b",
+              "google-site-verification=VfGWzOLDyrmGv8t-bb5sGqNb8fyIhHvgC7cfRSBeKSw",
+              "google-site-verification=P_kb2Yyzww7fnZitZ6EbIYipWkjkin9et6IsSwDp7lg",
+              "ddj6i3kj0094qcnaaobqkhhvr",
+              "google-site-verification=0RAkrqlyPGIM-rT1AOB-DNOw3eifD6i7G__e5BtnTz8",
+              "docker-verification=e639ae3e-ec26-47da-af6e-bf451aa076c0",
+              "google-site-verification=6WBkBMyLUyWUihnTjeP53f3TcSi90ejKJk-gmL2eqgE",
+              "google-site-verification=v-817iF9e0_UdjWiz3gtCfMvYr8CVFt1Ej4QvMq640U",
+              "drift-domain-verification=ce77053dc2d9b73c71437d5afda3b6d06fbc34a1b0e4527fe81c55e0d99ca4b4",
+              "google-site-verification=FHduugscCIWrobl53QpXxe06TdV0FWOCWgV1i-NQIBc",
+              "postman-domain-verification=dec911a3f40f55ba9067f40b09e03a31bbadde3fe54be7d873dc792017b17a95",
+              "openai-domain-verification=dv-xsmU3ZeWiAU4L5v23bd1l0tS",
+              "miro-verification=2a1b8fd92b346bd4b1d8e3d2e42517e031841d95",
+              "airtable-verification=09e6c77695de8069dee51e5408d768ad",
+              "google-site-verification=MnYkALPA4CNieThUZzzp4Hh88H5szHXokxqirdGFFN0",
+              "adobe-sign-verification=67f2a35c977e36cad988ec4e1f3abfe3c1bc34f10e5c0f0ff37dbc0fde25569e",
+              "openai-domain-verification=dv-pN3CfPVdeBAANroxeTFmd7WZ",
+              "google-site-verification=TnZul_ScOVTUzNZBRNXsOyCnW5vK8xw43kkF420Ht1w",
+              "openai-domain-verification=dv-IMsFRlt9z7lWnxvZwq5CT0PS",
+              "google-site-verification=Q86EnJZ_pwCfS8VpA1rlQPS3HXZzrcCWGD68zb74InY",
+              "cisco-ci-domain-verification=6e22d6f101dd96dc12fabfe843ff4e6748b9f7a89af1ff342476b923f01e4292",
+              "intacct-esk=4FED1A4780E0FB23E0539806A8C0D680",
+              "_y59yjxuzvzwtqes5yotts3o7drxpebh",
+              "fastly-domain-delegation-610920-202365",
+              "google-site-verification=IWlts5bv60RGLZCKTgxClTsuNLB9cT_09-pevXId2o8",
+              "openai-domain-verification=dv-0x0B91zX2Jyh5Z5UYxGYSJry",
+              "adobe-sign-verification=162a03947665f096b642e5f54ebfa413066e7b98d14381cda74d385637c5695e",
+              "google-site-verification=itYd9UI50Y6f_P_ioQ4hpkoKWFXJOQHqkrr1DWUwxwg",
+              "openai-domain-verification=dv-Cf9stelxxYuIRVx3Kd0z28ks",
+              "google-site-verification=Rg8rw6QFcht0wbcstENHTQ3h5l_ujrfBPxhuE7cfBFE",
+              "_globalsign-domain-verification=lnj0iZGjUp0BOSg71asjUWlkcoKSaMz2EMksT9_CUS",
+              "facebook-domain-verification=3rlk6hdq3nk34qcs4bsz8dua9a1hoa",
+              "atlassian-domain-verification=9uYxhBbyOGbk9B1aIn6fheLO/Cg08iHVd7RwDuaDQ8IVEhyfFeCc6gTAxw3kWShW",
+              "drift-domain-verification=502160a86dc2f7411dec54f019b785a7010eb9f38a6152011c1be40b89f68e9b",
+              "v=spf1 exists:%{i}._i.%{d}._d.espf.agari.com include:%{d}.55.spf-protect.agari.com include:_spf.intacct.com IP4:148.163.151.110 -all",
+              "adobe-sign-verification=9c3b7ea5e23da29a4a3d23d89c194c4914a70966bd944c13d54e2f37ecfe327d",
+              "g7ck5d9xyrzg0yjrznjksw4njp60rgqw",
+              "98a8944ee0d54f6798380941906d6241",
+              "_globalsign-domain-verification=4JjiCeoO4ZI71Wz54ZByVZYNBLNCDNPcLz4lv0Qlzf",
+              "google-site-verification=0qCZ1upUojha2X6XQplDtCuE9sdGSke4oVbOzBnwPnU",
+              "google-site-verification=zA4EW3kDxiYfsHq_yBFuRqahndRXC63MjptuXgmShiw",
+              "DXpQZzX4rXJPkCKMkVXs/GYPXzPHerZdxcw5iIMxFy9AjmN9DJ0bat/TqD5cRS/CpsN2Rk9y7NH1FfQkGS3vWg==",
+              "Fastly-Domain-Verify-as9dfas8d8fa7-sd707sdfasdf908",
+              "dd6i3kj0094qcnaaobqkhhvr",
+              "google-site-verification=LHlbZB7X6SCdg21EUgwZbdJTd1jgpCNCTzVEVoOv2nU",
+              "mandrill_verify.qFmG2YBGhKd446rthmMirQ",
+              "token value: 34150eb3cd1c4415972199b62fd720d0",
+              "google-site-verification=OCQ4NvNmnZ5O-G_OmpA4igVzqwDoRS2qDECNKajvSXQ",
+              "google-site-verification=eXDd-kvIdj03OtZ6z7vWwIHZ79QbuQTMIpnwTcwGHR0"
+            ],
+            "SOA": [
+              "exfer-vip-01.corp.adobe.com. hostmaster.adobe.com. 11101 1800 600 2419200 300"
+            ]
+          },
+          "subdomains": [],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 exists:%{i}._i.%{d}._d.espf.agari.com include:%{d}.55.spf-protect.agari.com include:_spf.intacct.com IP4:148.163.151.110 -all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=gDyvme6Q3LVye5JqFODK2wmzdteJCvQ8M8F4hhclEuE",
+                "google-site-verification=WlkKAHcmf9lr7GeIymdFUnFVnlZBe8EsaUc5t3UASuE",
+                "google-site-verification=B29h-nx4tgaIP-yB-xsD_JqsPObknGvdOxV0E-yhjhY",
+                "google-site-verification=V6qGlS2Yhp2Ua8FCIv2cYVgBEjXeQTl4UBNS07bKuSs",
+                "google-site-verification=VfGWzOLDyrmGv8t-bb5sGqNb8fyIhHvgC7cfRSBeKSw",
+                "google-site-verification=P_kb2Yyzww7fnZitZ6EbIYipWkjkin9et6IsSwDp7lg",
+                "google-site-verification=0RAkrqlyPGIM-rT1AOB-DNOw3eifD6i7G__e5BtnTz8",
+                "google-site-verification=6WBkBMyLUyWUihnTjeP53f3TcSi90ejKJk-gmL2eqgE",
+                "google-site-verification=v-817iF9e0_UdjWiz3gtCfMvYr8CVFt1Ej4QvMq640U",
+                "google-site-verification=FHduugscCIWrobl53QpXxe06TdV0FWOCWgV1i-NQIBc",
+                "google-site-verification=MnYkALPA4CNieThUZzzp4Hh88H5szHXokxqirdGFFN0",
+                "google-site-verification=TnZul_ScOVTUzNZBRNXsOyCnW5vK8xw43kkF420Ht1w",
+                "google-site-verification=Q86EnJZ_pwCfS8VpA1rlQPS3HXZzrcCWGD68zb74InY",
+                "google-site-verification=IWlts5bv60RGLZCKTgxClTsuNLB9cT_09-pevXId2o8",
+                "google-site-verification=itYd9UI50Y6f_P_ioQ4hpkoKWFXJOQHqkrr1DWUwxwg",
+                "google-site-verification=Rg8rw6QFcht0wbcstENHTQ3h5l_ujrfBPxhuE7cfBFE",
+                "facebook-domain-verification=3rlk6hdq3nk34qcs4bsz8dua9a1hoa",
+                "google-site-verification=0qCZ1upUojha2X6XQplDtCuE9sdGSke4oVbOzBnwPnU",
+                "google-site-verification=zA4EW3kDxiYfsHq_yBFuRqahndRXC63MjptuXgmShiw",
+                "google-site-verification=LHlbZB7X6SCdg21EUgwZbdJTd1jgpCNCTzVEVoOv2nU",
+                "google-site-verification=OCQ4NvNmnZ5O-G_OmpA4igVzqwDoRS2qDECNKajvSXQ",
+                "google-site-verification=eXDd-kvIdj03OtZ6z7vWwIHZ79QbuQTMIpnwTcwGHR0"
+              ],
+              "other": [
+                "_github-challenge-adobe=94b215a3c7",
+                "fastly-domain-delegation-mcmjcm11052020-05-11-2020",
+                "anthropic-domain-verification-xjxses=aaN5uq8fdNr0u4oUdkOTRwdJl",
+                "elevenlabs=7WqXlRwQh8-jH2984SP4TQCS0MWL3IoSp8kynyVKVg8",
+                "stripe-verification=6fc5c32209614c905d88a1cff92d08be1eff034a63a75ebdf8da94e4cfb4c51a",
+                "zapier-domain-verification-challenge=389e1047-a056-4e10-8f7b-e547e30d978d",
+                "mongodb-site-verification=9wz19h5hq4rETvHeWjbWVnTmNHgwaufJ",
+                "atlassian-domain-verification=MuhJPcv3bzIQ9BHg1GjhQfmq+1evcqT7fB9gGJn4aOmE2HExlRuwjr5EE7/nABXh",
+                "fastly-domain-delegation-rQNX3KD7DKL9hmeR-378696-2021-06-09",
+                "adobe-sign-verification=bb81bc75163acd737f022c8b8ac3958a5f3600ba3daaaa5fad01d44924f21fad",
+                "parallels-domain-verification=cbe7f671fa8c4726b984182169e51fed78687863a4e8476383b56e030a6c7037",
+                "neat-pulse-domain-verification-rXqzBGM=023e9dc4-e375-4205-8724-8d1a441e6d5b",
+                "ddj6i3kj0094qcnaaobqkhhvr",
+                "docker-verification=e639ae3e-ec26-47da-af6e-bf451aa076c0",
+                "drift-domain-verification=ce77053dc2d9b73c71437d5afda3b6d06fbc34a1b0e4527fe81c55e0d99ca4b4",
+                "postman-domain-verification=dec911a3f40f55ba9067f40b09e03a31bbadde3fe54be7d873dc792017b17a95",
+                "openai-domain-verification=dv-xsmU3ZeWiAU4L5v23bd1l0tS",
+                "miro-verification=2a1b8fd92b346bd4b1d8e3d2e42517e031841d95",
+                "airtable-verification=09e6c77695de8069dee51e5408d768ad",
+                "adobe-sign-verification=67f2a35c977e36cad988ec4e1f3abfe3c1bc34f10e5c0f0ff37dbc0fde25569e",
+                "openai-domain-verification=dv-pN3CfPVdeBAANroxeTFmd7WZ",
+                "openai-domain-verification=dv-IMsFRlt9z7lWnxvZwq5CT0PS",
+                "cisco-ci-domain-verification=6e22d6f101dd96dc12fabfe843ff4e6748b9f7a89af1ff342476b923f01e4292",
+                "intacct-esk=4FED1A4780E0FB23E0539806A8C0D680",
+                "_y59yjxuzvzwtqes5yotts3o7drxpebh",
+                "fastly-domain-delegation-610920-202365",
+                "openai-domain-verification=dv-0x0B91zX2Jyh5Z5UYxGYSJry",
+                "adobe-sign-verification=162a03947665f096b642e5f54ebfa413066e7b98d14381cda74d385637c5695e",
+                "openai-domain-verification=dv-Cf9stelxxYuIRVx3Kd0z28ks",
+                "_globalsign-domain-verification=lnj0iZGjUp0BOSg71asjUWlkcoKSaMz2EMksT9_CUS",
+                "atlassian-domain-verification=9uYxhBbyOGbk9B1aIn6fheLO/Cg08iHVd7RwDuaDQ8IVEhyfFeCc6gTAxw3kWShW",
+                "drift-domain-verification=502160a86dc2f7411dec54f019b785a7010eb9f38a6152011c1be40b89f68e9b",
+                "adobe-sign-verification=9c3b7ea5e23da29a4a3d23d89c194c4914a70966bd944c13d54e2f37ecfe327d",
+                "g7ck5d9xyrzg0yjrznjksw4njp60rgqw",
+                "98a8944ee0d54f6798380941906d6241",
+                "_globalsign-domain-verification=4JjiCeoO4ZI71Wz54ZByVZYNBLNCDNPcLz4lv0Qlzf",
+                "DXpQZzX4rXJPkCKMkVXs/GYPXzPHerZdxcw5iIMxFy9AjmN9DJ0bat/TqD5cRS/CpsN2Rk9y7NH1FfQkGS3vWg==",
+                "Fastly-Domain-Verify-as9dfas8d8fa7-sd707sdfasdf908",
+                "dd6i3kj0094qcnaaobqkhhvr",
+                "mandrill_verify.qFmG2YBGhKd446rthmMirQ",
+                "token value: 34150eb3cd1c4415972199b62fd720d0"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 3.070147752761841,
+            "total_records": 79,
+            "total_subdomains": 0,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "adobe.com",
+          "timestamp": 1759329164.479785,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "https://www.adobe.com": {
+              "url": "https://www.adobe.com",
+              "timestamp": 1759328792.3731318,
+              "response_analysis": {},
+              "header_analysis": {},
+              "technology_detection": {},
+              "security_analysis": {},
+              "performance_metrics": {},
+              "error": "HTTPSConnectionPool(host='www.adobe.com', port=443): Max retries exceeded with url: / (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.adobe.com', port=443): Read timed out. (read timeout=30)\"))"
+            },
+            "http://www.adobe.com": {
+              "url": "http://www.adobe.com",
+              "timestamp": 1759328884.9321208,
+              "response_analysis": {},
+              "header_analysis": {},
+              "technology_detection": {},
+              "security_analysis": {},
+              "performance_metrics": {},
+              "error": "HTTPSConnectionPool(host='www.adobe.com', port=443): Max retries exceeded with url: / (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.adobe.com', port=443): Read timed out. (read timeout=30)\"))"
+            },
+            "http://adobe.com": {
+              "url": "http://adobe.com",
+              "timestamp": 1759328977.2844481,
+              "response_analysis": {},
+              "header_analysis": {},
+              "technology_detection": {},
+              "security_analysis": {},
+              "performance_metrics": {},
+              "error": "HTTPSConnectionPool(host='www.adobe.com', port=443): Max retries exceeded with url: / (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.adobe.com', port=443): Read timed out. (read timeout=30)\"))"
+            },
+            "https://adobe.com": {
+              "url": "https://adobe.com",
+              "timestamp": 1759329071.9336596,
+              "response_analysis": {},
+              "header_analysis": {},
+              "technology_detection": {},
+              "security_analysis": {},
+              "performance_metrics": {},
+              "error": "HTTPSConnectionPool(host='www.adobe.com', port=443): Max retries exceeded with url: / (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.adobe.com', port=443): Read timed out. (read timeout=30)\"))"
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 0,
+            "unique_technologies": [],
+            "security_score_avg": 0.0,
+            "common_issues": []
+          },
+          "statistics": {
+            "total_duration": 372.2046537399292,
+            "success_rate": 0.0
+          },
+          "errors": {
+            "http_request": [
+              "HTTPSConnectionPool(host='www.adobe.com', port=443): Max retries exceeded with url: / (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.adobe.com', port=443): Read timed out. (read timeout=30)\"))",
+              "HTTPSConnectionPool(host='www.adobe.com', port=443): Max retries exceeded with url: / (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.adobe.com', port=443): Read timed out. (read timeout=30)\"))",
+              "HTTPSConnectionPool(host='www.adobe.com', port=443): Max retries exceeded with url: / (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.adobe.com', port=443): Read timed out. (read timeout=30)\"))",
+              "HTTPSConnectionPool(host='www.adobe.com', port=443): Max retries exceeded with url: / (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.adobe.com', port=443): Read timed out. (read timeout=30)\"))"
+            ]
+          }
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 0,
+          "records_found": 79,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 0
+        }
+      },
+      "all_subdomains": [
+        "www.adobe.com"
+      ],
+      "statistics": {
+        "total_subdomains": 1,
+        "unique_subdomains": 1,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 433.72,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 0,
+        "security_issues_found": 0,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "adobe.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 20:02 +0530\nNmap scan report for adobe.com (23.209.103.219)\nHost is up (0.11s latency).\nOther addresses for adobe.com (not scanned): 2600:1417:75::17cd:58b1 2600:1417:75::17cd:58ba 23.218.158.248\nrDNS record for 23.209.103.219: a23-209-103-219.deploy.static.akamaitechnologies.com\nNot shown: 998 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 9.48 seconds\n",
+        "scan_duration": 9.48
+      },
+      "service_results": {
+        "target": "adobe.com",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.0 400 Bad Request\r\nServer: AkamaiGHost\r\nMime-Version: 1.0\r\nContent-Type: text/html\r\nContent-Length: 310\r\nExpires: Wed, 01 Oct 2025 14:32:54 GMT\r\nDate: Wed, 01 Oct 2025 14:32:54 GMT\r\nConnection: close\r\n\r\n<HTML><HEAD>\n<TITLE>Invalid URL</TITLE>\n</HEAD><BODY>\n<H1>Invalid URL</H1>\nThe requested URL \"&#91;no&#32;URL&#93;\", is invalid.<p>\nReference&#32;&#35;9&#46;d767d117&#46;1759329174&#46;353a662\n<P>https&#58;&#47;&#47;errors&#46;edgesuite&#46;net&#47;9&#46;d767d117&#46;1759329174&#46;353a662</P>\n</BODY></HTML>",
+            "version": "1.0",
+            "ssl": false,
+            "protocol_info": {
+              "http": {
+                "status_code": 200,
+                "server": "Unknown",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "No banner ([WinError 10054] An existing connection was forcibly closed by the remote host)",
+            "version": null,
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384"
+              },
+              "http": {
+                "status_code": 200,
+                "server": "Unknown",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 9.48
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Akamai",
+        "detection_method": "headers",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "adobe.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/adobe_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 1,
+    "total_open_ports": 2,
+    "cdn_detected": true,
+    "technologies_detected": 0,
+    "apis_discovered": 0
+  },
+  "execution_time": 451.35244584083557
+}
