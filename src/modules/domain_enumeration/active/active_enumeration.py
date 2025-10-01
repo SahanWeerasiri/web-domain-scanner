@@ -8,13 +8,11 @@ parameter customization before execution.
 
 import logging
 import time
-import socket
 import dns.resolver
 import requests
 import sys
 import os
 import argparse
-from concurrent.futures import ThreadPoolExecutor
 from typing import Dict, List, Set, Optional, Any, Union
 
 # Add parent directories to path for imports
@@ -90,7 +88,7 @@ class EnhancedEnumerationConfig(EnumerationConfig):
         self.wordlist_custom_terms = []
         
         # General Enumeration Settings
-        self.enabled_methods = ['bruteforce', 'dns_permutations', 'zone_transfer', 'cache_snooping']
+        self.enabled_methods = ['bruteforce', 'dns_permutations']
         self.output_format = 'text'  # text, json, csv
         self.save_results = True
         self.results_filename = None
@@ -142,6 +140,17 @@ class ConfigurableActiveEnumerator:
         logger.info(f"ConfigurableActiveEnumerator initialized for {self.domain}")
         self._log_configuration()
     
+    def _extract_root_domain(self, domain: str) -> str:
+        """Extract root domain from subdomain"""
+        common_tlds = ['com', 'org', 'net', 'edu', 'gov', 'lk', 'uk', 'de', 'fr', 'jp', 'cn', 'in']
+        parts = domain.split('.')
+        if len(parts) <= 2:
+            return domain
+        if parts[-1] in common_tlds and len(parts) > 2:
+            return '.'.join(parts[-2:])
+        else:
+            return '.'.join(parts[-3:])
+    
     def _apply_config_overrides(self, kwargs: Dict[str, Any]):
         """Apply configuration overrides from keyword arguments"""
         for key, value in kwargs.items():
@@ -183,7 +192,7 @@ class ConfigurableActiveEnumerator:
         if not wordlist:
             wordlist = self._generate_enhanced_wordlist(page_content)
         
-        # Execute enabled methods
+        # Execute enabled methods (only useful ones by default)
         for method in self.config.enabled_methods:
             method_start = time.time()
             try:
@@ -192,9 +201,11 @@ class ConfigurableActiveEnumerator:
                 elif method == 'dns_permutations':
                     results['methods'][method] = self._execute_dns_permutations()
                 elif method == 'zone_transfer':
-                    results['methods'][method] = self._execute_zone_transfer()
+                    logger.info("Zone transfer method is disabled by default (rarely successful)")
+                    results['methods'][method] = []
                 elif method == 'cache_snooping':
-                    results['methods'][method] = self._execute_cache_snooping()
+                    logger.info("Cache snooping method is disabled by default (rarely successful)")
+                    results['methods'][method] = []
                 else:
                     logger.warning(f"Unknown method: {method}")
                     continue
@@ -218,95 +229,98 @@ class ConfigurableActiveEnumerator:
         return results
     
     def _execute_bruteforce(self, wordlist: List[str]) -> List[str]:
-        """Execute brute force with configured parameters"""
-        logger.info(f"Executing brute force with {len(wordlist)} words")
+        import subprocess, os
+        root_domain = self._extract_root_domain(self.domain)
         
+        # Use the common.txt wordlist file directly instead of the generated wordlist
+        common_wordlist_path = os.path.join(os.path.dirname(__file__), "common.txt")
+        if not os.path.exists(common_wordlist_path):
+            # Fallback to config wordlist
+            common_wordlist_path = os.path.join(os.path.dirname(__file__), "../../../config/wordlists/subdomains.txt")
+        
+        if not os.path.exists(common_wordlist_path):
+            logger.error(f"No wordlist file found at {common_wordlist_path}")
+            return []
+            
+        logger.info(f"Executing brute force on root domain: {root_domain} using wordlist: {common_wordlist_path}")
         results = []
-        successful = 0
-        failed = 0
         
-        with ThreadPoolExecutor(max_workers=self.config.thread_count) as executor:
-            futures = []
-            for word in wordlist:
-                if self.config.rate_limiting_enabled:
-                    self.rate_limiter.acquire()
-                
-                future = executor.submit(self._check_subdomain_enhanced, word)
-                futures.append((word, future))
+        try:
+            gobuster_cmd = [
+                "gobuster", "dns",
+                "--domain", root_domain,
+                "-w", common_wordlist_path
+            ]
+            logger.debug(f"Running Gobuster command: {' '.join(gobuster_cmd)}")
+            output = subprocess.check_output(gobuster_cmd, universal_newlines=True, stderr=subprocess.STDOUT)
+            for line in output.splitlines():
+                line = line.strip()
+                # Gobuster DNS output format: "subdomain.domain.com IP1,IP2,IP3"
+                if line and not line.startswith("[") and not line.startswith("=") and not line.startswith("Progress:") and not line.startswith("Starting") and not line.startswith("Finished") and "." in line:
+                    # Extract subdomain (first part before space)
+                    parts = line.split()
+                    if len(parts) >= 1 and root_domain in parts[0]:
+                        subdomain = parts[0]
+                        results.append(subdomain)
+        except Exception as e:
+            logger.error(f"Gobuster brute force failed: {e}")
             
-            for word, future in futures:
-                try:
-                    result = future.result(timeout=self.config.bruteforce_timeout)
-                    if result:
-                        results.append(result)
-                        successful += 1
-                        logger.debug(f"Found: {result}")
-                    else:
-                        failed += 1
-                except Exception as e:
-                    failed += 1
-                    logger.debug(f"Brute force error for {word}: {e}")
-        
-        logger.info(f"Brute force completed: {successful} found, {failed} failed")
+        logger.info(f"Gobuster brute force found {len(results)} subdomains")
         return results
-    
-    def _check_subdomain_enhanced(self, subdomain: str) -> str:
-        """Enhanced subdomain checking with retries and configurable DNS priority"""
-        full_domain = f"{subdomain}.{self.domain}"
-        
-        for attempt in range(self.config.bruteforce_retries + 1):
-            try:
-                # Use DoH first if configured
-                if self.config.bruteforce_doh_priority:
-                    doh_result = self._doh_query(full_domain)
-                    if doh_result:
-                        return full_domain
-                
-                # Traditional DNS lookup
-                result = socket.gethostbyname(full_domain)
-                return full_domain
-                
-            except socket.gaierror:
-                # Try fallback if traditional DNS failed and DoH not prioritized
-                if not self.config.bruteforce_doh_priority and self.config.doh_fallback:
-                    doh_result = self._doh_query(full_domain)
-                    if doh_result:
-                        return full_domain
-            
-            except Exception as e:
-                logger.debug(f"Attempt {attempt + 1} failed for {full_domain}: {e}")
-                
-            if attempt < self.config.bruteforce_retries:
-                time.sleep(0.1)  # Brief delay before retry
-        
-        return None
     
     def _execute_dns_permutations(self) -> List[str]:
-        """Execute DNS permutation attack with configured parameters"""
-        logger.info("Executing DNS permutation attack")
+        import subprocess, tempfile, os
+        root_domain = self._extract_root_domain(self.domain)
+        logger.info(f"Executing DNS permutation attack on root domain: {root_domain}")
         
-        # Generate permutations based on configuration
-        permutations = self._generate_configured_permutations()
-        logger.info(f"Generated {len(permutations)} permutation patterns")
+        # Use a simple, effective set of common subdomain variations
+        common_variations = [
+            "api", "app", "apps", "admin", "www", "mail", "email", "webmail",
+            "ftp", "sftp", "ssh", "vpn", "remote", "portal", "dashboard",
+            "dev", "test", "staging", "prod", "demo", "beta", "alpha",
+            "blog", "news", "help", "support", "docs", "wiki", "forum",
+            "shop", "store", "pay", "payment", "billing", "account",
+            "secure", "ssl", "login", "auth", "sso", "ldap", "ad",
+            "db", "database", "mysql", "sql", "mongo", "redis",
+            "cdn", "static", "assets", "img", "images", "media", "files",
+            "backup", "old", "legacy", "archive", "temp", "tmp",
+            "mobile", "m", "wap", "touch", "responsive"
+        ]
         
+        logger.info(f"Testing {len(common_variations)} common subdomain variations")
         results = []
-        with ThreadPoolExecutor(max_workers=self.config.thread_count) as executor:
-            futures = []
-            for pattern in permutations:
-                if self.config.rate_limiting_enabled:
-                    self.rate_limiter.acquire()
-                future = executor.submit(self._check_subdomain_enhanced, pattern)
-                futures.append(future)
-            
-            for future in futures:
-                try:
-                    result = future.result(timeout=self.config.timeout)
-                    if result:
-                        results.append(result)
-                except Exception as e:
-                    logger.debug(f"Permutation error: {e}")
         
-        return results
+        # Try Gobuster with common variations
+        try:
+            with tempfile.NamedTemporaryFile(mode='w+', delete=False, suffix='.txt') as tmp_wordlist:
+                for word in common_variations:
+                    tmp_wordlist.write(f"{word}\n")
+                tmp_wordlist.flush()
+                
+                gobuster_cmd = [
+                    "gobuster", "dns",
+                    "--domain", root_domain,
+                    "-w", tmp_wordlist.name
+                ]
+                logger.debug(f"Running Gobuster command: {' '.join(gobuster_cmd)}")
+                output = subprocess.check_output(gobuster_cmd, universal_newlines=True, stderr=subprocess.STDOUT)
+                for line in output.splitlines():
+                    line = line.strip()
+                    # Gobuster DNS output format: "subdomain.domain.com IP1,IP2,IP3"
+                    if line and not line.startswith("[") and not line.startswith("=") and not line.startswith("Progress:") and not line.startswith("Starting") and not line.startswith("Finished") and "." in line:
+                        # Extract subdomain (first part before space)
+                        parts = line.split()
+                        if len(parts) >= 1 and root_domain in parts[0]:
+                            subdomain = parts[0]
+                            results.append(subdomain)
+                try:
+                    os.unlink(tmp_wordlist.name)
+                except:
+                    pass
+                return list(set(results))
+        except Exception as e:
+            logger.error(f"Gobuster DNS permutation failed: {e}")
+            return []
     
     def _generate_configured_permutations(self) -> List[str]:
         """Generate permutations based on configuration"""
@@ -347,99 +361,34 @@ class ConfigurableActiveEnumerator:
         return list(permutations)
     
     def _execute_zone_transfer(self) -> List[str]:
-        """Execute zone transfer with configured parameters"""
-        logger.info("Executing DNS zone transfer")
-        
-        results = []
-        nameservers = self.config.zone_transfer_servers
-        
-        # If no custom nameservers provided, discover them
-        if not nameservers:
-            try:
-                ns_answers = dns.resolver.resolve(self.domain, 'NS')
-                nameservers = [str(ns) for ns in ns_answers]
-            except Exception as e:
-                logger.warning(f"Failed to discover nameservers: {e}")
-                return []
-        
-        for ns in nameservers:
-            for attempt in range(self.config.zone_transfer_retries):
-                try:
-                    zone = dns.zone.from_xfr(dns.query.xfr(ns, self.domain, 
-                                                          timeout=self.config.zone_transfer_timeout))
-                    subdomains = [f"{name}.{self.domain}" for name in zone.nodes.keys()]
-                    logger.info(f"Zone transfer successful from {ns}: {len(subdomains)} records")
-                    results.extend(subdomains)
-                    break  # Success, no need for retries
-                except Exception as e:
-                    logger.debug(f"Zone transfer attempt {attempt + 1} failed for {ns}: {e}")
-                    if attempt < self.config.zone_transfer_retries - 1:
-                        time.sleep(1)  # Wait before retry
-        
-        return list(set(results))  # Remove duplicates
+        """
+        DNS Zone Transfer enumeration.
+        Note: Zone transfers are rarely allowed on modern DNS servers for security reasons.
+        Most public DNS servers block AXFR requests, making this method largely ineffective.
+        Gobuster also doesn't natively support zone transfer operations.
+        """
+        logger.info("Zone transfer method is disabled (rarely successful on modern DNS servers)")
+        return []
     
     def _execute_cache_snooping(self) -> List[str]:
-        """Execute DNS cache snooping with configured parameters"""
-        logger.info("Executing DNS cache snooping")
-        
-        results = []
-        
-        # Use configured DNS servers and subdomains
-        dns_servers = self.config.cache_snoop_dns_servers
-        subdomains = self.config.cache_snoop_subdomains
-        
-        logger.info(f"Checking {len(subdomains)} subdomains on {len(dns_servers)} DNS servers")
-        
-        with ThreadPoolExecutor(max_workers=self.config.cache_snoop_concurrent_servers) as executor:
-            futures = []
-            for dns_server in dns_servers:
-                future = executor.submit(self._snoop_dns_server, dns_server, subdomains)
-                futures.append(future)
-            
-            for future in futures:
-                try:
-                    server_results = future.result(timeout=len(subdomains) * self.config.cache_snoop_timeout + 5)
-                    results.extend(server_results)
-                except Exception as e:
-                    logger.debug(f"DNS cache snooping error: {e}")
-        
-        return list(set(results))
-    
-    def _snoop_dns_server(self, dns_server: str, subdomains: List[str]) -> List[str]:
-        """Snoop a specific DNS server"""
-        results = []
-        try:
-            resolver = dns.resolver.Resolver()
-            resolver.nameservers = [dns_server]
-            resolver.timeout = self.config.cache_snoop_timeout
-            resolver.lifetime = self.config.cache_snoop_timeout * 2
-            
-            for subdomain in subdomains:
-                full_domain = f"{subdomain}.{self.domain}"
-                try:
-                    answer = resolver.resolve(full_domain, 'A')
-                    if answer:
-                        results.append(full_domain)
-                        logger.debug(f"Found cached: {full_domain} on {dns_server}")
-                except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer):
-                    continue
-                except Exception as e:
-                    logger.debug(f"Error checking {subdomain} on {dns_server}: {e}")
-                    
-        except Exception as e:
-            logger.warning(f"Failed to setup resolver for {dns_server}: {e}")
-        
-        return results
+        """
+        DNS Cache Snooping enumeration.
+        Note: Cache snooping is an advanced technique that's often blocked by modern DNS servers
+        and doesn't provide significant value compared to direct subdomain enumeration.
+        Most DNS servers have been hardened against cache snooping attacks.
+        """
+        logger.info("Cache snooping method is disabled (rarely successful on modern DNS servers)")
+        return []
     
     def _fetch_page_content(self) -> Dict:
         """Fetch page content from the target domain for AI analysis"""
         import base64
         
         urls_to_try = [
-            f"https://{self.domain}",
-            f"http://{self.domain}",
+            # f"https://{self.domain}",
+            # f"http://{self.domain}",
             f"https://www.{self.domain}",
-            f"http://www.{self.domain}"
+            # f"http://www.{self.domain}"
         ]
         
         for url in urls_to_try:
@@ -702,7 +651,9 @@ def execute_active_enumeration(domain,
                                 dns_servers=None,
                                 methods=None, 
                                 wordlist_file=None, 
-                                enable_ai=True):
+                                enable_ai=True,
+                                max_threads=None,
+                                disable_ai=None):
     """Enhanced enumeration function with direct parameter configuration
     
     Args:
@@ -716,12 +667,22 @@ def execute_active_enumeration(domain,
         methods (list): Enumeration methods to enable (default: all methods)
         wordlist_file (str): Custom wordlist file path (default: None)
         enable_ai (bool): Enable AI wordlist generation (default: True)
+        max_threads (int): Alias for threads parameter (default: None)
+        disable_ai (bool): Disable AI wordlist generation (default: None)
     
     Returns:
         dict: Enumeration results with statistics and found subdomains
     """
     if not domain:
         raise ValueError("Domain parameter is required")
+    
+    # Handle max_threads alias for threads parameter
+    if max_threads is not None:
+        threads = max_threads
+    
+    # Handle disable_ai parameter (takes precedence over enable_ai)
+    if disable_ai is not None:
+        enable_ai = not disable_ai
     
     # Set default methods if not provided
     if methods is None:
