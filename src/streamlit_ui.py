@@ -316,7 +316,7 @@ def render_scan_form():
                 st.session_state.selected_job_id = job_id
                 
                 st.success(f"✅ Scan submitted successfully!\nJob ID: `{job_id}`")
-                st.balloons()
+                # st.balloons()
                 
                 # Auto-refresh for new jobs
                 st.session_state.auto_refresh = True
