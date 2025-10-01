@@ -161,7 +161,7 @@ def execute_unified_scan(config: UnifiedScannerConfig) -> Dict[str, Any]:
             
             # Fingerprinting configuration
             domain_config.fingerprinting_config['timeout'] = config.fingerprint_timeout
-            domain_config.fingerprinting_config['concurrent_requests'] = config.fingerprint_concurrent
+            domain_config.fingerprinting_config['concurrent'] = config.fingerprint_concurrent
             domain_config.fingerprinting_config['include_http'] = config.include_http
             domain_config.fingerprinting_config['include_www'] = config.include_www
             
