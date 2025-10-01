@@ -158,7 +158,7 @@ def validate_scan_parameters(data: Dict[str, Any]) -> tuple[bool, str]:
 
 
 def execute_scan_job(job: ScanJob):
-    """Execute scan job in background thread"""
+    """Execute scan job in background thread with parallel module execution"""
     
     with job_lock:
         job.status = JobStatus.RUNNING
@@ -204,9 +204,9 @@ def execute_scan_job(job: ScanJob):
                 'percentage': 0
             }
         
-        logger.info(f"Job {job.job_id}: Starting unified scan with {total_modules} modules")
+        logger.info(f"Job {job.job_id}: Starting parallel scan with {total_modules} modules")
         
-        # Execute each module individually to track progress properly
+        # Initialize results structure
         results = {
             'target_domain': scan_params['target_domain'],
             'scan_timestamp': datetime.now().isoformat(),
@@ -215,26 +215,39 @@ def execute_scan_job(job: ScanJob):
             'summary': {},
             'execution_time': 0
         }
-        completed_modules = 0
         
-        # Helper function to update progress
-        def update_progress(module_name: str, completed_count: int, status: str = "running"):
+        # Thread-safe storage for module results
+        module_results = {}
+        module_errors = {}
+        completed_count = {'value': 0}  # Use dict for mutable reference
+        module_lock = threading.Lock()
+        
+        # Helper function to update progress (thread-safe)
+        def update_progress_safe(module_name: str, status: str = "running"):
             with job_lock:
-                job.current_module = module_name
-                job.progress = {
-                    'current_module': module_name,
-                    'completed_modules': completed_count,
-                    'total_modules': total_modules,
-                    'percentage': int((completed_count / total_modules) * 100)
-                }
                 if status == "starting":
                     job.verbose_logs.append(f"[{datetime.now().strftime('%H:%M:%S')}] Starting {module_name}...")
                 elif status == "completed":
                     job.verbose_logs.append(f"[{datetime.now().strftime('%H:%M:%S')}] Completed {module_name}")
+                elif status == "failed":
+                    job.verbose_logs.append(f"[{datetime.now().strftime('%H:%M:%S')}] Failed {module_name}")
+                
+                # Update current running modules
+                with module_lock:
+                    running_modules = [m for m in enabled_modules if m in module_results and module_results[m] is None]
+                    job.current_module = ", ".join(running_modules) if running_modules else "finalizing"
+                    
+                    job.progress = {
+                        'current_module': job.current_module,
+                        'completed_modules': completed_count['value'],
+                        'total_modules': total_modules,
+                        'percentage': int((completed_count['value'] / total_modules) * 100)
+                    }
         
-        # Execute each enabled module individually
-        for module_name in enabled_modules:
-            update_progress(module_name, completed_modules, "starting")
+        # Module execution function
+        def execute_module(module_name: str):
+            """Execute a single module in its own thread"""
+            update_progress_safe(module_name, "starting")
             
             try:
                 if module_name == 'domain_enumeration':
@@ -257,7 +270,6 @@ def execute_scan_job(job: ScanJob):
                     domain_config.active_config['disable_ai'] = scan_params['no_ai']
                     
                     module_result = execute_domain_enumeration(domain_config)
-                    results['modules']['domain_enumeration'] = module_result
                     
                 elif module_name == 'service_discovery':
                     # Import and execute service discovery
@@ -270,7 +282,6 @@ def execute_scan_job(job: ScanJob):
                         output_format=scan_params['service_output_format'],
                         verbose=scan_params['verbose']
                     )
-                    results['modules']['service_discovery'] = module_result
                     
                 elif module_name == 'web_analysis':
                     # Import and execute web analysis
@@ -285,23 +296,48 @@ def execute_scan_job(job: ScanJob):
                         verbose=scan_params['verbose'],
                         setup_logging=scan_params['setup_logging']
                     )
-                    results['modules']['web_analysis'] = module_result
                 
-                completed_modules += 1
-                update_progress(module_name, completed_modules, "completed")
-                logger.info(f"Job {job.job_id}: Completed {module_name} ({completed_modules}/{total_modules})")
+                # Store successful result
+                with module_lock:
+                    module_results[module_name] = module_result
+                    completed_count['value'] += 1
+                
+                update_progress_safe(module_name, "completed")
+                logger.info(f"Job {job.job_id}: Completed {module_name} ({completed_count['value']}/{total_modules})")
                 
             except Exception as module_error:
                 logger.error(f"Job {job.job_id}: Module {module_name} failed: {str(module_error)}")
-                with job_lock:
-                    job.verbose_logs.append(f"[{datetime.now().strftime('%H:%M:%S')}] ERROR in {module_name}: {str(module_error)}")
                 
-                # Store error result for the module
-                results['modules'][module_name] = {
-                    'success': False,
-                    'error': str(module_error)
-                }
-                completed_modules += 1  # Still count as processed
+                # Store error result
+                with module_lock:
+                    module_errors[module_name] = str(module_error)
+                    module_results[module_name] = {
+                        'success': False,
+                        'error': str(module_error)
+                    }
+                    completed_count['value'] += 1
+                
+                update_progress_safe(module_name, "failed")
+        
+        # Start all modules in parallel threads
+        module_threads = []
+        for module_name in enabled_modules:
+            thread = threading.Thread(target=execute_module, args=(module_name,))
+            thread.daemon = True
+            thread.start()
+            module_threads.append((module_name, thread))
+            
+            # Initialize result placeholder
+            with module_lock:
+                module_results[module_name] = None
+        
+        # Wait for all modules to complete
+        for module_name, thread in module_threads:
+            thread.join()  # Wait for this module to finish
+            logger.info(f"Job {job.job_id}: Thread for {module_name} completed")
+        
+        # Compile final results
+        results['modules'] = {k: v for k, v in module_results.items() if v is not None}
         
         # Compile summary (similar to unified scanner)
         from modules.main import compile_unified_summary
@@ -322,7 +358,7 @@ def execute_scan_job(job: ScanJob):
             }
             job.verbose_logs.append(f"[{job.completed_at.strftime('%H:%M:%S')}] Scan completed successfully")
         
-        logger.info(f"Job {job.job_id}: Completed successfully")
+        logger.info(f"Job {job.job_id}: Completed successfully in {results['execution_time']:.2f} seconds")
         
     except Exception as e:
         error_msg = f"Scan failed: {str(e)}"
