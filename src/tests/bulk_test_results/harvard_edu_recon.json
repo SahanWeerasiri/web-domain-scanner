@@ -1,0 +1,22 @@
+{
+  "cdn_detection": {
+    "cdn_detected": true,
+    "cdn_name": "Google CDN",
+    "detection_method": "content",
+    "bypass_attempted": false,
+    "bypass_successful": false,
+    "content": null
+  },
+  "blocking_check": {
+    "is_blocked": false,
+    "blocked_phrases": [],
+    "status_code": 200
+  },
+  "execution_info": {
+    "domain": "harvard.edu",
+    "bypass_cdn": false,
+    "deep_crawl": false,
+    "output_dir": "bulk_test_results",
+    "save_to_file": true
+  }
+}

@@ -1,0 +1,845 @@
+{
+  "target_domain": "wired.com",
+  "scan_timestamp": "2025-10-01T20:26:06.259771",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "wired.com",
+      "timestamp": "2025-10-01T20:26:06.260916",
+      "modules": {
+        "passive": {
+          "domain": "wired.com",
+          "timestamp": 1759330606.6104598,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 40.340635776519775,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "wired.com",
+          "timestamp": 1759330608.083701,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "151.101.2.194",
+              "151.101.130.194",
+              "151.101.66.194",
+              "151.101.194.194"
+            ],
+            "MX": [
+              "alt3.aspmx.l.google.com",
+              "aspmx.l.google.com",
+              "alt4.aspmx.l.google.com",
+              "alt1.aspmx.l.google.com",
+              "alt2.aspmx.l.google.com"
+            ],
+            "NS": [
+              "ns-28.awsdns-03.com",
+              "ns-836.awsdns-40.net",
+              "ns-1935.awsdns-49.co.uk",
+              "ns-1116.awsdns-11.org"
+            ],
+            "TXT": [
+              "_globalsign-domain-verification=GXpUUS49HB9rYWZEmxJFtZdS61weLMlf91w9Dn-5O0",
+              "atlassian-domain-verification=mYtQWl3namqmk5ikMKT48XVnS+XdjdbkLlkWMcNyvsddK2JDAib+9a8MJCXTDMyJ",
+              "globalsign-domain-verification=Wq9iztGUzQcBBi1OLrEOlXtefwOzX7yfvhbsw-CVdo",
+              "google-site-verification=Njx9q6Atd2al1mD6wtXu2u83s0Sz6WZQa_r0jmg261k",
+              "907D-6CE2-7BD0-FF0C-7E83-E21D-AD2B-DD27",
+              "fastly-domain-delegation-duxxxum9cshse9phbfst-554686-2022-12-12",
+              "google-site-verification=h3oXJvoyRaANoWJ-cjd8H3Zv49YViS96em2ZhNfeGPo",
+              "loaderio=b8d2a4d94bf4574bd8c95427c0fcbee6",
+              "fastly-domain-delegation-grdt7uboiyaqqtgjenzi-789661-2024-07-19",
+              "MS=ms32964175",
+              "v=spf1 include:_u.wired.com._spf.smart.ondmarc.com ~all",
+              "_globalsign-domain-verification=ln6G6qMbrMeJLZSOGjjxis2fcs9NHicunfT-JK_mCZ",
+              "adobe-idp-site-verification=c2108b9dbc0fc05ff0794006df1c41b6c945bd2c8a904bef754ec850a7c6873f",
+              "google-site-verification=8dMUQRGxbDNDoEIZXU-E4-GmKLNvgkFwwAmqY0qUroU",
+              "_globalsign-domain-verification=5gwbTrtjX4CPebqVSR8L6SpOvnf_3_6K7X0z_Izh9q",
+              "google-site-verification=tA0Sx_MrXe58GUfjaTg-EgrfF7wv1WdDVKKq7dyNuwc",
+              "openai-domain-verification=dv-LCvTXCMns2J5grLiXF1uTD2T",
+              "facebook-domain-verification=75aqj8blnqc3dj5cy9b5d9mialys78",
+              "yahoo-verification-key=HFoI8YeAFA0EIy9UkTckoOvVblp1gSUBZM9B8KKeYNs=",
+              "MS=ms43391860",
+              "zapier-domain-verification-challenge=97705597-a31c-4c6d-aa76-7e01d2b3fe13",
+              "docusign=093f2a18-6882-43f7-a9ae-b2594de9d47f",
+              "3c5bnsm2366rtqny77w8cq9wvy49r0w9",
+              "google-site-verification=39CB9sd7tH1nrsJcVjjUzO9sVoKZ-2MBshlRhqFX13k",
+              "ZOOM_verify_PeuZagN7TzybBaD-uxsGAw"
+            ],
+            "SOA": [
+              "ns-1935.awsdns-49.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"
+            ]
+          },
+          "subdomains": [],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 include:_u.wired.com._spf.smart.ondmarc.com ~all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=Njx9q6Atd2al1mD6wtXu2u83s0Sz6WZQa_r0jmg261k",
+                "google-site-verification=h3oXJvoyRaANoWJ-cjd8H3Zv49YViS96em2ZhNfeGPo",
+                "google-site-verification=8dMUQRGxbDNDoEIZXU-E4-GmKLNvgkFwwAmqY0qUroU",
+                "google-site-verification=tA0Sx_MrXe58GUfjaTg-EgrfF7wv1WdDVKKq7dyNuwc",
+                "facebook-domain-verification=75aqj8blnqc3dj5cy9b5d9mialys78",
+                "google-site-verification=39CB9sd7tH1nrsJcVjjUzO9sVoKZ-2MBshlRhqFX13k"
+              ],
+              "other": [
+                "_globalsign-domain-verification=GXpUUS49HB9rYWZEmxJFtZdS61weLMlf91w9Dn-5O0",
+                "atlassian-domain-verification=mYtQWl3namqmk5ikMKT48XVnS+XdjdbkLlkWMcNyvsddK2JDAib+9a8MJCXTDMyJ",
+                "globalsign-domain-verification=Wq9iztGUzQcBBi1OLrEOlXtefwOzX7yfvhbsw-CVdo",
+                "907D-6CE2-7BD0-FF0C-7E83-E21D-AD2B-DD27",
+                "fastly-domain-delegation-duxxxum9cshse9phbfst-554686-2022-12-12",
+                "loaderio=b8d2a4d94bf4574bd8c95427c0fcbee6",
+                "fastly-domain-delegation-grdt7uboiyaqqtgjenzi-789661-2024-07-19",
+                "MS=ms32964175",
+                "_globalsign-domain-verification=ln6G6qMbrMeJLZSOGjjxis2fcs9NHicunfT-JK_mCZ",
+                "adobe-idp-site-verification=c2108b9dbc0fc05ff0794006df1c41b6c945bd2c8a904bef754ec850a7c6873f",
+                "_globalsign-domain-verification=5gwbTrtjX4CPebqVSR8L6SpOvnf_3_6K7X0z_Izh9q",
+                "openai-domain-verification=dv-LCvTXCMns2J5grLiXF1uTD2T",
+                "yahoo-verification-key=HFoI8YeAFA0EIy9UkTckoOvVblp1gSUBZM9B8KKeYNs=",
+                "MS=ms43391860",
+                "zapier-domain-verification-challenge=97705597-a31c-4c6d-aa76-7e01d2b3fe13",
+                "docusign=093f2a18-6882-43f7-a9ae-b2594de9d47f",
+                "3c5bnsm2366rtqny77w8cq9wvy49r0w9",
+                "ZOOM_verify_PeuZagN7TzybBaD-uxsGAw"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 0.6825060844421387,
+            "total_records": 39,
+            "total_subdomains": 0,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "wired.com",
+          "timestamp": 1759330623.5510626,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://www.wired.com": {
+              "url": "http://www.wired.com",
+              "timestamp": 1759330608.1444833,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 1455646,
+                "url": "https://www.wired.com/",
+                "redirect_chain": [
+                  "http://www.wired.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.wired.com/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en-US\"><head><title>WIRED - The Latest in Technology, Science, Culture and Business | WIRED</title><meta charSet=\"utf-8\"/><meta content=\"IE=edge\" http-equiv=\"X-UA-Compatible...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "WIRED - The Latest in Technology, Science, Culture and Business | WIRED",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "We bring you the future as it happens. From the latest in science and technology to the big stories ",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "CloudFront",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "CN_geo_country_code=LK; Expires=Mon, 30 Mar 2026 14:56:48 GMT; path=/; Domain=.wired.com;  Secure; SameSite=None;, CN_segments=co.w2540; Expires=Mon, 30 Mar 2026 14:56:48 GMT; Domain=.wired.com; path=/;, CN_xid=7b88ada0-f09a-4099-bb83-0f40da5e9812; Expires=Mon, 30 Mar 2026 14:56:48 GMT; Domain=.wired.com; path=/; Secure; SameSite=None;, CN_xid_refresh=7b88ada0-f09a-4099-bb83-0f40da5e9812; Expires=Thu, 01 Oct 2026 14:56:48 GMT; Domain=.wired.com; path=/; Secure; httponly; SameSite=None;, xid1=1; Expires=Wed, 01 Oct 2025 14:57:03 GMT; Domain=.wired.com; path=/;",
+                "cache_control": "stale-while-revalidate=60, stale-if-error=86400, s-maxage=900",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "CloudFront",
+                  "components": [
+                    "CloudFront"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Google Tag Manager",
+                  "Google Plus",
+                  "Google Sign-in",
+                  "Amazon Cloudfront"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": [
+                  "Google Services",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 14.285714285714285,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking",
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 3.730074644088745,
+                "content_length": 1455646,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.wired.com": {
+              "url": "https://www.wired.com",
+              "timestamp": 1759330611.8750975,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 1455646,
+                "url": "https://www.wired.com/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://www.wired.com/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en-US\"><head><title>WIRED - The Latest in Technology, Science, Culture and Business | WIRED</title><meta charSet=\"utf-8\"/><meta content=\"IE=edge\" http-equiv=\"X-UA-Compatible...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "WIRED - The Latest in Technology, Science, Culture and Business | WIRED",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "We bring you the future as it happens. From the latest in science and technology to the big stories ",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "CloudFront",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "CN_geo_country_code=LK; Expires=Mon, 30 Mar 2026 14:56:51 GMT; path=/; Domain=.wired.com;  Secure; SameSite=None;, CN_xid=7b88ada0-f09a-4099-bb83-0f40da5e9812; Expires=Mon, 30 Mar 2026 14:56:51 GMT; Domain=.wired.com; path=/; Secure; SameSite=None;, CN_xid_refresh=7b88ada0-f09a-4099-bb83-0f40da5e9812; Expires=Thu, 01 Oct 2026 14:56:51 GMT; Domain=.wired.com; path=/; Secure; httponly; SameSite=None;",
+                "cache_control": "stale-while-revalidate=60, stale-if-error=86400, s-maxage=900",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "CloudFront",
+                  "components": [
+                    "CloudFront"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Google Tag Manager",
+                  "Google Plus",
+                  "Google Sign-in",
+                  "Amazon Cloudfront"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": [
+                  "Google Services",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 14.285714285714285,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking",
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 3.4362614154815674,
+                "content_length": 1455646,
+                "status_code": 200,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://wired.com": {
+              "url": "https://wired.com",
+              "timestamp": 1759330615.3119638,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 1455646,
+                "url": "https://www.wired.com/",
+                "redirect_chain": [
+                  "https://wired.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.wired.com/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en-US\"><head><title>WIRED - The Latest in Technology, Science, Culture and Business | WIRED</title><meta charSet=\"utf-8\"/><meta content=\"IE=edge\" http-equiv=\"X-UA-Compatible...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "WIRED - The Latest in Technology, Science, Culture and Business | WIRED",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "We bring you the future as it happens. From the latest in science and technology to the big stories ",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "CloudFront",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "CN_geo_country_code=LK; Expires=Mon, 30 Mar 2026 14:56:55 GMT; path=/; Domain=.wired.com;  Secure; SameSite=None;, CN_xid=7b88ada0-f09a-4099-bb83-0f40da5e9812; Expires=Mon, 30 Mar 2026 14:56:55 GMT; Domain=.wired.com; path=/; Secure; SameSite=None;, CN_xid_refresh=7b88ada0-f09a-4099-bb83-0f40da5e9812; Expires=Thu, 01 Oct 2026 14:56:55 GMT; Domain=.wired.com; path=/; Secure; httponly; SameSite=None;",
+                "cache_control": "stale-while-revalidate=60, stale-if-error=86400, s-maxage=900",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "CloudFront",
+                  "components": [
+                    "CloudFront"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Google Tag Manager",
+                  "Google Plus",
+                  "Google Sign-in",
+                  "Amazon Cloudfront"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": [
+                  "Google Services",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 14.285714285714285,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking",
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 4.092651128768921,
+                "content_length": 1455646,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://wired.com": {
+              "url": "http://wired.com",
+              "timestamp": 1759330619.4054217,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 1455646,
+                "url": "https://www.wired.com/",
+                "redirect_chain": [
+                  "http://wired.com/",
+                  "https://wired.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.wired.com/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en-US\"><head><title>WIRED - The Latest in Technology, Science, Culture and Business | WIRED</title><meta charSet=\"utf-8\"/><meta content=\"IE=edge\" http-equiv=\"X-UA-Compatible...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "WIRED - The Latest in Technology, Science, Culture and Business | WIRED",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "We bring you the future as it happens. From the latest in science and technology to the big stories ",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "CloudFront",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "CN_geo_country_code=LK; Expires=Mon, 30 Mar 2026 14:56:59 GMT; path=/; Domain=.wired.com;  Secure; SameSite=None;, CN_xid=c7c6524e-0d3f-4d96-912e-d5c9b17f353e; Expires=Mon, 30 Mar 2026 14:56:59 GMT; Domain=.wired.com; path=/; Secure; SameSite=None;, CN_xid_refresh=c7c6524e-0d3f-4d96-912e-d5c9b17f353e; Expires=Thu, 01 Oct 2026 14:56:59 GMT; Domain=.wired.com; path=/; Secure; httponly; SameSite=None;",
+                "cache_control": "stale-while-revalidate=60, stale-if-error=86400, s-maxage=900",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "CloudFront",
+                  "components": [
+                    "CloudFront"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Google Tag Manager",
+                  "Google Plus",
+                  "Google Sign-in",
+                  "Amazon Cloudfront"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": [
+                  "Google Services",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 14.285714285714285,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking",
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 4.141380548477173,
+                "content_length": 1455646,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Amazon Web Services",
+              "Google Tag Manager",
+              "Google Plus",
+              "Google Sign-in",
+              "Amazon Cloudfront",
+              "Google Services",
+              "CDN"
+            ],
+            "security_score_avg": 14.285714285714285,
+            "common_issues": [
+              "X-Frame-Options",
+              "Content-Security-Policy",
+              "Strict-Transport-Security",
+              "X-XSS-Protection",
+              "Referrer-Policy",
+              "Permissions-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 15.459310054779053,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 0,
+          "records_found": 39,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 7
+        }
+      },
+      "all_subdomains": [
+        "www.wired.com"
+      ],
+      "statistics": {
+        "total_subdomains": 1,
+        "unique_subdomains": 1,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 57.29,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 7,
+        "security_issues_found": 6,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "wired.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 20:27 +0530\nNmap scan report for wired.com (151.101.2.194)\nHost is up (0.047s latency).\nOther addresses for wired.com (not scanned): 151.101.194.194 151.101.130.194 151.101.66.194\nNot shown: 998 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 6.87 seconds\n",
+        "scan_duration": 6.87
+      },
+      "service_results": {
+        "target": "wired.com",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 500 Domain Not Found\r\nConnection: close\r\nContent-Length: 244\r\nServer: Varnish\r\nRetry-After: 0\r\ncontent-type: text/html\r\nCache-Control: private, no-cache\r\nX-Served-By: cache-sin-wsss1830029-SIN\r\nAccept-Ranges: bytes\r\nDate: Wed, 01 Oct 2025 14:57:10 GMT\r\nVia: 1.1 varnish\r\n\r\n\n<html>\n<head>\n<title>Fastly error: unknown domain </title>\n</head>\n<body>\n<p>Fastly error: unknown domain: . Please check that this domain has been added to a service.</p>\n<p>Details: cache-sin-wsss1830029-SIN (151.101.2.194)</p></body></html>",
+            "version": "151.101.2",
+            "ssl": false,
+            "protocol_info": {
+              "http": {
+                "status_code": 200,
+                "server": "CloudFront",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": null,
+            "version": null,
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES128-GCM-SHA256"
+              },
+              "http": {
+                "status_code": 200,
+                "server": "CloudFront",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 6.87
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Amazon CloudFront",
+        "detection_method": "headers",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "wired.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/wired_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 1,
+    "total_open_ports": 2,
+    "cdn_detected": true,
+    "technologies_detected": 7,
+    "apis_discovered": 0
+  },
+  "execution_time": 66.6058657169342
+}

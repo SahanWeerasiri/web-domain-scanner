@@ -1,0 +1,788 @@
+{
+  "target_domain": "researchgate.net",
+  "scan_timestamp": "2025-10-01T21:20:59.236059",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "researchgate.net",
+      "timestamp": "2025-10-01T21:20:59.237046",
+      "modules": {
+        "passive": {
+          "domain": "researchgate.net",
+          "timestamp": 1759333894.4348662,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 35.18849849700928,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "researchgate.net",
+          "timestamp": 1759333895.5258305,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "172.64.146.247",
+              "104.18.41.9"
+            ],
+            "AAAA": [
+              "2606:4700:4403::6812:2909",
+              "2606:4700:4401::ac40:92f7"
+            ],
+            "MX": [
+              "alt3.aspmx.l.google.com",
+              "aspmx.l.google.com",
+              "alt4.aspmx.l.google.com",
+              "alt1.aspmx.l.google.com",
+              "alt2.aspmx.l.google.com"
+            ],
+            "NS": [
+              "val.ns.cloudflare.com",
+              "marty.ns.cloudflare.com"
+            ],
+            "TXT": [
+              "apple-domain-verification=1zVGDn699lBJWe3h",
+              "google-site-verification=adDX9Qsrt8PjtLYlL3wfJJVp_QvS36jMwtcjEPd4J9Q",
+              "atlassian-domain-verification=Nad6ba1ysA1mdnvoY0zYwoRwv6nBwSBawy/Xaexh3Vf9DcC0a74yExKioYvCdaM7",
+              "v=spf1 ip4:209.15.209.64/27 ip4:209.15.214.192/28 ip4:209.15.243.112/28 ip4:209.15.247.224/28 ip4:209.15.249.176/28 ip4:209.15.249.224/29 ip4:209.15.250.112/28 ip4:37.44.2.16/28 include:_spf.google.com include:servers.mcsv.net include:mail.zendesk.com inc\" \"lude:_spf.salesforce.com ~all",
+              "google-site-verification=o6Zn1HIYOJ47s1qpx6D1NYJiRORsOBrWWIKgCHozu0g"
+            ],
+            "SOA": [
+              "marty.ns.cloudflare.com. dns.cloudflare.com. 2382292004 10000 2400 604800 1800"
+            ]
+          },
+          "subdomains": [],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 ip4:209.15.209.64/27 ip4:209.15.214.192/28 ip4:209.15.243.112/28 ip4:209.15.247.224/28 ip4:209.15.249.176/28 ip4:209.15.249.224/29 ip4:209.15.250.112/28 ip4:37.44.2.16/28 include:_spf.google.com include:servers.mcsv.net include:mail.zendesk.com inc\" \"lude:_spf.salesforce.com ~all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=adDX9Qsrt8PjtLYlL3wfJJVp_QvS36jMwtcjEPd4J9Q",
+                "google-site-verification=o6Zn1HIYOJ47s1qpx6D1NYJiRORsOBrWWIKgCHozu0g"
+              ],
+              "other": [
+                "apple-domain-verification=1zVGDn699lBJWe3h",
+                "atlassian-domain-verification=Nad6ba1ysA1mdnvoY0zYwoRwv6nBwSBawy/Xaexh3Vf9DcC0a74yExKioYvCdaM7"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 0.2445666790008545,
+            "total_records": 17,
+            "total_subdomains": 0,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "researchgate.net",
+          "timestamp": 1759333897.1548786,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://www.researchgate.net": {
+              "url": "http://www.researchgate.net",
+              "timestamp": 1759333895.5464258,
+              "response_analysis": {
+                "status_code": 403,
+                "reason": "Forbidden",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 21315,
+                "url": "https://www.researchgate.net/",
+                "redirect_chain": [
+                  "http://www.researchgate.net/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.researchgate.net/",
+                "content_preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "ResearchGate - Temporarily Unavailable",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=31536000; includeSubDomains; preload",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "__cf_bm=g4KtlV8oRkuHRVo2L2yhBXikzdBKZCifaAJhiipkqkE-1759333895-1.0.1.1-M00A1BrIUW75XktvRlp__N25P3d9QkhZA6aVmX240lb0aEh5XDRHvmht2gLj9Txi5j9KkDX61nc517cVijBokuL8KLiuDbvHhf4hfaGWeDc; path=/; expires=Wed, 01-Oct-25 16:21:35 GMT; domain=.researchgate.net; HttpOnly; Secure; SameSite=None",
+                "cache_control": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+                "expires": "Thu, 01 Jan 1970 00:00:01 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Cloudflare"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "same-origin",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": true,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 42.857142857142854,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 0.41375041007995605,
+                "content_length": 21315,
+                "status_code": 403,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://researchgate.net": {
+              "url": "http://researchgate.net",
+              "timestamp": 1759333895.9607239,
+              "response_analysis": {
+                "status_code": 403,
+                "reason": "Forbidden",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 21315,
+                "url": "https://www.researchgate.net/",
+                "redirect_chain": [
+                  "http://researchgate.net/",
+                  "https://researchgate.net/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.researchgate.net/",
+                "content_preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "ResearchGate - Temporarily Unavailable",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=31536000; includeSubDomains; preload",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+                "expires": "Thu, 01 Jan 1970 00:00:01 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Cloudflare"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "same-origin",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 42.857142857142854,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 0.5197036266326904,
+                "content_length": 21315,
+                "status_code": 403,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://researchgate.net": {
+              "url": "https://researchgate.net",
+              "timestamp": 1759333896.4809535,
+              "response_analysis": {
+                "status_code": 403,
+                "reason": "Forbidden",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 21315,
+                "url": "https://www.researchgate.net/",
+                "redirect_chain": [
+                  "https://researchgate.net/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.researchgate.net/",
+                "content_preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "ResearchGate - Temporarily Unavailable",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=31536000; includeSubDomains; preload",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+                "expires": "Thu, 01 Jan 1970 00:00:01 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Cloudflare"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "same-origin",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 42.857142857142854,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 0.4125640392303467,
+                "content_length": 21315,
+                "status_code": 403,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.researchgate.net": {
+              "url": "https://www.researchgate.net",
+              "timestamp": 1759333896.8941152,
+              "response_analysis": {
+                "status_code": 403,
+                "reason": "Forbidden",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 21315,
+                "url": "https://www.researchgate.net/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://www.researchgate.net/",
+                "content_preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "ResearchGate - Temporarily Unavailable",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=31536000; includeSubDomains; preload",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+                "expires": "Thu, 01 Jan 1970 00:00:01 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Cloudflare"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "same-origin",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 42.857142857142854,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 0.2554333209991455,
+                "content_length": 21315,
+                "status_code": 403,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Cloudflare"
+            ],
+            "security_score_avg": 42.857142857142854,
+            "common_issues": [
+              "X-XSS-Protection",
+              "Content-Security-Policy",
+              "X-Content-Type-Options",
+              "Permissions-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 1.6203625202178955,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 0,
+          "records_found": 17,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 1
+        }
+      },
+      "all_subdomains": [
+        "www.researchgate.net"
+      ],
+      "statistics": {
+        "total_subdomains": 1,
+        "unique_subdomains": 1,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 37.92,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 1,
+        "security_issues_found": 4,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "researchgate.net",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 21:21 +0530\nNmap scan report for researchgate.net (104.18.41.9)\nHost is up (0.0098s latency).\nOther addresses for researchgate.net (not scanned): 172.64.146.247 2606:4700:4403::6812:2909 2606:4700:4401::ac40:92f7\nNot shown: 996 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT     STATE SERVICE\n80/tcp   open  http\n443/tcp  open  https\n8080/tcp open  http-proxy\n8443/tcp open  https-alt\n\nNmap done: 1 IP address (1 host up) scanned in 6.07 seconds\n",
+        "scan_duration": 6.07
+      },
+      "service_results": {
+        "target": "researchgate.net",
+        "scan_type": "quick",
+        "open_ports_count": 4,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 400 Bad Request\r\nDate: Wed, 01 Oct 2025 15:51:43 GMT\r\nContent-Length: 68\r\nConnection: close\r\nCache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0\r\nReferrer-Policy: same-origin\r\nExpires: Thu, 01 Jan 1970 00:00:01 GMT\r\nProxy-Status: Cloudflare-Proxy;error=http_request_error\r\nCF-RAY: 987d1f802c4b5138-CMB\r\n\r\nCloudflare encountered an error processing this request: Bad Request",
+            "version": "1.1",
+            "ssl": false,
+            "protocol_info": {}
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "HTTP/1.1 400 Bad Request\r\nServer: cloudflare\r\nDate: Wed, 01 Oct 2025 15:51:43 GMT\r\nContent-Type: text/html\r\nContent-Length: 253\r\nConnection: close\r\nCF-RAY: -\r\n\r\n<html>\r\n<head><title>400 The plain HTTP request was sent to HTTPS port</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<center>The plain HTTP request was sent to HTTPS port</center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>",
+            "version": "1.1",
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384"
+              }
+            }
+          },
+          "8080": {
+            "port": 8080,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 400 Bad Request\r\nDate: Wed, 01 Oct 2025 15:51:43 GMT\r\nContent-Length: 68\r\nConnection: close\r\nCache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0\r\nReferrer-Policy: same-origin\r\nExpires: Thu, 01 Jan 1970 00:00:01 GMT\r\nProxy-Status: Cloudflare-Proxy;error=http_request_error\r\nCF-RAY: 987d1f830840513a-CMB\r\n\r\nCloudflare encountered an error processing this request: Bad Request",
+            "version": "1.1",
+            "ssl": false,
+            "protocol_info": {}
+          },
+          "8443": {
+            "port": 8443,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 400 Bad Request\r\nServer: cloudflare\r\nDate: Wed, 01 Oct 2025 15:51:44 GMT\r\nContent-Type: text/html\r\nContent-Length: 253\r\nConnection: close\r\nCF-RAY: -\r\n\r\n<html>\r\n<head><title>400 The plain HTTP request was sent to HTTPS port</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<center>The plain HTTP request was sent to HTTPS port</center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>",
+            "version": "1.1",
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 3,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)",
+            "HTTP (port 8443)"
+          ],
+          "total_services": 4
+        }
+      },
+      "summary": {
+        "open_ports_count": 4,
+        "services_identified": 4,
+        "scan_duration": 6.07
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Cloudflare",
+        "detection_method": "headers",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 403
+      },
+      "execution_info": {
+        "domain": "researchgate.net",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/researchgate_net_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 1,
+    "total_open_ports": 4,
+    "cdn_detected": true,
+    "technologies_detected": 1,
+    "apis_discovered": 0
+  },
+  "execution_time": 45.248719692230225
+}

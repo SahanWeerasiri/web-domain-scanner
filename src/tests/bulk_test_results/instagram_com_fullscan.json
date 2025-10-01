@@ -1,0 +1,752 @@
+{
+  "target_domain": "instagram.com",
+  "scan_timestamp": "2025-10-01T19:40:48.669840",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "instagram.com",
+      "timestamp": "2025-10-01T19:40:48.670204",
+      "modules": {
+        "passive": {
+          "domain": "instagram.com",
+          "timestamp": 1759327900.8428047,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 52.16972851753235,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "instagram.com",
+          "timestamp": 1759327902.278892,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "57.144.144.34"
+            ],
+            "AAAA": [
+              "2a03:2880:f20c:1e5:face:b00c:0:4420"
+            ],
+            "MX": [
+              "mxa-00082601.gslb.pphosted.com",
+              "mxb-00082601.gslb.pphosted.com"
+            ],
+            "NS": [
+              "a.ns.instagram.com",
+              "d.ns.instagram.com",
+              "c.ns.instagram.com",
+              "b.ns.instagram.com"
+            ],
+            "TXT": [
+              "v=spf1 include:facebookmail.com include:_spf.fb.com -all",
+              "google-site-verification=GGtId51KFyq0hqX2xNvt1u0P9Xp0C7k6pp9do49fCNw",
+              "nEXgIFIbDifAKlSMQvAhly5SA-vpsAkm5wiOdwdkrzY",
+              "hyWdekepiNsp/V9b1JCR+wZDdzbESurl4GqY+FLMfiN+7aeFaway0Art+kNDHeL5OnGZipNeV/iIC+lOONSQVQ==",
+              "adobe-idp-site-verification=367fda82-a8bb-46cf-9cff-0062d452d229",
+              "ms=ms86975275",
+              "4cbb1b68-601f-4801-8e7f-e8f68a4a41dd",
+              "google-site-verification=_iQgLr68Rdg7YnN2PqOljSG5dnWOFUUXISF9R77fs5c"
+            ],
+            "SOA": [
+              "a.ns.instagram.com. dns.facebook.com. 4207849484 14400 1800 604800 3600"
+            ]
+          },
+          "subdomains": [
+            "d.ns.instagram.com",
+            "c.ns.instagram.com",
+            "b.ns.instagram.com",
+            "a.ns.instagram.com"
+          ],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 include:facebookmail.com include:_spf.fb.com -all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=GGtId51KFyq0hqX2xNvt1u0P9Xp0C7k6pp9do49fCNw",
+                "google-site-verification=_iQgLr68Rdg7YnN2PqOljSG5dnWOFUUXISF9R77fs5c"
+              ],
+              "other": [
+                "nEXgIFIbDifAKlSMQvAhly5SA-vpsAkm5wiOdwdkrzY",
+                "hyWdekepiNsp/V9b1JCR+wZDdzbESurl4GqY+FLMfiN+7aeFaway0Art+kNDHeL5OnGZipNeV/iIC+lOONSQVQ==",
+                "adobe-idp-site-verification=367fda82-a8bb-46cf-9cff-0062d452d229",
+                "ms=ms86975275",
+                "4cbb1b68-601f-4801-8e7f-e8f68a4a41dd"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 0.763725757598877,
+            "total_records": 17,
+            "total_subdomains": 4,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "instagram.com",
+          "timestamp": 1759327912.9726474,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "https://www.instagram.com": {
+              "url": "https://www.instagram.com",
+              "timestamp": 1759327902.3052752,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=\"utf-8\"",
+                "content_length": 419701,
+                "url": "https://www.instagram.com/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://www.instagram.com/",
+                "content_preview": "<!DOCTYPE html><html class=\"_9dls _ar44\" lang=\"en\" dir=\"ltr\"><head><link data-default-icon=\"https://static.cdninstagram.com/rsrc.php/v4/yI/r/VsNE-OHk_8a.png\" rel=\"icon\" sizes=\"192x192\" href=\"https://s...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "Not found",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "DENY",
+                "content_security_policy": "default-src *.facebook.com *.fbcdn.net *.instagram.com blob:;script-src *.instagram.com static.cdninstagram.com *.facebook.com *.fbcdn.net *.facebook.net 127.0.0.1:* 'nonce-ANrlKCrs' blob: 'self' 'unsafe-eval' https://*.google-analytics.com https://translate.google.com https://apis.google.com https://accounts.google.com;style-src *.instagram.com static.cdninstagram.com data: blob: 'unsafe-inline' *.fbcdn.net *.facebook.com;connect-src *.instagram.com wss://edge-chat.instagram.com connect.facebook.net *.facebook.com facebook.com *.fbcdn.net *.facebook.net wss://*.facebook.com:* ws://localhost:* blob: *.cdninstagram.com wss://*.instagram.com:* 'self';font-src *.instagram.com static.cdninstagram.com data: *.fbcdn.net *.intern.facebook.com *.facebook.com https://fonts.gstatic.com;img-src *.instagram.com *.facebook.com *.fbcdn.net data: *.cdninstagram.com *.whatsapp.net blob: *.fbsbx.com android-webview-video-poster: *.oculuscdn.com *.giphy.com *.tenor.co *.tenor.com www.googleadservices.com *.doubleclick.net *.google.com *.google.co.uk https://www.gstatic.com https://*.google-analytics.com;media-src *.facebook.com *.fbcdn.net *.instagram.com *.cdninstagram.com cdn.fbsbx.com lookaside.fbsbx.com data: blob: https://*.giphy.com *.tenor.co *.tenor.com;child-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;frame-src *.instagram.com *.facebook.com *.fbsbx.com fbsbx.com data: www.googleadservices.com *.doubleclick.net *.google.com *.google.co.uk;manifest-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;object-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;block-all-mixed-content;upgrade-insecure-requests;report-uri https://www.facebook.com/csp/reporting/?minimize=0;",
+                "strict_transport_security": "max-age=31536000; preload; includeSubDomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "0",
+                "set_cookie": "csrftoken=cfqfGMNUxX3WvSeKabHcF8; expires=Thu, 05-Nov-2026 14:11:42 GMT; Max-Age=34560000; path=/; domain=.instagram.com; secure; SameSite=None, mid=aN02ngALAAFFZ4eGu35Bbl4Sibwm; expires=Thu, 05-Nov-2026 14:11:42 GMT; Max-Age=34560000; path=/; domain=.instagram.com; secure; httponly; SameSite=None",
+                "cache_control": "private, no-cache, no-store, must-revalidate",
+                "expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "version": "Unknown",
+                  "components": []
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [],
+                "header_detected": [],
+                "content_detected": [
+                  "Bootstrap"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "DENY",
+                  "Content-Security-Policy": "default-src *.facebook.com *.fbcdn.net *.instagram.com blob:;script-src *.instagram.com static.cdninstagram.com *.facebook.com *.fbcdn.net *.facebook.net 127.0.0.1:* 'nonce-ANrlKCrs' blob: 'self' 'unsafe-eval' https://*.google-analytics.com https://translate.google.com https://apis.google.com https://accounts.google.com;style-src *.instagram.com static.cdninstagram.com data: blob: 'unsafe-inline' *.fbcdn.net *.facebook.com;connect-src *.instagram.com wss://edge-chat.instagram.com connect.facebook.net *.facebook.com facebook.com *.fbcdn.net *.facebook.net wss://*.facebook.com:* ws://localhost:* blob: *.cdninstagram.com wss://*.instagram.com:* 'self';font-src *.instagram.com static.cdninstagram.com data: *.fbcdn.net *.intern.facebook.com *.facebook.com https://fonts.gstatic.com;img-src *.instagram.com *.facebook.com *.fbcdn.net data: *.cdninstagram.com *.whatsapp.net blob: *.fbsbx.com android-webview-video-poster: *.oculuscdn.com *.giphy.com *.tenor.co *.tenor.com www.googleadservices.com *.doubleclick.net *.google.com *.google.co.uk https://www.gstatic.com https://*.google-analytics.com;media-src *.facebook.com *.fbcdn.net *.instagram.com *.cdninstagram.com cdn.fbsbx.com lookaside.fbsbx.com data: blob: https://*.giphy.com *.tenor.co *.tenor.com;child-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;frame-src *.instagram.com *.facebook.com *.fbsbx.com fbsbx.com data: www.googleadservices.com *.doubleclick.net *.google.com *.google.co.uk;manifest-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;object-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;block-all-mixed-content;upgrade-insecure-requests;report-uri https://www.facebook.com/csp/reporting/?minimize=0;",
+                  "Strict-Transport-Security": "max-age=31536000; preload; includeSubDomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 2.615375518798828,
+                "content_length": 419701,
+                "status_code": 200,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://instagram.com": {
+              "url": "http://instagram.com",
+              "timestamp": 1759327904.9210098,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=\"utf-8\"",
+                "content_length": 419616,
+                "url": "https://www.instagram.com/",
+                "redirect_chain": [
+                  "http://instagram.com/",
+                  "https://instagram.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.instagram.com/",
+                "content_preview": "<!DOCTYPE html><html class=\"_9dls _ar44\" lang=\"en\" dir=\"ltr\"><head><link data-default-icon=\"https://static.cdninstagram.com/rsrc.php/v4/yI/r/VsNE-OHk_8a.png\" rel=\"icon\" sizes=\"192x192\" href=\"https://s...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "Not found",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "DENY",
+                "content_security_policy": "default-src *.facebook.com *.fbcdn.net *.instagram.com blob:;script-src *.instagram.com static.cdninstagram.com *.facebook.com *.fbcdn.net *.facebook.net 127.0.0.1:* 'nonce-1PW2BwOp' blob: 'self' 'unsafe-eval' https://*.google-analytics.com https://translate.google.com https://apis.google.com https://accounts.google.com;style-src *.instagram.com static.cdninstagram.com data: blob: 'unsafe-inline' *.fbcdn.net *.facebook.com;connect-src *.instagram.com wss://edge-chat.instagram.com connect.facebook.net *.facebook.com facebook.com *.fbcdn.net *.facebook.net wss://*.facebook.com:* ws://localhost:* blob: *.cdninstagram.com wss://*.instagram.com:* 'self';font-src *.instagram.com static.cdninstagram.com data: *.fbcdn.net *.intern.facebook.com *.facebook.com https://fonts.gstatic.com;img-src *.instagram.com *.facebook.com *.fbcdn.net data: *.cdninstagram.com *.whatsapp.net blob: *.fbsbx.com android-webview-video-poster: *.oculuscdn.com *.giphy.com *.tenor.co *.tenor.com www.googleadservices.com *.doubleclick.net *.google.com *.google.co.uk https://www.gstatic.com https://*.google-analytics.com;media-src *.facebook.com *.fbcdn.net *.instagram.com *.cdninstagram.com cdn.fbsbx.com lookaside.fbsbx.com data: blob: https://*.giphy.com *.tenor.co *.tenor.com;child-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;frame-src *.instagram.com *.facebook.com *.fbsbx.com fbsbx.com data: www.googleadservices.com *.doubleclick.net *.google.com *.google.co.uk;manifest-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;object-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;block-all-mixed-content;upgrade-insecure-requests;",
+                "strict_transport_security": "max-age=31536000; preload; includeSubDomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "0",
+                "set_cookie": "Not found",
+                "cache_control": "private, no-cache, no-store, must-revalidate",
+                "expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "version": "Unknown",
+                  "components": []
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [],
+                "header_detected": [],
+                "content_detected": [
+                  "Bootstrap"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "DENY",
+                  "Content-Security-Policy": "default-src *.facebook.com *.fbcdn.net *.instagram.com blob:;script-src *.instagram.com static.cdninstagram.com *.facebook.com *.fbcdn.net *.facebook.net 127.0.0.1:* 'nonce-1PW2BwOp' blob: 'self' 'unsafe-eval' https://*.google-analytics.com https://translate.google.com https://apis.google.com https://accounts.google.com;style-src *.instagram.com static.cdninstagram.com data: blob: 'unsafe-inline' *.fbcdn.net *.facebook.com;connect-src *.instagram.com wss://edge-chat.instagram.com connect.facebook.net *.facebook.com facebook.com *.fbcdn.net *.facebook.net wss://*.facebook.com:* ws://localhost:* blob: *.cdninstagram.com wss://*.instagram.com:* 'self';font-src *.instagram.com static.cdninstagram.com data: *.fbcdn.net *.intern.facebook.com *.facebook.com https://fonts.gstatic.com;img-src *.instagram.com *.facebook.com *.fbcdn.net data: *.cdninstagram.com *.whatsapp.net blob: *.fbsbx.com android-webview-video-poster: *.oculuscdn.com *.giphy.com *.tenor.co *.tenor.com www.googleadservices.com *.doubleclick.net *.google.com *.google.co.uk https://www.gstatic.com https://*.google-analytics.com;media-src *.facebook.com *.fbcdn.net *.instagram.com *.cdninstagram.com cdn.fbsbx.com lookaside.fbsbx.com data: blob: https://*.giphy.com *.tenor.co *.tenor.com;child-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;frame-src *.instagram.com *.facebook.com *.fbsbx.com fbsbx.com data: www.googleadservices.com *.doubleclick.net *.google.com *.google.co.uk;manifest-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;object-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;block-all-mixed-content;upgrade-insecure-requests;",
+                  "Strict-Transport-Security": "max-age=31536000; preload; includeSubDomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 3.1332318782806396,
+                "content_length": 419616,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://instagram.com": {
+              "url": "https://instagram.com",
+              "timestamp": 1759327908.054711,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=\"utf-8\"",
+                "content_length": 419573,
+                "url": "https://www.instagram.com/",
+                "redirect_chain": [
+                  "https://instagram.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.instagram.com/",
+                "content_preview": "<!DOCTYPE html><html class=\"_9dls _ar44\" lang=\"en\" dir=\"ltr\"><head><link data-default-icon=\"https://static.cdninstagram.com/rsrc.php/v4/yI/r/VsNE-OHk_8a.png\" rel=\"icon\" sizes=\"192x192\" href=\"https://s...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "Not found",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "DENY",
+                "content_security_policy": "default-src *.facebook.com *.fbcdn.net *.instagram.com blob:;script-src *.instagram.com static.cdninstagram.com *.facebook.com *.fbcdn.net *.facebook.net 127.0.0.1:* 'nonce-ZsYwJsYq' blob: 'self' 'unsafe-eval' https://*.google-analytics.com https://translate.google.com https://apis.google.com https://accounts.google.com;style-src *.instagram.com static.cdninstagram.com data: blob: 'unsafe-inline' *.fbcdn.net *.facebook.com;connect-src *.instagram.com wss://edge-chat.instagram.com connect.facebook.net *.facebook.com facebook.com *.fbcdn.net *.facebook.net wss://*.facebook.com:* ws://localhost:* blob: *.cdninstagram.com wss://*.instagram.com:* 'self';font-src *.instagram.com static.cdninstagram.com data: *.fbcdn.net *.intern.facebook.com *.facebook.com https://fonts.gstatic.com;img-src *.instagram.com *.facebook.com *.fbcdn.net data: *.cdninstagram.com *.whatsapp.net blob: *.fbsbx.com android-webview-video-poster: *.oculuscdn.com *.giphy.com *.tenor.co *.tenor.com www.googleadservices.com *.doubleclick.net *.google.com *.google.co.uk https://www.gstatic.com https://*.google-analytics.com;media-src *.facebook.com *.fbcdn.net *.instagram.com *.cdninstagram.com cdn.fbsbx.com lookaside.fbsbx.com data: blob: https://*.giphy.com *.tenor.co *.tenor.com;child-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;frame-src *.instagram.com *.facebook.com *.fbsbx.com fbsbx.com data: www.googleadservices.com *.doubleclick.net *.google.com *.google.co.uk;manifest-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;object-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;block-all-mixed-content;upgrade-insecure-requests;",
+                "strict_transport_security": "max-age=31536000; preload; includeSubDomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "0",
+                "set_cookie": "Not found",
+                "cache_control": "private, no-cache, no-store, must-revalidate",
+                "expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "version": "Unknown",
+                  "components": []
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [],
+                "header_detected": [],
+                "content_detected": [
+                  "Bootstrap"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "DENY",
+                  "Content-Security-Policy": "default-src *.facebook.com *.fbcdn.net *.instagram.com blob:;script-src *.instagram.com static.cdninstagram.com *.facebook.com *.fbcdn.net *.facebook.net 127.0.0.1:* 'nonce-ZsYwJsYq' blob: 'self' 'unsafe-eval' https://*.google-analytics.com https://translate.google.com https://apis.google.com https://accounts.google.com;style-src *.instagram.com static.cdninstagram.com data: blob: 'unsafe-inline' *.fbcdn.net *.facebook.com;connect-src *.instagram.com wss://edge-chat.instagram.com connect.facebook.net *.facebook.com facebook.com *.fbcdn.net *.facebook.net wss://*.facebook.com:* ws://localhost:* blob: *.cdninstagram.com wss://*.instagram.com:* 'self';font-src *.instagram.com static.cdninstagram.com data: *.fbcdn.net *.intern.facebook.com *.facebook.com https://fonts.gstatic.com;img-src *.instagram.com *.facebook.com *.fbcdn.net data: *.cdninstagram.com *.whatsapp.net blob: *.fbsbx.com android-webview-video-poster: *.oculuscdn.com *.giphy.com *.tenor.co *.tenor.com www.googleadservices.com *.doubleclick.net *.google.com *.google.co.uk https://www.gstatic.com https://*.google-analytics.com;media-src *.facebook.com *.fbcdn.net *.instagram.com *.cdninstagram.com cdn.fbsbx.com lookaside.fbsbx.com data: blob: https://*.giphy.com *.tenor.co *.tenor.com;child-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;frame-src *.instagram.com *.facebook.com *.fbsbx.com fbsbx.com data: www.googleadservices.com *.doubleclick.net *.google.com *.google.co.uk;manifest-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;object-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;block-all-mixed-content;upgrade-insecure-requests;",
+                  "Strict-Transport-Security": "max-age=31536000; preload; includeSubDomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 2.5640323162078857,
+                "content_length": 419573,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://www.instagram.com": {
+              "url": "http://www.instagram.com",
+              "timestamp": 1759327910.619414,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=\"utf-8\"",
+                "content_length": 419613,
+                "url": "https://www.instagram.com/",
+                "redirect_chain": [
+                  "http://www.instagram.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.instagram.com/",
+                "content_preview": "<!DOCTYPE html><html class=\"_9dls _ar44\" lang=\"en\" dir=\"ltr\"><head><link data-default-icon=\"https://static.cdninstagram.com/rsrc.php/v4/yI/r/VsNE-OHk_8a.png\" rel=\"icon\" sizes=\"192x192\" href=\"https://s...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "Not found",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "DENY",
+                "content_security_policy": "default-src *.facebook.com *.fbcdn.net *.instagram.com blob:;script-src *.instagram.com static.cdninstagram.com *.facebook.com *.fbcdn.net *.facebook.net 127.0.0.1:* 'nonce-MplwJ8rB' blob: 'self' 'unsafe-eval' https://*.google-analytics.com https://translate.google.com https://apis.google.com https://accounts.google.com;style-src *.instagram.com static.cdninstagram.com data: blob: 'unsafe-inline' *.fbcdn.net *.facebook.com;connect-src *.instagram.com wss://edge-chat.instagram.com connect.facebook.net *.facebook.com facebook.com *.fbcdn.net *.facebook.net wss://*.facebook.com:* ws://localhost:* blob: *.cdninstagram.com wss://*.instagram.com:* 'self';font-src *.instagram.com static.cdninstagram.com data: *.fbcdn.net *.intern.facebook.com *.facebook.com https://fonts.gstatic.com;img-src *.instagram.com *.facebook.com *.fbcdn.net data: *.cdninstagram.com *.whatsapp.net blob: *.fbsbx.com android-webview-video-poster: *.oculuscdn.com *.giphy.com *.tenor.co *.tenor.com www.googleadservices.com *.doubleclick.net *.google.com *.google.co.uk https://www.gstatic.com https://*.google-analytics.com;media-src *.facebook.com *.fbcdn.net *.instagram.com *.cdninstagram.com cdn.fbsbx.com lookaside.fbsbx.com data: blob: https://*.giphy.com *.tenor.co *.tenor.com;child-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;frame-src *.instagram.com *.facebook.com *.fbsbx.com fbsbx.com data: www.googleadservices.com *.doubleclick.net *.google.com *.google.co.uk;manifest-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;object-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;block-all-mixed-content;upgrade-insecure-requests;",
+                "strict_transport_security": "max-age=31536000; preload; includeSubDomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "0",
+                "set_cookie": "Not found",
+                "cache_control": "private, no-cache, no-store, must-revalidate",
+                "expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "version": "Unknown",
+                  "components": []
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [],
+                "header_detected": [],
+                "content_detected": [
+                  "Bootstrap"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "DENY",
+                  "Content-Security-Policy": "default-src *.facebook.com *.fbcdn.net *.instagram.com blob:;script-src *.instagram.com static.cdninstagram.com *.facebook.com *.fbcdn.net *.facebook.net 127.0.0.1:* 'nonce-MplwJ8rB' blob: 'self' 'unsafe-eval' https://*.google-analytics.com https://translate.google.com https://apis.google.com https://accounts.google.com;style-src *.instagram.com static.cdninstagram.com data: blob: 'unsafe-inline' *.fbcdn.net *.facebook.com;connect-src *.instagram.com wss://edge-chat.instagram.com connect.facebook.net *.facebook.com facebook.com *.fbcdn.net *.facebook.net wss://*.facebook.com:* ws://localhost:* blob: *.cdninstagram.com wss://*.instagram.com:* 'self';font-src *.instagram.com static.cdninstagram.com data: *.fbcdn.net *.intern.facebook.com *.facebook.com https://fonts.gstatic.com;img-src *.instagram.com *.facebook.com *.fbcdn.net data: *.cdninstagram.com *.whatsapp.net blob: *.fbsbx.com android-webview-video-poster: *.oculuscdn.com *.giphy.com *.tenor.co *.tenor.com www.googleadservices.com *.doubleclick.net *.google.com *.google.co.uk https://www.gstatic.com https://*.google-analytics.com;media-src *.facebook.com *.fbcdn.net *.instagram.com *.cdninstagram.com cdn.fbsbx.com lookaside.fbsbx.com data: blob: https://*.giphy.com *.tenor.co *.tenor.com;child-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;frame-src *.instagram.com *.facebook.com *.fbsbx.com fbsbx.com data: www.googleadservices.com *.doubleclick.net *.google.com *.google.co.uk;manifest-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;object-src *.facebook.com *.fbcdn.net *.instagram.com data: blob:;block-all-mixed-content;upgrade-insecure-requests;",
+                  "Strict-Transport-Security": "max-age=31536000; preload; includeSubDomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 2.3492584228515625,
+                "content_length": 419613,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Bootstrap",
+              "CDN"
+            ],
+            "security_score_avg": 71.42857142857143,
+            "common_issues": [
+              "Referrer-Policy",
+              "Permissions-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 10.68670916557312,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 4,
+          "records_found": 17,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 2
+        }
+      },
+      "all_subdomains": [
+        "a.ns.instagram.com",
+        "b.ns.instagram.com",
+        "c.ns.instagram.com",
+        "d.ns.instagram.com",
+        "www.instagram.com"
+      ],
+      "statistics": {
+        "total_subdomains": 5,
+        "unique_subdomains": 5,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 64.3,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 2,
+        "security_issues_found": 2,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "instagram.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 19:41 +0530\nNmap scan report for instagram.com (57.144.144.34)\nHost is up (0.045s latency).\nOther addresses for instagram.com (not scanned): 2a03:2880:f20c:1e5:face:b00c:0:4420\nrDNS record for 57.144.144.34: instagram-p42-shv-01-sin11.fbcdn.net\nNot shown: 998 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 7.45 seconds\n",
+        "scan_duration": 7.45
+      },
+      "service_results": {
+        "target": "instagram.com",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 301 Moved Permanently\r\nLocation: https:///\r\nContent-Type: text/plain\r\nServer: proxygen-bolt\r\nDate: Wed, 01 Oct 2025 14:12:00 GMT\r\nConnection: close\r\nContent-Length: 0",
+            "version": "1.1",
+            "ssl": false,
+            "protocol_info": {
+              "http": {
+                "status_code": 200,
+                "server": "Unknown",
+                "content_type": "text/html; charset=\"utf-8\""
+              }
+            }
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "\u0015\u0003\u0003\u0000\u0002\u00022",
+            "version": null,
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_CHACHA20_POLY1305_SHA256"
+              },
+              "http": {
+                "status_code": 200,
+                "server": "Unknown",
+                "content_type": "text/html; charset=\"utf-8\""
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 7.45
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Cloudflare",
+        "detection_method": "content",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "instagram.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/instagram_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 5,
+    "total_open_ports": 2,
+    "cdn_detected": true,
+    "technologies_detected": 2,
+    "apis_discovered": 0
+  },
+  "execution_time": 76.84289264678955
+}

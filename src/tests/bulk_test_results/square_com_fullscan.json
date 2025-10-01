@@ -1,0 +1,1060 @@
+{
+  "target_domain": "square.com",
+  "scan_timestamp": "2025-10-01T20:41:40.150547",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "square.com",
+      "timestamp": "2025-10-01T20:41:40.150859",
+      "modules": {
+        "passive": {
+          "domain": "square.com",
+          "timestamp": 1759331551.3931932,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [
+                  "golden--square.com",
+                  "feature-relay-web-sdk.square.com",
+                  "video.square.com",
+                  "api.square.com",
+                  "education.square.com",
+                  "appointments-docs.square.com",
+                  "risk-infra.square.com",
+                  "the---square.com",
+                  "tenure-app.square.com",
+                  "webspos-docs.square.com",
+                  "icons.square.com",
+                  "smart--square.com",
+                  "qa-mule.apis.square.com",
+                  "stage-mule.apis.square.com",
+                  "qa.apis.square.com",
+                  "newdevice.square.com",
+                  "www.golden--square.com",
+                  "web-foundation.square.com",
+                  "ecom-eng-blog.square.com",
+                  "regulator-actions-docs.square.com",
+                  "prod-mule.apis.square.com",
+                  "prod.apis.square.com",
+                  "dao-ui-components.square.com",
+                  "cash.square.com",
+                  "sq-reports.square.com",
+                  "www.the---square.com",
+                  "square.com",
+                  "java-docs.square.com",
+                  "dashboard-mfe-guides.square.com",
+                  "dev-mule.apis.square.com",
+                  "web-eng-guides.square.com",
+                  "devguide.square.com",
+                  "cdp-sfdc-data-pipe.square.com",
+                  "www.prod-mule.apis.square.com",
+                  "orbit.square.com",
+                  "ww12.r--square.com",
+                  "videos.square.com",
+                  "newcomputer.square.com",
+                  "www.socio--square.com",
+                  "node-service-container.square.com",
+                  "dashboard-catalog-platform.square.com",
+                  "sellwithsquare.com",
+                  "newhire-portal.square.com",
+                  "www.sellwithsquare.com",
+                  "stage.apis.square.com",
+                  "sq-reports-docs.square.com",
+                  "blog.square.com",
+                  "fraud-risk-eng.square.com",
+                  "dev.apis.square.com",
+                  "orx-docs.square.com",
+                  "socio--square.com",
+                  "www.c--square.com",
+                  "ios-register-docs.square.com",
+                  "c--square.com",
+                  "www.square.com",
+                  "dashboard-docs.square.com",
+                  "r--square.com",
+                  "squid-docs.square.com",
+                  "www.dev-mule.apis.square.com",
+                  "square-web.square.com"
+                ],
+                "source": "crt.sh",
+                "certificates": {
+                  "21228211424": {
+                    "id": 21228211424,
+                    "detail_url": "https://crt.sh/?id=21228211424",
+                    "ct_logs": [
+                      {
+                        "date": "2025-09-23",
+                        "time": "02:19:40 UTC",
+                        "entry_number": "2340153991",
+                        "log_operator": "Google",
+                        "log_url": "https://ct.googleapis.com/logs/us1/argon2025h2"
+                      },
+                      {
+                        "date": "2025-09-23",
+                        "time": "02:19:41 UTC",
+                        "entry_number": "2445195785",
+                        "log_operator": "Google",
+                        "log_url": "https://ct.googleapis.com/logs/eu1/xenon2025h2"
+                      }
+                    ],
+                    "certificate_data": {
+                      "sha256_fingerprint": "17AFB0689EC8F0C0060C584988DFBE3F98182162F2C1477E25BFFAD4F0160A05",
+                      "sha1_fingerprint": "15C43A65FEDF25AB3FA1B27E71CE966F5D04272F"
+                    },
+                    "subject_alternative_names": [
+                      "regulator-actions-docs.square.com"
+                    ],
+                    "additional_domains_found": 57
+                  }
+                },
+                "total_certificates": 1174,
+                "analyzed_certificate_id": 21228211424
+              }
+            }
+          },
+          "certificates": {
+            "21228211424": {
+              "id": 21228211424,
+              "detail_url": "https://crt.sh/?id=21228211424",
+              "ct_logs": [
+                {
+                  "date": "2025-09-23",
+                  "time": "02:19:40 UTC",
+                  "entry_number": "2340153991",
+                  "log_operator": "Google",
+                  "log_url": "https://ct.googleapis.com/logs/us1/argon2025h2"
+                },
+                {
+                  "date": "2025-09-23",
+                  "time": "02:19:41 UTC",
+                  "entry_number": "2445195785",
+                  "log_operator": "Google",
+                  "log_url": "https://ct.googleapis.com/logs/eu1/xenon2025h2"
+                }
+              ],
+              "certificate_data": {
+                "sha256_fingerprint": "17AFB0689EC8F0C0060C584988DFBE3F98182162F2C1477E25BFFAD4F0160A05",
+                "sha1_fingerprint": "15C43A65FEDF25AB3FA1B27E71CE966F5D04272F"
+              },
+              "subject_alternative_names": [
+                "regulator-actions-docs.square.com"
+              ],
+              "additional_domains_found": 57
+            }
+          },
+          "subdomains": [
+            "golden--square.com",
+            "feature-relay-web-sdk.square.com",
+            "video.square.com",
+            "api.square.com",
+            "education.square.com",
+            "appointments-docs.square.com",
+            "risk-infra.square.com",
+            "the---square.com",
+            "tenure-app.square.com",
+            "webspos-docs.square.com",
+            "smart--square.com",
+            "icons.square.com",
+            "qa-mule.apis.square.com",
+            "stage-mule.apis.square.com",
+            "qa.apis.square.com",
+            "newdevice.square.com",
+            "www.golden--square.com",
+            "web-foundation.square.com",
+            "ecom-eng-blog.square.com",
+            "regulator-actions-docs.square.com",
+            "prod-mule.apis.square.com",
+            "prod.apis.square.com",
+            "dao-ui-components.square.com",
+            "cash.square.com",
+            "sq-reports.square.com",
+            "www.the---square.com",
+            "square.com",
+            "java-docs.square.com",
+            "dashboard-mfe-guides.square.com",
+            "dev-mule.apis.square.com",
+            "web-eng-guides.square.com",
+            "devguide.square.com",
+            "cdp-sfdc-data-pipe.square.com",
+            "www.prod-mule.apis.square.com",
+            "orbit.square.com",
+            "ww12.r--square.com",
+            "videos.square.com",
+            "newcomputer.square.com",
+            "www.socio--square.com",
+            "node-service-container.square.com",
+            "dashboard-catalog-platform.square.com",
+            "sellwithsquare.com",
+            "newhire-portal.square.com",
+            "www.sellwithsquare.com",
+            "stage.apis.square.com",
+            "sq-reports-docs.square.com",
+            "blog.square.com",
+            "fraud-risk-eng.square.com",
+            "dev.apis.square.com",
+            "orx-docs.square.com",
+            "socio--square.com",
+            "www.c--square.com",
+            "ios-register-docs.square.com",
+            "c--square.com",
+            "www.square.com",
+            "dashboard-docs.square.com",
+            "r--square.com",
+            "squid-docs.square.com",
+            "www.dev-mule.apis.square.com",
+            "square-web.square.com"
+          ],
+          "statistics": {
+            "total_duration": 51.228890895843506,
+            "total_subdomains": 60,
+            "certificates_analyzed": 1,
+            "ct_logs_processed": 1174,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "square.com",
+          "timestamp": 1759331552.581284,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "172.66.0.28",
+              "162.159.140.28"
+            ],
+            "MX": [
+              "inbound-smtp.us-west-2.amazonaws.com"
+            ],
+            "NS": [
+              "ns-1816.awsdns-35.co.uk",
+              "ns-810.awsdns-37.net",
+              "ns-311.awsdns-38.com",
+              "ns-1248.awsdns-28.org"
+            ],
+            "TXT": [
+              "v=spf1 include:square.com._nspf.vali.email include:%{i}._ip.%{h}._ehlo.%{d}._spf.vali.email ~all",
+              "ZOOM_verify_j-qqPX2QQAW03jG8OUDKEA",
+              "google-site-verification=5lYFFzJJC3rndNcajZcEv1ZvgsnDFi4HE2UI_QbVBbg",
+              "google-site-verification=7lzstO1Vr0KuKp92XBTZPOnzf0B90g1PYir6aOZ6BuY",
+              "467A-B615-AF60-8255-D1E9-9769-DE6E-4BC0"
+            ],
+            "SOA": [
+              "ns-1248.awsdns-28.org. ops+dns.squareup.com. 1 7200 900 1209600 86400"
+            ]
+          },
+          "subdomains": [],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 include:square.com._nspf.vali.email include:%{i}._ip.%{h}._ehlo.%{d}._spf.vali.email ~all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=5lYFFzJJC3rndNcajZcEv1ZvgsnDFi4HE2UI_QbVBbg",
+                "google-site-verification=7lzstO1Vr0KuKp92XBTZPOnzf0B90g1PYir6aOZ6BuY"
+              ],
+              "other": [
+                "ZOOM_verify_j-qqPX2QQAW03jG8OUDKEA",
+                "467A-B615-AF60-8255-D1E9-9769-DE6E-4BC0"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 0.6183233261108398,
+            "total_records": 13,
+            "total_subdomains": 0,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "square.com",
+          "timestamp": 1759331574.4832551,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://www.square.com": {
+              "url": "http://www.square.com",
+              "timestamp": 1759331552.7090335,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 1820770,
+                "url": "https://squareup.com/us/en",
+                "redirect_chain": [
+                  "http://www.square.com/",
+                  "https://www.square.com/",
+                  "https://squareup.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://squareup.com/us/en",
+                "content_preview": "<!doctype html>\n<html lang=\"en-US\" data-entry-id=\"3BXoVIBdZEZ1NsNLcowC84\" class=\"html-bg-white pwn-has-sticky-cta-subnav\">\n  <head>\n<meta name=\"sentry-trace\" content=\"33db4de574dc482f8f3edc12064cc5f8-...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=631152000; includeSubDomains; preload",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "0",
+                "set_cookie": "squareGeo=DELETE; path=/; SameSite=Strict; Secure; max-age=0, squareGeo=LK-1; Domain=squareup.com; path=/; SameSite=Strict; Secure; max-age=2419200",
+                "cache_control": "max-age=0, public, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "W/\"1akum7u\"",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Cloudflare",
+                  "Cart Functionality",
+                  "Contentful",
+                  "Svelte"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [],
+                "url_patterns": [
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=631152000; includeSubDomains; preload",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 12.243854284286499,
+                "content_length": 1820770,
+                "status_code": 200,
+                "redirect_count": 3
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://square.com": {
+              "url": "http://square.com",
+              "timestamp": 1759331564.9534535,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 1820770,
+                "url": "https://squareup.com/us/en",
+                "redirect_chain": [
+                  "http://square.com/",
+                  "https://square.com/",
+                  "https://squareup.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://squareup.com/us/en",
+                "content_preview": "<!doctype html>\n<html lang=\"en-US\" data-entry-id=\"3BXoVIBdZEZ1NsNLcowC84\" class=\"html-bg-white pwn-has-sticky-cta-subnav\">\n  <head>\n<meta name=\"sentry-trace\" content=\"33db4de574dc482f8f3edc12064cc5f8-...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=631152000; includeSubDomains; preload",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "0",
+                "set_cookie": "squareGeo=DELETE; path=/; SameSite=Strict; Secure; max-age=0, squareGeo=LK-1; Domain=squareup.com; path=/; SameSite=Strict; Secure; max-age=2419200",
+                "cache_control": "max-age=0, public, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "W/\"1akum7u\"",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Cloudflare",
+                  "Cart Functionality",
+                  "Contentful",
+                  "Svelte"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [],
+                "url_patterns": [
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=631152000; includeSubDomains; preload",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 3.03204083442688,
+                "content_length": 1820770,
+                "status_code": 200,
+                "redirect_count": 3
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.square.com": {
+              "url": "https://www.square.com",
+              "timestamp": 1759331567.9860067,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 1820770,
+                "url": "https://squareup.com/us/en",
+                "redirect_chain": [
+                  "https://www.square.com/",
+                  "https://squareup.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://squareup.com/us/en",
+                "content_preview": "<!doctype html>\n<html lang=\"en-US\" data-entry-id=\"3BXoVIBdZEZ1NsNLcowC84\" class=\"html-bg-white pwn-has-sticky-cta-subnav\">\n  <head>\n<meta name=\"sentry-trace\" content=\"33db4de574dc482f8f3edc12064cc5f8-...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=631152000; includeSubDomains; preload",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "0",
+                "set_cookie": "squareGeo=DELETE; path=/; SameSite=Strict; Secure; max-age=0, squareGeo=LK-1; Domain=squareup.com; path=/; SameSite=Strict; Secure; max-age=2419200",
+                "cache_control": "max-age=0, public, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "W/\"1akum7u\"",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Cloudflare",
+                  "Cart Functionality",
+                  "Contentful",
+                  "Svelte"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [],
+                "url_patterns": [
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=631152000; includeSubDomains; preload",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 2.8107056617736816,
+                "content_length": 1820770,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://square.com": {
+              "url": "https://square.com",
+              "timestamp": 1759331570.7972262,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 1820770,
+                "url": "https://squareup.com/us/en",
+                "redirect_chain": [
+                  "https://square.com/",
+                  "https://squareup.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://squareup.com/us/en",
+                "content_preview": "<!doctype html>\n<html lang=\"en-US\" data-entry-id=\"3BXoVIBdZEZ1NsNLcowC84\" class=\"html-bg-white pwn-has-sticky-cta-subnav\">\n  <head>\n<meta name=\"sentry-trace\" content=\"33db4de574dc482f8f3edc12064cc5f8-...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=631152000; includeSubDomains; preload",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "0",
+                "set_cookie": "squareGeo=DELETE; path=/; SameSite=Strict; Secure; max-age=0, squareGeo=LK-1; Domain=squareup.com; path=/; SameSite=Strict; Secure; max-age=2419200",
+                "cache_control": "max-age=0, public, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "W/\"1akum7u\"",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Cloudflare",
+                  "Cart Functionality",
+                  "Contentful",
+                  "Svelte"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [],
+                "url_patterns": [
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=631152000; includeSubDomains; preload",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 3.6821866035461426,
+                "content_length": 1820770,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Svelte",
+              "Cart Functionality",
+              "Contentful",
+              "CDN",
+              "Cloudflare"
+            ],
+            "security_score_avg": 71.42857142857143,
+            "common_issues": [
+              "Content-Security-Policy",
+              "Permissions-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 21.89467191696167,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 60,
+          "certificates_analyzed": 1,
+          "ct_logs_processed": 1174
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 0,
+          "records_found": 13,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 5
+        }
+      },
+      "all_subdomains": [
+        "api.square.com",
+        "appointments-docs.square.com",
+        "blog.square.com",
+        "c--square.com",
+        "cash.square.com",
+        "cdp-sfdc-data-pipe.square.com",
+        "dao-ui-components.square.com",
+        "dashboard-catalog-platform.square.com",
+        "dashboard-docs.square.com",
+        "dashboard-mfe-guides.square.com",
+        "dev-mule.apis.square.com",
+        "dev.apis.square.com",
+        "devguide.square.com",
+        "ecom-eng-blog.square.com",
+        "education.square.com",
+        "feature-relay-web-sdk.square.com",
+        "fraud-risk-eng.square.com",
+        "golden--square.com",
+        "icons.square.com",
+        "ios-register-docs.square.com",
+        "java-docs.square.com",
+        "newcomputer.square.com",
+        "newdevice.square.com",
+        "newhire-portal.square.com",
+        "node-service-container.square.com",
+        "orbit.square.com",
+        "orx-docs.square.com",
+        "prod-mule.apis.square.com",
+        "prod.apis.square.com",
+        "qa-mule.apis.square.com",
+        "qa.apis.square.com",
+        "r--square.com",
+        "regulator-actions-docs.square.com",
+        "risk-infra.square.com",
+        "sellwithsquare.com",
+        "smart--square.com",
+        "socio--square.com",
+        "sq-reports-docs.square.com",
+        "sq-reports.square.com",
+        "square-web.square.com",
+        "square.com",
+        "squid-docs.square.com",
+        "stage-mule.apis.square.com",
+        "stage.apis.square.com",
+        "tenure-app.square.com",
+        "the---square.com",
+        "video.square.com",
+        "videos.square.com",
+        "web-eng-guides.square.com",
+        "web-foundation.square.com",
+        "webspos-docs.square.com",
+        "ww12.r--square.com",
+        "www.c--square.com",
+        "www.dev-mule.apis.square.com",
+        "www.golden--square.com",
+        "www.prod-mule.apis.square.com",
+        "www.sellwithsquare.com",
+        "www.socio--square.com",
+        "www.square.com",
+        "www.the---square.com"
+      ],
+      "statistics": {
+        "total_subdomains": 60,
+        "unique_subdomains": 60,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 74.33,
+        "certificates_analyzed": 1,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 5,
+        "security_issues_found": 2,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "square.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 20:42 +0530\nNmap scan report for square.com (172.66.0.28)\nHost is up (0.010s latency).\nOther addresses for square.com (not scanned): 162.159.140.28\nNot shown: 996 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT     STATE SERVICE\n80/tcp   open  http\n443/tcp  open  https\n8080/tcp open  http-proxy\n8443/tcp open  https-alt\n\nNmap done: 1 IP address (1 host up) scanned in 5.94 seconds\n",
+        "scan_duration": 5.94
+      },
+      "service_results": {
+        "target": "square.com",
+        "scan_type": "quick",
+        "open_ports_count": 4,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 400 Bad Request\r\nDate: Wed, 01 Oct 2025 15:13:00 GMT\r\nContent-Length: 68\r\nConnection: close\r\nCache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0\r\nReferrer-Policy: same-origin\r\nExpires: Thu, 01 Jan 1970 00:00:01 GMT\r\nProxy-Status: Cloudflare-Proxy;error=http_request_error\r\nCF-RAY: 987ce6cac8fd5138-CMB\r\n\r\nCloudflare encountered an error processing this request: Bad Request",
+            "version": "1.1",
+            "ssl": false,
+            "protocol_info": {
+              "http": {
+                "status_code": 200,
+                "server": "cloudflare",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "HTTP/1.1 400 Bad Request\r\nServer: cloudflare\r\nDate: Wed, 01 Oct 2025 15:13:01 GMT\r\nContent-Type: text/html\r\nContent-Length: 253\r\nConnection: close\r\nCF-RAY: -\r\n\r\n<html>\r\n<head><title>400 The plain HTTP request was sent to HTTPS port</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<center>The plain HTTP request was sent to HTTPS port</center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>",
+            "version": "1.1",
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384"
+              },
+              "http": {
+                "status_code": 200,
+                "server": "cloudflare",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          },
+          "8080": {
+            "port": 8080,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 400 Bad Request\r\nDate: Wed, 01 Oct 2025 15:13:01 GMT\r\nContent-Length: 68\r\nConnection: close\r\nCache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0\r\nReferrer-Policy: same-origin\r\nExpires: Thu, 01 Jan 1970 00:00:01 GMT\r\nProxy-Status: Cloudflare-Proxy;error=http_request_error\r\nCF-RAY: 987ce6d328a05132-CMB\r\n\r\nCloudflare encountered an error processing this request: Bad Request",
+            "version": "1.1",
+            "ssl": false,
+            "protocol_info": {
+              "http": {
+                "status_code": 200,
+                "server": "cloudflare",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          },
+          "8443": {
+            "port": 8443,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 400 Bad Request\r\nServer: cloudflare\r\nDate: Wed, 01 Oct 2025 15:13:02 GMT\r\nContent-Type: text/html\r\nContent-Length: 253\r\nConnection: close\r\nCF-RAY: -\r\n\r\n<html>\r\n<head><title>400 The plain HTTP request was sent to HTTPS port</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<center>The plain HTTP request was sent to HTTPS port</center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>",
+            "version": "1.1",
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 3,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)",
+            "HTTP (port 8443)"
+          ],
+          "total_services": 4
+        }
+      },
+      "summary": {
+        "open_ports_count": 4,
+        "services_identified": 4,
+        "scan_duration": 5.94
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Cloudflare",
+        "detection_method": "headers",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "square.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/square_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 60,
+    "total_open_ports": 4,
+    "cdn_detected": true,
+    "technologies_detected": 5,
+    "apis_discovered": 0
+  },
+  "execution_time": 88.88296270370483
+}

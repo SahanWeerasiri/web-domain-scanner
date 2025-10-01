@@ -1,0 +1,1462 @@
+{
+  "target_domain": "google.com",
+  "scan_timestamp": "2025-10-01T19:36:05.035876",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "google.com",
+      "timestamp": "2025-10-01T19:36:05.036069",
+      "modules": {
+        "passive": {
+          "domain": "google.com",
+          "timestamp": 1759327606.183407,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [
+                  "dg.video.google.com",
+                  "prom-qa.corp.google.com",
+                  "ics.prod.google.com",
+                  "www.google.com",
+                  "mtv-da.ext.google.com",
+                  "cache8.c.docs.google.com",
+                  "qa.adz.google.com",
+                  "sites-googlegroups-qa03.corp.google.com",
+                  "m.google.com",
+                  "accounts.flexpack.google.com",
+                  "focus.corp.google.com",
+                  "orkut-staging.corp.google.com",
+                  "cache7.c.play.google.com",
+                  "staging-d.blogger.corp.google.com",
+                  "cloud.google.com",
+                  "profiles.corp.google.com",
+                  "sites-googlegroups-qa01.corp.google.com",
+                  "alt4.gmail-smtp-in.l.google.com",
+                  "devconsole-testers.sandbox.google.com",
+                  "c.docs.google.com",
+                  "talkgadget.google.com",
+                  "hyd-da.ext.google.com",
+                  "search.flexpack.google.com",
+                  "ext.google.com",
+                  "clients.google.com",
+                  "oz-gmail.corp.google.com",
+                  "upload.video.google.com",
+                  "prom-test.corp.google.com",
+                  "sandbox.google.com",
+                  "glass-mtv.ext.google.com",
+                  "demetrius-codespot.corp.google.com",
+                  "prom-qa.sandbox.google.com",
+                  "alt3.aspmx.l.google.com",
+                  "mygeist2010.corp.google.com",
+                  "sites-googlegroups-qa06.corp.google.com",
+                  "alt1.gmail-smtp-in.l.google.com",
+                  "www.freezone.google.com",
+                  "orkut-uberproxy.corp.google.com",
+                  "orkut-yhvrfy.corp.google.com",
+                  "staging-a.blogger.corp.google.com",
+                  "webdrive-test-canary.corp.google.com",
+                  "da.ext.corp.google.com",
+                  "test.postini.corp.google.com",
+                  "bigstore-test.corp.google.com",
+                  "sites-googlegroups-qa05.corp.google.com",
+                  "uberproxy.corp.google.com",
+                  "developer.google.com",
+                  "orkut-ocdemo.corp.google.com",
+                  "staging-b.blogger.corp.google.com",
+                  "mtv-da-1.ad.corp.google.com",
+                  "staging-daily.blogger.corp.google.com",
+                  "alt2.gmail-smtp-in.l.google.com",
+                  "sites-googlegroups-qa02.corp.google.com",
+                  "sites-googlegroups-nightly.corp.google.com",
+                  "sites.google.com",
+                  "cag.ext.google.com",
+                  "loop.corp.google.com",
+                  "mtv-da.corp.google.com",
+                  "sites.sandbox.google.com",
+                  "blogger.corp.google.com",
+                  "apps-secure-data-connector.google.com",
+                  "cache3.c.video.google.com",
+                  "jotspot-qa08.corp.google.com",
+                  "alt4.aspmx.l.google.com",
+                  "oz-s2.corp.google.com",
+                  "ice.ext.google.com",
+                  "alt2.aspmx.l.google.com",
+                  "cache5.c.play.google.com",
+                  "dfa7.corp.google.com",
+                  "drive.google.com",
+                  "games.corp.google.com",
+                  "alt4.gmr-smtp-in.l.google.com",
+                  "docs.sandbox.google.com",
+                  "staging-daily.blogspot.corp.google.com",
+                  "gmail-smtp-in.l.google.com",
+                  "gmr-smtp-in.l.google.com",
+                  "eggroll.ext.google.com",
+                  "m.guts.corp.google.com",
+                  "drive-test.corp.google.com",
+                  "freezone.accounts.google.com",
+                  "plus.google.com",
+                  "googlesource.corp.google.com",
+                  "cert-test.sandbox.google.com",
+                  "reseed.corp.google.com",
+                  "ads-compare.eem.corp.google.com",
+                  "vp.video.l.google.com",
+                  "cache4.c.play.google.com",
+                  "staging-c.blogger.corp.google.com",
+                  "orkut-vcvrfy.corp.google.com",
+                  "developers.google.com",
+                  "fra-da.ext.google.com",
+                  "accounts.freezone.google.com",
+                  "git.corp.google.com",
+                  "staging-googlesource.corp.google.com",
+                  "cache5.c.docs.google.com",
+                  "gaiastaging.freezone.google.com",
+                  "hosted-id.google.com",
+                  "answers.google.com",
+                  "alt3.gmr-smtp-in.l.google.com",
+                  "freezone.mail.google.com",
+                  "cache4.c.docs.google.com",
+                  "demetrius-googlecode.corp.google.com",
+                  "orkut-qa.corp.google.com",
+                  "twdsalesgsa.twd.corp.google.com",
+                  "cache6.c.docs.google.com",
+                  "plus.corp.google.com",
+                  "alt1.gmr-smtp-in.l.google.com",
+                  "mail.freezone.google.com",
+                  "cod.ext.google.com",
+                  "docs-dev.corp.google.com",
+                  "appengine.google.com",
+                  "gaiastaging.flexpack.google.com",
+                  "cache6.c.play.google.com",
+                  "www.flexpack.google.com",
+                  "c.play.google.com",
+                  "glass-twd.ext.google.com",
+                  "dthree.corp.google.com",
+                  "uberproxy-nocert.corp.google.com",
+                  "uberproxy-san.corp.google.com",
+                  "mail.google.com",
+                  "plus.freezone.google.com",
+                  "bigstore.corp.google.com",
+                  "urchin.corp.google.com",
+                  "url.google.com",
+                  "glass-eur.ext.google.com",
+                  "aspmx.l.google.com",
+                  "cache5.c.video.google.com",
+                  "dasher-qa.corp.google.com",
+                  "docs-qa.corp.google.com",
+                  "flexpack.google.com",
+                  "m.gutsdev.corp.google.com",
+                  "google.com",
+                  "audioads.google.com",
+                  "staging-weekly.blogger.corp.google.com",
+                  "mail.flexpack.google.com",
+                  "hot-da.ext.google.com",
+                  "client-channel.google.com",
+                  "cache4.c.video.google.com",
+                  "staging-prod.blogger.corp.google.com",
+                  "soaproxyprod01.ext.google.com",
+                  "orkut-yqtask0.corp.google.com",
+                  "mygeist.corp.google.com",
+                  "webdrive-test-prod.corp.google.com",
+                  "c.pack.google.com",
+                  "blogspot.corp.google.com",
+                  "staging-git.corp.google.com",
+                  "login.corp.google.com",
+                  "alt3.gmail-smtp-in.l.google.com",
+                  "sites-googlegroups-qa04.corp.google.com",
+                  "postini.corp.google.com",
+                  "corp.google.com",
+                  "chrome.google.com",
+                  "orkut-impersonation.corp.google.com",
+                  "mtalk.google.com",
+                  "checkout.google.com",
+                  "auth.corp.google.com",
+                  "cache3.c.docs.google.com",
+                  "prom.corp.google.com",
+                  "search.corp.google.com",
+                  "alt1.aspmx.l.google.com",
+                  "plus.flexpack.google.com",
+                  "freezone.m.google.com",
+                  "cache1.c.docs.google.com",
+                  "cache1.c.video.google.com",
+                  "cache1.c.play.google.com",
+                  "apis.corp.google.com",
+                  "onex.wifi.google.com",
+                  "jmt0.google.com",
+                  "dasher.corp.google.com",
+                  "photos.google.com",
+                  "orkut-yqvrfy.corp.google.com",
+                  "oz-www.corp.google.com",
+                  "freezone.google.com",
+                  "cache8.c.play.google.com",
+                  "staging-gaia.blogger.corp.google.com",
+                  "friendconnect.google.com",
+                  "sites-googlegroups-qa07.corp.google.com",
+                  "news.freezone.google.com",
+                  "docs-platinum.corp.google.com",
+                  "spdy-proxy-debug.ext.google.com",
+                  "cache6.c.video.google.com",
+                  "corp-backups.corp.google.com",
+                  "c.video.google.com",
+                  "sites-googlegroups-qa08.corp.google.com",
+                  "ecc-test.sandbox.google.com",
+                  "code.google.com",
+                  "talk.google.com",
+                  "accounts.google.com",
+                  "services.google.com",
+                  "drive.sandbox.google.com",
+                  "twd-da.ext.google.com",
+                  "cache2.c.docs.google.com",
+                  "orkut-fixprod.corp.google.com",
+                  "misc-sni.google.com",
+                  "upload.google.com",
+                  "soaproxytest01.ext.google.com",
+                  "orkut-vctask0.corp.google.com",
+                  "sites-googlegroups-tctest.corp.google.com",
+                  "wifi.google.com",
+                  "docs.google.com",
+                  "meeting.ext.google.com",
+                  "cache7.c.video.google.com",
+                  "demetrius.corp.google.com",
+                  "proxyconfig.corp.google.com",
+                  "cache3.c.play.google.com",
+                  "spdy-proxy.ext.google.com",
+                  "docs-nightly.corp.google.com",
+                  "adwords.google.com",
+                  "prom-test.sandbox.google.com",
+                  "alt2.gmr-smtp-in.l.google.com",
+                  "da.ext.google.com",
+                  "cache2.c.video.google.com",
+                  "staging-weekly.blogspot.corp.google.com",
+                  "gmail.google.com",
+                  "cache7.c.docs.google.com",
+                  "script.sandbox.google.com",
+                  "cache2.c.play.google.com",
+                  "cache8.c.video.google.com",
+                  "misc.google.com",
+                  "plusone.corp.google.com",
+                  "glass.ext.google.com",
+                  "orkut-yhtask0.corp.google.com",
+                  "search.freezone.google.com",
+                  "mx.google.com"
+                ],
+                "source": "crt.sh",
+                "certificates": {
+                  "3144337544": {
+                    "error": "HTTPSConnectionPool(host='crt.sh', port=443): Max retries exceeded with url: /?id=3144337544 (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='crt.sh', port=443): Read timed out. (read timeout=5)\"))"
+                  }
+                },
+                "total_certificates": 1152,
+                "analyzed_certificate_id": 3144337544
+              }
+            }
+          },
+          "certificates": {
+            "3144337544": {
+              "error": "HTTPSConnectionPool(host='crt.sh', port=443): Max retries exceeded with url: /?id=3144337544 (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='crt.sh', port=443): Read timed out. (read timeout=5)\"))"
+            }
+          },
+          "subdomains": [
+            "dg.video.google.com",
+            "prom-qa.corp.google.com",
+            "ics.prod.google.com",
+            "mtv-da.ext.google.com",
+            "www.google.com",
+            "cache8.c.docs.google.com",
+            "qa.adz.google.com",
+            "sites-googlegroups-qa03.corp.google.com",
+            "m.google.com",
+            "accounts.flexpack.google.com",
+            "focus.corp.google.com",
+            "orkut-staging.corp.google.com",
+            "cache7.c.play.google.com",
+            "staging-d.blogger.corp.google.com",
+            "cloud.google.com",
+            "sites-googlegroups-qa01.corp.google.com",
+            "profiles.corp.google.com",
+            "alt4.gmail-smtp-in.l.google.com",
+            "devconsole-testers.sandbox.google.com",
+            "c.docs.google.com",
+            "talkgadget.google.com",
+            "hyd-da.ext.google.com",
+            "search.flexpack.google.com",
+            "ext.google.com",
+            "clients.google.com",
+            "oz-gmail.corp.google.com",
+            "upload.video.google.com",
+            "prom-test.corp.google.com",
+            "sandbox.google.com",
+            "glass-mtv.ext.google.com",
+            "demetrius-codespot.corp.google.com",
+            "prom-qa.sandbox.google.com",
+            "alt3.aspmx.l.google.com",
+            "mygeist2010.corp.google.com",
+            "sites-googlegroups-qa06.corp.google.com",
+            "alt1.gmail-smtp-in.l.google.com",
+            "www.freezone.google.com",
+            "orkut-uberproxy.corp.google.com",
+            "orkut-yhvrfy.corp.google.com",
+            "staging-a.blogger.corp.google.com",
+            "webdrive-test-canary.corp.google.com",
+            "da.ext.corp.google.com",
+            "test.postini.corp.google.com",
+            "bigstore-test.corp.google.com",
+            "sites-googlegroups-qa05.corp.google.com",
+            "uberproxy.corp.google.com",
+            "developer.google.com",
+            "orkut-ocdemo.corp.google.com",
+            "staging-b.blogger.corp.google.com",
+            "mtv-da-1.ad.corp.google.com",
+            "staging-daily.blogger.corp.google.com",
+            "alt2.gmail-smtp-in.l.google.com",
+            "sites-googlegroups-qa02.corp.google.com",
+            "sites-googlegroups-nightly.corp.google.com",
+            "loop.corp.google.com",
+            "sites.google.com",
+            "cag.ext.google.com",
+            "blogger.corp.google.com",
+            "mtv-da.corp.google.com",
+            "sites.sandbox.google.com",
+            "cache3.c.video.google.com",
+            "apps-secure-data-connector.google.com",
+            "jotspot-qa08.corp.google.com",
+            "alt4.aspmx.l.google.com",
+            "oz-s2.corp.google.com",
+            "ice.ext.google.com",
+            "alt2.aspmx.l.google.com",
+            "cache5.c.play.google.com",
+            "dfa7.corp.google.com",
+            "drive.google.com",
+            "games.corp.google.com",
+            "alt4.gmr-smtp-in.l.google.com",
+            "docs.sandbox.google.com",
+            "staging-daily.blogspot.corp.google.com",
+            "gmail-smtp-in.l.google.com",
+            "gmr-smtp-in.l.google.com",
+            "eggroll.ext.google.com",
+            "m.guts.corp.google.com",
+            "drive-test.corp.google.com",
+            "freezone.accounts.google.com",
+            "plus.google.com",
+            "googlesource.corp.google.com",
+            "cert-test.sandbox.google.com",
+            "reseed.corp.google.com",
+            "ads-compare.eem.corp.google.com",
+            "vp.video.l.google.com",
+            "cache4.c.play.google.com",
+            "staging-c.blogger.corp.google.com",
+            "orkut-vcvrfy.corp.google.com",
+            "developers.google.com",
+            "fra-da.ext.google.com",
+            "accounts.freezone.google.com",
+            "git.corp.google.com",
+            "staging-googlesource.corp.google.com",
+            "cache5.c.docs.google.com",
+            "gaiastaging.freezone.google.com",
+            "hosted-id.google.com",
+            "answers.google.com",
+            "alt3.gmr-smtp-in.l.google.com",
+            "freezone.mail.google.com",
+            "cache4.c.docs.google.com",
+            "demetrius-googlecode.corp.google.com",
+            "orkut-qa.corp.google.com",
+            "twdsalesgsa.twd.corp.google.com",
+            "cache6.c.docs.google.com",
+            "plus.corp.google.com",
+            "alt1.gmr-smtp-in.l.google.com",
+            "mail.freezone.google.com",
+            "cod.ext.google.com",
+            "docs-dev.corp.google.com",
+            "appengine.google.com",
+            "gaiastaging.flexpack.google.com",
+            "cache6.c.play.google.com",
+            "www.flexpack.google.com",
+            "c.play.google.com",
+            "glass-twd.ext.google.com",
+            "dthree.corp.google.com",
+            "uberproxy-nocert.corp.google.com",
+            "uberproxy-san.corp.google.com",
+            "mail.google.com",
+            "plus.freezone.google.com",
+            "bigstore.corp.google.com",
+            "urchin.corp.google.com",
+            "url.google.com",
+            "glass-eur.ext.google.com",
+            "aspmx.l.google.com",
+            "cache5.c.video.google.com",
+            "dasher-qa.corp.google.com",
+            "docs-qa.corp.google.com",
+            "flexpack.google.com",
+            "m.gutsdev.corp.google.com",
+            "google.com",
+            "audioads.google.com",
+            "staging-weekly.blogger.corp.google.com",
+            "mail.flexpack.google.com",
+            "hot-da.ext.google.com",
+            "client-channel.google.com",
+            "cache4.c.video.google.com",
+            "staging-prod.blogger.corp.google.com",
+            "soaproxyprod01.ext.google.com",
+            "orkut-yqtask0.corp.google.com",
+            "mygeist.corp.google.com",
+            "webdrive-test-prod.corp.google.com",
+            "c.pack.google.com",
+            "blogspot.corp.google.com",
+            "staging-git.corp.google.com",
+            "login.corp.google.com",
+            "alt3.gmail-smtp-in.l.google.com",
+            "sites-googlegroups-qa04.corp.google.com",
+            "postini.corp.google.com",
+            "corp.google.com",
+            "chrome.google.com",
+            "orkut-impersonation.corp.google.com",
+            "mtalk.google.com",
+            "checkout.google.com",
+            "auth.corp.google.com",
+            "cache3.c.docs.google.com",
+            "prom.corp.google.com",
+            "search.corp.google.com",
+            "alt1.aspmx.l.google.com",
+            "plus.flexpack.google.com",
+            "freezone.m.google.com",
+            "cache1.c.docs.google.com",
+            "cache1.c.video.google.com",
+            "cache1.c.play.google.com",
+            "apis.corp.google.com",
+            "onex.wifi.google.com",
+            "jmt0.google.com",
+            "dasher.corp.google.com",
+            "photos.google.com",
+            "orkut-yqvrfy.corp.google.com",
+            "oz-www.corp.google.com",
+            "freezone.google.com",
+            "cache8.c.play.google.com",
+            "staging-gaia.blogger.corp.google.com",
+            "friendconnect.google.com",
+            "sites-googlegroups-qa07.corp.google.com",
+            "news.freezone.google.com",
+            "docs-platinum.corp.google.com",
+            "spdy-proxy-debug.ext.google.com",
+            "cache6.c.video.google.com",
+            "corp-backups.corp.google.com",
+            "c.video.google.com",
+            "sites-googlegroups-qa08.corp.google.com",
+            "ecc-test.sandbox.google.com",
+            "code.google.com",
+            "talk.google.com",
+            "accounts.google.com",
+            "services.google.com",
+            "drive.sandbox.google.com",
+            "twd-da.ext.google.com",
+            "cache2.c.docs.google.com",
+            "orkut-fixprod.corp.google.com",
+            "misc-sni.google.com",
+            "upload.google.com",
+            "soaproxytest01.ext.google.com",
+            "orkut-vctask0.corp.google.com",
+            "sites-googlegroups-tctest.corp.google.com",
+            "wifi.google.com",
+            "docs.google.com",
+            "meeting.ext.google.com",
+            "cache7.c.video.google.com",
+            "demetrius.corp.google.com",
+            "proxyconfig.corp.google.com",
+            "cache3.c.play.google.com",
+            "spdy-proxy.ext.google.com",
+            "docs-nightly.corp.google.com",
+            "adwords.google.com",
+            "prom-test.sandbox.google.com",
+            "alt2.gmr-smtp-in.l.google.com",
+            "da.ext.google.com",
+            "cache2.c.video.google.com",
+            "staging-weekly.blogspot.corp.google.com",
+            "gmail.google.com",
+            "cache7.c.docs.google.com",
+            "script.sandbox.google.com",
+            "cache2.c.play.google.com",
+            "cache8.c.video.google.com",
+            "misc.google.com",
+            "plusone.corp.google.com",
+            "glass.ext.google.com",
+            "orkut-yhtask0.corp.google.com",
+            "search.freezone.google.com",
+            "mx.google.com"
+          ],
+          "statistics": {
+            "total_duration": 41.114065408706665,
+            "total_subdomains": 224,
+            "certificates_analyzed": 1,
+            "ct_logs_processed": 1152,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "google.com",
+          "timestamp": 1759327607.255328,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "74.125.130.100",
+              "74.125.130.139",
+              "74.125.130.138",
+              "74.125.130.113",
+              "74.125.130.101",
+              "74.125.130.102"
+            ],
+            "AAAA": [
+              "2404:6800:4003:c01::65",
+              "2404:6800:4003:c01::71",
+              "2404:6800:4003:c01::8a",
+              "2404:6800:4003:c01::8b"
+            ],
+            "MX": [
+              "smtp.google.com"
+            ],
+            "NS": [
+              "ns2.google.com",
+              "ns3.google.com",
+              "ns4.google.com",
+              "ns1.google.com"
+            ],
+            "TXT": [
+              "google-site-verification=TV9-DBe4R80X4v0M4U_bd_J9cpOJM0nikft0jAgjmsQ",
+              "onetrust-domain-verification=de01ed21f2fa4d8781cbc3ffb89cf4ef",
+              "google-site-verification=4ibFUgB-wXLQ_S7vsXVomSTVamuOXBiVAzpR5IZ87D0",
+              "google-site-verification=wD8N7i1JTNTkezJ49swvWW48f8_9xveREV4oB-0Hf5o",
+              "apple-domain-verification=30afIBcvSuDV2PLX",
+              "globalsign-smime-dv=CDYX+XFHUw2wml6/Gb8+59BsH31KzUr6c1l2BPvqKX8=",
+              "docusign=1b0a6754-49b1-4db5-8540-d2c12664b289",
+              "v=spf1 include:_spf.google.com ~all",
+              "facebook-domain-verification=22rm551cu4k0ab0bxsw536tlds4h95",
+              "MS=E4A68B9AB2BB9670BCE15412F62916164C0B20BB",
+              "docusign=05958488-4752-4ef2-95eb-aa7ba8a3bd0e",
+              "cisco-ci-domain-verification=47c38bc8c4b74b7233e9053220c1bbe76bcc1cd33c7acf7acd36cd6a5332004b"
+            ],
+            "SOA": [
+              "ns1.google.com. dns-admin.google.com. 813182507 900 900 1800 60"
+            ]
+          },
+          "subdomains": [
+            "smtp.google.com",
+            "ns2.google.com",
+            "ns3.google.com",
+            "ns4.google.com",
+            "ns1.google.com"
+          ],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 include:_spf.google.com ~all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=TV9-DBe4R80X4v0M4U_bd_J9cpOJM0nikft0jAgjmsQ",
+                "google-site-verification=4ibFUgB-wXLQ_S7vsXVomSTVamuOXBiVAzpR5IZ87D0",
+                "google-site-verification=wD8N7i1JTNTkezJ49swvWW48f8_9xveREV4oB-0Hf5o",
+                "facebook-domain-verification=22rm551cu4k0ab0bxsw536tlds4h95"
+              ],
+              "other": [
+                "onetrust-domain-verification=de01ed21f2fa4d8781cbc3ffb89cf4ef",
+                "apple-domain-verification=30afIBcvSuDV2PLX",
+                "globalsign-smime-dv=CDYX+XFHUw2wml6/Gb8+59BsH31KzUr6c1l2BPvqKX8=",
+                "docusign=1b0a6754-49b1-4db5-8540-d2c12664b289",
+                "MS=E4A68B9AB2BB9670BCE15412F62916164C0B20BB",
+                "docusign=05958488-4752-4ef2-95eb-aa7ba8a3bd0e",
+                "cisco-ci-domain-verification=47c38bc8c4b74b7233e9053220c1bbe76bcc1cd33c7acf7acd36cd6a5332004b"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 0.6166820526123047,
+            "total_records": 28,
+            "total_subdomains": 5,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "google.com",
+          "timestamp": 1759327610.0903697,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://google.com": {
+              "url": "http://google.com",
+              "timestamp": 1759327607.28255,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 165685,
+                "url": "https://www.google.com/?gws_rd=ssl",
+                "redirect_chain": [
+                  "http://google.com/",
+                  "http://www.google.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.google.com/?gws_rd=ssl",
+                "content_preview": "<!doctype html><html itemscope=\"\" itemtype=\"http://schema.org/WebPage\" lang=\"en-LK\"><head><meta charset=\"UTF-8\"><meta content=\"origin\" name=\"referrer\"><link href=\"//www.gstatic.com/images/branding/sea...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": true,
+                "title": "Google",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "gws",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "0",
+                "set_cookie": "NID=525=dUHvMGSZUEC8BK_YXHvSr5Of6lLG_opSMxQy7zB1Cn0gdB1VQpzhP7SC1YIndyvSo91VesT-7TJnslca_oc9uIpe02W9nQ-c7pXb11uqMAzZrQQt5LJ5TsjiBf0Iqh9ARdSPPh1aObwLt6EqmZuNYPmTgsC5RuKJwQcnueRcXWVqMh5fg1FXk9cZ8BQlWlzk4a7mHdV-_Jdyjn9OIVc; expires=Thu, 02-Apr-2026 14:06:47 GMT; path=/; domain=.google.com; Secure; HttpOnly; SameSite=none",
+                "cache_control": "private, max-age=0",
+                "expires": "-1",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "gws",
+                  "components": [
+                    "gws"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Google Web Server"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": "unload=()"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": true,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 42.857142857142854,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "X-Content-Type-Options",
+                  "Referrer-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 1.02164888381958,
+                "content_length": 165685,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://google.com": {
+              "url": "https://google.com",
+              "timestamp": 1759327608.3045452,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 165978,
+                "url": "https://www.google.com/",
+                "redirect_chain": [
+                  "https://google.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.google.com/",
+                "content_preview": "<!doctype html><html itemscope=\"\" itemtype=\"http://schema.org/WebPage\" lang=\"en-LK\"><head><meta charset=\"UTF-8\"><meta content=\"origin\" name=\"referrer\"><link href=\"//www.gstatic.com/images/branding/sea...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": true,
+                "title": "Google",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "gws",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=31536000",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "0",
+                "set_cookie": "Not found",
+                "cache_control": "private, max-age=0",
+                "expires": "-1",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "gws",
+                  "components": [
+                    "gws"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Google Web Server"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=31536000",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": "unload=()"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "X-Content-Type-Options",
+                  "Referrer-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 0.8151285648345947,
+                "content_length": 165978,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.google.com": {
+              "url": "https://www.google.com",
+              "timestamp": 1759327609.1201391,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 165979,
+                "url": "https://www.google.com/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://www.google.com/",
+                "content_preview": "<!doctype html><html itemscope=\"\" itemtype=\"http://schema.org/WebPage\" lang=\"en-LK\"><head><meta charset=\"UTF-8\"><meta content=\"origin\" name=\"referrer\"><link href=\"//www.gstatic.com/images/branding/sea...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": true,
+                "title": "Google",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "gws",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=31536000",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "0",
+                "set_cookie": "Not found",
+                "cache_control": "private, max-age=0",
+                "expires": "-1",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "gws",
+                  "components": [
+                    "gws"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Google Web Server"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=31536000",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": "unload=()"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "X-Content-Type-Options",
+                  "Referrer-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 0.47416114807128906,
+                "content_length": 165979,
+                "status_code": 200,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://www.google.com": {
+              "url": "http://www.google.com",
+              "timestamp": 1759327609.5954576,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 165979,
+                "url": "https://www.google.com/?gws_rd=ssl",
+                "redirect_chain": [
+                  "http://www.google.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.google.com/?gws_rd=ssl",
+                "content_preview": "<!doctype html><html itemscope=\"\" itemtype=\"http://schema.org/WebPage\" lang=\"en-LK\"><head><meta charset=\"UTF-8\"><meta content=\"origin\" name=\"referrer\"><link href=\"//www.gstatic.com/images/branding/sea...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": true,
+                "title": "Google",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "gws",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=31536000",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "0",
+                "set_cookie": "Not found",
+                "cache_control": "private, max-age=0",
+                "expires": "-1",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "gws",
+                  "components": [
+                    "gws"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Google Web Server"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=31536000",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": "unload=()"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "X-Content-Type-Options",
+                  "Referrer-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 0.49104928970336914,
+                "content_length": 165979,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Google Web Server"
+            ],
+            "security_score_avg": 53.57142857142857,
+            "common_issues": [
+              "X-Content-Type-Options",
+              "Content-Security-Policy",
+              "Strict-Transport-Security",
+              "Referrer-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 2.829771041870117,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 224,
+          "certificates_analyzed": 1,
+          "ct_logs_processed": 1152
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 5,
+          "records_found": 28,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 1
+        }
+      },
+      "all_subdomains": [
+        "accounts.flexpack.google.com",
+        "accounts.freezone.google.com",
+        "accounts.google.com",
+        "ads-compare.eem.corp.google.com",
+        "adwords.google.com",
+        "alt1.aspmx.l.google.com",
+        "alt1.gmail-smtp-in.l.google.com",
+        "alt1.gmr-smtp-in.l.google.com",
+        "alt2.aspmx.l.google.com",
+        "alt2.gmail-smtp-in.l.google.com",
+        "alt2.gmr-smtp-in.l.google.com",
+        "alt3.aspmx.l.google.com",
+        "alt3.gmail-smtp-in.l.google.com",
+        "alt3.gmr-smtp-in.l.google.com",
+        "alt4.aspmx.l.google.com",
+        "alt4.gmail-smtp-in.l.google.com",
+        "alt4.gmr-smtp-in.l.google.com",
+        "answers.google.com",
+        "apis.corp.google.com",
+        "appengine.google.com",
+        "apps-secure-data-connector.google.com",
+        "aspmx.l.google.com",
+        "audioads.google.com",
+        "auth.corp.google.com",
+        "bigstore-test.corp.google.com",
+        "bigstore.corp.google.com",
+        "blogger.corp.google.com",
+        "blogspot.corp.google.com",
+        "c.docs.google.com",
+        "c.pack.google.com",
+        "c.play.google.com",
+        "c.video.google.com",
+        "cache1.c.docs.google.com",
+        "cache1.c.play.google.com",
+        "cache1.c.video.google.com",
+        "cache2.c.docs.google.com",
+        "cache2.c.play.google.com",
+        "cache2.c.video.google.com",
+        "cache3.c.docs.google.com",
+        "cache3.c.play.google.com",
+        "cache3.c.video.google.com",
+        "cache4.c.docs.google.com",
+        "cache4.c.play.google.com",
+        "cache4.c.video.google.com",
+        "cache5.c.docs.google.com",
+        "cache5.c.play.google.com",
+        "cache5.c.video.google.com",
+        "cache6.c.docs.google.com",
+        "cache6.c.play.google.com",
+        "cache6.c.video.google.com",
+        "cache7.c.docs.google.com",
+        "cache7.c.play.google.com",
+        "cache7.c.video.google.com",
+        "cache8.c.docs.google.com",
+        "cache8.c.play.google.com",
+        "cache8.c.video.google.com",
+        "cag.ext.google.com",
+        "cert-test.sandbox.google.com",
+        "checkout.google.com",
+        "chrome.google.com",
+        "client-channel.google.com",
+        "clients.google.com",
+        "cloud.google.com",
+        "cod.ext.google.com",
+        "code.google.com",
+        "corp-backups.corp.google.com",
+        "corp.google.com",
+        "da.ext.corp.google.com",
+        "da.ext.google.com",
+        "dasher-qa.corp.google.com",
+        "dasher.corp.google.com",
+        "demetrius-codespot.corp.google.com",
+        "demetrius-googlecode.corp.google.com",
+        "demetrius.corp.google.com",
+        "devconsole-testers.sandbox.google.com",
+        "developer.google.com",
+        "developers.google.com",
+        "dfa7.corp.google.com",
+        "dg.video.google.com",
+        "docs-dev.corp.google.com",
+        "docs-nightly.corp.google.com",
+        "docs-platinum.corp.google.com",
+        "docs-qa.corp.google.com",
+        "docs.google.com",
+        "docs.sandbox.google.com",
+        "drive-test.corp.google.com",
+        "drive.google.com",
+        "drive.sandbox.google.com",
+        "dthree.corp.google.com",
+        "ecc-test.sandbox.google.com",
+        "eggroll.ext.google.com",
+        "ext.google.com",
+        "flexpack.google.com",
+        "focus.corp.google.com",
+        "fra-da.ext.google.com",
+        "freezone.accounts.google.com",
+        "freezone.google.com",
+        "freezone.m.google.com",
+        "freezone.mail.google.com",
+        "friendconnect.google.com",
+        "gaiastaging.flexpack.google.com",
+        "gaiastaging.freezone.google.com",
+        "games.corp.google.com",
+        "git.corp.google.com",
+        "glass-eur.ext.google.com",
+        "glass-mtv.ext.google.com",
+        "glass-twd.ext.google.com",
+        "glass.ext.google.com",
+        "gmail-smtp-in.l.google.com",
+        "gmail.google.com",
+        "gmr-smtp-in.l.google.com",
+        "google.com",
+        "googlesource.corp.google.com",
+        "hosted-id.google.com",
+        "hot-da.ext.google.com",
+        "hyd-da.ext.google.com",
+        "ice.ext.google.com",
+        "ics.prod.google.com",
+        "jmt0.google.com",
+        "jotspot-qa08.corp.google.com",
+        "login.corp.google.com",
+        "loop.corp.google.com",
+        "m.google.com",
+        "m.guts.corp.google.com",
+        "m.gutsdev.corp.google.com",
+        "mail.flexpack.google.com",
+        "mail.freezone.google.com",
+        "mail.google.com",
+        "meeting.ext.google.com",
+        "misc-sni.google.com",
+        "misc.google.com",
+        "mtalk.google.com",
+        "mtv-da-1.ad.corp.google.com",
+        "mtv-da.corp.google.com",
+        "mtv-da.ext.google.com",
+        "mx.google.com",
+        "mygeist.corp.google.com",
+        "mygeist2010.corp.google.com",
+        "news.freezone.google.com",
+        "ns1.google.com",
+        "ns2.google.com",
+        "ns3.google.com",
+        "ns4.google.com",
+        "onex.wifi.google.com",
+        "orkut-fixprod.corp.google.com",
+        "orkut-impersonation.corp.google.com",
+        "orkut-ocdemo.corp.google.com",
+        "orkut-qa.corp.google.com",
+        "orkut-staging.corp.google.com",
+        "orkut-uberproxy.corp.google.com",
+        "orkut-vctask0.corp.google.com",
+        "orkut-vcvrfy.corp.google.com",
+        "orkut-yhtask0.corp.google.com",
+        "orkut-yhvrfy.corp.google.com",
+        "orkut-yqtask0.corp.google.com",
+        "orkut-yqvrfy.corp.google.com",
+        "oz-gmail.corp.google.com",
+        "oz-s2.corp.google.com",
+        "oz-www.corp.google.com",
+        "photos.google.com",
+        "plus.corp.google.com",
+        "plus.flexpack.google.com",
+        "plus.freezone.google.com",
+        "plus.google.com",
+        "plusone.corp.google.com",
+        "postini.corp.google.com",
+        "profiles.corp.google.com",
+        "prom-qa.corp.google.com",
+        "prom-qa.sandbox.google.com",
+        "prom-test.corp.google.com",
+        "prom-test.sandbox.google.com",
+        "prom.corp.google.com",
+        "proxyconfig.corp.google.com",
+        "qa.adz.google.com",
+        "reseed.corp.google.com",
+        "sandbox.google.com",
+        "script.sandbox.google.com",
+        "search.corp.google.com",
+        "search.flexpack.google.com",
+        "search.freezone.google.com",
+        "services.google.com",
+        "sites-googlegroups-nightly.corp.google.com",
+        "sites-googlegroups-qa01.corp.google.com",
+        "sites-googlegroups-qa02.corp.google.com",
+        "sites-googlegroups-qa03.corp.google.com",
+        "sites-googlegroups-qa04.corp.google.com",
+        "sites-googlegroups-qa05.corp.google.com",
+        "sites-googlegroups-qa06.corp.google.com",
+        "sites-googlegroups-qa07.corp.google.com",
+        "sites-googlegroups-qa08.corp.google.com",
+        "sites-googlegroups-tctest.corp.google.com",
+        "sites.google.com",
+        "sites.sandbox.google.com",
+        "smtp.google.com",
+        "soaproxyprod01.ext.google.com",
+        "soaproxytest01.ext.google.com",
+        "spdy-proxy-debug.ext.google.com",
+        "spdy-proxy.ext.google.com",
+        "staging-a.blogger.corp.google.com",
+        "staging-b.blogger.corp.google.com",
+        "staging-c.blogger.corp.google.com",
+        "staging-d.blogger.corp.google.com",
+        "staging-daily.blogger.corp.google.com",
+        "staging-daily.blogspot.corp.google.com",
+        "staging-gaia.blogger.corp.google.com",
+        "staging-git.corp.google.com",
+        "staging-googlesource.corp.google.com",
+        "staging-prod.blogger.corp.google.com",
+        "staging-weekly.blogger.corp.google.com",
+        "staging-weekly.blogspot.corp.google.com",
+        "talk.google.com",
+        "talkgadget.google.com",
+        "test.postini.corp.google.com",
+        "twd-da.ext.google.com",
+        "twdsalesgsa.twd.corp.google.com",
+        "uberproxy-nocert.corp.google.com",
+        "uberproxy-san.corp.google.com",
+        "uberproxy.corp.google.com",
+        "upload.google.com",
+        "upload.video.google.com",
+        "urchin.corp.google.com",
+        "url.google.com",
+        "vp.video.l.google.com",
+        "webdrive-test-canary.corp.google.com",
+        "webdrive-test-prod.corp.google.com",
+        "wifi.google.com",
+        "www.flexpack.google.com",
+        "www.freezone.google.com",
+        "www.google.com"
+      ],
+      "statistics": {
+        "total_subdomains": 229,
+        "unique_subdomains": 229,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 45.05,
+        "certificates_analyzed": 1,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 1,
+        "security_issues_found": 4,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "google.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 19:36 +0530\nNmap scan report for google.com (74.125.130.101)\nHost is up (0.050s latency).\nOther addresses for google.com (not scanned): 74.125.130.100 74.125.130.102 74.125.130.139 74.125.130.113 74.125.130.138 2404:6800:4003:c01::8b 2404:6800:4003:c01::65 2404:6800:4003:c01::71 2404:6800:4003:c01::8a\nrDNS record for 74.125.130.101: 101.130.125.74.in-addr.arpa\nNot shown: 997 filtered tcp ports (no-response), 1 filtered tcp ports (net-unreach)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 6.13 seconds\n",
+        "scan_duration": 6.13
+      },
+      "service_results": {
+        "target": "google.com",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.0 200 OK\r\nDate: Wed, 01 Oct 2025 14:06:56 GMT\r\nExpires: -1\r\nCache-Control: private, max-age=0\r\nContent-Type: text/html; charset=ISO-8859-1\r\nContent-Security-Policy-Report-Only: object-src 'none';base-uri 'self';script-src 'nonce-aMmj64b0y3idpucp7Qgv1Q' 'strict-dynamic' 'report-sample' 'unsafe-eval' 'unsafe-inline' https: http:;report-uri https://csp.withgoogle.com/csp/gws/other-hp\r\nP3P: CP=\"This is not a P3P policy! See g.co/p3phelp for more info.\"\r\nServer: gws\r\nX-XSS-Protection: 0\r\nX-Frame-Options: SAMEORIGIN\r\nSet-Cookie: AEC=AaJma5sFzEfMx74h3HVRiS-sV0e9J3QXV0S5OonhDZlIFdgK0feVd49D_rc; expires=Mon, 30-Mar-2026 14:06:56 GMT; path=/; domain=.google.com; Secure; HttpOnly; SameSite=lax\r\nSet-Cookie: NID=525=d2gPxDMwIn4HOAxTpyTrhB4-VWZg1aeJkM0qFt9_gDmaByDDIrgAhDbe4pdPYuVVcHCIqL2u85hsOkfConiyMBSprzNSU1rEa444G3rAXiJQDoCziECmY7ngZjSkdBHKA-h9VNSEle_K4hdvGOqCDtO7Ld6nRwwt2nEf_iub-MPV57UmBkfJqFGgpoo7D7taC3qL5GT1Z7f1ZFl1Pno; expires=Thu, 02-Apr-2026 14:06:56 GMT; path=/; domain=.google.com; HttpOnly\r\nAccept-Ranges:",
+            "version": "1.0",
+            "ssl": false,
+            "protocol_info": {
+              "http": {
+                "status_code": 200,
+                "server": "gws",
+                "content_type": "text/html; charset=ISO-8859-1"
+              }
+            }
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": null,
+            "version": null,
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384"
+              },
+              "http": {
+                "status_code": 200,
+                "server": "gws",
+                "content_type": "text/html; charset=ISO-8859-1"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 6.13
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Google CDN",
+        "detection_method": "headers",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "google.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/google_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 229,
+    "total_open_ports": 2,
+    "cdn_detected": true,
+    "technologies_detected": 1,
+    "apis_discovered": 0
+  },
+  "execution_time": 53.079851388931274
+}

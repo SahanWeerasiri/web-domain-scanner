@@ -1,0 +1,384 @@
+{
+  "target_domain": "ebay.com",
+  "scan_timestamp": "2025-10-01T20:29:51.771771",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "ebay.com",
+      "timestamp": "2025-10-01T20:29:51.772072",
+      "modules": {
+        "passive": {
+          "domain": "ebay.com",
+          "timestamp": 1759330827.3270946,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 35.549779176712036,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "ebay.com",
+          "timestamp": 1759330828.5108807,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "23.32.39.134",
+              "23.32.39.145"
+            ],
+            "MX": [
+              "mx2.hc2186-24.iphmx.com",
+              "mx1.hc2186-24.iphmx.com"
+            ],
+            "NS": [
+              "ns03.ebaydns.com",
+              "dns2.p06.nsone.net",
+              "ns02.ebaydns.com",
+              "dns3.p06.nsone.net",
+              "ns04.ebaydns.com",
+              "ns01.ebaydns.com",
+              "dns4.p06.nsone.net",
+              "dns1.p06.nsone.net"
+            ],
+            "TXT": [
+              "docker-verification=4a9cee40-6d52-4a4c-ab5f-fbdaa3da927a",
+              "stripe-verification=2BE98F2CCF89BEDBCE2EF950F4B6F2CE9B71438E1035BA541F66ABB63FE238BD",
+              "dtm-domain-verification=p4f-YbZxtydZd6rQLcoMgPLxkhJn1R2jCO7XvEHHxCM",
+              "xsvrwb8728vd31dxf3kmr6f7b35jwtv9",
+              "adobe-idp-site-verification=25164687e15a57a865a83d05e79e15242cfbfbbcaeeba52d3c370b6ea4b91a7b",
+              "docusign=2f99919f-4b97-48a8-a0d6-f37c1b878a6f",
+              "docusign=5afbc33d-5902-429f-9da5-85f53225ff2c",
+              "f3zqqffl85bsg0nycdx77p875zdbvf4v",
+              "pardot563182=588d6bdc918af063439a2f58820bbaaa2c3341a2a8b404faff87569d9a940843",
+              "notion-domain-verification=Xk4EwbjNFy5jUH1CK5pLHuvjpSTiLerRQL5PeUHPpCm",
+              "google-site-verification=8kHr3jd3Z43q1ovwo0KVgo_NZKIEMjthBxti8m8fYTg",
+              "atlassian-domain-verification=9CqXy0mqLrw8leKzrtncxQ7AVcomaaLh5g4ncvJK++dWfAE1p+e5zG3y+uz2IRAf",
+              "google-site-verification=xpINMAhIxiBLIZOm3mpwtqKK9jni654vv9yx-3D4IiI",
+              "mandrill_verify.YuABo1H2VBgb3wllz5Dqgw",
+              "stripe-verification=013C595CE6A7D9E1C4D41AAC1AC4E5483A9C9CC8A22DFFB1160EC678B16F3938",
+              "2ddxq7hm99sr1rhmmvnnsqt8kd88pmkf",
+              "_9x1syjn55mozh6ex8vj2ixddxbkrmce",
+              "google-site-verification=-8fQa1t-LZYGDBqA-7xKMviyt-eGhzgndjqCWAQHEzY",
+              "fnvlknmfzmxvfc4v88jbv36zhplsv128",
+              "jamf-site-verification=RiiVDX1RYjbvmkAEOB4wgQ",
+              "00148017",
+              "docker-verification=d3182388-9ec4-417c-8652-9571bdb9b3ee",
+              "v=spf1 include:c._spf.ebay.com include:p._spf.ebay.com include:p2._spf.ebay.com ~all",
+              "mongodb-site-verification=0KbWg9avVs7GPjaBJldDoF0CfAGL2HUf",
+              "pardot563182=373a008e0946cf587e680c9104875fd76e28a5bd37b20c795d4ec7a56fae03e3",
+              "cursor-domain-verification-d27pc8=W2aj00Pbge7oaONyKsnFPuJUS",
+              "atlassian-domain-verification=uvfxaVajGgKJNySN0c1wbjqBEQYOxtcFYxvWagz9ZBP6jCdJm7kCwYtZAVGAU3AD",
+              "have-i-been-pwned-verification=0c602ead0d5752884611ab6da8130888",
+              "sending_domain1089322=0814af61325323d2c36344de0c658ecb1ecb129f974dc796476a06c49c972b35",
+              "google-site-verification=QZC4rpLc5fD4UwxHWQ_f1ptHuYmVU-ZYwpPnF6J2rao"
+            ],
+            "SOA": [
+              "dns1.p06.nsone.net. hostmaster.ebay.com. 2013176642 3600 1800 1209600 1800"
+            ]
+          },
+          "subdomains": [],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 include:c._spf.ebay.com include:p._spf.ebay.com include:p2._spf.ebay.com ~all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=8kHr3jd3Z43q1ovwo0KVgo_NZKIEMjthBxti8m8fYTg",
+                "google-site-verification=xpINMAhIxiBLIZOm3mpwtqKK9jni654vv9yx-3D4IiI",
+                "google-site-verification=-8fQa1t-LZYGDBqA-7xKMviyt-eGhzgndjqCWAQHEzY",
+                "google-site-verification=QZC4rpLc5fD4UwxHWQ_f1ptHuYmVU-ZYwpPnF6J2rao"
+              ],
+              "other": [
+                "docker-verification=4a9cee40-6d52-4a4c-ab5f-fbdaa3da927a",
+                "stripe-verification=2BE98F2CCF89BEDBCE2EF950F4B6F2CE9B71438E1035BA541F66ABB63FE238BD",
+                "dtm-domain-verification=p4f-YbZxtydZd6rQLcoMgPLxkhJn1R2jCO7XvEHHxCM",
+                "xsvrwb8728vd31dxf3kmr6f7b35jwtv9",
+                "adobe-idp-site-verification=25164687e15a57a865a83d05e79e15242cfbfbbcaeeba52d3c370b6ea4b91a7b",
+                "docusign=2f99919f-4b97-48a8-a0d6-f37c1b878a6f",
+                "docusign=5afbc33d-5902-429f-9da5-85f53225ff2c",
+                "f3zqqffl85bsg0nycdx77p875zdbvf4v",
+                "pardot563182=588d6bdc918af063439a2f58820bbaaa2c3341a2a8b404faff87569d9a940843",
+                "notion-domain-verification=Xk4EwbjNFy5jUH1CK5pLHuvjpSTiLerRQL5PeUHPpCm",
+                "atlassian-domain-verification=9CqXy0mqLrw8leKzrtncxQ7AVcomaaLh5g4ncvJK++dWfAE1p+e5zG3y+uz2IRAf",
+                "mandrill_verify.YuABo1H2VBgb3wllz5Dqgw",
+                "stripe-verification=013C595CE6A7D9E1C4D41AAC1AC4E5483A9C9CC8A22DFFB1160EC678B16F3938",
+                "2ddxq7hm99sr1rhmmvnnsqt8kd88pmkf",
+                "_9x1syjn55mozh6ex8vj2ixddxbkrmce",
+                "fnvlknmfzmxvfc4v88jbv36zhplsv128",
+                "jamf-site-verification=RiiVDX1RYjbvmkAEOB4wgQ",
+                "00148017",
+                "docker-verification=d3182388-9ec4-417c-8652-9571bdb9b3ee",
+                "mongodb-site-verification=0KbWg9avVs7GPjaBJldDoF0CfAGL2HUf",
+                "pardot563182=373a008e0946cf587e680c9104875fd76e28a5bd37b20c795d4ec7a56fae03e3",
+                "cursor-domain-verification-d27pc8=W2aj00Pbge7oaONyKsnFPuJUS",
+                "atlassian-domain-verification=uvfxaVajGgKJNySN0c1wbjqBEQYOxtcFYxvWagz9ZBP6jCdJm7kCwYtZAVGAU3AD",
+                "have-i-been-pwned-verification=0c602ead0d5752884611ab6da8130888",
+                "sending_domain1089322=0814af61325323d2c36344de0c658ecb1ecb129f974dc796476a06c49c972b35"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 0.40842175483703613,
+            "total_records": 43,
+            "total_subdomains": 0,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "ebay.com",
+          "timestamp": 1759331065.229543,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "https://www.ebay.com": {
+              "url": "https://www.ebay.com",
+              "timestamp": 1759330828.5332892,
+              "response_analysis": {},
+              "header_analysis": {},
+              "technology_detection": {},
+              "security_analysis": {},
+              "performance_metrics": {},
+              "error": "HTTPSConnectionPool(host='www.ebay.com', port=443): Max retries exceeded with url: / (Caused by ResponseError('too many 503 error responses'))"
+            },
+            "https://ebay.com": {
+              "url": "https://ebay.com",
+              "timestamp": 1759330886.7552383,
+              "response_analysis": {},
+              "header_analysis": {},
+              "technology_detection": {},
+              "security_analysis": {},
+              "performance_metrics": {},
+              "error": "HTTPSConnectionPool(host='www.ebay.com', port=443): Max retries exceeded with url: / (Caused by ResponseError('too many 503 error responses'))"
+            },
+            "http://www.ebay.com": {
+              "url": "http://www.ebay.com",
+              "timestamp": 1759330945.5280645,
+              "response_analysis": {},
+              "header_analysis": {},
+              "technology_detection": {},
+              "security_analysis": {},
+              "performance_metrics": {},
+              "error": "HTTPSConnectionPool(host='www.ebay.com', port=443): Max retries exceeded with url: / (Caused by ResponseError('too many 503 error responses'))"
+            },
+            "http://ebay.com": {
+              "url": "http://ebay.com",
+              "timestamp": 1759331004.9317083,
+              "response_analysis": {},
+              "header_analysis": {},
+              "technology_detection": {},
+              "security_analysis": {},
+              "performance_metrics": {},
+              "error": "HTTPSConnectionPool(host='www.ebay.com', port=443): Max retries exceeded with url: / (Caused by ResponseError('too many 503 error responses'))"
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 0,
+            "unique_technologies": [],
+            "security_score_avg": 0.0,
+            "common_issues": []
+          },
+          "statistics": {
+            "total_duration": 236.70892882347107,
+            "success_rate": 0.0
+          },
+          "errors": {
+            "http_request": [
+              "HTTPSConnectionPool(host='www.ebay.com', port=443): Max retries exceeded with url: / (Caused by ResponseError('too many 503 error responses'))",
+              "HTTPSConnectionPool(host='www.ebay.com', port=443): Max retries exceeded with url: / (Caused by ResponseError('too many 503 error responses'))",
+              "HTTPSConnectionPool(host='www.ebay.com', port=443): Max retries exceeded with url: / (Caused by ResponseError('too many 503 error responses'))",
+              "HTTPSConnectionPool(host='www.ebay.com', port=443): Max retries exceeded with url: / (Caused by ResponseError('too many 503 error responses'))"
+            ]
+          }
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 0,
+          "records_found": 43,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 0
+        }
+      },
+      "all_subdomains": [
+        "www.ebay.com"
+      ],
+      "statistics": {
+        "total_subdomains": 1,
+        "unique_subdomains": 1,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 273.46,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 0,
+        "security_issues_found": 0,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "ebay.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 20:34 +0530\nNmap scan report for ebay.com (23.32.39.134)\nHost is up (0.046s latency).\nOther addresses for ebay.com (not scanned): 23.32.39.145\nrDNS record for 23.32.39.134: a23-32-39-134.deploy.static.akamaitechnologies.com\nNot shown: 997 filtered tcp ports (no-response), 1 closed tcp port (reset)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 6.01 seconds\n",
+        "scan_duration": 6.01
+      },
+      "service_results": {
+        "target": "ebay.com",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.0 400 Bad Request\r\nServer: AkamaiGHost\r\nMime-Version: 1.0\r\nContent-Type: text/html\r\nContent-Length: 310\r\nExpires: Wed, 01 Oct 2025 15:04:31 GMT\r\nDate: Wed, 01 Oct 2025 15:04:31 GMT\r\nConnection: close\r\n\r\n<HTML><HEAD>\n<TITLE>Invalid URL</TITLE>\n</HEAD><BODY>\n<H1>Invalid URL</H1>\nThe requested URL \"&#91;no&#32;URL&#93;\", is invalid.<p>\nReference&#32;&#35;9&#46;c6a4c117&#46;1759331071&#46;45d86fb\n<P>https&#58;&#47;&#47;errors&#46;edgesuite&#46;net&#47;9&#46;c6a4c117&#46;1759331071&#46;45d86fb</P>\n</BODY></HTML>",
+            "version": "1.0",
+            "ssl": false,
+            "protocol_info": {}
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "No banner ([WinError 10054] An existing connection was forcibly closed by the remote host)",
+            "version": null,
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_128_GCM_SHA256"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 6.01
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Google CDN",
+        "detection_method": "content",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "ebay.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/ebay_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 1,
+    "total_open_ports": 2,
+    "cdn_detected": true,
+    "technologies_detected": 0,
+    "apis_discovered": 0
+  },
+  "execution_time": 301.3313457965851
+}

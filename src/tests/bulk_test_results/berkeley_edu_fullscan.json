@@ -1,0 +1,828 @@
+{
+  "target_domain": "berkeley.edu",
+  "scan_timestamp": "2025-10-01T21:18:58.492479",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "berkeley.edu",
+      "timestamp": "2025-10-01T21:18:58.492778",
+      "modules": {
+        "passive": {
+          "domain": "berkeley.edu",
+          "timestamp": 1759333794.918192,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 56.418245792388916,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "berkeley.edu",
+          "timestamp": 1759333798.9274867,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "141.193.213.20",
+              "141.193.213.21"
+            ],
+            "MX": [
+              "alt3.aspmx.l.google.com",
+              "aspmx.l.google.com",
+              "alt4.aspmx.l.google.com",
+              "alt1.aspmx.l.google.com",
+              "alt2.aspmx.l.google.com"
+            ],
+            "NS": [
+              "adns1.berkeley.edu",
+              "adns2.berkeley.edu",
+              "adns3.berkeley.edu"
+            ],
+            "TXT": [
+              "docusign=25bb9bc1-b377-48ce-a907-61472fca6261",
+              "google-site-verification=C4YkQW0t-gtD5FpVWdjxAipEUofVb2p0KmW3xFaUJeA",
+              "klaviyo-site-verification=SWYLuM",
+              "jamf-site-verification=2jicltwxCxH93ep4OhO0dA",
+              "google-site-verification=CDuttEoV44OF0dD7qwidnTj3wvYxIPz05W6MKEZfKYc",
+              "google-site-verification=loQrJWyMsMB249uINb-AsRGTWVoLdTc44Td3aMGn-NE",
+              "google-site-verification=R5hbazPMfJqtXtm6OHprlDpBnSThQvYDrt-i-IqZvjE",
+              "google-site-verification=fL93jj-VPnl_5wdFDh26YshzKVPraWAurHaBCu-k-Xw",
+              "sending_domain102272=da1fdb1bce80fcb235c498ec3ad47745fed6ea7c6dc03752d88318531e6b07b7",
+              "amazonses:IuakF7FVH1Y7h0Kap7krqHwRvoXFOzSET+Ri1VBHziA=",
+              "docusign=31f4475e-737f-4a3a-b6ea-60b1ac273c95",
+              "iContact1462072",
+              "brevo-code:ee0b01818d57850991280d3999efc841",
+              "896263912-18360412",
+              "atlassian-domain-verification=RIwGoMGAwFoHKm3AJg0bhFvuzEkRseqI6LStzthTqt4dWfA6Mqm5OCHFbZd1BJ9e",
+              "MS=ms19521665",
+              "apple-domain-verification=ZDtApcKYPmKfYxn4",
+              "MS=ms37758698",
+              "adobe-idp-site-verification=a113c870-3c49-4b4a-b3a4-31e1cf1860cb",
+              "iContact1583632",
+              "brevo-code:e1e8345a4a2352cdbd9d6979093f2aec",
+              "ZOOM_verify_RirbP7N1QWC3Zzm02oL4Cw",
+              "iContact1393487",
+              "v=spf1 include:_spf.berkeley.edu include:_spf2.berkeley.edu include:_spf.google.com include:_spf.qualtrics.com include:servers.mcsv.net include:spf.mailjet.com a:c.spf.service-now.com ~all",
+              "openai-domain-verification=dv-1YkMob7gfbm46hpE39RRo2pB",
+              "MS=10BE0CF63C8BD5AFF9A6EF7B71763B098A905719"
+            ],
+            "SOA": [
+              "sut-vps-ib1.net.berkeley.edu. hostmaster.berkeley.edu. 2067355638 10800 1080 2419200 300"
+            ]
+          },
+          "subdomains": [
+            "adns1.berkeley.edu",
+            "adns2.berkeley.edu",
+            "adns3.berkeley.edu"
+          ],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 include:_spf.berkeley.edu include:_spf2.berkeley.edu include:_spf.google.com include:_spf.qualtrics.com include:servers.mcsv.net include:spf.mailjet.com a:c.spf.service-now.com ~all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=C4YkQW0t-gtD5FpVWdjxAipEUofVb2p0KmW3xFaUJeA",
+                "google-site-verification=CDuttEoV44OF0dD7qwidnTj3wvYxIPz05W6MKEZfKYc",
+                "google-site-verification=loQrJWyMsMB249uINb-AsRGTWVoLdTc44Td3aMGn-NE",
+                "google-site-verification=R5hbazPMfJqtXtm6OHprlDpBnSThQvYDrt-i-IqZvjE",
+                "google-site-verification=fL93jj-VPnl_5wdFDh26YshzKVPraWAurHaBCu-k-Xw"
+              ],
+              "other": [
+                "docusign=25bb9bc1-b377-48ce-a907-61472fca6261",
+                "klaviyo-site-verification=SWYLuM",
+                "jamf-site-verification=2jicltwxCxH93ep4OhO0dA",
+                "sending_domain102272=da1fdb1bce80fcb235c498ec3ad47745fed6ea7c6dc03752d88318531e6b07b7",
+                "amazonses:IuakF7FVH1Y7h0Kap7krqHwRvoXFOzSET+Ri1VBHziA=",
+                "docusign=31f4475e-737f-4a3a-b6ea-60b1ac273c95",
+                "iContact1462072",
+                "brevo-code:ee0b01818d57850991280d3999efc841",
+                "896263912-18360412",
+                "atlassian-domain-verification=RIwGoMGAwFoHKm3AJg0bhFvuzEkRseqI6LStzthTqt4dWfA6Mqm5OCHFbZd1BJ9e",
+                "MS=ms19521665",
+                "apple-domain-verification=ZDtApcKYPmKfYxn4",
+                "MS=ms37758698",
+                "adobe-idp-site-verification=a113c870-3c49-4b4a-b3a4-31e1cf1860cb",
+                "iContact1583632",
+                "brevo-code:e1e8345a4a2352cdbd9d6979093f2aec",
+                "ZOOM_verify_RirbP7N1QWC3Zzm02oL4Cw",
+                "iContact1393487",
+                "openai-domain-verification=dv-1YkMob7gfbm46hpE39RRo2pB",
+                "MS=10BE0CF63C8BD5AFF9A6EF7B71763B098A905719"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 3.198324680328369,
+            "total_records": 37,
+            "total_subdomains": 3,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "berkeley.edu",
+          "timestamp": 1759333802.8406022,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://www.berkeley.edu": {
+              "url": "http://www.berkeley.edu",
+              "timestamp": 1759333799.178361,
+              "response_analysis": {
+                "status_code": 403,
+                "reason": "Forbidden",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 5509,
+                "url": "http://www.berkeley.edu/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "http://www.berkeley.edu/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta nam...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "Just a moment...",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "__cf_bm=tEox3zdNJTNqTI3kLPFBl6q.8xAjORObZY5Zqtl1zC8-1759333799-1.0.1.1-cW27.XG.rgtkzjvJS8xqDh.SuECl3D5yJ.bjaSJSDfRe2X5VaxKm_jmQPWCNWVHmwAziM_GaWDeNTZaiBoabW6R8FJfWZHoHIuj6..Ltbyk; path=/; expires=Wed, 01-Oct-25 16:19:59 GMT; domain=.www.berkeley.edu; HttpOnly",
+                "cache_control": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+                "expires": "Thu, 01 Jan 1970 00:00:01 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Cloudflare"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "same-origin",
+                  "Permissions-Policy": "accelerometer=(),autoplay=(),browsing-topics=(),camera=(),clipboard-read=(),clipboard-write=(),geolocation=(),gyroscope=(),hid=(),interest-cohort=(),magnetometer=(),microphone=(),payment=(),publickey-credentials-get=(),screen-wake-lock=(),serial=(),sync-xhr=(),usb=()"
+                },
+                "ssl_info": {
+                  "uses_ssl": false,
+                  "url_scheme": "http",
+                  "ssl_grade": "Poor - No SSL"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": true,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "X-XSS-Protection"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS",
+                  "Enable HTTPS/SSL for secure communication"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 0.8042819499969482,
+                "content_length": 5509,
+                "status_code": 403,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.berkeley.edu": {
+              "url": "https://www.berkeley.edu",
+              "timestamp": 1759333799.983362,
+              "response_analysis": {
+                "status_code": 403,
+                "reason": "Forbidden",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 7429,
+                "url": "https://www.berkeley.edu/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://www.berkeley.edu/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta nam...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "Just a moment...",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+                "expires": "Thu, 01 Jan 1970 00:00:01 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Cloudflare"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "same-origin",
+                  "Permissions-Policy": "accelerometer=(),autoplay=(),browsing-topics=(),camera=(),clipboard-read=(),clipboard-write=(),geolocation=(),gyroscope=(),hid=(),interest-cohort=(),magnetometer=(),microphone=(),payment=(),publickey-credentials-get=(),screen-wake-lock=(),serial=(),sync-xhr=(),usb=()"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "X-XSS-Protection"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 0.7126638889312744,
+                "content_length": 7429,
+                "status_code": 403,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://berkeley.edu": {
+              "url": "http://berkeley.edu",
+              "timestamp": 1759333800.6967611,
+              "response_analysis": {
+                "status_code": 403,
+                "reason": "Forbidden",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 5505,
+                "url": "http://berkeley.edu/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "http://berkeley.edu/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta nam...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "Just a moment...",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "__cf_bm=Xve6WdYQ5Akef57uWb6y5QD9s_GtxPP8c4MuRQCeCOE-1759333800-1.0.1.1-qWrZ06Z6xM3BDlqFggKmvNluezBnme9GfacZ.xmPXMnQDx2CyFQW9NQEnIi_7ndVJ5NbM0isu8aAL3_kk.hpdJ3Sx.LqHc9WgE_Q4Ec9Pww; path=/; expires=Wed, 01-Oct-25 16:20:00 GMT; domain=.berkeley.edu; HttpOnly",
+                "cache_control": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+                "expires": "Thu, 01 Jan 1970 00:00:01 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Cloudflare"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "same-origin",
+                  "Permissions-Policy": "accelerometer=(),autoplay=(),browsing-topics=(),camera=(),clipboard-read=(),clipboard-write=(),geolocation=(),gyroscope=(),hid=(),interest-cohort=(),magnetometer=(),microphone=(),payment=(),publickey-credentials-get=(),screen-wake-lock=(),serial=(),sync-xhr=(),usb=()"
+                },
+                "ssl_info": {
+                  "uses_ssl": false,
+                  "url_scheme": "http",
+                  "ssl_grade": "Poor - No SSL"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": true,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "X-XSS-Protection"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS",
+                  "Enable HTTPS/SSL for secure communication"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 0.9026613235473633,
+                "content_length": 5505,
+                "status_code": 403,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://berkeley.edu": {
+              "url": "https://berkeley.edu",
+              "timestamp": 1759333801.600209,
+              "response_analysis": {
+                "status_code": 403,
+                "reason": "Forbidden",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 7425,
+                "url": "https://berkeley.edu/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://berkeley.edu/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta nam...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "Just a moment...",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+                "expires": "Thu, 01 Jan 1970 00:00:01 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Cloudflare"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "same-origin",
+                  "Permissions-Policy": "accelerometer=(),autoplay=(),browsing-topics=(),camera=(),clipboard-read=(),clipboard-write=(),geolocation=(),gyroscope=(),hid=(),interest-cohort=(),magnetometer=(),microphone=(),payment=(),publickey-credentials-get=(),screen-wake-lock=(),serial=(),sync-xhr=(),usb=()"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "X-XSS-Protection"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 1.2305505275726318,
+                "content_length": 7425,
+                "status_code": 403,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Cloudflare"
+            ],
+            "security_score_avg": 57.14285714285714,
+            "common_issues": [
+              "X-XSS-Protection",
+              "Content-Security-Policy",
+              "Strict-Transport-Security"
+            ]
+          },
+          "statistics": {
+            "total_duration": 3.897089958190918,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 3,
+          "records_found": 37,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 1
+        }
+      },
+      "all_subdomains": [
+        "adns1.berkeley.edu",
+        "adns2.berkeley.edu",
+        "adns3.berkeley.edu",
+        "www.berkeley.edu"
+      ],
+      "statistics": {
+        "total_subdomains": 4,
+        "unique_subdomains": 4,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 64.35,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 1,
+        "security_issues_found": 3,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "berkeley.edu",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 21:20 +0530\nNmap scan report for berkeley.edu (141.193.213.21)\nHost is up (0.0099s latency).\nOther addresses for berkeley.edu (not scanned): 141.193.213.20\nNot shown: 996 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT     STATE SERVICE\n80/tcp   open  http\n443/tcp  open  https\n8080/tcp open  http-proxy\n8443/tcp open  https-alt\n\nNmap done: 1 IP address (1 host up) scanned in 6.11 seconds\n",
+        "scan_duration": 6.11
+      },
+      "service_results": {
+        "target": "berkeley.edu",
+        "scan_type": "quick",
+        "open_ports_count": 4,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 400 Bad Request\r\nDate: Wed, 01 Oct 2025 15:50:09 GMT\r\nContent-Length: 68\r\nConnection: close\r\nCache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0\r\nReferrer-Policy: same-origin\r\nExpires: Thu, 01 Jan 1970 00:00:01 GMT\r\nProxy-Status: Cloudflare-Proxy;error=http_request_error\r\nCF-RAY: 987d1d330bc5513a-CMB\r\n\r\nCloudflare encountered an error processing this request: Bad Request",
+            "version": "1.1",
+            "ssl": false,
+            "protocol_info": {}
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "HTTP/1.1 400 Bad Request\r\nServer: cloudflare\r\nDate: Wed, 01 Oct 2025 15:50:09 GMT\r\nContent-Type: text/html\r\nContent-Length: 253\r\nConnection: close\r\nCF-RAY: -\r\n\r\n<html>\r\n<head><title>400 The plain HTTP request was sent to HTTPS port</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<center>The plain HTTP request was sent to HTTPS port</center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>",
+            "version": "1.1",
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384"
+              }
+            }
+          },
+          "8080": {
+            "port": 8080,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 400 Bad Request\r\nDate: Wed, 01 Oct 2025 15:50:09 GMT\r\nContent-Length: 68\r\nConnection: close\r\nCache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0\r\nReferrer-Policy: same-origin\r\nExpires: Thu, 01 Jan 1970 00:00:01 GMT\r\nProxy-Status: Cloudflare-Proxy;error=http_request_error\r\nCF-RAY: 987d1d350eb4513a-CMB\r\n\r\nCloudflare encountered an error processing this request: Bad Request",
+            "version": "1.1",
+            "ssl": false,
+            "protocol_info": {}
+          },
+          "8443": {
+            "port": 8443,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 400 Bad Request\r\nServer: cloudflare\r\nDate: Wed, 01 Oct 2025 15:50:09 GMT\r\nContent-Type: text/html\r\nContent-Length: 253\r\nConnection: close\r\nCF-RAY: -\r\n\r\n<html>\r\n<head><title>400 The plain HTTP request was sent to HTTPS port</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<center>The plain HTTP request was sent to HTTPS port</center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>",
+            "version": "1.1",
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 3,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)",
+            "HTTP (port 8443)"
+          ],
+          "total_services": 4
+        }
+      },
+      "summary": {
+        "open_ports_count": 4,
+        "services_identified": 4,
+        "scan_duration": 6.11
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Cloudflare",
+        "detection_method": "headers",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 403
+      },
+      "execution_info": {
+        "domain": "berkeley.edu",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/berkeley_edu_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 4,
+    "total_open_ports": 4,
+    "cdn_detected": true,
+    "technologies_detected": 1,
+    "apis_discovered": 0
+  },
+  "execution_time": 73.21408128738403
+}

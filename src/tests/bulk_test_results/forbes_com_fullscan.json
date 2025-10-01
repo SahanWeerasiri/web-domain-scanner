@@ -1,0 +1,870 @@
+{
+  "target_domain": "forbes.com",
+  "scan_timestamp": "2025-10-01T20:23:30.685189",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "forbes.com",
+      "timestamp": "2025-10-01T20:23:30.685730",
+      "modules": {
+        "passive": {
+          "domain": "forbes.com",
+          "timestamp": 1759330467.5244427,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 56.83234190940857,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "forbes.com",
+          "timestamp": 1759330469.017057,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "151.101.130.49",
+              "151.101.66.49",
+              "151.101.2.49",
+              "151.101.194.49"
+            ],
+            "MX": [
+              "us-smtp-inbound-2.mimecast.com",
+              "us-smtp-inbound-1.mimecast.com"
+            ],
+            "NS": [
+              "ns-217.awsdns-27.com",
+              "ns-979.awsdns-58.net",
+              "ns-1637.awsdns-12.co.uk",
+              "ns-1028.awsdns-00.org"
+            ],
+            "TXT": [
+              "google-site-verification=Xn4XFgtsz0Vg597dd8D8rO4jI6vC9pB7yseCSveG3h8",
+              "google-site-verification=yZQq_-7hQQZvLkdcyiFtwW6OR3Z622l79OSUvBRsqNc",
+              "teamviewer-sso-verification=27c248ca0d8b4160ae3d1de1a514f350",
+              "_globalsign-domain-verification=uJqsSX1GhpaZSFMhWB8VnlSbH-6c3GbKG4zsuqlwcx",
+              "pardot801473=bf9d7022b0bc982f001c58f637feb87b69c9c2b03e8a6b856130925bea8ac117",
+              "datadome-domain-verify=gH4f7bbJndRTMUSvjv8PAP8SOlVa8wKW",
+              "canva-site-verification=0wNoieRvIbw1yAsgkfgEFg",
+              "_globalsign-domain-verification=neaEg6fJBhW6Tg3gVqQJIn6pLyiBwIiDdxJ88CLzP6",
+              "google-site-verification=Y4n4S0k7HGrE1sAHYlupK4YAjw4d_oSAeoGy6mLe8Mw",
+              "pardot1032633=53abf112b6eecacc916172589fb4d4bd8c30db4bd1b5330035aa2b700d3ed6b0",
+              "pardot801473=19f8d9f3e51ca9f5e26b0d692435f822cdca35fb4777c78de68ae6c257d5b038",
+              "v=spf1 redirect=b45gkw7f._spf._d.mim.ec",
+              "google-site-verification=Cv7OXjshytFn0TpR1rgKpHjEY_fROROE67OtoFceBqo",
+              "_globalsign-domain-verification=f-B_7ErtvSe_2e1SkhSsTab6DQA-AVd2vcvY3gqskQ",
+              "activeprospect-domain-verification=qp+SZ6XBnvREh9uEL2xQLA==",
+              "pardot796133=6fd42896c075674c6c76877e3b89bdf5968ef1481049531e12ea9bdb8f2ff83e",
+              "tollbit-domain-verification=f8c8756d26a28b62f839818a4beacd34fb4032d5c5dad7f2bea69856cf265082",
+              "google-site-verification=nPz5kafgk6DGWCT24sR_kxBZ6HdDWmVEPcT67LVTDi4",
+              "sending_domain1032633=35ec75414af614386e4c539f6b6f70dec43759367a0507621bf72396033c96df",
+              "google-site-verification=Q0R44HZFT_-piE4edEVS_jGwyMFoOX4OZ9TGe6zTdys",
+              "google-site-verification=cXpgpgls018QgvO6u7ZwfMVCNWo_woBz1bvNa4UoBEQ",
+              "apple-domain-verification=daIrUUF2LjNKeFrq",
+              "sending_domain1025723=07a4a21499775df2794df065a6dc2e7c2c01a21593cea6162497f05bca993eaa",
+              "pardot862611=cc07d11f1e6b06dc86f90b7be4df47547054f36ffae67809000382108c396476",
+              "google-site-verification=DN-rZTjK3vdARCxismMt2SJDfV2969vhf1paBECwEMM",
+              "activeprospect-domain-verification=ua2Bpiq7hQeM3lYKH8kgnQ==",
+              "monday-com-verification=ndOawG8XV4mwyFS7aJZKgKvfWc_nN6gc6_5rUrvAS7A",
+              "google-site-verification=lYYbu_dzlcI_soF2GSXrdoAGm2XDbIAjDZyu0vhKwxc",
+              "_globalsign-domain-verification=yMOGr8PalNMtvZPeSrDGFdvgJfngIvOKMbvhlujB3j",
+              "google-site-verification=2LeumZRvIXuK3YrTI2IsISp06lXZpHCY1ql9Hdnm7ok",
+              "adobe-idp-site-verification=a6de0a21210eae1c4187cfe64dfb37d7920d64e696bdfb0cad32d55ca6878c06",
+              "mandrill_verify.3ujpkQolFHR740mhYiRgYw",
+              "atlassian-domain-verification=+tjT1PDHq7a3IkqoEdD/cr2krJeRPoT5b6MzfYBKGS4UnVXhIHyuSJjSIxijiVSQ",
+              "stripe-verification=0d973d45747a457f5e2624c6116631d31e007d32d42654cca280f9b38da539f3",
+              "mgverify=735062366c4a3c7a10b6c50bcba26706a11ad9fc277ff9b88f65478b3517f0a1",
+              "detectify-verification=5f8e1d4a06c492a8ba7c03abd2c0ef89",
+              "google-site-verification=xE03wJxteQXWM1cwqmiAVTgaQ3StFNRzuCXOobAACEs",
+              "docusign=d1893713-45af-4fd3-8a65-3ea6d0805b8d",
+              "_globalsign-domain-verification=OYfE_CcZQWFlEEOrR5yVCfCtmiQrm0bBdyUAJyg3qE",
+              "loom-site-verification=2203b12049644a5f96f8b3027d420d7f",
+              "pardot1025723=b54db22127fb6a86162b160a380d9c5c2c50bcb8cb300ab427037bbc1b85407c",
+              "AiAIjH5HOXMx5tZiyBtD0B/u8mG9qKWaux3SehpuJOv0F+5AvjwJTKsIeI7HR3DR0QDYmJthhZvN8ScuEO9LqA==",
+              "google-site-verification=4RdeC2A3Yjqca3_jGnjXGOYJFTVOzhMDw1SoOO7b6Dw",
+              "pardot796133=9f1e666d7433483f4b9dc2e20e381f5585877aded11d3d17f1f597438ebb9726",
+              "klaviyo-site-verification=UeguZL",
+              "smartsheet-site-validation=cK_DmMDOyw92iKzuKOQwA0xEgc1QbECt",
+              "SFMC-bcDxiJPY-jXu5QtysqxbFjCPLBjk3BSojw81lQrU",
+              "jamf-site-verification=yHj9RKO_tLsE0_uN0pJFnA",
+              "MS=ms55849810"
+            ],
+            "SOA": [
+              "ns-1637.awsdns-12.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"
+            ]
+          },
+          "subdomains": [],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 redirect=b45gkw7f._spf._d.mim.ec"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=Xn4XFgtsz0Vg597dd8D8rO4jI6vC9pB7yseCSveG3h8",
+                "google-site-verification=yZQq_-7hQQZvLkdcyiFtwW6OR3Z622l79OSUvBRsqNc",
+                "google-site-verification=Y4n4S0k7HGrE1sAHYlupK4YAjw4d_oSAeoGy6mLe8Mw",
+                "google-site-verification=Cv7OXjshytFn0TpR1rgKpHjEY_fROROE67OtoFceBqo",
+                "google-site-verification=nPz5kafgk6DGWCT24sR_kxBZ6HdDWmVEPcT67LVTDi4",
+                "google-site-verification=Q0R44HZFT_-piE4edEVS_jGwyMFoOX4OZ9TGe6zTdys",
+                "google-site-verification=cXpgpgls018QgvO6u7ZwfMVCNWo_woBz1bvNa4UoBEQ",
+                "google-site-verification=DN-rZTjK3vdARCxismMt2SJDfV2969vhf1paBECwEMM",
+                "google-site-verification=lYYbu_dzlcI_soF2GSXrdoAGm2XDbIAjDZyu0vhKwxc",
+                "google-site-verification=2LeumZRvIXuK3YrTI2IsISp06lXZpHCY1ql9Hdnm7ok",
+                "google-site-verification=xE03wJxteQXWM1cwqmiAVTgaQ3StFNRzuCXOobAACEs",
+                "google-site-verification=4RdeC2A3Yjqca3_jGnjXGOYJFTVOzhMDw1SoOO7b6Dw"
+              ],
+              "other": [
+                "teamviewer-sso-verification=27c248ca0d8b4160ae3d1de1a514f350",
+                "_globalsign-domain-verification=uJqsSX1GhpaZSFMhWB8VnlSbH-6c3GbKG4zsuqlwcx",
+                "pardot801473=bf9d7022b0bc982f001c58f637feb87b69c9c2b03e8a6b856130925bea8ac117",
+                "datadome-domain-verify=gH4f7bbJndRTMUSvjv8PAP8SOlVa8wKW",
+                "canva-site-verification=0wNoieRvIbw1yAsgkfgEFg",
+                "_globalsign-domain-verification=neaEg6fJBhW6Tg3gVqQJIn6pLyiBwIiDdxJ88CLzP6",
+                "pardot1032633=53abf112b6eecacc916172589fb4d4bd8c30db4bd1b5330035aa2b700d3ed6b0",
+                "pardot801473=19f8d9f3e51ca9f5e26b0d692435f822cdca35fb4777c78de68ae6c257d5b038",
+                "_globalsign-domain-verification=f-B_7ErtvSe_2e1SkhSsTab6DQA-AVd2vcvY3gqskQ",
+                "activeprospect-domain-verification=qp+SZ6XBnvREh9uEL2xQLA==",
+                "pardot796133=6fd42896c075674c6c76877e3b89bdf5968ef1481049531e12ea9bdb8f2ff83e",
+                "tollbit-domain-verification=f8c8756d26a28b62f839818a4beacd34fb4032d5c5dad7f2bea69856cf265082",
+                "sending_domain1032633=35ec75414af614386e4c539f6b6f70dec43759367a0507621bf72396033c96df",
+                "apple-domain-verification=daIrUUF2LjNKeFrq",
+                "sending_domain1025723=07a4a21499775df2794df065a6dc2e7c2c01a21593cea6162497f05bca993eaa",
+                "pardot862611=cc07d11f1e6b06dc86f90b7be4df47547054f36ffae67809000382108c396476",
+                "activeprospect-domain-verification=ua2Bpiq7hQeM3lYKH8kgnQ==",
+                "monday-com-verification=ndOawG8XV4mwyFS7aJZKgKvfWc_nN6gc6_5rUrvAS7A",
+                "_globalsign-domain-verification=yMOGr8PalNMtvZPeSrDGFdvgJfngIvOKMbvhlujB3j",
+                "adobe-idp-site-verification=a6de0a21210eae1c4187cfe64dfb37d7920d64e696bdfb0cad32d55ca6878c06",
+                "mandrill_verify.3ujpkQolFHR740mhYiRgYw",
+                "atlassian-domain-verification=+tjT1PDHq7a3IkqoEdD/cr2krJeRPoT5b6MzfYBKGS4UnVXhIHyuSJjSIxijiVSQ",
+                "stripe-verification=0d973d45747a457f5e2624c6116631d31e007d32d42654cca280f9b38da539f3",
+                "mgverify=735062366c4a3c7a10b6c50bcba26706a11ad9fc277ff9b88f65478b3517f0a1",
+                "detectify-verification=5f8e1d4a06c492a8ba7c03abd2c0ef89",
+                "docusign=d1893713-45af-4fd3-8a65-3ea6d0805b8d",
+                "_globalsign-domain-verification=OYfE_CcZQWFlEEOrR5yVCfCtmiQrm0bBdyUAJyg3qE",
+                "loom-site-verification=2203b12049644a5f96f8b3027d420d7f",
+                "pardot1025723=b54db22127fb6a86162b160a380d9c5c2c50bcb8cb300ab427037bbc1b85407c",
+                "AiAIjH5HOXMx5tZiyBtD0B/u8mG9qKWaux3SehpuJOv0F+5AvjwJTKsIeI7HR3DR0QDYmJthhZvN8ScuEO9LqA==",
+                "pardot796133=9f1e666d7433483f4b9dc2e20e381f5585877aded11d3d17f1f597438ebb9726",
+                "klaviyo-site-verification=UeguZL",
+                "smartsheet-site-validation=cK_DmMDOyw92iKzuKOQwA0xEgc1QbECt",
+                "SFMC-bcDxiJPY-jXu5QtysqxbFjCPLBjk3BSojw81lQrU",
+                "jamf-site-verification=yHj9RKO_tLsE0_uN0pJFnA",
+                "MS=ms55849810"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 0.5347158908843994,
+            "total_records": 60,
+            "total_subdomains": 0,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "forbes.com",
+          "timestamp": 1759330481.7234051,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "https://forbes.com": {
+              "url": "https://forbes.com",
+              "timestamp": 1759330469.0442617,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 728817,
+                "url": "https://www.forbes.com/",
+                "redirect_chain": [
+                  "https://forbes.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.forbes.com/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en\"><head><link rel=\"preload\" as=\"image\" href=\"https://imageio.forbes.com/specials-images/imageserve/68dc386ff393b1a6a24c3895/0x0.jpg?format=jpg&amp;width=1100\"><meta charse...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Forbes",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Forbes is a global media company, focusing on business, investing, technology, entrepreneurship, lea",
+                  "keywords": "business, tech, leadership, entrepreneurs, investing"
+                }
+              },
+              "header_analysis": {
+                "server": "rhino-core-shield",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "upgrade-insecure-requests",
+                "strict_transport_security": "max-age=31536000; includeSubDomains; preload",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "datadome=Esd_xuQyuOjB6ao5l4jGyBaDlYvtKPcIAT~HLBKOUlCyXq73wHsPMTEDuhIIpPkP_HjUJaZ7E9rgEJKkv2FYqGJwTq0IZqMm7yh3gtA0FHCeFC3RZcKWSzQlbRB5_RAU; Max-Age=31536000; Domain=.forbes.com; Path=/; Secure; SameSite=Lax",
+                "cache_control": "public, max-age=300",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "rhino-core-shield",
+                  "components": [
+                    "rhino-core-shield"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Varnish",
+                  "Envoy",
+                  "Datadome"
+                ],
+                "header_detected": [],
+                "content_detected": [
+                  "Angular",
+                  "Bootstrap"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "upgrade-insecure-requests",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": "unload=()"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 3.269164800643921,
+                "content_length": 728817,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [
+                    "Angular"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://www.forbes.com": {
+              "url": "http://www.forbes.com",
+              "timestamp": 1759330472.3138013,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 728817,
+                "url": "https://www.forbes.com/",
+                "redirect_chain": [
+                  "http://www.forbes.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.forbes.com/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en\"><head><link rel=\"preload\" as=\"image\" href=\"https://imageio.forbes.com/specials-images/imageserve/68dc386ff393b1a6a24c3895/0x0.jpg?format=jpg&amp;width=1100\"><meta charse...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Forbes",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Forbes is a global media company, focusing on business, investing, technology, entrepreneurship, lea",
+                  "keywords": "business, tech, leadership, entrepreneurs, investing"
+                }
+              },
+              "header_analysis": {
+                "server": "rhino-core-shield",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "upgrade-insecure-requests",
+                "strict_transport_security": "max-age=31536000; includeSubDomains; preload",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "datadome=lmuT4BCeUDDRrDoXjpeVxhjndbJJ6VC0WPzPTmZ96qOTIZnXQgadmBB2azw4rw5a3tsGM8YTvvJQGgVHQcUDJqbe1Rad~GaSdzVg_QNZA9nIvEdr6_lhyK0sc8WF_ou2; Max-Age=31536000; Domain=.forbes.com; Path=/; Secure; SameSite=Lax",
+                "cache_control": "public, max-age=300",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "rhino-core-shield",
+                  "components": [
+                    "rhino-core-shield"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Varnish",
+                  "Envoy",
+                  "Datadome"
+                ],
+                "header_detected": [],
+                "content_detected": [
+                  "Angular",
+                  "Bootstrap"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "upgrade-insecure-requests",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": "unload=()"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 3.0911331176757812,
+                "content_length": 728817,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [
+                    "Angular"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://forbes.com": {
+              "url": "http://forbes.com",
+              "timestamp": 1759330475.4055388,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 728817,
+                "url": "https://www.forbes.com/",
+                "redirect_chain": [
+                  "http://forbes.com/",
+                  "https://forbes.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.forbes.com/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en\"><head><link rel=\"preload\" as=\"image\" href=\"https://imageio.forbes.com/specials-images/imageserve/68dc386ff393b1a6a24c3895/0x0.jpg?format=jpg&amp;width=1100\"><meta charse...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Forbes",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Forbes is a global media company, focusing on business, investing, technology, entrepreneurship, lea",
+                  "keywords": "business, tech, leadership, entrepreneurs, investing"
+                }
+              },
+              "header_analysis": {
+                "server": "rhino-core-shield",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "upgrade-insecure-requests",
+                "strict_transport_security": "max-age=31536000; includeSubDomains; preload",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "datadome=4dtgk4qS9ByD8sz9SrPyO_L2gX7be2ZTohz04fNVRIfPxJSJT9zPPfWQ~kxP33a7pGxvZ2zbBUzlCEfjGWEXXYbVhu7K4AMGK0t_hVElHZy056slTIyneHpFKnjxQgPJ; Max-Age=31536000; Domain=.forbes.com; Path=/; Secure; SameSite=Lax",
+                "cache_control": "public, max-age=300",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "rhino-core-shield",
+                  "components": [
+                    "rhino-core-shield"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Varnish",
+                  "Envoy",
+                  "Datadome"
+                ],
+                "header_detected": [],
+                "content_detected": [
+                  "Angular",
+                  "Bootstrap"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "upgrade-insecure-requests",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": "unload=()"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 3.5166773796081543,
+                "content_length": 728817,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [
+                    "Angular"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.forbes.com": {
+              "url": "https://www.forbes.com",
+              "timestamp": 1759330478.9232664,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 728817,
+                "url": "https://www.forbes.com/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://www.forbes.com/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en\"><head><link rel=\"preload\" as=\"image\" href=\"https://imageio.forbes.com/specials-images/imageserve/68dc386ff393b1a6a24c3895/0x0.jpg?format=jpg&amp;width=1100\"><meta charse...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Forbes",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Forbes is a global media company, focusing on business, investing, technology, entrepreneurship, lea",
+                  "keywords": "business, tech, leadership, entrepreneurs, investing"
+                }
+              },
+              "header_analysis": {
+                "server": "rhino-core-shield",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "upgrade-insecure-requests",
+                "strict_transport_security": "max-age=31536000; includeSubDomains; preload",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "datadome=kJewgoZDh~MOoL~uBrJ3Hwa~WRGdNuNk5ynV7rduiEHQyZREFbQRQxKBXsR8lcYBJZqrXSetzwwamsMFa6lSZ4hs0ix0oTCtUW6IlAQrbyh7ROFbJ27JXk0nt225bm_D; Max-Age=31536000; Domain=.forbes.com; Path=/; Secure; SameSite=Lax",
+                "cache_control": "public, max-age=300",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "rhino-core-shield",
+                  "components": [
+                    "rhino-core-shield"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Varnish",
+                  "Envoy",
+                  "Datadome"
+                ],
+                "header_detected": [],
+                "content_detected": [
+                  "Angular",
+                  "Bootstrap"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "upgrade-insecure-requests",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": "unload=()"
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 2.7954134941101074,
+                "content_length": 728817,
+                "status_code": 200,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [
+                    "Angular"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Bootstrap",
+              "Angular",
+              "Envoy",
+              "Datadome",
+              "CDN",
+              "Varnish"
+            ],
+            "security_score_avg": 57.14285714285714,
+            "common_issues": [
+              "X-XSS-Protection",
+              "X-Content-Type-Options",
+              "Referrer-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 12.696561813354492,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 0,
+          "records_found": 60,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 6
+        }
+      },
+      "all_subdomains": [
+        "www.forbes.com"
+      ],
+      "statistics": {
+        "total_subdomains": 1,
+        "unique_subdomains": 1,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 71.04,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 6,
+        "security_issues_found": 3,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "forbes.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 20:24 +0530\nNmap scan report for forbes.com (151.101.2.49)\nHost is up (0.049s latency).\nOther addresses for forbes.com (not scanned): 151.101.130.49 151.101.66.49 151.101.194.49\nNot shown: 998 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 8.24 seconds\n",
+        "scan_duration": 8.24
+      },
+      "service_results": {
+        "target": "forbes.com",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 500 Domain Not Found\r\nConnection: close\r\nContent-Length: 243\r\nServer: Varnish\r\nRetry-After: 0\r\ncontent-type: text/html\r\nCache-Control: private, no-cache\r\nX-Served-By: cache-sin-wsss1830090-SIN\r\nAccept-Ranges: bytes\r\nDate: Wed, 01 Oct 2025 14:54:50 GMT\r\nVia: 1.1 varnish\r\n\r\n\n<html>\n<head>\n<title>Fastly error: unknown domain </title>\n</head>\n<body>\n<p>Fastly error: unknown domain: . Please check that this domain has been added to a service.</p>\n<p>Details: cache-sin-wsss1830090-SIN (151.101.2.49)</p></body></html>",
+            "version": "151.101.2",
+            "ssl": false,
+            "protocol_info": {
+              "http": {
+                "status_code": 200,
+                "server": "rhino-core-shield",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": null,
+            "version": null,
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES128-GCM-SHA256"
+              },
+              "http": {
+                "status_code": 200,
+                "server": "rhino-core-shield",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 8.24
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Google CDN",
+        "detection_method": "headers",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "forbes.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/forbes_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 1,
+    "total_open_ports": 2,
+    "cdn_detected": true,
+    "technologies_detected": 6,
+    "apis_discovered": 0
+  },
+  "execution_time": 81.65755581855774
+}

@@ -1,0 +1,591 @@
+{
+  "target_domain": "scholar.google.com",
+  "scan_timestamp": "2025-10-01T21:22:46.774218",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "scholar.google.com",
+      "timestamp": "2025-10-01T21:22:46.774869",
+      "modules": {
+        "passive": {
+          "domain": "scholar.google.com",
+          "timestamp": 1759334012.447274,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 45.66303825378418,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "scholar.google.com",
+          "timestamp": 1759334014.1429374,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "64.233.170.99",
+              "74.125.200.102",
+              "64.233.170.103",
+              "64.233.170.105",
+              "64.233.170.106",
+              "74.125.200.139",
+              "74.125.200.138",
+              "74.125.200.113",
+              "64.233.170.104",
+              "74.125.200.100",
+              "64.233.170.147",
+              "74.125.200.101"
+            ],
+            "CNAME": [
+              "scholar.l.google.com"
+            ],
+            "AAAA": [
+              "2404:6800:4003:c06::71",
+              "2404:6800:4003:c06::8b",
+              "2404:6800:4003:c06::64",
+              "2404:6800:4003:c06::8a"
+            ],
+            "MX": [
+              "smtp.google.com"
+            ],
+            "NS": [
+              "ns2.google.com",
+              "ns3.google.com",
+              "ns4.google.com",
+              "ns1.google.com"
+            ],
+            "TXT": [
+              "google-site-verification=TV9-DBe4R80X4v0M4U_bd_J9cpOJM0nikft0jAgjmsQ",
+              "onetrust-domain-verification=de01ed21f2fa4d8781cbc3ffb89cf4ef",
+              "google-site-verification=4ibFUgB-wXLQ_S7vsXVomSTVamuOXBiVAzpR5IZ87D0",
+              "google-site-verification=wD8N7i1JTNTkezJ49swvWW48f8_9xveREV4oB-0Hf5o",
+              "apple-domain-verification=30afIBcvSuDV2PLX",
+              "globalsign-smime-dv=CDYX+XFHUw2wml6/Gb8+59BsH31KzUr6c1l2BPvqKX8=",
+              "docusign=1b0a6754-49b1-4db5-8540-d2c12664b289",
+              "v=spf1 include:_spf.google.com ~all",
+              "facebook-domain-verification=22rm551cu4k0ab0bxsw536tlds4h95",
+              "MS=E4A68B9AB2BB9670BCE15412F62916164C0B20BB",
+              "docusign=05958488-4752-4ef2-95eb-aa7ba8a3bd0e",
+              "cisco-ci-domain-verification=47c38bc8c4b74b7233e9053220c1bbe76bcc1cd33c7acf7acd36cd6a5332004b"
+            ],
+            "SOA": [
+              "ns1.google.com. dns-admin.google.com. 813182507 900 900 1800 60"
+            ]
+          },
+          "subdomains": [],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 include:_spf.google.com ~all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=TV9-DBe4R80X4v0M4U_bd_J9cpOJM0nikft0jAgjmsQ",
+                "google-site-verification=4ibFUgB-wXLQ_S7vsXVomSTVamuOXBiVAzpR5IZ87D0",
+                "google-site-verification=wD8N7i1JTNTkezJ49swvWW48f8_9xveREV4oB-0Hf5o",
+                "facebook-domain-verification=22rm551cu4k0ab0bxsw536tlds4h95"
+              ],
+              "other": [
+                "onetrust-domain-verification=de01ed21f2fa4d8781cbc3ffb89cf4ef",
+                "apple-domain-verification=30afIBcvSuDV2PLX",
+                "globalsign-smime-dv=CDYX+XFHUw2wml6/Gb8+59BsH31KzUr6c1l2BPvqKX8=",
+                "docusign=1b0a6754-49b1-4db5-8540-d2c12664b289",
+                "MS=E4A68B9AB2BB9670BCE15412F62916164C0B20BB",
+                "docusign=05958488-4752-4ef2-95eb-aa7ba8a3bd0e",
+                "cisco-ci-domain-verification=47c38bc8c4b74b7233e9053220c1bbe76bcc1cd33c7acf7acd36cd6a5332004b"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 0.8759796619415283,
+            "total_records": 35,
+            "total_subdomains": 0,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "scholar.google.com",
+          "timestamp": 1759334026.6407752,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://scholar.google.com": {
+              "url": "http://scholar.google.com",
+              "timestamp": 1759334014.164396,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 130315,
+                "url": "https://scholar.google.com/",
+                "redirect_chain": [
+                  "http://scholar.google.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://scholar.google.com/",
+                "content_preview": "<!doctype html><html><head><title>Google Scholar</title><meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"referrer\" con...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "Google Scholar",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Google Scholar provides a simple way to broadly search for scholarly literature. Search across a wid",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "scholar",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "0",
+                "set_cookie": "NID=525=Mt0ubqF4i0-PcFwtEdsyECI7yc_jYTrSmBKe-YY4LRmruiN0pZ30Bu3s7UXnLLtRJF6Iz21FtmxjEkBSlEnkOlM6c5i-W2hO4K9CZd55C-QdLSIoKKmn-sCFNtfN4cZVjKmq7T1y161dn8vL49pPactxFv_TBNKWXdYEwIcLVnGBl3JeNJefVQ0ucYBN41aV; expires=Thu, 02-Apr-2026 15:53:36 GMT; path=/; domain=.google.com; Secure; HttpOnly; SameSite=none, GSP=LM=1759334016:S=MtDV_870NNmQnfyN; expires=Fri, 01-Oct-2027 15:53:36 GMT; path=/; domain=scholar.google.com; HttpOnly; SameSite=None; Secure",
+                "cache_control": "private, max-age=0",
+                "expires": "Wed, 01 Oct 2025 15:53:36 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "scholar",
+                  "components": [
+                    "scholar"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [],
+                "header_detected": [],
+                "content_detected": [
+                  "Google Analytics"
+                ],
+                "url_patterns": [
+                  "Google Services"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": true,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 42.857142857142854,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 5.185445785522461,
+                "content_length": 130315,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://www.scholar.google.com": {
+              "url": "http://www.scholar.google.com",
+              "timestamp": 1759334019.3504384,
+              "response_analysis": {},
+              "header_analysis": {},
+              "technology_detection": {},
+              "security_analysis": {},
+              "performance_metrics": {},
+              "error": "HTTPSConnectionPool(host='www.scholar.google.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.scholar.google.com'. (_ssl.c:1028)\")))"
+            },
+            "https://www.scholar.google.com": {
+              "url": "https://www.scholar.google.com",
+              "timestamp": 1759334022.018548,
+              "response_analysis": {},
+              "header_analysis": {},
+              "technology_detection": {},
+              "security_analysis": {},
+              "performance_metrics": {},
+              "error": "HTTPSConnectionPool(host='www.scholar.google.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.scholar.google.com'. (_ssl.c:1028)\")))"
+            },
+            "https://scholar.google.com": {
+              "url": "https://scholar.google.com",
+              "timestamp": 1759334024.3352542,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 130865,
+                "url": "https://scholar.google.com/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://scholar.google.com/",
+                "content_preview": "<!doctype html><html><head><title>Google Scholar</title><meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"referrer\" con...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "Google Scholar",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Google Scholar provides a simple way to broadly search for scholarly literature. Search across a wid",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "scholar",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "0",
+                "set_cookie": "Not found",
+                "cache_control": "private, max-age=0",
+                "expires": "Wed, 01 Oct 2025 15:53:44 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "scholar",
+                  "components": [
+                    "scholar"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [],
+                "header_detected": [],
+                "content_detected": [
+                  "Google Analytics"
+                ],
+                "url_patterns": [
+                  "Google Services"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 42.857142857142854,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 2.300973415374756,
+                "content_length": 130865,
+                "status_code": 200,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 2,
+            "unique_technologies": [
+              "Google Analytics",
+              "Google Services"
+            ],
+            "security_score_avg": 21.428571428571427,
+            "common_issues": [
+              "Content-Security-Policy",
+              "Strict-Transport-Security",
+              "Referrer-Policy",
+              "Permissions-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 12.490354061126709,
+            "success_rate": 50.0
+          },
+          "errors": {
+            "http_request": [
+              "HTTPSConnectionPool(host='www.scholar.google.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.scholar.google.com'. (_ssl.c:1028)\")))",
+              "HTTPSConnectionPool(host='www.scholar.google.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.scholar.google.com'. (_ssl.c:1028)\")))"
+            ]
+          }
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 0,
+          "records_found": 35,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 2
+        }
+      },
+      "all_subdomains": [
+        "www.scholar.google.com"
+      ],
+      "statistics": {
+        "total_subdomains": 1,
+        "unique_subdomains": 1,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 59.87,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 2,
+        "security_issues_found": 4,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "scholar.google.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 21:23 +0530\nNmap scan report for scholar.google.com (74.125.130.105)\nHost is up (0.049s latency).\nOther addresses for scholar.google.com (not scanned): 74.125.130.104 74.125.130.99 74.125.130.103 74.125.130.147 74.125.130.106\nrDNS record for 74.125.130.105: sb-in-f105.1e100.net\nNot shown: 997 filtered tcp ports (no-response), 1 filtered tcp ports (net-unreach)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 7.05 seconds\n",
+        "scan_duration": 7.05
+      },
+      "service_results": {
+        "target": "scholar.google.com",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.0 200 OK\r\nDate: Wed, 01 Oct 2025 15:53:53 GMT\r\nExpires: -1\r\nCache-Control: private, max-age=0\r\nContent-Type: text/html; charset=ISO-8859-1\r\nContent-Security-Policy-Report-Only: object-src 'none';base-uri 'self';script-src 'nonce-8ni6vKPfZMVyFvNkP-dijA' 'strict-dynamic' 'report-sample' 'unsafe-eval' 'unsafe-inline' https: http:;report-uri https://csp.withgoogle.com/csp/gws/other-hp\r\nP3P: CP=\"This is not a P3P policy! See g.co/p3phelp for more info.\"\r\nServer: gws\r\nX-XSS-Protection: 0\r\nX-Frame-Options: SAMEORIGIN\r\nSet-Cookie: AEC=AaJma5uBbkVKNlEhA6pdzZ_Z1DiWVYIVw2B7rQGfLbJ5emfqQd2p6Vntn8s; expires=Mon, 30-Mar-2026 15:53:53 GMT; path=/; domain=.google.com; Secure; HttpOnly; SameSite=lax\r\nSet-Cookie: NID=525=H9DoGYOs5fvyZrRZU_2jo5ItS-T4H9ii9N5s4cK5YZGTMYdhpy9doFjrU0X24u-2H5PTIZErlxuArJMyoK_ppYtnmvELgUECg00qP_ITeaA7403S53bHF3o0qVCbUrWecqpdD2IciBZ97VVwF39eVlxXMtKt_vIYVv0sexrKdN8dhxhxNNUDUfOQZnnUNcO2DUow-r8Di592ay0mtEI; expires=Thu, 02-Apr-2026 15:53:53 GMT; path=/; domain=.google.com; HttpOnly\r\nAccept-Ranges:",
+            "version": "1.0",
+            "ssl": false,
+            "protocol_info": {
+              "http": {
+                "status_code": 200,
+                "server": "scholar",
+                "content_type": "text/html; charset=ISO-8859-1"
+              }
+            }
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": null,
+            "version": null,
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384"
+              },
+              "http": {
+                "status_code": 200,
+                "server": "scholar",
+                "content_type": "text/html; charset=ISO-8859-1"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 7.05
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Google CDN",
+        "detection_method": "content",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "scholar.google.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/scholar_google_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 1,
+    "total_open_ports": 2,
+    "cdn_detected": true,
+    "technologies_detected": 2,
+    "apis_discovered": 0
+  },
+  "execution_time": 74.72230792045593
+}

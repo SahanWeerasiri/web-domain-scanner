@@ -1,0 +1,789 @@
+{
+  "target_domain": "reddit.com",
+  "scan_timestamp": "2025-10-01T19:45:11.869815",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "reddit.com",
+      "timestamp": "2025-10-01T19:45:11.870073",
+      "modules": {
+        "passive": {
+          "domain": "reddit.com",
+          "timestamp": 1759328152.5370715,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 40.66294813156128,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "reddit.com",
+          "timestamp": 1759328154.6891456,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "151.101.193.140",
+              "151.101.129.140",
+              "151.101.65.140",
+              "151.101.1.140"
+            ],
+            "AAAA": [
+              "2a04:4e42:400::396",
+              "2a04:4e42:200::396",
+              "2a04:4e42:600::396",
+              "2a04:4e42::396"
+            ],
+            "MX": [
+              "aspmx.l.google.com",
+              "aspmx2.googlemail.com",
+              "aspmx3.googlemail.com",
+              "alt1.aspmx.l.google.com",
+              "alt2.aspmx.l.google.com"
+            ],
+            "NS": [
+              "ns-1029.awsdns-00.org",
+              "ns-378.awsdns-47.com",
+              "ns-1887.awsdns-43.co.uk",
+              "ns-557.awsdns-05.net"
+            ],
+            "TXT": [
+              "MS=ms71041902",
+              "614ac4be-8664-4cea-8e29-f84d08ad875c",
+              "google-site-verification=oh_YJE560y0e6FHP1RT7NIjyTlBhACNMvD2EgSss0sc",
+              "stripe-verification=80aa7e2c9775fee2653f61b04b46da6fd227b56fecd9499e5f63cd0dcf563984",
+              "a5897185-49e1-4181-9065-51bd24737466",
+              "box-domain-verification=95c33f4ee4b11d8827190dbc5371ca7df25b961019116e5565ce4aa36de9be3a",
+              "jetbrains-domain-verification=bjn7o9fxbduga0omhaepeewtx",
+              "docusign=6ba0c5a9-5a5e-41f8-a7c8-8b4c6e35c10c",
+              "google-site-verification=zZHozYbAJmSLOMG4OjQFoHiVqkxtdgvyBzsE7wUGFiw",
+              "twilio-domain-verification=5e37855d7c9445e967b31c5e0371ebb5",
+              "postman-domain-verification=ad4c89daaf83d06f70cb6e8737cb323b039aeaae9e0e288c75081b0a715812a2d30e7c31402da867c70287ad8216da42074ffe7b4fcfcbf86f9316301329308f",
+              "atlassian-domain-verification=aGWDxGvt+oY3p7qTWt5v2uJDVJkoJAeHxwGqKmGQLMEsUXUJJe/Pm/k+GGNPpn6M",
+              "google-site-verification=0uv13-wxlHK8FFKaUpgzyrVmL1YdNYW6v3PupLdw3JI",
+              "jamf-site-verification=EGK11tNR4hezQg0jZaIDpA",
+              "stripe-verification=9bd70dd1884421b47f596fea301e14838c9825cdba5b209990968fdc6f8010c7",
+              "onetrust-domain-verification=6b98ba3dd087405399bbf45b6cbdcd37",
+              "v=spf1 include:amazonses.com include:_spf.google.com include:19922862.spf01.hubspotemail.net include:reddit.deliver.highspot.com include:_spf.salesforce.com include:mail.zendesk.com ip4:52.50.24.208 ip4:35.174.145.124 ~all",
+              "atlassian-domain-verification=vBaV6PXyyu4OAPLiQFbxFMCboSTjoR/qxKJ2OlpI46ZEpZL/FVTIfMlgoM5Hy9eY",
+              "apple-domain-verification=qC3rSSKrh10DoMI7",
+              "cursor-domain-verification-f9fw38=WVB8yAMGTZXO7Je9DLuj1DIZB"
+            ],
+            "SOA": [
+              "ns-557.awsdns-05.net. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 300"
+            ]
+          },
+          "subdomains": [],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 include:amazonses.com include:_spf.google.com include:19922862.spf01.hubspotemail.net include:reddit.deliver.highspot.com include:_spf.salesforce.com include:mail.zendesk.com ip4:52.50.24.208 ip4:35.174.145.124 ~all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=oh_YJE560y0e6FHP1RT7NIjyTlBhACNMvD2EgSss0sc",
+                "google-site-verification=zZHozYbAJmSLOMG4OjQFoHiVqkxtdgvyBzsE7wUGFiw",
+                "google-site-verification=0uv13-wxlHK8FFKaUpgzyrVmL1YdNYW6v3PupLdw3JI"
+              ],
+              "other": [
+                "MS=ms71041902",
+                "614ac4be-8664-4cea-8e29-f84d08ad875c",
+                "stripe-verification=80aa7e2c9775fee2653f61b04b46da6fd227b56fecd9499e5f63cd0dcf563984",
+                "a5897185-49e1-4181-9065-51bd24737466",
+                "box-domain-verification=95c33f4ee4b11d8827190dbc5371ca7df25b961019116e5565ce4aa36de9be3a",
+                "jetbrains-domain-verification=bjn7o9fxbduga0omhaepeewtx",
+                "docusign=6ba0c5a9-5a5e-41f8-a7c8-8b4c6e35c10c",
+                "twilio-domain-verification=5e37855d7c9445e967b31c5e0371ebb5",
+                "postman-domain-verification=ad4c89daaf83d06f70cb6e8737cb323b039aeaae9e0e288c75081b0a715812a2d30e7c31402da867c70287ad8216da42074ffe7b4fcfcbf86f9316301329308f",
+                "atlassian-domain-verification=aGWDxGvt+oY3p7qTWt5v2uJDVJkoJAeHxwGqKmGQLMEsUXUJJe/Pm/k+GGNPpn6M",
+                "jamf-site-verification=EGK11tNR4hezQg0jZaIDpA",
+                "stripe-verification=9bd70dd1884421b47f596fea301e14838c9825cdba5b209990968fdc6f8010c7",
+                "onetrust-domain-verification=6b98ba3dd087405399bbf45b6cbdcd37",
+                "atlassian-domain-verification=vBaV6PXyyu4OAPLiQFbxFMCboSTjoR/qxKJ2OlpI46ZEpZL/FVTIfMlgoM5Hy9eY",
+                "apple-domain-verification=qC3rSSKrh10DoMI7",
+                "cursor-domain-verification-f9fw38=WVB8yAMGTZXO7Je9DLuj1DIZB"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 1.681499719619751,
+            "total_records": 38,
+            "total_subdomains": 0,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "reddit.com",
+          "timestamp": 1759328170.2756498,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://reddit.com": {
+              "url": "http://reddit.com",
+              "timestamp": 1759328154.7371707,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 593042,
+                "url": "https://www.reddit.com/",
+                "redirect_chain": [
+                  "http://reddit.com/",
+                  "https://reddit.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.reddit.com/",
+                "content_preview": "\n    <!DOCTYPE html>\n    <html lang=\"en-US\" class=\"theme-beta\">\n      <head prefix=\"og: https://ogp.me/ns#\">\n        <title>Reddit - The heart of the internet</title>\n        <meta name=\"viewport\" con...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Reddit - The heart of the internet",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Reddit is where millions of people gather for conversations about the things they care about, in ove",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "snooserv",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "child-src 'self' blob: accounts.google.com;connect-src 'self' events.redditmedia.com o418887.ingest.sentry.io *.redd.it *.reddit.com www.redditstatic.com vimeo.com alb.reddit.com accounts.google.com/gsi/ www.google.com/recaptcha/ w3-reporting.reddit.com reddit-uploaded-emoji.s3-accelerate.amazonaws.com reddit-uploaded-media.s3-accelerate.amazonaws.com reddit-uploaded-video.s3-accelerate.amazonaws.com reddit-subreddit-uploaded-media.s3-accelerate.amazonaws.com wss://*.wss.redditmedia.com wss://gql-realtime.reddit.com gql-realtime.reddit.com *.giphy.com js.stripe.com support.reddithelp.com matrix.redditspace.com www.google.com/ccm/ styles.redditmedia.com a.thumbs.redditmedia.com b.thumbs.redditmedia.com;default-src 'self';font-src 'self' data:;form-action 'none';frame-ancestors 'self' *.reddit.com *.snooguts.net;frame-src 'self' www.reddit.com www.youtube.com www.youtube-nocookie.com player.vimeo.com *.redditmedia.com cdn.embedly.com redgifs.com www.redgifs.com embed.reddit.com accounts.google.com/gsi/ www.google.com/recaptcha/ recaptcha.google.com/recaptcha/ js.stripe.com hooks.stripe.com *.devvit.net td.doubleclick.net/ www.googletagmanager.com/ https://www.tiktok.com/;img-src 'self' data: blob: https:;manifest-src 'self' www.redditstatic.com;media-src 'self' blob: data: *.redd.it www.redditstatic.com matrix.redditspace.com;object-src 'none';script-src 'self' 'strict-dynamic' 'report-sample' 'unsafe-inline' 'unsafe-eval' 'nonce-vXTHkBsDwjxgLhXVmOqSuw==';style-src 'self' 'unsafe-inline' www.redditstatic.com *.reddit.com accounts.google.com/gsi/style;style-src-attr 'unsafe-inline';worker-src 'self' blob:;report-to csp;report-uri https://w3-reporting-csp.reddit.com/reports",
+                "strict_transport_security": "max-age=31536000; includeSubdomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "1; mode=block",
+                "set_cookie": "loid=000000001yy4yud4cb.2.1759328156206.Z0FBQUFBQm8zVGVjYUtZV3NjU1FkdUtTQ241TDBtOHdTR2ZvMjlKaEQ2ZDhZLXB5bmlDXzh6VmE2ZWlzMGFGMVFjbFJlbDM2V29yM2Q5VkxfWV9NSDNHX2F3bTdFSDFBLVVqSGg0UHl5cjlRbUJvSzdkOGVuRUhBcmRNZEFuWFJVU29ZVnc4Z1ktazc; path=/; expires=Fri, 01 Oct 2027 14:15:56 GMT; domain=.reddit.com; samesite=none; secure, session_tracker=bfdfbicqfdfbpefcfi.0.1759328156209.Z0FBQUFBQm8zVGVjMElVV2ltbFVHUFNINUU5V1NlZzYyTlFwYkdxbkhKRHQ0bEpnLWxMbk5NdDZKTTVieV9YQnlSVkRTSkVZb3h5RDU4TmxPc1hNc0EyblV1VnUzQ3ZQU3ZaeFlDX3VyUEZOREVfLU9teVg4dm96ckozbGNqT0lVVFh0amFGX2xfcmU; path=/; domain=.reddit.com; secure; SameSite=None; Secure, csrf_token=220204b3780a875a81ae8361260f276e; path=/; domain=.reddit.com; samesite=strict; secure, token_v2=eyJhbGciOiJSUzI1NiIsImtpZCI6IlNIQTI1NjpzS3dsMnlsV0VtMjVmcXhwTU40cWY4MXE2OWFFdWFyMnpLMUdhVGxjdWNZIiwidHlwIjoiSldUIn0.eyJzdWIiOiJsb2lkIiwiZXhwIjoxNzU5NDE0NTU2LjIwNjQwNCwiaWF0IjoxNzU5MzI4MTU2LjIwNjQwNCwianRpIjoid3dMclpkYjdRS1hQRmNJOFdJQTNQVWh6MG5UMGl3IiwiY2lkIjoiMFItV0FNaHVvby1NeVEiLCJsaWQiOiJ0Ml8xeXk0eXVkNGNiIiwibGNhIjoxNzU5MzI4MTU2MjA2LCJzY3AiOiJlSnhra2RHT3REQUloZC1GYTVfZ2Y1VV9tMDF0Y1lhc0xRYW9rM243RFZvY2s3MDdjRDRwSFA5REtvcUZEQ1pYZ3FuQUJGZ1RyVERCUnVUOW5MbTNnMmlOZTh0WXNabkNCRm13RkRya21MR3NpUVFtZUpJYXl4c21vSUxOeUZ5dXRHTk5MVDBRSnFoY01yZUZIcGMyb2JrYmk1NmRHRlc1ckR5b3NWZmwwdGpHRkxZbnhqY2JxdzJwdUM2bk1rbkxRdmtzWHZUak45VzM5dm16X1NhMEo4T0txdW1CM2hsSkNHNHNmcGltM2Q5VGs1NnRDeGExOTNxUTJ1ZDYzSzU5MWl3ME83ZWY2X2xySXhtWFkyaC1KdnQzMXktaEE0ODhMelBxQUVhczRVY1pkbVFkX2xVSFVMbWdKR01KNHRNSTVNcmwyMzhKdG12VHY4YnRFejk4TS1LbU5feldETlJ6Q2VMUXBfSDFHd0FBX184UTFlVFIiLCJmbG8iOjF9.FaWGQ_jZIlDw0bL1Y7b6p77zk0stiAyo-BOIPjaDmeFc5q1pZ42_6ZP66TRcXzbdqc3seBP-Dhd58gFAoMZ9DyfDCpWc65nMqyFUTyMIcoezua_8rXQ9RsYx1TQqf_XAq6dBd8SbIf5fHLxvn5-lNjgvhQuoHSKYo29Fe0PpoO2K2lB5GUByDpTcnYeoRnskRTZJSKzY715326maXc2a0PXNuvrLvw_S1sjTYin8klQ5_KsuUOI3dznP6OffeCBzDtfZlNItaEmwNFxchUZN1s8haw-2oCSFqK4MFNRUXCXTJSTSesNS5Bzk4gOz2pJGSsdLFhB2wOyjJKLFdnDRkw; Path=/; Domain=reddit.com; Expires=Thu, 02 Oct 2025 14:15:56 GMT; HttpOnly; Secure, csv=2; Max-Age=63072000; Domain=.reddit.com; Path=/; Secure; SameSite=None, edgebucket=JJGWjg5qfWQsgtcwrV; Domain=reddit.com; Max-Age=63071999; Path=/;  secure",
+                "cache_control": "private, s-maxage=1, max-age=1, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "snooserv",
+                  "components": [
+                    "snooserv"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Varnish",
+                  "Lightbox"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": [
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "child-src 'self' blob: accounts.google.com;connect-src 'self' events.redditmedia.com o418887.ingest.sentry.io *.redd.it *.reddit.com www.redditstatic.com vimeo.com alb.reddit.com accounts.google.com/gsi/ www.google.com/recaptcha/ w3-reporting.reddit.com reddit-uploaded-emoji.s3-accelerate.amazonaws.com reddit-uploaded-media.s3-accelerate.amazonaws.com reddit-uploaded-video.s3-accelerate.amazonaws.com reddit-subreddit-uploaded-media.s3-accelerate.amazonaws.com wss://*.wss.redditmedia.com wss://gql-realtime.reddit.com gql-realtime.reddit.com *.giphy.com js.stripe.com support.reddithelp.com matrix.redditspace.com www.google.com/ccm/ styles.redditmedia.com a.thumbs.redditmedia.com b.thumbs.redditmedia.com;default-src 'self';font-src 'self' data:;form-action 'none';frame-ancestors 'self' *.reddit.com *.snooguts.net;frame-src 'self' www.reddit.com www.youtube.com www.youtube-nocookie.com player.vimeo.com *.redditmedia.com cdn.embedly.com redgifs.com www.redgifs.com embed.reddit.com accounts.google.com/gsi/ www.google.com/recaptcha/ recaptcha.google.com/recaptcha/ js.stripe.com hooks.stripe.com *.devvit.net td.doubleclick.net/ www.googletagmanager.com/ https://www.tiktok.com/;img-src 'self' data: blob: https:;manifest-src 'self' www.redditstatic.com;media-src 'self' blob: data: *.redd.it www.redditstatic.com matrix.redditspace.com;object-src 'none';script-src 'self' 'strict-dynamic' 'report-sample' 'unsafe-inline' 'unsafe-eval' 'nonce-vXTHkBsDwjxgLhXVmOqSuw==';style-src 'self' 'unsafe-inline' www.redditstatic.com *.reddit.com accounts.google.com/gsi/style;style-src-attr 'unsafe-inline';worker-src 'self' blob:;report-to csp;report-uri https://w3-reporting-csp.reddit.com/reports",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "1; mode=block",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": true,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 4.595201730728149,
+                "content_length": 593042,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://www.reddit.com": {
+              "url": "http://www.reddit.com",
+              "timestamp": 1759328159.3327498,
+              "response_analysis": {
+                "status_code": 403,
+                "reason": "Blocked",
+                "encoding": "ISO-8859-1",
+                "content_type": "text/html",
+                "content_length": 189908,
+                "url": "https://www.reddit.com/",
+                "redirect_chain": [
+                  "http://www.reddit.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.reddit.com/",
+                "content_preview": "<body class=theme-beta><div><style>.theme-light,:root{--rem360:22.5rem;--rem320:20rem;--rem192:12rem;--rem144:9rem;--rem128:8rem;--rem96:6rem;--rem90:5.625rem;--rem88:5.5rem;--rem64:4rem;--rem56:3.5re...",
+                "has_html": false,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "snooserv",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=31536000; includeSubdomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "1; mode=block",
+                "set_cookie": "Not found",
+                "cache_control": "private, no-store",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "snooserv",
+                  "components": [
+                    "snooserv"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Varnish",
+                  "Lightbox"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "1; mode=block",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 2.8511617183685303,
+                "content_length": 189908,
+                "status_code": 403,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.reddit.com": {
+              "url": "https://www.reddit.com",
+              "timestamp": 1759328162.1843119,
+              "response_analysis": {
+                "status_code": 403,
+                "reason": "Blocked",
+                "encoding": "ISO-8859-1",
+                "content_type": "text/html",
+                "content_length": 189908,
+                "url": "https://www.reddit.com/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://www.reddit.com/",
+                "content_preview": "<body class=theme-beta><div><style>.theme-light,:root{--rem360:22.5rem;--rem320:20rem;--rem192:12rem;--rem144:9rem;--rem128:8rem;--rem96:6rem;--rem90:5.625rem;--rem88:5.5rem;--rem64:4rem;--rem56:3.5re...",
+                "has_html": false,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "snooserv",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=31536000; includeSubdomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "1; mode=block",
+                "set_cookie": "Not found",
+                "cache_control": "private, no-store",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "snooserv",
+                  "components": [
+                    "snooserv"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Varnish",
+                  "Lightbox"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "1; mode=block",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 3.319331645965576,
+                "content_length": 189908,
+                "status_code": 403,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://reddit.com": {
+              "url": "https://reddit.com",
+              "timestamp": 1759328165.5048215,
+              "response_analysis": {
+                "status_code": 403,
+                "reason": "Blocked",
+                "encoding": "ISO-8859-1",
+                "content_type": "text/html",
+                "content_length": 189908,
+                "url": "https://www.reddit.com/",
+                "redirect_chain": [
+                  "https://reddit.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.reddit.com/",
+                "content_preview": "<body class=theme-beta><div><style>.theme-light,:root{--rem360:22.5rem;--rem320:20rem;--rem192:12rem;--rem144:9rem;--rem128:8rem;--rem96:6rem;--rem90:5.625rem;--rem88:5.5rem;--rem64:4rem;--rem56:3.5re...",
+                "has_html": false,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "snooserv",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=31536000; includeSubdomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "1; mode=block",
+                "set_cookie": "Not found",
+                "cache_control": "private, no-store",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "snooserv",
+                  "components": [
+                    "snooserv"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Varnish",
+                  "Lightbox"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "1; mode=block",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 4.765148639678955,
+                "content_length": 189908,
+                "status_code": 403,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Varnish",
+              "CDN",
+              "Lightbox"
+            ],
+            "security_score_avg": 60.71428571428571,
+            "common_issues": [
+              "Content-Security-Policy",
+              "Referrer-Policy",
+              "Permissions-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 15.579426050186157,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 0,
+          "records_found": 38,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 3
+        }
+      },
+      "all_subdomains": [
+        "www.reddit.com"
+      ],
+      "statistics": {
+        "total_subdomains": 1,
+        "unique_subdomains": 1,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 58.41,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 3,
+        "security_issues_found": 3,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "reddit.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 19:46 +0530\nNmap scan report for reddit.com (151.101.193.140)\nHost is up (0.046s latency).\nOther addresses for reddit.com (not scanned): 151.101.129.140 151.101.1.140 151.101.65.140 2a04:4e42:600::396 2a04:4e42:200::396 2a04:4e42::396 2a04:4e42:400::396\nNot shown: 998 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 6.70 seconds\n",
+        "scan_duration": 6.7
+      },
+      "service_results": {
+        "target": "reddit.com",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 500 Domain Not Found\r\nConnection: close\r\nContent-Length: 246\r\nServer: Varnish\r\nRetry-After: 0\r\ncontent-type: text/html\r\nCache-Control: private, no-cache\r\nX-Served-By: cache-sin-wsss1830053-SIN\r\nAccept-Ranges: bytes\r\nDate: Wed, 01 Oct 2025 14:16:17 GMT\r\nVia: 1.1 varnish\r\n\r\n\n<html>\n<head>\n<title>Fastly error: unknown domain </title>\n</head>\n<body>\n<p>Fastly error: unknown domain: . Please check that this domain has been added to a service.</p>\n<p>Details: cache-sin-wsss1830053-SIN (151.101.193.140)</p></body></html>",
+            "version": "151.101.193",
+            "ssl": false,
+            "protocol_info": {
+              "http": {
+                "status_code": 200,
+                "server": "snooserv",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "\u0015\u0003\u0003\u0000\u0002\u00022\u0015\u0003\u0003\u0000\u0002\u0001\u0000",
+            "version": null,
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_128_GCM_SHA256"
+              },
+              "http": {
+                "status_code": 200,
+                "server": "snooserv",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 6.7
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Google CDN",
+        "detection_method": "content",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "reddit.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/reddit_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 1,
+    "total_open_ports": 2,
+    "cdn_detected": true,
+    "technologies_detected": 3,
+    "apis_discovered": 0
+  },
+  "execution_time": 70.52945852279663
+}

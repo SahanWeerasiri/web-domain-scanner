@@ -1,0 +1,956 @@
+{
+  "target_domain": "harvard.edu",
+  "scan_timestamp": "2025-10-01T21:17:43.137963",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "harvard.edu",
+      "timestamp": "2025-10-01T21:17:43.138631",
+      "modules": {
+        "passive": {
+          "domain": "harvard.edu",
+          "timestamp": 1759333719.5666149,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 56.4184205532074,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "harvard.edu",
+          "timestamp": 1759333722.203325,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "192.0.66.20"
+            ],
+            "MX": [
+              "mx0a-00171101.pphosted.com",
+              "mx0b-00171101.pphosted.com"
+            ],
+            "NS": [
+              "a6-66.akam.net",
+              "a7-65.akam.net",
+              "a11-67.akam.net",
+              "a16-64.akam.net",
+              "a10-66.akam.net",
+              "a1-171.akam.net"
+            ],
+            "TXT": [
+              "status-page-domain-verification=p83gt91wpxms",
+              "globalsign-domain-verification=87677a19ae97bfbeec25ff1510a80420",
+              "globalsign-domain-verification=B8359DCEFBCF837B95E2F82282E4297A",
+              "adobe-idp-site-verification=66e813947c764d98330002232f383a68df8ad609065abb9482f3805dd2a1902c",
+              "google-site-verification=DZTZhbBaYJ6AO5j-tHFYBdkwryNywFh2gMUeg3SRDSg",
+              "google-site-verification=lY-T8NneGQX1RGXeaoBJjSmT_lx3dLRKDq1xY44ZI5w",
+              "atlassian-domain-verification=ASRKBXyOafZgDCRWh1Ylv34hiOSMgAIoNXs8H57rR3aTkuOD5KwJfUN9G3f7Ah/H",
+              "smartsheet-site-validation=jfLh_IkQNJXuKKpTn7RydwiiaAOLy4CR",
+              "openai-domain-verification=dv-5z82SztO32q9YBNgFooNBz5v",
+              "fastly-domain-delgation-vdnblsdg768nm-21052021",
+              "globalsign-domain-verification=1C94E0FFAAE95796F597427644D90C03",
+              "atlassian-domain-verification=OYfkFwspEELRW6A32BsDVWgvdz8/pLBxVcq7s/mHLBVGqRQRG58XA5LRtDAGpfA7",
+              "atlassian-domain-verification=Z8oUd5brL6/RGUMCkxs4U0P/RyhpiNJEIVx9HXJLr3uqEQ1eDmTnj1eq1ObCgY1i",
+              "pardot962443=9098884472c5cb29a2e20700b41411cb4aa5ebcf340360e71b2cd8464d8864b6",
+              "pardot_378242_*=8b485d5cd9114869cff8f307da5fa9287434ebec11621d88c07ce97a7fee06e0",
+              "v=spf1 include:%{i}._ip.%{h}._ehlo.%{d}._spf.vali.email ~all",
+              "globalsign-domain-verification=C44DEEAC45AB4DC2B5AD0B9B2E5D5803",
+              "ciscocidomainverification=41ce9827e3fbbca9ce75d5dbb5a6bc7b089dc4e239c1b56ba828216d1214480",
+              "anthropic-domain-verification-gy5zhc=zmrGT2kyyc2HlnUn6f0utkQB6",
+              "pardot378242=7001579db574e062735763ba81b54da111abc31facf16bbfa653ab6b8a770988",
+              "airtable-verification=8b8110e9283dd87d57b3c5f2f5af2db1",
+              "xIGeuA0e5B1BOjTE4IBO806ziFX9G1m2dVJ8zO7CMkmKwZ6MEkMXC0P7n5SRCGOdS9jbceH/7gKYgD4h9FBGKA==",
+              "status-page-domain-verification=b4j4g69th3vv",
+              "google-site-verification=pWvLuNePLYxAbafZw2a95vnBhvcj12DzM9NulT9ujSY",
+              "jamf-site-verification=_Bno41ta_Ef2G0krod2Oow",
+              "globalsign-domain-verification=5A1F4E0081852ECB9015E837384121AD",
+              "pardot679353=f93ea3588d69483bf48dbf587511f51d43ddadaae52b8bac6856c8428559a06d",
+              "heroku-domain-verification=1qfmzz9vp3kexf4fr5zuliwvpieih2ffz4gexo7tlh4",
+              "jAykGnWytyLeBseMa8x2/MBve6/yQqana4yrAc1ROoei7uZHUkM2FU0Xx4qI/rm+kOGdImZdoq0fdodgLEw1dg==",
+              "google-site-verification=NEWpTHNZnWRWN3trkIMeFbuPVG3ExwOXUHlC9aJ2sks",
+              "globalsign-domain-verification=1DDF777ED1ADF45E5FFAFFAAD6774180",
+              "pardot679353=3cc5e124c5020a1e160f01981f45be33a467a1c802711e0e5654184ef56d18c9",
+              "MS=ms35192554",
+              "airtable-verification=b25f432db3cbc5bfc481914364b6ce41",
+              "google-site-verification=xqg8LPF_v_QMEIST789q8xhRDqUEX4_8lQjAvV6YykY",
+              "globalsign-domain-verification=9ff12eafbeebb02a0f2b0383aef9d1fa",
+              "google-site-verification=DzhZyP8pu0M1-RFghfTcSN-9poidboYRNdfn2Rf2hCQ",
+              "google-site-verification=xXWxVElKH8ek_eW45CbAqVSMTQgAqLYUNQUrWpOmkrY",
+              "openai-domain-verification=dv-e8vYSnmmPbWxpNte1iIKgvOO",
+              "_51a79b140kb1cu9o67nzuefyhhxthv9",
+              "Peh2GHoW8uiAzwS9tTZKlGBn9cMq6Y+XUFtrqmLtqFh1WvloPkzGczPsZcSdDfin4hZ7QiL9J7SM8yr7Yyzi8w==",
+              "airtable-verification=a92cef30671587a4f6deb7951c1c3f1a",
+              "globalsign-domain-verification=dcc2e5d0d67efc32044ae679c7cf19e6",
+              "google-site-verification=MmfJS0BjLRgcxrlj8kAyNdToKeAmj0fKb-lPOnd5Pmo"
+            ],
+            "SOA": [
+              "a1-171.akam.net. netmanager.harvard.edu. 2023070877 10800 3600 2419200 3600"
+            ]
+          },
+          "subdomains": [],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 include:%{i}._ip.%{h}._ehlo.%{d}._spf.vali.email ~all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=DZTZhbBaYJ6AO5j-tHFYBdkwryNywFh2gMUeg3SRDSg",
+                "google-site-verification=lY-T8NneGQX1RGXeaoBJjSmT_lx3dLRKDq1xY44ZI5w",
+                "google-site-verification=pWvLuNePLYxAbafZw2a95vnBhvcj12DzM9NulT9ujSY",
+                "google-site-verification=NEWpTHNZnWRWN3trkIMeFbuPVG3ExwOXUHlC9aJ2sks",
+                "google-site-verification=xqg8LPF_v_QMEIST789q8xhRDqUEX4_8lQjAvV6YykY",
+                "google-site-verification=DzhZyP8pu0M1-RFghfTcSN-9poidboYRNdfn2Rf2hCQ",
+                "google-site-verification=xXWxVElKH8ek_eW45CbAqVSMTQgAqLYUNQUrWpOmkrY",
+                "google-site-verification=MmfJS0BjLRgcxrlj8kAyNdToKeAmj0fKb-lPOnd5Pmo"
+              ],
+              "other": [
+                "status-page-domain-verification=p83gt91wpxms",
+                "globalsign-domain-verification=87677a19ae97bfbeec25ff1510a80420",
+                "globalsign-domain-verification=B8359DCEFBCF837B95E2F82282E4297A",
+                "adobe-idp-site-verification=66e813947c764d98330002232f383a68df8ad609065abb9482f3805dd2a1902c",
+                "atlassian-domain-verification=ASRKBXyOafZgDCRWh1Ylv34hiOSMgAIoNXs8H57rR3aTkuOD5KwJfUN9G3f7Ah/H",
+                "smartsheet-site-validation=jfLh_IkQNJXuKKpTn7RydwiiaAOLy4CR",
+                "openai-domain-verification=dv-5z82SztO32q9YBNgFooNBz5v",
+                "fastly-domain-delgation-vdnblsdg768nm-21052021",
+                "globalsign-domain-verification=1C94E0FFAAE95796F597427644D90C03",
+                "atlassian-domain-verification=OYfkFwspEELRW6A32BsDVWgvdz8/pLBxVcq7s/mHLBVGqRQRG58XA5LRtDAGpfA7",
+                "atlassian-domain-verification=Z8oUd5brL6/RGUMCkxs4U0P/RyhpiNJEIVx9HXJLr3uqEQ1eDmTnj1eq1ObCgY1i",
+                "pardot962443=9098884472c5cb29a2e20700b41411cb4aa5ebcf340360e71b2cd8464d8864b6",
+                "pardot_378242_*=8b485d5cd9114869cff8f307da5fa9287434ebec11621d88c07ce97a7fee06e0",
+                "globalsign-domain-verification=C44DEEAC45AB4DC2B5AD0B9B2E5D5803",
+                "ciscocidomainverification=41ce9827e3fbbca9ce75d5dbb5a6bc7b089dc4e239c1b56ba828216d1214480",
+                "anthropic-domain-verification-gy5zhc=zmrGT2kyyc2HlnUn6f0utkQB6",
+                "pardot378242=7001579db574e062735763ba81b54da111abc31facf16bbfa653ab6b8a770988",
+                "airtable-verification=8b8110e9283dd87d57b3c5f2f5af2db1",
+                "xIGeuA0e5B1BOjTE4IBO806ziFX9G1m2dVJ8zO7CMkmKwZ6MEkMXC0P7n5SRCGOdS9jbceH/7gKYgD4h9FBGKA==",
+                "status-page-domain-verification=b4j4g69th3vv",
+                "jamf-site-verification=_Bno41ta_Ef2G0krod2Oow",
+                "globalsign-domain-verification=5A1F4E0081852ECB9015E837384121AD",
+                "pardot679353=f93ea3588d69483bf48dbf587511f51d43ddadaae52b8bac6856c8428559a06d",
+                "heroku-domain-verification=1qfmzz9vp3kexf4fr5zuliwvpieih2ffz4gexo7tlh4",
+                "jAykGnWytyLeBseMa8x2/MBve6/yQqana4yrAc1ROoei7uZHUkM2FU0Xx4qI/rm+kOGdImZdoq0fdodgLEw1dg==",
+                "globalsign-domain-verification=1DDF777ED1ADF45E5FFAFFAAD6774180",
+                "pardot679353=3cc5e124c5020a1e160f01981f45be33a467a1c802711e0e5654184ef56d18c9",
+                "MS=ms35192554",
+                "airtable-verification=b25f432db3cbc5bfc481914364b6ce41",
+                "globalsign-domain-verification=9ff12eafbeebb02a0f2b0383aef9d1fa",
+                "openai-domain-verification=dv-e8vYSnmmPbWxpNte1iIKgvOO",
+                "_51a79b140kb1cu9o67nzuefyhhxthv9",
+                "Peh2GHoW8uiAzwS9tTZKlGBn9cMq6Y+XUFtrqmLtqFh1WvloPkzGczPsZcSdDfin4hZ7QiL9J7SM8yr7Yyzi8w==",
+                "airtable-verification=a92cef30671587a4f6deb7951c1c3f1a",
+                "globalsign-domain-verification=dcc2e5d0d67efc32044ae679c7cf19e6"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 1.8186588287353516,
+            "total_records": 54,
+            "total_subdomains": 0,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "harvard.edu",
+          "timestamp": 1759333726.968637,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://www.harvard.edu": {
+              "url": "http://www.harvard.edu",
+              "timestamp": 1759333722.307278,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 165011,
+                "url": "https://www.harvard.edu/",
+                "redirect_chain": [
+                  "http://www.harvard.edu/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.harvard.edu/",
+                "content_preview": "\n<!DOCTYPE html>\n<html lang=\"en-US\">\n\n<head>\n\t\n\t\t<meta charset=\"utf-8\">\n\t<meta name=\"author\" content=\"Harvard University\">\n\t<link rel=\"pingback\" href=\"https://www.harvard.edu/xmlrpc.php\">\n\n\t\t<meta nam...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "nginx",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "max-age=300, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Nginx",
+                  "raw_header": "nginx",
+                  "components": [
+                    "nginx"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Google Tag Manager",
+                  "MySQL",
+                  "PHP",
+                  "WordPress",
+                  "TrackJs",
+                  "jQuery",
+                  "Nginx"
+                ],
+                "header_detected": [
+                  "Nginx"
+                ],
+                "content_detected": [
+                  "Wordpress",
+                  "Jquery"
+                ],
+                "url_patterns": [
+                  "Google Services",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 0.0,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking",
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 1.2760272026062012,
+                "content_length": 165011,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Nginx"
+                  ],
+                  "programming_language": [
+                    "PHP"
+                  ],
+                  "framework": [],
+                  "cms": [
+                    "WordPress",
+                    "Wordpress"
+                  ],
+                  "javascript_libraries": [
+                    "Jquery",
+                    "jQuery"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.harvard.edu": {
+              "url": "https://www.harvard.edu",
+              "timestamp": 1759333723.584047,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 165011,
+                "url": "https://www.harvard.edu/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://www.harvard.edu/",
+                "content_preview": "\n<!DOCTYPE html>\n<html lang=\"en-US\">\n\n<head>\n\t\n\t\t<meta charset=\"utf-8\">\n\t<meta name=\"author\" content=\"Harvard University\">\n\t<link rel=\"pingback\" href=\"https://www.harvard.edu/xmlrpc.php\">\n\n\t\t<meta nam...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "nginx",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "max-age=300, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Nginx",
+                  "raw_header": "nginx",
+                  "components": [
+                    "nginx"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Google Tag Manager",
+                  "MySQL",
+                  "PHP",
+                  "WordPress",
+                  "TrackJs",
+                  "jQuery",
+                  "Nginx"
+                ],
+                "header_detected": [
+                  "Nginx"
+                ],
+                "content_detected": [
+                  "Wordpress",
+                  "Jquery"
+                ],
+                "url_patterns": [
+                  "Google Services",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 0.0,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking",
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 0.8736076354980469,
+                "content_length": 165011,
+                "status_code": 200,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Nginx"
+                  ],
+                  "programming_language": [
+                    "PHP"
+                  ],
+                  "framework": [],
+                  "cms": [
+                    "WordPress",
+                    "Wordpress"
+                  ],
+                  "javascript_libraries": [
+                    "Jquery",
+                    "jQuery"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://harvard.edu": {
+              "url": "https://harvard.edu",
+              "timestamp": 1759333724.4580874,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 165011,
+                "url": "https://www.harvard.edu/",
+                "redirect_chain": [
+                  "https://harvard.edu/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.harvard.edu/",
+                "content_preview": "\n<!DOCTYPE html>\n<html lang=\"en-US\">\n\n<head>\n\t\n\t\t<meta charset=\"utf-8\">\n\t<meta name=\"author\" content=\"Harvard University\">\n\t<link rel=\"pingback\" href=\"https://www.harvard.edu/xmlrpc.php\">\n\n\t\t<meta nam...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "nginx",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "max-age=300, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Nginx",
+                  "raw_header": "nginx",
+                  "components": [
+                    "nginx"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Google Tag Manager",
+                  "MySQL",
+                  "PHP",
+                  "WordPress",
+                  "TrackJs",
+                  "jQuery",
+                  "Nginx"
+                ],
+                "header_detected": [
+                  "Nginx"
+                ],
+                "content_detected": [
+                  "Wordpress",
+                  "Jquery"
+                ],
+                "url_patterns": [
+                  "Google Services",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 0.0,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking",
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 1.232717514038086,
+                "content_length": 165011,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Nginx"
+                  ],
+                  "programming_language": [
+                    "PHP"
+                  ],
+                  "framework": [],
+                  "cms": [
+                    "WordPress",
+                    "Wordpress"
+                  ],
+                  "javascript_libraries": [
+                    "Jquery",
+                    "jQuery"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://harvard.edu": {
+              "url": "http://harvard.edu",
+              "timestamp": 1759333725.6912935,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "UTF-8",
+                "content_type": "text/html; charset=UTF-8",
+                "content_length": 165011,
+                "url": "https://www.harvard.edu/",
+                "redirect_chain": [
+                  "http://harvard.edu/",
+                  "https://harvard.edu/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.harvard.edu/",
+                "content_preview": "\n<!DOCTYPE html>\n<html lang=\"en-US\">\n\n<head>\n\t\n\t\t<meta charset=\"utf-8\">\n\t<meta name=\"author\" content=\"Harvard University\">\n\t<link rel=\"pingback\" href=\"https://www.harvard.edu/xmlrpc.php\">\n\n\t\t<meta nam...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "nginx",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "max-age=300, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Nginx",
+                  "raw_header": "nginx",
+                  "components": [
+                    "nginx"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Google Tag Manager",
+                  "MySQL",
+                  "PHP",
+                  "WordPress",
+                  "TrackJs",
+                  "jQuery",
+                  "Nginx"
+                ],
+                "header_detected": [
+                  "Nginx"
+                ],
+                "content_detected": [
+                  "Wordpress",
+                  "Jquery"
+                ],
+                "url_patterns": [
+                  "Google Services",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 0.0,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking",
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 1.272613763809204,
+                "content_length": 165011,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Nginx"
+                  ],
+                  "programming_language": [
+                    "PHP"
+                  ],
+                  "framework": [],
+                  "cms": [
+                    "WordPress",
+                    "Wordpress"
+                  ],
+                  "javascript_libraries": [
+                    "Jquery",
+                    "jQuery"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Google Tag Manager",
+              "MySQL",
+              "PHP",
+              "WordPress",
+              "Wordpress",
+              "TrackJs",
+              "Google Services",
+              "CDN",
+              "Jquery",
+              "jQuery",
+              "Nginx"
+            ],
+            "security_score_avg": 0.0,
+            "common_issues": [
+              "X-Frame-Options",
+              "X-Content-Type-Options",
+              "Strict-Transport-Security",
+              "X-XSS-Protection",
+              "Content-Security-Policy",
+              "Referrer-Policy",
+              "Permissions-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 4.754128694534302,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 0,
+          "records_found": 54,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 11
+        }
+      },
+      "all_subdomains": [
+        "www.harvard.edu"
+      ],
+      "statistics": {
+        "total_subdomains": 1,
+        "unique_subdomains": 1,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 63.83,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 11,
+        "security_issues_found": 7,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "harvard.edu",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 21:18 +0530\nNmap scan report for harvard.edu (192.0.66.20)\nHost is up (0.049s latency).\nNot shown: 998 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 8.89 seconds\n",
+        "scan_duration": 8.89
+      },
+      "service_results": {
+        "target": "harvard.edu",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 404 Not Found\r\nServer: nginx\r\nDate: Wed, 01 Oct 2025 15:48:56 GMT\r\nContent-Type: text/html\r\nContent-Length: 146\r\nConnection: close\r\n\r\n<html>\r\n<head><title>404 Not Found</title></head>\r\n<body>\r\n<center><h1>404 Not Found</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>",
+            "version": "1.1",
+            "ssl": false,
+            "protocol_info": {
+              "http": {
+                "status_code": 200,
+                "server": "nginx",
+                "content_type": "text/html; charset=UTF-8"
+              }
+            }
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "HTTP/1.1 400 Bad Request\r\nServer: nginx\r\nDate: Wed, 01 Oct 2025 15:48:57 GMT\r\nContent-Type: text/html\r\nContent-Length: 248\r\nConnection: close\r\n\r\n<html>\r\n<head><title>400 The plain HTTP request was sent to HTTPS port</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<center>The plain HTTP request was sent to HTTPS port</center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>",
+            "version": "1.1",
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384"
+              },
+              "http": {
+                "status_code": 200,
+                "server": "nginx",
+                "content_type": "text/html; charset=UTF-8"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 8.89
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Google CDN",
+        "detection_method": "content",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "harvard.edu",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/harvard_edu_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 1,
+    "total_open_ports": 2,
+    "cdn_detected": true,
+    "technologies_detected": 11,
+    "apis_discovered": 0
+  },
+  "execution_time": 75.34206891059875
+}

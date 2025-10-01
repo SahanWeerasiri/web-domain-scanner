@@ -1,0 +1,864 @@
+{
+  "target_domain": "microsoft.com",
+  "scan_timestamp": "2025-10-01T19:48:18.624748",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "microsoft.com",
+      "timestamp": "2025-10-01T19:48:18.625125",
+      "modules": {
+        "passive": {
+          "domain": "microsoft.com",
+          "timestamp": 1759328354.9970784,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 56.36603593826294,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "microsoft.com",
+          "timestamp": 1759328356.468911,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "13.107.213.59",
+              "13.107.246.59"
+            ],
+            "AAAA": [
+              "2603:1010:3:3::5b",
+              "2603:1030:c02:8::14",
+              "2603:1020:201:10::10f",
+              "2603:1030:b:3::152",
+              "2603:1030:20e:3::23c"
+            ],
+            "MX": [
+              "microsoft-com.mail.protection.outlook.com"
+            ],
+            "NS": [
+              "ns2-39.azure-dns.net",
+              "ns4-39.azure-dns.info",
+              "ns3-39.azure-dns.org",
+              "ns1-39.azure-dns.com"
+            ],
+            "TXT": [
+              "t7sebee51jrj7vm932k531hipa",
+              "docusign=d5a3737c-c23c-4bd0-9095-d2ff621f2840",
+              "ms-domain-verification=d6545068-89f7-4432-b947-0b137e8a9fe3",
+              "google-site-verification=M--CVfn_YwsV-2FGbCp_HFaEj23BmT0cTF4l8hXgpvM",
+              "d365mktkey=ZGFU0tlXPekPusNHPo5QQQWpVf0gic0xpuKroNy3NQEx",
+              "google-site-verification=pjPOauSPcrfXOZS9jnPPa5axowcHGCDAl1_86dCqFpk",
+              "d365mktkey=wbU64GRacxVEQxwcLSQnx0zisXLYzgUbfvsufIqO9ZUx",
+              "d365mktkey=QDa792dLCZhvaAOOCe2Hz6WTzmTssOp1snABhxWibhMx",
+              "hubspot-developer-verification=OTQ5NGIwYWEtODNmZi00YWE1LTkyNmQtNDhjMDMxY2JjNDAx",
+              "mixpanel-domain-verify=5803bc4c-5bb6-4ce1-8076-753800097373",
+              "d365mktkey=JlXV17lfZjyvWxNje1qiP390ACSKzTxo5mGqZ3V2BmYx",
+              "d365mktkey=8fEQahTresJms7tZGxGFr94T1zDz36oCbUt1LJc99mox",
+              "ms-domain-verification=478640ad-6524-43d5-86c4-a914804b9e93",
+              "atlassian-domain-verification=xvoaqRfxSg3PnlVnR4xCSOlKyw1Aln0MMxRiKXnwWroFG7vI76TUC8xYb03MwMXv",
+              "workplace-domain-verification=lK0QDLk73xymCYMKUXNpfKAT8TY5Mx",
+              "d365mktkey=6358r1b7e13hox60tl1uagv14",
+              "d365mktkey=Fu49WtSTeClkHtK7S14227RIVpGwwGrzEsO6RVs1I2Ax",
+              "fg2t0gov9424p2tdcuo94goe9j",
+              "facebook-domain-verification=fwzwhbbzwmg5fzgotc2go51olc3566",
+              "linear-domain-verification=iuq6saifcnbe",
+              "google-site-verification=uFg3wr5PWsK8lV029RoXXBBUW0_E6qf1WEWVHhetkOY",
+              "airtable-verification=79a09e4a8013ff5737798ffb4ea88eee",
+              "d365mktkey=SxDf1EZxLvMwx6eEZUxzjFFgHoapF8DvtWEUjwq7ZTwx",
+              "v=spf1 include:_spf-a.microsoft.com include:_spf-b.microsoft.com include:_spf-c.microsoft.com include:_spf-ssg-a.msft.net include:spf-a.hotmail.com include:_spf1-meo.microsoft.com -all",
+              "hcp-domain-verification=3ce174a8b9fba88909633ab13eb1d81ce0123454745d66e500052ed84b7248a1",
+              "sitecore-domain-verification=1d46cb5467624e33a408d14324874088",
+              "d365mktkey=PNcDqkW71x8VOUhcE96aGM4l5PYX1gnlRl6ieXUl5eMx",
+              "MS=ms79629062",
+              "ms-domain-verification=1c4e4677-e58f-4117-8d61-e5b2810388c2",
+              "d365mktkey=heYmJ57sWrwMjCgIG1xRwTREJrQokUIDtBcNfGuxoWQx",
+              "d365mktkey=3l6dste9txazu0Qd2zu4135PUB4E35txLxyzJxjkPbsx",
+              "google-site-verification=uhh5_jbxpcQgnb-A7gDIjlrr5Ef34lA2t2_BAveYpnk",
+              "ms-domain-verification=561512fc-b4ba-4ac7-a946-e464c8f49f1b",
+              "d365mktkey=3uc1cf82cpv750lzk70v9bvf2",
+              "_zx2p8gpzv720db2aqmozy4jhwk2nl43",
+              "1password-site-verification=35ZTURTFFFDC5BW7GFQKRJ77QM",
+              "google-site-verification=GfDnTUdATPsK1230J0mXbfsYw-3A9BVMVaKSd4DcKgI",
+              "google-site-verification=mEAmcTy1e8jIB9W6ENPk2GDg9hjuNytQQRGlK0hPm0c",
+              "d365mktkey=j2qHWq9BHdaa3ZXZH8x64daJZxEWsFa0dxDeilxDoYYx",
+              "ms-domain-verification=25524f4b-1476-489c-a086-30f4c5016ecc"
+            ],
+            "SOA": [
+              "ns1-39.azure-dns.com. azuredns-hostmaster.microsoft.com. 1 3600 300 2419200 300"
+            ]
+          },
+          "subdomains": [],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 include:_spf-a.microsoft.com include:_spf-b.microsoft.com include:_spf-c.microsoft.com include:_spf-ssg-a.msft.net include:spf-a.hotmail.com include:_spf1-meo.microsoft.com -all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=M--CVfn_YwsV-2FGbCp_HFaEj23BmT0cTF4l8hXgpvM",
+                "google-site-verification=pjPOauSPcrfXOZS9jnPPa5axowcHGCDAl1_86dCqFpk",
+                "facebook-domain-verification=fwzwhbbzwmg5fzgotc2go51olc3566",
+                "google-site-verification=uFg3wr5PWsK8lV029RoXXBBUW0_E6qf1WEWVHhetkOY",
+                "google-site-verification=uhh5_jbxpcQgnb-A7gDIjlrr5Ef34lA2t2_BAveYpnk",
+                "google-site-verification=GfDnTUdATPsK1230J0mXbfsYw-3A9BVMVaKSd4DcKgI",
+                "google-site-verification=mEAmcTy1e8jIB9W6ENPk2GDg9hjuNytQQRGlK0hPm0c"
+              ],
+              "other": [
+                "t7sebee51jrj7vm932k531hipa",
+                "docusign=d5a3737c-c23c-4bd0-9095-d2ff621f2840",
+                "ms-domain-verification=d6545068-89f7-4432-b947-0b137e8a9fe3",
+                "d365mktkey=ZGFU0tlXPekPusNHPo5QQQWpVf0gic0xpuKroNy3NQEx",
+                "d365mktkey=wbU64GRacxVEQxwcLSQnx0zisXLYzgUbfvsufIqO9ZUx",
+                "d365mktkey=QDa792dLCZhvaAOOCe2Hz6WTzmTssOp1snABhxWibhMx",
+                "hubspot-developer-verification=OTQ5NGIwYWEtODNmZi00YWE1LTkyNmQtNDhjMDMxY2JjNDAx",
+                "mixpanel-domain-verify=5803bc4c-5bb6-4ce1-8076-753800097373",
+                "d365mktkey=JlXV17lfZjyvWxNje1qiP390ACSKzTxo5mGqZ3V2BmYx",
+                "d365mktkey=8fEQahTresJms7tZGxGFr94T1zDz36oCbUt1LJc99mox",
+                "ms-domain-verification=478640ad-6524-43d5-86c4-a914804b9e93",
+                "atlassian-domain-verification=xvoaqRfxSg3PnlVnR4xCSOlKyw1Aln0MMxRiKXnwWroFG7vI76TUC8xYb03MwMXv",
+                "workplace-domain-verification=lK0QDLk73xymCYMKUXNpfKAT8TY5Mx",
+                "d365mktkey=6358r1b7e13hox60tl1uagv14",
+                "d365mktkey=Fu49WtSTeClkHtK7S14227RIVpGwwGrzEsO6RVs1I2Ax",
+                "fg2t0gov9424p2tdcuo94goe9j",
+                "linear-domain-verification=iuq6saifcnbe",
+                "airtable-verification=79a09e4a8013ff5737798ffb4ea88eee",
+                "d365mktkey=SxDf1EZxLvMwx6eEZUxzjFFgHoapF8DvtWEUjwq7ZTwx",
+                "hcp-domain-verification=3ce174a8b9fba88909633ab13eb1d81ce0123454745d66e500052ed84b7248a1",
+                "sitecore-domain-verification=1d46cb5467624e33a408d14324874088",
+                "d365mktkey=PNcDqkW71x8VOUhcE96aGM4l5PYX1gnlRl6ieXUl5eMx",
+                "MS=ms79629062",
+                "ms-domain-verification=1c4e4677-e58f-4117-8d61-e5b2810388c2",
+                "d365mktkey=heYmJ57sWrwMjCgIG1xRwTREJrQokUIDtBcNfGuxoWQx",
+                "d365mktkey=3l6dste9txazu0Qd2zu4135PUB4E35txLxyzJxjkPbsx",
+                "ms-domain-verification=561512fc-b4ba-4ac7-a946-e464c8f49f1b",
+                "d365mktkey=3uc1cf82cpv750lzk70v9bvf2",
+                "_zx2p8gpzv720db2aqmozy4jhwk2nl43",
+                "1password-site-verification=35ZTURTFFFDC5BW7GFQKRJ77QM",
+                "d365mktkey=j2qHWq9BHdaa3ZXZH8x64daJZxEWsFa0dxDeilxDoYYx",
+                "ms-domain-verification=25524f4b-1476-489c-a086-30f4c5016ecc"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 0.5625030994415283,
+            "total_records": 53,
+            "total_subdomains": 0,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "microsoft.com",
+          "timestamp": 1759328360.6298678,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://www.microsoft.com": {
+              "url": "http://www.microsoft.com",
+              "timestamp": 1759328356.4929721,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "ISO-8859-1",
+                "content_type": "text/html",
+                "content_length": 201253,
+                "url": "https://www.microsoft.com/en-lk/",
+                "redirect_chain": [
+                  "http://www.microsoft.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.microsoft.com/en-lk/",
+                "content_preview": "\r\n<!DOCTYPE html><html xmlns:mscom=\"http://schemas.microsoft.com/CMSvNext\"\r\n        xmlns:md=\"http://schemas.microsoft.com/mscom-data\" lang=\"en-us\"\r\n        xmlns=\"http://www.w3.org/1999/xhtml\"><head>...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "Your request has been blocked. This could be\r\n                        due to several reasons.",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "AkamaiNetStorage",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "Not found",
+                "expires": "Not found",
+                "last_modified": "Tue, 26 Mar 2024 18:16:43 GMT",
+                "etag": "\"85de642e1467807f64f7e10807df3869:1711562737.176211\"",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "AkamaiNetStorage",
+                  "components": [
+                    "AkamaiNetStorage"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "jQuery"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": [
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 0.0,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking",
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 0.8847179412841797,
+                "content_length": 201253,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [
+                    "jQuery"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://microsoft.com": {
+              "url": "https://microsoft.com",
+              "timestamp": 1759328357.3781328,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "ISO-8859-1",
+                "content_type": "text/html",
+                "content_length": 201253,
+                "url": "https://www.microsoft.com/",
+                "redirect_chain": [
+                  "https://microsoft.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.microsoft.com/",
+                "content_preview": "\r\n<!DOCTYPE html><html xmlns:mscom=\"http://schemas.microsoft.com/CMSvNext\"\r\n        xmlns:md=\"http://schemas.microsoft.com/mscom-data\" lang=\"en-us\"\r\n        xmlns=\"http://www.w3.org/1999/xhtml\"><head>...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "Your request has been blocked. This could be\r\n                        due to several reasons.",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "AkamaiNetStorage",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "Not found",
+                "expires": "Not found",
+                "last_modified": "Tue, 26 Mar 2024 18:16:43 GMT",
+                "etag": "\"85de642e1467807f64f7e10807df3869:1711562737.176211\"",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "AkamaiNetStorage",
+                  "components": [
+                    "AkamaiNetStorage"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "jQuery"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": [
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 0.0,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking",
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 1.223435878753662,
+                "content_length": 201253,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [
+                    "jQuery"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://microsoft.com": {
+              "url": "http://microsoft.com",
+              "timestamp": 1759328358.6021879,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "ISO-8859-1",
+                "content_type": "text/html",
+                "content_length": 201253,
+                "url": "https://www.microsoft.com/",
+                "redirect_chain": [
+                  "http://microsoft.com/",
+                  "https://microsoft.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.microsoft.com/",
+                "content_preview": "\r\n<!DOCTYPE html><html xmlns:mscom=\"http://schemas.microsoft.com/CMSvNext\"\r\n        xmlns:md=\"http://schemas.microsoft.com/mscom-data\" lang=\"en-us\"\r\n        xmlns=\"http://www.w3.org/1999/xhtml\"><head>...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "Your request has been blocked. This could be\r\n                        due to several reasons.",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "AkamaiNetStorage",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "Not found",
+                "expires": "Not found",
+                "last_modified": "Tue, 26 Mar 2024 18:16:43 GMT",
+                "etag": "\"85de642e1467807f64f7e10807df3869:1711562737.176211\"",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "AkamaiNetStorage",
+                  "components": [
+                    "AkamaiNetStorage"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "jQuery"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": [
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 0.0,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking",
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 1.2749578952789307,
+                "content_length": 201253,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [
+                    "jQuery"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.microsoft.com": {
+              "url": "https://www.microsoft.com",
+              "timestamp": 1759328359.8777628,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "ISO-8859-1",
+                "content_type": "text/html",
+                "content_length": 201253,
+                "url": "https://www.microsoft.com/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://www.microsoft.com/",
+                "content_preview": "\r\n<!DOCTYPE html><html xmlns:mscom=\"http://schemas.microsoft.com/CMSvNext\"\r\n        xmlns:md=\"http://schemas.microsoft.com/mscom-data\" lang=\"en-us\"\r\n        xmlns=\"http://www.w3.org/1999/xhtml\"><head>...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "Your request has been blocked. This could be\r\n                        due to several reasons.",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "AkamaiNetStorage",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "Not found",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "Not found",
+                "expires": "Not found",
+                "last_modified": "Tue, 26 Mar 2024 18:16:43 GMT",
+                "etag": "\"85de642e1467807f64f7e10807df3869:1711562737.176211\"",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "AkamaiNetStorage",
+                  "components": [
+                    "AkamaiNetStorage"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "jQuery"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": [
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": null,
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 0.0,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Content-Security-Policy",
+                  "Strict-Transport-Security",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking",
+                  "Implement Content-Security-Policy to prevent XSS",
+                  "Add HSTS header to enforce HTTPS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 0.7461056709289551,
+                "content_length": 201253,
+                "status_code": 200,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [
+                    "jQuery"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "jQuery",
+              "CDN"
+            ],
+            "security_score_avg": 0.0,
+            "common_issues": [
+              "X-Frame-Options",
+              "X-Content-Type-Options",
+              "Strict-Transport-Security",
+              "X-XSS-Protection",
+              "Content-Security-Policy",
+              "Referrer-Policy",
+              "Permissions-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 4.149584770202637,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 0,
+          "records_found": 53,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 2
+        }
+      },
+      "all_subdomains": [
+        "www.microsoft.com"
+      ],
+      "statistics": {
+        "total_subdomains": 1,
+        "unique_subdomains": 1,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 62.01,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 2,
+        "security_issues_found": 7,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "microsoft.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 19:49 +0530\nNmap scan report for microsoft.com (13.107.246.59)\nHost is up (0.049s latency).\nOther addresses for microsoft.com (not scanned): 13.107.213.59 2603:1030:b:3::152 2603:1030:c02:8::14 2603:1020:201:10::10f 2603:1010:3:3::5b 2603:1030:20e:3::23c\nNot shown: 998 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 7.13 seconds\n",
+        "scan_duration": 7.13
+      },
+      "service_results": {
+        "target": "microsoft.com",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 404 Not Found\r\nDate: Wed, 01 Oct 2025 14:19:28 GMT\r\nContent-Type: text/html\r\nContent-Length: 266478\r\nConnection: close\r\nVary: Accept-Encoding\r\nCache-Control: no-store\r\nx-azure-ref: 20251001T141928Z-164b6d4f6cfnsrxshC1SG1dwtn00000002t000000000k6gw\r\nX-Cache: CONFIG_NOCACHE\r\n\r\n<!DOCTYPE html>\n<!-- saved from url=(0058)https://df.onecloud.azure-test.net/Error/UE_404?shown=true -->\n<html lang=\"en\" dir=\"ltr\">\n  <head>\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n    <title>Page not found</title>\n\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n    <meta name=\"msapplication-config\" content=\"none\" />\n    <link rel=\"icon\" type=\"image/x-icon\" href=\"data:image/x-icon;base64,AAABAAQAQEAAAAEAIAAoQgAARgAAADAwAAABACAAqCUAAG5CAAAgIAAAAQAgAKgQAAAWaAAAEBAAAAEAIABoBAAAvngAACgAAABAAAAAgAAAAAEAIAAAAAAAAEIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "version": "1.1",
+            "ssl": false,
+            "protocol_info": {
+              "http": {
+                "status_code": 200,
+                "server": "AkamaiNetStorage",
+                "content_type": "text/html"
+              }
+            }
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "HTTP/1.1 400 Bad Request\r\nDate: Wed, 01 Oct 2025 14:19:28 GMT\r\nContent-Type: text/html\r\nContent-Length: 1931\r\nConnection: close\r\nCache-Control: no-store\r\nX-Cache: CONFIG_NOCACHE\r\n\r\n<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>\n<html xmlns='http://www.w3.org/1999/xhtml'>\n\n<head>\n    <meta content='text/html; charset=utf-8' http-equiv='content-type' />\n    <style type='text/css'>\n        body {\n            font-family: Arial;\n            margin-left: 40px;\n        }\n\n        img {\n            border: 0 none;\n        }\n\n        #content {\n            margin-left: auto;\n            margin-right: auto\n        }\n\n        #message h1 {\n            font-size: 24px;\n            font-weight: normal;\n            color: #000000;\n            margin: 34px 0px 0px 0px\n        }\n\n        #message h2 {\n            font-size: 20px;\n            font-weight: normal;\n            color: #000000;\n            margin: 34px 0px 0px 0px\n        }\n\n        #mess",
+            "version": "1.1",
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384"
+              },
+              "http": {
+                "status_code": 200,
+                "server": "AkamaiNetStorage",
+                "content_type": "text/html"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 7.13
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Akamai",
+        "detection_method": "headers",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "microsoft.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/microsoft_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 1,
+    "total_open_ports": 2,
+    "cdn_detected": true,
+    "technologies_detected": 2,
+    "apis_discovered": 0
+  },
+  "execution_time": 71.64354538917542
+}

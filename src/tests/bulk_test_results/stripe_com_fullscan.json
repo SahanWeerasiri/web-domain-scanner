@@ -1,0 +1,1355 @@
+{
+  "target_domain": "stripe.com",
+  "scan_timestamp": "2025-10-01T20:40:44.082142",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "stripe.com",
+      "timestamp": "2025-10-01T20:40:44.082344",
+      "modules": {
+        "passive": {
+          "domain": "stripe.com",
+          "timestamp": 1759331460.5794384,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [
+                  "bfcm.stripe.com",
+                  "local.corp.stripe.com",
+                  "edge-js.fastly.cdn.stripe.com",
+                  "preprod-bfcm.stripe.com",
+                  "www.api.stripe.com",
+                  "www.stripe.com",
+                  "qa-east.corp.stripe.com",
+                  "crypto-js.stripe.com",
+                  "preprod-js.stripe.com",
+                  "api-nw3.stripe.com",
+                  "qa-files-cdn.stripe.com",
+                  "secure-files.stripe.com",
+                  "preprod-pdx.corp.stripe.com",
+                  "qa-js.stripe.com",
+                  "www.09123--stripe.com",
+                  "edge-buy.stripe.com",
+                  "qa-connections-chase.stripe.com",
+                  "terminal-statics.stripe.com",
+                  "api-e1.stripe.com",
+                  "cpe.corp.stripe.com",
+                  "m.mstripe.com",
+                  "jss.corp.stripe.com",
+                  "partner-ideal-qa.stripe.com",
+                  "support--stripe.com",
+                  "cdn.qa-files.stripe.com",
+                  "api-w1.stripe.com",
+                  "not-a-git.corp.stripe.com",
+                  "files-cdn.stripe.com",
+                  "revoked.stripe.com",
+                  "qa-partner-hdfc.stripe.com",
+                  "donate.stripe.com",
+                  "api-tls12.stripe.com",
+                  "www.09223--stripe.com",
+                  "email.stripe.com",
+                  "hoth.stripe.com",
+                  "newapi.stripe.com",
+                  "api-nw2.stripe.com",
+                  "button.stripe.com",
+                  "northwest.corp.stripe.com",
+                  "qa-jwt-connections-barclays.stripe.com",
+                  "pay-by-bank.stripe.com",
+                  "mmm.mstripe.com",
+                  "edge-invoice.stripe.com",
+                  "qa-button.stripe.com",
+                  "qa-network-citi-payload.stripe.com",
+                  "qa-status.stripe.com",
+                  "secure-files.fastly.cdn.stripe.com",
+                  "qa-connections-citi-payload.stripe.com",
+                  "stripe.com",
+                  "jira.corp.stripe.com",
+                  "qa.corp.stripe.com",
+                  "jss.qa.corp.stripe.com",
+                  "qa-northwest.corp.stripe.com",
+                  "book.stripe.com",
+                  "preprod-crypto-js.stripe.com",
+                  "cdg.corp.stripe.com",
+                  "ipaddr-3ds.stripe.com",
+                  "qa-donate.stripe.com",
+                  "manage.stripe.com",
+                  "prod-network-citi.stripe.com",
+                  "qa-connect-js.stripe.com",
+                  "preprod.corp.stripe.com",
+                  "preprod-secure-files.stripe.com",
+                  "git.corp.stripe.com",
+                  "auth.stripe.com",
+                  "cgk.corp.stripe.com",
+                  "irc.stripe.com",
+                  "codeint.stripe.com",
+                  "answers.stripe.com",
+                  "invoice.fastly.cdn.stripe.com",
+                  "cpe.qa.corp.stripe.com",
+                  "east.corp.stripe.com",
+                  "admin--stripe.com",
+                  "qa-pdx.corp.stripe.com",
+                  "qa-dub.corp.stripe.com",
+                  "www.sessions.stripe.com",
+                  "qa-book.stripe.com",
+                  "edge-invoice.fastly.cdn.stripe.com",
+                  "qa-connections-citi.stripe.com",
+                  "edge-book.stripe.com",
+                  "www.admin--stripe.com",
+                  "js.fastly.cdn.stripe.com",
+                  "qa-invoice.stripe.com",
+                  "preprod-terminal-statics.stripe.com",
+                  "m.stripe.com",
+                  "partner-ideal-prod.stripe.com",
+                  "api.stripe.com",
+                  "api-w2.stripe.com",
+                  "qa-bfcm.stripe.com",
+                  "buy.stripe.com",
+                  "support.stripe.com",
+                  "qa-partner-amex-east-asia-sponsored-merchant.stripe.com",
+                  "preprod-connections-sandbox.stripe.com",
+                  "checkout.stripe.com",
+                  "edge-donate.stripe.com",
+                  "edge-js.stripe.com",
+                  "preprod-button.stripe.com",
+                  "static.stripe.com",
+                  "prod-partner-amex-east-asia-sponsored-merchant.stripe.com",
+                  "connections-barclays.stripe.com",
+                  "preprod-secure-files.fastly.cdn.stripe.com",
+                  "qa-bom.corp.stripe.com",
+                  "status.stripe.com",
+                  "js.stripe.com",
+                  "preprod-invoice.stripe.com",
+                  "qa-secure-files.fastly.cdn.stripe.com",
+                  "dashboard-admin.stripe.com",
+                  "preprod-status.stripe.com",
+                  "edge-checkout.fastly.cdn.stripe.com",
+                  "qa-secure-files.stripe.com",
+                  "checkout-api-modelt.stripe.com",
+                  "bofa-enhanced-issuer-network.stripe.com",
+                  "prod-network-citi-payload.stripe.com",
+                  "prod-connections-bofa.stripe.com",
+                  "verificator.stripe.com",
+                  "prod-partner-hdfc.stripe.com",
+                  "connect-js.stripe.com",
+                  "terminal-events.stripe.com",
+                  "sessions.stripe.com",
+                  "api-nw1.stripe.com",
+                  "qa-cgk.corp.stripe.com",
+                  "dashboard.stripe.com",
+                  "api-e2.stripe.com",
+                  "qa-network-citi.stripe.com",
+                  "invoice.stripe.com",
+                  "edge-checkout.stripe.com",
+                  "qa-buy.stripe.com",
+                  "edge-button.stripe.com",
+                  "qa-connections-bofa.stripe.com",
+                  "www.support--stripe.com",
+                  "panoplied-respect.stripe.com",
+                  "qa-edge-testing.stripe.com",
+                  "mm.mstripe.com",
+                  "09223--stripe.com",
+                  "pdx.corp.stripe.com",
+                  "09123--stripe.com",
+                  "checkout.fastly.cdn.stripe.com",
+                  "bom.corp.stripe.com",
+                  "dub.corp.stripe.com",
+                  "preprod-connect-js.stripe.com",
+                  "qa-pandora-v2-test.stripe.com",
+                  "qa-cdg.corp.stripe.com",
+                  "connections-sandbox.stripe.com",
+                  "corp.stripe.com",
+                  "prod-connections-citi-payload.stripe.com",
+                  "qa-cmh.corp.stripe.com",
+                  "qa-crypto-js.stripe.com",
+                  "qa-connections-sandbox.stripe.com",
+                  "edge-buy.fastly.cdn.stripe.com",
+                  "buy.fastly.cdn.stripe.com",
+                  "qa-checkout.stripe.com",
+                  "qa-m.stripe.com",
+                  "prod-connections-chase.stripe.com",
+                  "jira.qa.corp.stripe.com",
+                  "prod-connections-citi.stripe.com",
+                  "preprod-checkout.stripe.com",
+                  "mstripe.com",
+                  "jss.prod.corp.stripe.com",
+                  "preprod-cmh.corp.stripe.com",
+                  "connections-auth.stripe.com",
+                  "qa-terminal-statics.stripe.com",
+                  "cmh.corp.stripe.com",
+                  "stripe-credit-ui.stripe.com",
+                  "sandbox-acs.stripe.com"
+                ],
+                "source": "crt.sh",
+                "certificates": {
+                  "21379685759": {
+                    "id": 21379685759,
+                    "detail_url": "https://crt.sh/?id=21379685759",
+                    "ct_logs": [],
+                    "certificate_data": {},
+                    "subject_alternative_names": [],
+                    "additional_domains_found": 155
+                  }
+                },
+                "total_certificates": 1673,
+                "analyzed_certificate_id": 21379685759
+              }
+            }
+          },
+          "certificates": {
+            "21379685759": {
+              "id": 21379685759,
+              "detail_url": "https://crt.sh/?id=21379685759",
+              "ct_logs": [],
+              "certificate_data": {},
+              "subject_alternative_names": [],
+              "additional_domains_found": 155
+            }
+          },
+          "subdomains": [
+            "bfcm.stripe.com",
+            "local.corp.stripe.com",
+            "preprod-bfcm.stripe.com",
+            "edge-js.fastly.cdn.stripe.com",
+            "www.api.stripe.com",
+            "www.stripe.com",
+            "qa-east.corp.stripe.com",
+            "crypto-js.stripe.com",
+            "preprod-js.stripe.com",
+            "api-nw3.stripe.com",
+            "qa-files-cdn.stripe.com",
+            "secure-files.stripe.com",
+            "preprod-pdx.corp.stripe.com",
+            "qa-js.stripe.com",
+            "www.09123--stripe.com",
+            "qa-connections-chase.stripe.com",
+            "edge-buy.stripe.com",
+            "terminal-statics.stripe.com",
+            "api-e1.stripe.com",
+            "cpe.corp.stripe.com",
+            "m.mstripe.com",
+            "jss.corp.stripe.com",
+            "partner-ideal-qa.stripe.com",
+            "support--stripe.com",
+            "cdn.qa-files.stripe.com",
+            "api-w1.stripe.com",
+            "not-a-git.corp.stripe.com",
+            "files-cdn.stripe.com",
+            "qa-partner-hdfc.stripe.com",
+            "donate.stripe.com",
+            "api-tls12.stripe.com",
+            "www.09223--stripe.com",
+            "email.stripe.com",
+            "hoth.stripe.com",
+            "newapi.stripe.com",
+            "button.stripe.com",
+            "northwest.corp.stripe.com",
+            "qa-jwt-connections-barclays.stripe.com",
+            "mmm.mstripe.com",
+            "pay-by-bank.stripe.com",
+            "edge-invoice.stripe.com",
+            "qa-button.stripe.com",
+            "qa-network-citi-payload.stripe.com",
+            "qa-status.stripe.com",
+            "secure-files.fastly.cdn.stripe.com",
+            "qa-connections-citi-payload.stripe.com",
+            "stripe.com",
+            "jira.corp.stripe.com",
+            "qa.corp.stripe.com",
+            "jss.qa.corp.stripe.com",
+            "qa-northwest.corp.stripe.com",
+            "book.stripe.com",
+            "preprod-crypto-js.stripe.com",
+            "cdg.corp.stripe.com",
+            "ipaddr-3ds.stripe.com",
+            "qa-donate.stripe.com",
+            "manage.stripe.com",
+            "prod-network-citi.stripe.com",
+            "qa-connect-js.stripe.com",
+            "preprod.corp.stripe.com",
+            "preprod-secure-files.stripe.com",
+            "git.corp.stripe.com",
+            "auth.stripe.com",
+            "cgk.corp.stripe.com",
+            "irc.stripe.com",
+            "codeint.stripe.com",
+            "answers.stripe.com",
+            "invoice.fastly.cdn.stripe.com",
+            "cpe.qa.corp.stripe.com",
+            "east.corp.stripe.com",
+            "admin--stripe.com",
+            "qa-pdx.corp.stripe.com",
+            "qa-dub.corp.stripe.com",
+            "www.sessions.stripe.com",
+            "qa-book.stripe.com",
+            "edge-invoice.fastly.cdn.stripe.com",
+            "qa-connections-citi.stripe.com",
+            "edge-book.stripe.com",
+            "www.admin--stripe.com",
+            "js.fastly.cdn.stripe.com",
+            "qa-invoice.stripe.com",
+            "preprod-terminal-statics.stripe.com",
+            "m.stripe.com",
+            "partner-ideal-prod.stripe.com",
+            "api.stripe.com",
+            "api-w2.stripe.com",
+            "qa-bfcm.stripe.com",
+            "buy.stripe.com",
+            "support.stripe.com",
+            "qa-partner-amex-east-asia-sponsored-merchant.stripe.com",
+            "preprod-connections-sandbox.stripe.com",
+            "checkout.stripe.com",
+            "edge-donate.stripe.com",
+            "edge-js.stripe.com",
+            "cmh.corp.stripe.com",
+            "preprod-button.stripe.com",
+            "static.stripe.com",
+            "prod-partner-amex-east-asia-sponsored-merchant.stripe.com",
+            "connections-barclays.stripe.com",
+            "preprod-secure-files.fastly.cdn.stripe.com",
+            "qa-bom.corp.stripe.com",
+            "status.stripe.com",
+            "js.stripe.com",
+            "preprod-invoice.stripe.com",
+            "qa-secure-files.fastly.cdn.stripe.com",
+            "dashboard-admin.stripe.com",
+            "preprod-status.stripe.com",
+            "edge-checkout.fastly.cdn.stripe.com",
+            "qa-secure-files.stripe.com",
+            "checkout-api-modelt.stripe.com",
+            "bofa-enhanced-issuer-network.stripe.com",
+            "prod-network-citi-payload.stripe.com",
+            "prod-connections-bofa.stripe.com",
+            "verificator.stripe.com",
+            "prod-partner-hdfc.stripe.com",
+            "connect-js.stripe.com",
+            "terminal-events.stripe.com",
+            "sessions.stripe.com",
+            "api-nw1.stripe.com",
+            "qa-cgk.corp.stripe.com",
+            "dashboard.stripe.com",
+            "api-e2.stripe.com",
+            "qa-network-citi.stripe.com",
+            "invoice.stripe.com",
+            "edge-checkout.stripe.com",
+            "qa-buy.stripe.com",
+            "edge-button.stripe.com",
+            "qa-connections-bofa.stripe.com",
+            "www.support--stripe.com",
+            "panoplied-respect.stripe.com",
+            "qa-edge-testing.stripe.com",
+            "mm.mstripe.com",
+            "09223--stripe.com",
+            "sandbox-acs.stripe.com",
+            "pdx.corp.stripe.com",
+            "09123--stripe.com",
+            "checkout.fastly.cdn.stripe.com",
+            "bom.corp.stripe.com",
+            "dub.corp.stripe.com",
+            "preprod-connect-js.stripe.com",
+            "qa-pandora-v2-test.stripe.com",
+            "qa-cdg.corp.stripe.com",
+            "connections-sandbox.stripe.com",
+            "corp.stripe.com",
+            "prod-connections-citi-payload.stripe.com",
+            "qa-cmh.corp.stripe.com",
+            "qa-crypto-js.stripe.com",
+            "qa-connections-sandbox.stripe.com",
+            "edge-buy.fastly.cdn.stripe.com",
+            "buy.fastly.cdn.stripe.com",
+            "qa-checkout.stripe.com",
+            "qa-m.stripe.com",
+            "prod-connections-chase.stripe.com",
+            "jira.qa.corp.stripe.com",
+            "prod-connections-citi.stripe.com",
+            "preprod-checkout.stripe.com",
+            "mstripe.com",
+            "jss.prod.corp.stripe.com",
+            "preprod-cmh.corp.stripe.com",
+            "connections-auth.stripe.com",
+            "qa-terminal-statics.stripe.com",
+            "revoked.stripe.com",
+            "stripe-credit-ui.stripe.com",
+            "api-nw2.stripe.com"
+          ],
+          "statistics": {
+            "total_duration": 16.474405527114868,
+            "total_subdomains": 164,
+            "certificates_analyzed": 1,
+            "ct_logs_processed": 1673,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "stripe.com",
+          "timestamp": 1759331462.6470447,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "13.228.68.255",
+              "52.76.2.220",
+              "13.250.226.27"
+            ],
+            "MX": [
+              "aspmx.l.google.com",
+              "aspmx2.googlemail.com",
+              "aspmx3.googlemail.com",
+              "alt1.aspmx.l.google.com",
+              "alt2.aspmx.l.google.com"
+            ],
+            "NS": [
+              "ns-1882.awsdns-43.co.uk",
+              "ns-705.awsdns-24.net",
+              "ns-1087.awsdns-07.org",
+              "ns-423.awsdns-52.com"
+            ],
+            "TXT": [
+              "postman-domain-verification=c3b168067b16085c452b04b643ae1000079b095e383b53d1074e409b0e600b6265e1c7963beca1ca87cc63c381dcea332544c92c919651e4cda69f9a6303079c",
+              "stripe-verification=82ce82470fb8324e19fa65abdb6fd370da5a8f90bba09712f259760f625d0790",
+              "google-site-verification=NLkFgZLHeVMVYlR3t1UZC9_1LzmqCAefJyNDs6ZQqBA",
+              "docker-verification=ccde1a0d-8d2c-44b5-9d20-6c4e19113fc9",
+              "docusign=4a93db58-af07-4632-a881-b569d41a6c57",
+              "google-site-verification=hPfjsDwiisKJ4RP1ExOst9gAOD_0P8Q7-kxdcKUvEcc",
+              "_dj9f8ml46we32gxo15n242thlij7fk7",
+              "h1-domain-verification=KhpNX9YNAc7bX95agGvFsPPKbYTVe1KC6xj7P1zKZrRzxcuS",
+              "neat-pulse-domain-verification-8GMn8nv=36eba03d-345e-421a-a823-d6d1f28938a4",
+              "anthropic-domain-verification-zk7x9c=QfN52ECybLPUWh51R9pKF0QO3",
+              "canva-site-verification=xLypn0D9XANRy-lbwcMfHA",
+              "google-site-verification=pmz8ueKvWMPxNlwUDcVroF91-tq6I9VM6wSO_0i7-wc",
+              "docusign=4c9f5602-1c19-4e4c-bde7-77dc4b9ea8a0",
+              "google-site-verification=ZgGi2-xDdfnaWxdfjn5AqtUS11jKWqSXAV_EHODFzdE",
+              "v=spf1 ip4:198.2.180.60/32 ip4:13.111.2.227/32 include:spf1.stripe.com include:greenhouse-outbound-mail.stripe.com include:_spf.qualtrics.com ~all",
+              "apple-domain-verification=8kIS0gmJTvILWQuI",
+              "edcbf4c7-b604-457b-870e-1b05f655e769",
+              "z4mthhzk10l6qc0rg4211mnnppkh2y5b",
+              "atlassian-domain-verification=upLp21qQgja1aHG2gnAb1AmXRqb/zG0UK1a0n3zTSXZg5DgOSttR3i5uzA3T9Cdk",
+              "cursor-domain-verification-vncvvm=D0NzeIDbQa8PPgIf1ukp9UPiu",
+              "MS=ms80697640",
+              "fastly-domain-delegation-3c9tdnjzdwy7wfffvyyy-786084-2024-07-08",
+              "asv=8de0c1a866b958297e22a36216e594a6",
+              "facebook-domain-verification=m7id9rt8ehlgcg9tt2yggbsi6gro7i",
+              "liveramp-site-verification=7gyFkTwGYsvgd7IUQwyAOfImETwR06wgKjKiXq90KEY",
+              "whimsical=253112f9add9790f3a27b9d9893626451fc4cda1",
+              "google-site-verification=PrlpJHdk11CIkPsiXoHEAJevWHAk39JRFAqVSe9l7n0"
+            ],
+            "SOA": [
+              "ns-1882.awsdns-43.co.uk. awsdns-hostmaster.amazon.com. 1 900 900 1209600 3600"
+            ]
+          },
+          "subdomains": [],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 ip4:198.2.180.60/32 ip4:13.111.2.227/32 include:spf1.stripe.com include:greenhouse-outbound-mail.stripe.com include:_spf.qualtrics.com ~all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=NLkFgZLHeVMVYlR3t1UZC9_1LzmqCAefJyNDs6ZQqBA",
+                "google-site-verification=hPfjsDwiisKJ4RP1ExOst9gAOD_0P8Q7-kxdcKUvEcc",
+                "google-site-verification=pmz8ueKvWMPxNlwUDcVroF91-tq6I9VM6wSO_0i7-wc",
+                "google-site-verification=ZgGi2-xDdfnaWxdfjn5AqtUS11jKWqSXAV_EHODFzdE",
+                "facebook-domain-verification=m7id9rt8ehlgcg9tt2yggbsi6gro7i",
+                "google-site-verification=PrlpJHdk11CIkPsiXoHEAJevWHAk39JRFAqVSe9l7n0"
+              ],
+              "other": [
+                "postman-domain-verification=c3b168067b16085c452b04b643ae1000079b095e383b53d1074e409b0e600b6265e1c7963beca1ca87cc63c381dcea332544c92c919651e4cda69f9a6303079c",
+                "stripe-verification=82ce82470fb8324e19fa65abdb6fd370da5a8f90bba09712f259760f625d0790",
+                "docker-verification=ccde1a0d-8d2c-44b5-9d20-6c4e19113fc9",
+                "docusign=4a93db58-af07-4632-a881-b569d41a6c57",
+                "_dj9f8ml46we32gxo15n242thlij7fk7",
+                "h1-domain-verification=KhpNX9YNAc7bX95agGvFsPPKbYTVe1KC6xj7P1zKZrRzxcuS",
+                "neat-pulse-domain-verification-8GMn8nv=36eba03d-345e-421a-a823-d6d1f28938a4",
+                "anthropic-domain-verification-zk7x9c=QfN52ECybLPUWh51R9pKF0QO3",
+                "canva-site-verification=xLypn0D9XANRy-lbwcMfHA",
+                "docusign=4c9f5602-1c19-4e4c-bde7-77dc4b9ea8a0",
+                "apple-domain-verification=8kIS0gmJTvILWQuI",
+                "edcbf4c7-b604-457b-870e-1b05f655e769",
+                "z4mthhzk10l6qc0rg4211mnnppkh2y5b",
+                "atlassian-domain-verification=upLp21qQgja1aHG2gnAb1AmXRqb/zG0UK1a0n3zTSXZg5DgOSttR3i5uzA3T9Cdk",
+                "cursor-domain-verification-vncvvm=D0NzeIDbQa8PPgIf1ukp9UPiu",
+                "MS=ms80697640",
+                "fastly-domain-delegation-3c9tdnjzdwy7wfffvyyy-786084-2024-07-08",
+                "asv=8de0c1a866b958297e22a36216e594a6",
+                "liveramp-site-verification=7gyFkTwGYsvgd7IUQwyAOfImETwR06wgKjKiXq90KEY",
+                "whimsical=253112f9add9790f3a27b9d9893626451fc4cda1"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 1.5595791339874268,
+            "total_records": 40,
+            "total_subdomains": 0,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "stripe.com",
+          "timestamp": 1759331487.394403,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://stripe.com": {
+              "url": "http://stripe.com",
+              "timestamp": 1759331462.7180526,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 2174189,
+                "url": "https://stripe.com/",
+                "redirect_chain": [
+                  "http://stripe.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://stripe.com/",
+                "content_preview": "<!DOCTYPE html>\n<html\n  class=\"MktRoot\"\n  lang=\"en-US\"\n  data-js-controller=\"Page\"\n  data-page-id=\"Home\"\n  data-page-title=\"Stripe | Financial Infrastructure to Grow Your Revenue\"\n  data-loading\n>\n  <...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "nginx",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "base-uri 'none'; connect-src https://c.increment.com https://c.stripe.dev https://c.stripe.global https://c.stripe.partners blob: https://b.stripecdn.com https://climate.stripe.com https://errors.stripe.com https://ext.stripe.com https://r.stripe.com https://sales-live-chat.stripe.com https://stripe-images.s3.us-west-1.amazonaws.com https://stripe.com https://y4pfttj91h-1.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-2.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-3.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-dsn.algolia.net/1/indexes/mkt_partners/query https://tax-connectors.stripe.com 'self'; default-src 'none'; font-src https://b.stripecdn.com 'self'; form-action https://climate.stripe.com https://stripe.com 'self'; frame-ancestors https://app.contentful.com 'self'; frame-src https://checkout.stripe.dev https://support-conversations.stripe.com https://b.stripecdn.com https://checkout.stripe.com https://crypto-js.stripe.com https://js.stripe.com https://sales-live-chat.stripe.com 'self'; img-src data: https://assets.ctfassets.net https://assets.stripeassets.com https://b.stripecdn.com https://images.ctfassets.net https://images.stripeassets.com https://q.stripe.com https://stripe-camo.global.ssl.fastly.net 'self'; media-src https://assets.ctfassets.net https://assets.stripeassets.com https://b.stripecdn.com https://videos.ctfassets.net https://videos.stripeassets.com 'self'; script-src https://b.stripecdn.com https://crypto-js.stripe.com https://js.stripe.com 'self' 'sha256-3aWvb9tRBjmz1OjR3n7mwiTm94+s4iki4mMZF82asmc=' 'sha256-5LtzXhT7UFn+GqP5pKEMGL08UNZsrzANHFEBW/mQHGw=' 'sha256-beLzNcen8LrazzSCRjAapoIMTgJI0osPWGNSX7aK6lc=' 'sha256-cCM0Z4lzGkzQnmbdVw+ouz0JRawyaKcZ4yiqzqYS7ek=' 'sha256-vTifGUJH6hJYTvstw4xJ4xfr/vE0ELkOV4GpCumyqfg=' 'sha256-KxhSaxKB5RFTQsqfRwp+zG7iLjvMrTAySqnSvWlqct0=' 'sha256-tMuJ8c00j54yuxogrdIJeGhNVB350dc56i969XRz/Mc=' 'report-sample'; style-src https://b.stripecdn.com 'self' 'unsafe-inline'; worker-src 'none'; upgrade-insecure-requests; report-uri https://q.stripe.com/csp-violation?q=MmSkzdF3140VG7yiKVp-UwUuvhVOTKbCvMEDPN0d10dcre5KDrPo8CSBL0H34ks%3D",
+                "strict_transport_security": "max-age=63072000; includeSubDomains; preload",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "cid=d907c517-e253-ea0c-57e5-ca809557cdae; Path=/; Domain=stripe.com; Max-Age=7776000; Secure; SameSite=Lax",
+                "cache_control": "Not found",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Nginx",
+                  "raw_header": "nginx",
+                  "components": [
+                    "nginx"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "jQuery",
+                  "Bootstrap",
+                  "Cart Functionality",
+                  "Nginx"
+                ],
+                "header_detected": [
+                  "Nginx"
+                ],
+                "content_detected": [
+                  "Bootstrap"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "base-uri 'none'; connect-src https://c.increment.com https://c.stripe.dev https://c.stripe.global https://c.stripe.partners blob: https://b.stripecdn.com https://climate.stripe.com https://errors.stripe.com https://ext.stripe.com https://r.stripe.com https://sales-live-chat.stripe.com https://stripe-images.s3.us-west-1.amazonaws.com https://stripe.com https://y4pfttj91h-1.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-2.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-3.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-dsn.algolia.net/1/indexes/mkt_partners/query https://tax-connectors.stripe.com 'self'; default-src 'none'; font-src https://b.stripecdn.com 'self'; form-action https://climate.stripe.com https://stripe.com 'self'; frame-ancestors https://app.contentful.com 'self'; frame-src https://checkout.stripe.dev https://support-conversations.stripe.com https://b.stripecdn.com https://checkout.stripe.com https://crypto-js.stripe.com https://js.stripe.com https://sales-live-chat.stripe.com 'self'; img-src data: https://assets.ctfassets.net https://assets.stripeassets.com https://b.stripecdn.com https://images.ctfassets.net https://images.stripeassets.com https://q.stripe.com https://stripe-camo.global.ssl.fastly.net 'self'; media-src https://assets.ctfassets.net https://assets.stripeassets.com https://b.stripecdn.com https://videos.ctfassets.net https://videos.stripeassets.com 'self'; script-src https://b.stripecdn.com https://crypto-js.stripe.com https://js.stripe.com 'self' 'sha256-3aWvb9tRBjmz1OjR3n7mwiTm94+s4iki4mMZF82asmc=' 'sha256-5LtzXhT7UFn+GqP5pKEMGL08UNZsrzANHFEBW/mQHGw=' 'sha256-beLzNcen8LrazzSCRjAapoIMTgJI0osPWGNSX7aK6lc=' 'sha256-cCM0Z4lzGkzQnmbdVw+ouz0JRawyaKcZ4yiqzqYS7ek=' 'sha256-vTifGUJH6hJYTvstw4xJ4xfr/vE0ELkOV4GpCumyqfg=' 'sha256-KxhSaxKB5RFTQsqfRwp+zG7iLjvMrTAySqnSvWlqct0=' 'sha256-tMuJ8c00j54yuxogrdIJeGhNVB350dc56i969XRz/Mc=' 'report-sample'; style-src https://b.stripecdn.com 'self' 'unsafe-inline'; worker-src 'none'; upgrade-insecure-requests; report-uri https://q.stripe.com/csp-violation?q=MmSkzdF3140VG7yiKVp-UwUuvhVOTKbCvMEDPN0d10dcre5KDrPo8CSBL0H34ks%3D",
+                  "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "no-referrer-when-downgrade",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": false,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "X-XSS-Protection",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 6.218647241592407,
+                "content_length": 2174189,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Nginx"
+                  ],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [
+                    "jQuery"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.stripe.com": {
+              "url": "https://www.stripe.com",
+              "timestamp": 1759331468.9372582,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 2174189,
+                "url": "https://stripe.com",
+                "redirect_chain": [
+                  "https://www.stripe.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://stripe.com",
+                "content_preview": "<!DOCTYPE html>\n<html\n  class=\"MktRoot\"\n  lang=\"en-US\"\n  data-js-controller=\"Page\"\n  data-page-id=\"Home\"\n  data-page-title=\"Stripe | Financial Infrastructure to Grow Your Revenue\"\n  data-loading\n>\n  <...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "nginx",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "base-uri 'none'; connect-src https://c.increment.com https://c.stripe.dev https://c.stripe.global https://c.stripe.partners blob: https://b.stripecdn.com https://climate.stripe.com https://errors.stripe.com https://ext.stripe.com https://r.stripe.com https://sales-live-chat.stripe.com https://stripe-images.s3.us-west-1.amazonaws.com https://stripe.com https://y4pfttj91h-1.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-2.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-3.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-dsn.algolia.net/1/indexes/mkt_partners/query https://tax-connectors.stripe.com 'self'; default-src 'none'; font-src https://b.stripecdn.com 'self'; form-action https://climate.stripe.com https://stripe.com 'self'; frame-ancestors https://app.contentful.com 'self'; frame-src https://checkout.stripe.dev https://support-conversations.stripe.com https://b.stripecdn.com https://checkout.stripe.com https://crypto-js.stripe.com https://js.stripe.com https://sales-live-chat.stripe.com 'self'; img-src data: https://assets.ctfassets.net https://assets.stripeassets.com https://b.stripecdn.com https://images.ctfassets.net https://images.stripeassets.com https://q.stripe.com https://stripe-camo.global.ssl.fastly.net 'self'; media-src https://assets.ctfassets.net https://assets.stripeassets.com https://b.stripecdn.com https://videos.ctfassets.net https://videos.stripeassets.com 'self'; script-src https://b.stripecdn.com https://crypto-js.stripe.com https://js.stripe.com 'self' 'sha256-3aWvb9tRBjmz1OjR3n7mwiTm94+s4iki4mMZF82asmc=' 'sha256-5LtzXhT7UFn+GqP5pKEMGL08UNZsrzANHFEBW/mQHGw=' 'sha256-beLzNcen8LrazzSCRjAapoIMTgJI0osPWGNSX7aK6lc=' 'sha256-cCM0Z4lzGkzQnmbdVw+ouz0JRawyaKcZ4yiqzqYS7ek=' 'sha256-vTifGUJH6hJYTvstw4xJ4xfr/vE0ELkOV4GpCumyqfg=' 'sha256-KxhSaxKB5RFTQsqfRwp+zG7iLjvMrTAySqnSvWlqct0=' 'sha256-tMuJ8c00j54yuxogrdIJeGhNVB350dc56i969XRz/Mc=' 'report-sample'; style-src https://b.stripecdn.com 'self' 'unsafe-inline'; worker-src 'none'; upgrade-insecure-requests; report-uri https://q.stripe.com/csp-violation?q=MmSkzdF3140VG7yiKVp-UwUuvhVOTKbCvMEDPN0d10dcre5KDrPo8CSBL0H34ks%3D",
+                "strict_transport_security": "max-age=63072000; includeSubDomains; preload",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "Not found",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Nginx",
+                  "raw_header": "nginx",
+                  "components": [
+                    "nginx"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "jQuery",
+                  "Bootstrap",
+                  "Cart Functionality",
+                  "Nginx"
+                ],
+                "header_detected": [
+                  "Nginx"
+                ],
+                "content_detected": [
+                  "Bootstrap"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "base-uri 'none'; connect-src https://c.increment.com https://c.stripe.dev https://c.stripe.global https://c.stripe.partners blob: https://b.stripecdn.com https://climate.stripe.com https://errors.stripe.com https://ext.stripe.com https://r.stripe.com https://sales-live-chat.stripe.com https://stripe-images.s3.us-west-1.amazonaws.com https://stripe.com https://y4pfttj91h-1.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-2.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-3.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-dsn.algolia.net/1/indexes/mkt_partners/query https://tax-connectors.stripe.com 'self'; default-src 'none'; font-src https://b.stripecdn.com 'self'; form-action https://climate.stripe.com https://stripe.com 'self'; frame-ancestors https://app.contentful.com 'self'; frame-src https://checkout.stripe.dev https://support-conversations.stripe.com https://b.stripecdn.com https://checkout.stripe.com https://crypto-js.stripe.com https://js.stripe.com https://sales-live-chat.stripe.com 'self'; img-src data: https://assets.ctfassets.net https://assets.stripeassets.com https://b.stripecdn.com https://images.ctfassets.net https://images.stripeassets.com https://q.stripe.com https://stripe-camo.global.ssl.fastly.net 'self'; media-src https://assets.ctfassets.net https://assets.stripeassets.com https://b.stripecdn.com https://videos.ctfassets.net https://videos.stripeassets.com 'self'; script-src https://b.stripecdn.com https://crypto-js.stripe.com https://js.stripe.com 'self' 'sha256-3aWvb9tRBjmz1OjR3n7mwiTm94+s4iki4mMZF82asmc=' 'sha256-5LtzXhT7UFn+GqP5pKEMGL08UNZsrzANHFEBW/mQHGw=' 'sha256-beLzNcen8LrazzSCRjAapoIMTgJI0osPWGNSX7aK6lc=' 'sha256-cCM0Z4lzGkzQnmbdVw+ouz0JRawyaKcZ4yiqzqYS7ek=' 'sha256-vTifGUJH6hJYTvstw4xJ4xfr/vE0ELkOV4GpCumyqfg=' 'sha256-KxhSaxKB5RFTQsqfRwp+zG7iLjvMrTAySqnSvWlqct0=' 'sha256-tMuJ8c00j54yuxogrdIJeGhNVB350dc56i969XRz/Mc=' 'report-sample'; style-src https://b.stripecdn.com 'self' 'unsafe-inline'; worker-src 'none'; upgrade-insecure-requests; report-uri https://q.stripe.com/csp-violation?q=MmSkzdF3140VG7yiKVp-UwUuvhVOTKbCvMEDPN0d10dcre5KDrPo8CSBL0H34ks%3D",
+                  "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "no-referrer-when-downgrade",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "X-XSS-Protection",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 6.330911874771118,
+                "content_length": 2174189,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Nginx"
+                  ],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [
+                    "jQuery"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://www.stripe.com": {
+              "url": "http://www.stripe.com",
+              "timestamp": 1759331475.2687316,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 2174189,
+                "url": "https://stripe.com",
+                "redirect_chain": [
+                  "http://www.stripe.com/",
+                  "https://www.stripe.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://stripe.com",
+                "content_preview": "<!DOCTYPE html>\n<html\n  class=\"MktRoot\"\n  lang=\"en-US\"\n  data-js-controller=\"Page\"\n  data-page-id=\"Home\"\n  data-page-title=\"Stripe | Financial Infrastructure to Grow Your Revenue\"\n  data-loading\n>\n  <...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "nginx",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "base-uri 'none'; connect-src https://c.increment.com https://c.stripe.dev https://c.stripe.global https://c.stripe.partners blob: https://b.stripecdn.com https://climate.stripe.com https://errors.stripe.com https://ext.stripe.com https://r.stripe.com https://sales-live-chat.stripe.com https://stripe-images.s3.us-west-1.amazonaws.com https://stripe.com https://y4pfttj91h-1.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-2.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-3.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-dsn.algolia.net/1/indexes/mkt_partners/query https://tax-connectors.stripe.com 'self'; default-src 'none'; font-src https://b.stripecdn.com 'self'; form-action https://climate.stripe.com https://stripe.com 'self'; frame-ancestors https://app.contentful.com 'self'; frame-src https://checkout.stripe.dev https://support-conversations.stripe.com https://b.stripecdn.com https://checkout.stripe.com https://crypto-js.stripe.com https://js.stripe.com https://sales-live-chat.stripe.com 'self'; img-src data: https://assets.ctfassets.net https://assets.stripeassets.com https://b.stripecdn.com https://images.ctfassets.net https://images.stripeassets.com https://q.stripe.com https://stripe-camo.global.ssl.fastly.net 'self'; media-src https://assets.ctfassets.net https://assets.stripeassets.com https://b.stripecdn.com https://videos.ctfassets.net https://videos.stripeassets.com 'self'; script-src https://b.stripecdn.com https://crypto-js.stripe.com https://js.stripe.com 'self' 'sha256-3aWvb9tRBjmz1OjR3n7mwiTm94+s4iki4mMZF82asmc=' 'sha256-5LtzXhT7UFn+GqP5pKEMGL08UNZsrzANHFEBW/mQHGw=' 'sha256-beLzNcen8LrazzSCRjAapoIMTgJI0osPWGNSX7aK6lc=' 'sha256-cCM0Z4lzGkzQnmbdVw+ouz0JRawyaKcZ4yiqzqYS7ek=' 'sha256-vTifGUJH6hJYTvstw4xJ4xfr/vE0ELkOV4GpCumyqfg=' 'sha256-KxhSaxKB5RFTQsqfRwp+zG7iLjvMrTAySqnSvWlqct0=' 'sha256-tMuJ8c00j54yuxogrdIJeGhNVB350dc56i969XRz/Mc=' 'report-sample'; style-src https://b.stripecdn.com 'self' 'unsafe-inline'; worker-src 'none'; upgrade-insecure-requests; report-uri https://q.stripe.com/csp-violation?q=MmSkzdF3140VG7yiKVp-UwUuvhVOTKbCvMEDPN0d10dcre5KDrPo8CSBL0H34ks%3D",
+                "strict_transport_security": "max-age=63072000; includeSubDomains; preload",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "Not found",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Nginx",
+                  "raw_header": "nginx",
+                  "components": [
+                    "nginx"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "jQuery",
+                  "Bootstrap",
+                  "Cart Functionality",
+                  "Nginx"
+                ],
+                "header_detected": [
+                  "Nginx"
+                ],
+                "content_detected": [
+                  "Bootstrap"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "base-uri 'none'; connect-src https://c.increment.com https://c.stripe.dev https://c.stripe.global https://c.stripe.partners blob: https://b.stripecdn.com https://climate.stripe.com https://errors.stripe.com https://ext.stripe.com https://r.stripe.com https://sales-live-chat.stripe.com https://stripe-images.s3.us-west-1.amazonaws.com https://stripe.com https://y4pfttj91h-1.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-2.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-3.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-dsn.algolia.net/1/indexes/mkt_partners/query https://tax-connectors.stripe.com 'self'; default-src 'none'; font-src https://b.stripecdn.com 'self'; form-action https://climate.stripe.com https://stripe.com 'self'; frame-ancestors https://app.contentful.com 'self'; frame-src https://checkout.stripe.dev https://support-conversations.stripe.com https://b.stripecdn.com https://checkout.stripe.com https://crypto-js.stripe.com https://js.stripe.com https://sales-live-chat.stripe.com 'self'; img-src data: https://assets.ctfassets.net https://assets.stripeassets.com https://b.stripecdn.com https://images.ctfassets.net https://images.stripeassets.com https://q.stripe.com https://stripe-camo.global.ssl.fastly.net 'self'; media-src https://assets.ctfassets.net https://assets.stripeassets.com https://b.stripecdn.com https://videos.ctfassets.net https://videos.stripeassets.com 'self'; script-src https://b.stripecdn.com https://crypto-js.stripe.com https://js.stripe.com 'self' 'sha256-3aWvb9tRBjmz1OjR3n7mwiTm94+s4iki4mMZF82asmc=' 'sha256-5LtzXhT7UFn+GqP5pKEMGL08UNZsrzANHFEBW/mQHGw=' 'sha256-beLzNcen8LrazzSCRjAapoIMTgJI0osPWGNSX7aK6lc=' 'sha256-cCM0Z4lzGkzQnmbdVw+ouz0JRawyaKcZ4yiqzqYS7ek=' 'sha256-vTifGUJH6hJYTvstw4xJ4xfr/vE0ELkOV4GpCumyqfg=' 'sha256-KxhSaxKB5RFTQsqfRwp+zG7iLjvMrTAySqnSvWlqct0=' 'sha256-tMuJ8c00j54yuxogrdIJeGhNVB350dc56i969XRz/Mc=' 'report-sample'; style-src https://b.stripecdn.com 'self' 'unsafe-inline'; worker-src 'none'; upgrade-insecure-requests; report-uri https://q.stripe.com/csp-violation?q=MmSkzdF3140VG7yiKVp-UwUuvhVOTKbCvMEDPN0d10dcre5KDrPo8CSBL0H34ks%3D",
+                  "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "no-referrer-when-downgrade",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "X-XSS-Protection",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 6.354192495346069,
+                "content_length": 2174189,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Nginx"
+                  ],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [
+                    "jQuery"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://stripe.com": {
+              "url": "https://stripe.com",
+              "timestamp": 1759331481.6234915,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 2174189,
+                "url": "https://stripe.com/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://stripe.com/",
+                "content_preview": "<!DOCTYPE html>\n<html\n  class=\"MktRoot\"\n  lang=\"en-US\"\n  data-js-controller=\"Page\"\n  data-page-id=\"Home\"\n  data-page-title=\"Stripe | Financial Infrastructure to Grow Your Revenue\"\n  data-loading\n>\n  <...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "nginx",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "base-uri 'none'; connect-src https://c.increment.com https://c.stripe.dev https://c.stripe.global https://c.stripe.partners blob: https://b.stripecdn.com https://climate.stripe.com https://errors.stripe.com https://ext.stripe.com https://r.stripe.com https://sales-live-chat.stripe.com https://stripe-images.s3.us-west-1.amazonaws.com https://stripe.com https://y4pfttj91h-1.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-2.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-3.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-dsn.algolia.net/1/indexes/mkt_partners/query https://tax-connectors.stripe.com 'self'; default-src 'none'; font-src https://b.stripecdn.com 'self'; form-action https://climate.stripe.com https://stripe.com 'self'; frame-ancestors https://app.contentful.com 'self'; frame-src https://checkout.stripe.dev https://support-conversations.stripe.com https://b.stripecdn.com https://checkout.stripe.com https://crypto-js.stripe.com https://js.stripe.com https://sales-live-chat.stripe.com 'self'; img-src data: https://assets.ctfassets.net https://assets.stripeassets.com https://b.stripecdn.com https://images.ctfassets.net https://images.stripeassets.com https://q.stripe.com https://stripe-camo.global.ssl.fastly.net 'self'; media-src https://assets.ctfassets.net https://assets.stripeassets.com https://b.stripecdn.com https://videos.ctfassets.net https://videos.stripeassets.com 'self'; script-src https://b.stripecdn.com https://crypto-js.stripe.com https://js.stripe.com 'self' 'sha256-3aWvb9tRBjmz1OjR3n7mwiTm94+s4iki4mMZF82asmc=' 'sha256-5LtzXhT7UFn+GqP5pKEMGL08UNZsrzANHFEBW/mQHGw=' 'sha256-beLzNcen8LrazzSCRjAapoIMTgJI0osPWGNSX7aK6lc=' 'sha256-cCM0Z4lzGkzQnmbdVw+ouz0JRawyaKcZ4yiqzqYS7ek=' 'sha256-vTifGUJH6hJYTvstw4xJ4xfr/vE0ELkOV4GpCumyqfg=' 'sha256-KxhSaxKB5RFTQsqfRwp+zG7iLjvMrTAySqnSvWlqct0=' 'sha256-tMuJ8c00j54yuxogrdIJeGhNVB350dc56i969XRz/Mc=' 'report-sample'; style-src https://b.stripecdn.com 'self' 'unsafe-inline'; worker-src 'none'; upgrade-insecure-requests; report-uri https://q.stripe.com/csp-violation?q=MmSkzdF3140VG7yiKVp-UwUuvhVOTKbCvMEDPN0d10dcre5KDrPo8CSBL0H34ks%3D",
+                "strict_transport_security": "max-age=63072000; includeSubDomains; preload",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "Not found",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Nginx",
+                  "raw_header": "nginx",
+                  "components": [
+                    "nginx"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "jQuery",
+                  "Bootstrap",
+                  "Cart Functionality",
+                  "Nginx"
+                ],
+                "header_detected": [
+                  "Nginx"
+                ],
+                "content_detected": [
+                  "Bootstrap"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "base-uri 'none'; connect-src https://c.increment.com https://c.stripe.dev https://c.stripe.global https://c.stripe.partners blob: https://b.stripecdn.com https://climate.stripe.com https://errors.stripe.com https://ext.stripe.com https://r.stripe.com https://sales-live-chat.stripe.com https://stripe-images.s3.us-west-1.amazonaws.com https://stripe.com https://y4pfttj91h-1.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-2.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-3.algolianet.com/1/indexes/mkt_partners/query https://y4pfttj91h-dsn.algolia.net/1/indexes/mkt_partners/query https://tax-connectors.stripe.com 'self'; default-src 'none'; font-src https://b.stripecdn.com 'self'; form-action https://climate.stripe.com https://stripe.com 'self'; frame-ancestors https://app.contentful.com 'self'; frame-src https://checkout.stripe.dev https://support-conversations.stripe.com https://b.stripecdn.com https://checkout.stripe.com https://crypto-js.stripe.com https://js.stripe.com https://sales-live-chat.stripe.com 'self'; img-src data: https://assets.ctfassets.net https://assets.stripeassets.com https://b.stripecdn.com https://images.ctfassets.net https://images.stripeassets.com https://q.stripe.com https://stripe-camo.global.ssl.fastly.net 'self'; media-src https://assets.ctfassets.net https://assets.stripeassets.com https://b.stripecdn.com https://videos.ctfassets.net https://videos.stripeassets.com 'self'; script-src https://b.stripecdn.com https://crypto-js.stripe.com https://js.stripe.com 'self' 'sha256-3aWvb9tRBjmz1OjR3n7mwiTm94+s4iki4mMZF82asmc=' 'sha256-5LtzXhT7UFn+GqP5pKEMGL08UNZsrzANHFEBW/mQHGw=' 'sha256-beLzNcen8LrazzSCRjAapoIMTgJI0osPWGNSX7aK6lc=' 'sha256-cCM0Z4lzGkzQnmbdVw+ouz0JRawyaKcZ4yiqzqYS7ek=' 'sha256-vTifGUJH6hJYTvstw4xJ4xfr/vE0ELkOV4GpCumyqfg=' 'sha256-KxhSaxKB5RFTQsqfRwp+zG7iLjvMrTAySqnSvWlqct0=' 'sha256-tMuJ8c00j54yuxogrdIJeGhNVB350dc56i969XRz/Mc=' 'report-sample'; style-src https://b.stripecdn.com 'self' 'unsafe-inline'; worker-src 'none'; upgrade-insecure-requests; report-uri https://q.stripe.com/csp-violation?q=MmSkzdF3140VG7yiKVp-UwUuvhVOTKbCvMEDPN0d10dcre5KDrPo8CSBL0H34ks%3D",
+                  "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": "no-referrer-when-downgrade",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "X-XSS-Protection",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 5.767645359039307,
+                "content_length": 2174189,
+                "status_code": 200,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Nginx"
+                  ],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [
+                    "jQuery"
+                  ],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Bootstrap",
+              "Cart Functionality",
+              "CDN",
+              "jQuery",
+              "Nginx"
+            ],
+            "security_score_avg": 71.42857142857143,
+            "common_issues": [
+              "X-XSS-Protection",
+              "Permissions-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 24.74266767501831,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 164,
+          "certificates_analyzed": 1,
+          "ct_logs_processed": 1673
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 0,
+          "records_found": 40,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 5
+        }
+      },
+      "all_subdomains": [
+        "09123--stripe.com",
+        "09223--stripe.com",
+        "admin--stripe.com",
+        "answers.stripe.com",
+        "api-e1.stripe.com",
+        "api-e2.stripe.com",
+        "api-nw1.stripe.com",
+        "api-nw2.stripe.com",
+        "api-nw3.stripe.com",
+        "api-tls12.stripe.com",
+        "api-w1.stripe.com",
+        "api-w2.stripe.com",
+        "api.stripe.com",
+        "auth.stripe.com",
+        "bfcm.stripe.com",
+        "bofa-enhanced-issuer-network.stripe.com",
+        "bom.corp.stripe.com",
+        "book.stripe.com",
+        "button.stripe.com",
+        "buy.fastly.cdn.stripe.com",
+        "buy.stripe.com",
+        "cdg.corp.stripe.com",
+        "cdn.qa-files.stripe.com",
+        "cgk.corp.stripe.com",
+        "checkout-api-modelt.stripe.com",
+        "checkout.fastly.cdn.stripe.com",
+        "checkout.stripe.com",
+        "cmh.corp.stripe.com",
+        "codeint.stripe.com",
+        "connect-js.stripe.com",
+        "connections-auth.stripe.com",
+        "connections-barclays.stripe.com",
+        "connections-sandbox.stripe.com",
+        "corp.stripe.com",
+        "cpe.corp.stripe.com",
+        "cpe.qa.corp.stripe.com",
+        "crypto-js.stripe.com",
+        "dashboard-admin.stripe.com",
+        "dashboard.stripe.com",
+        "donate.stripe.com",
+        "dub.corp.stripe.com",
+        "east.corp.stripe.com",
+        "edge-book.stripe.com",
+        "edge-button.stripe.com",
+        "edge-buy.fastly.cdn.stripe.com",
+        "edge-buy.stripe.com",
+        "edge-checkout.fastly.cdn.stripe.com",
+        "edge-checkout.stripe.com",
+        "edge-donate.stripe.com",
+        "edge-invoice.fastly.cdn.stripe.com",
+        "edge-invoice.stripe.com",
+        "edge-js.fastly.cdn.stripe.com",
+        "edge-js.stripe.com",
+        "email.stripe.com",
+        "files-cdn.stripe.com",
+        "git.corp.stripe.com",
+        "hoth.stripe.com",
+        "invoice.fastly.cdn.stripe.com",
+        "invoice.stripe.com",
+        "ipaddr-3ds.stripe.com",
+        "irc.stripe.com",
+        "jira.corp.stripe.com",
+        "jira.qa.corp.stripe.com",
+        "js.fastly.cdn.stripe.com",
+        "js.stripe.com",
+        "jss.corp.stripe.com",
+        "jss.prod.corp.stripe.com",
+        "jss.qa.corp.stripe.com",
+        "local.corp.stripe.com",
+        "m.mstripe.com",
+        "m.stripe.com",
+        "manage.stripe.com",
+        "mm.mstripe.com",
+        "mmm.mstripe.com",
+        "mstripe.com",
+        "newapi.stripe.com",
+        "northwest.corp.stripe.com",
+        "not-a-git.corp.stripe.com",
+        "panoplied-respect.stripe.com",
+        "partner-ideal-prod.stripe.com",
+        "partner-ideal-qa.stripe.com",
+        "pay-by-bank.stripe.com",
+        "pdx.corp.stripe.com",
+        "preprod-bfcm.stripe.com",
+        "preprod-button.stripe.com",
+        "preprod-checkout.stripe.com",
+        "preprod-cmh.corp.stripe.com",
+        "preprod-connect-js.stripe.com",
+        "preprod-connections-sandbox.stripe.com",
+        "preprod-crypto-js.stripe.com",
+        "preprod-invoice.stripe.com",
+        "preprod-js.stripe.com",
+        "preprod-pdx.corp.stripe.com",
+        "preprod-secure-files.fastly.cdn.stripe.com",
+        "preprod-secure-files.stripe.com",
+        "preprod-status.stripe.com",
+        "preprod-terminal-statics.stripe.com",
+        "preprod.corp.stripe.com",
+        "prod-connections-bofa.stripe.com",
+        "prod-connections-chase.stripe.com",
+        "prod-connections-citi-payload.stripe.com",
+        "prod-connections-citi.stripe.com",
+        "prod-network-citi-payload.stripe.com",
+        "prod-network-citi.stripe.com",
+        "prod-partner-amex-east-asia-sponsored-merchant.stripe.com",
+        "prod-partner-hdfc.stripe.com",
+        "qa-bfcm.stripe.com",
+        "qa-bom.corp.stripe.com",
+        "qa-book.stripe.com",
+        "qa-button.stripe.com",
+        "qa-buy.stripe.com",
+        "qa-cdg.corp.stripe.com",
+        "qa-cgk.corp.stripe.com",
+        "qa-checkout.stripe.com",
+        "qa-cmh.corp.stripe.com",
+        "qa-connect-js.stripe.com",
+        "qa-connections-bofa.stripe.com",
+        "qa-connections-chase.stripe.com",
+        "qa-connections-citi-payload.stripe.com",
+        "qa-connections-citi.stripe.com",
+        "qa-connections-sandbox.stripe.com",
+        "qa-crypto-js.stripe.com",
+        "qa-donate.stripe.com",
+        "qa-dub.corp.stripe.com",
+        "qa-east.corp.stripe.com",
+        "qa-edge-testing.stripe.com",
+        "qa-files-cdn.stripe.com",
+        "qa-invoice.stripe.com",
+        "qa-js.stripe.com",
+        "qa-jwt-connections-barclays.stripe.com",
+        "qa-m.stripe.com",
+        "qa-network-citi-payload.stripe.com",
+        "qa-network-citi.stripe.com",
+        "qa-northwest.corp.stripe.com",
+        "qa-pandora-v2-test.stripe.com",
+        "qa-partner-amex-east-asia-sponsored-merchant.stripe.com",
+        "qa-partner-hdfc.stripe.com",
+        "qa-pdx.corp.stripe.com",
+        "qa-secure-files.fastly.cdn.stripe.com",
+        "qa-secure-files.stripe.com",
+        "qa-status.stripe.com",
+        "qa-terminal-statics.stripe.com",
+        "qa.corp.stripe.com",
+        "revoked.stripe.com",
+        "sandbox-acs.stripe.com",
+        "secure-files.fastly.cdn.stripe.com",
+        "secure-files.stripe.com",
+        "sessions.stripe.com",
+        "static.stripe.com",
+        "status.stripe.com",
+        "stripe-credit-ui.stripe.com",
+        "stripe.com",
+        "support--stripe.com",
+        "support.stripe.com",
+        "terminal-events.stripe.com",
+        "terminal-statics.stripe.com",
+        "verificator.stripe.com",
+        "www.09123--stripe.com",
+        "www.09223--stripe.com",
+        "www.admin--stripe.com",
+        "www.api.stripe.com",
+        "www.sessions.stripe.com",
+        "www.stripe.com",
+        "www.support--stripe.com"
+      ],
+      "statistics": {
+        "total_subdomains": 164,
+        "unique_subdomains": 164,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 43.31,
+        "certificates_analyzed": 1,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 5,
+        "security_issues_found": 2,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "stripe.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 20:41 +0530\nNmap scan report for stripe.com (13.250.226.27)\nHost is up (0.048s latency).\nOther addresses for stripe.com (not scanned): 52.76.2.220 13.228.68.255\nrDNS record for 13.250.226.27: ec2-13-250-226-27.ap-southeast-1.compute.amazonaws.com\nNot shown: 998 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 7.58 seconds\n",
+        "scan_duration": 7.58
+      },
+      "service_results": {
+        "target": "stripe.com",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 301 Moved Permanently\r\nServer: nginx\r\nDate: Wed, 01 Oct 2025 15:11:35 GMT\r\nContent-Type: text/html\r\nContent-Length: 162\r\nConnection: close\r\nLocation: https://dashboard.stripe.com/\r\nStrict-Transport-Security: max-age=63072000; includeSubDomains; preload\r\n\r\n<html>\r\n<head><title>301 Moved Permanently</title></head>\r\n<body>\r\n<center><h1>301 Moved Permanently</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>",
+            "version": "1.1",
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384"
+              },
+              "http": {
+                "status_code": 200,
+                "server": "nginx",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "HTTP/1.1 301 Moved Permanently\r\nServer: nginx\r\nDate: Wed, 01 Oct 2025 15:11:36 GMT\r\nContent-Type: text/html\r\nContent-Length: 162\r\nConnection: close\r\nLocation: https://dashboard.stripe.com/\r\nStrict-Transport-Security: max-age=63072000; includeSubDomains; preload\r\n\r\n<html>\r\n<head><title>301 Moved Permanently</title></head>\r\n<body>\r\n<center><h1>301 Moved Permanently</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>",
+            "version": "1.1",
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384"
+              },
+              "http": {
+                "status_code": 200,
+                "server": "nginx",
+                "content_type": "text/html; charset=utf-8"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTP (port 80)",
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 7.58
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Google CDN",
+        "detection_method": "content",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "stripe.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/stripe_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 164,
+    "total_open_ports": 2,
+    "cdn_detected": true,
+    "technologies_detected": 5,
+    "apis_discovered": 0
+  },
+  "execution_time": 56.06157326698303
+}

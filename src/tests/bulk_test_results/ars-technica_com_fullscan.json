@@ -1,0 +1,242 @@
+{
+  "target_domain": "ars-technica.com",
+  "scan_timestamp": "2025-10-01T20:28:43.771187",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "ars-technica.com",
+      "timestamp": "2025-10-01T20:28:43.771502",
+      "modules": {
+        "passive": {
+          "domain": "ars-technica.com",
+          "timestamp": 1759330780.372392,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 56.59412479400635,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "ars-technica.com",
+          "timestamp": 1759330783.1622565,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "NS": [
+              "ns-28.awsdns-03.com",
+              "ns-836.awsdns-40.net",
+              "ns-1935.awsdns-49.co.uk",
+              "ns-1116.awsdns-11.org"
+            ],
+            "SOA": [
+              "ns-1935.awsdns-49.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"
+            ]
+          },
+          "subdomains": [],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [],
+              "other": []
+            }
+          },
+          "statistics": {
+            "total_duration": 1.9355897903442383,
+            "total_records": 5,
+            "total_subdomains": 0,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "ars-technica.com",
+          "timestamp": 1759330783.5280645,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {},
+          "summary": {
+            "total_targets": 0,
+            "successful_scans": 0,
+            "unique_technologies": [],
+            "security_score_avg": 0.0,
+            "common_issues": []
+          },
+          "statistics": {
+            "total_duration": 0.3560628890991211,
+            "success_rate": 0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 0,
+          "records_found": 5,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 0,
+          "technologies_identified": 0
+        }
+      },
+      "all_subdomains": [],
+      "statistics": {
+        "total_subdomains": 0,
+        "unique_subdomains": 0,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 59.76,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 0,
+        "technologies_detected": 0,
+        "security_issues_found": 0,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "ars-technica.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 20:29 +0530\nNmap done: 0 IP addresses (0 hosts up) scanned in 0.59 seconds\n",
+        "scan_duration": 0.59
+      },
+      "service_results": {
+        "target": "ars-technica.com",
+        "scan_type": "quick",
+        "open_ports_count": 0,
+        "services": {},
+        "summary": {
+          "service_distribution": {},
+          "ssl_services": [],
+          "total_services": 0
+        }
+      },
+      "summary": {
+        "open_ports_count": 0,
+        "services_identified": 0,
+        "scan_duration": 0.59
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": false,
+        "cdn_name": null,
+        "detection_method": null,
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "web_crawl": {
+        "pages": [],
+        "apis": [],
+        "discovered_urls": [],
+        "api_discovery": {
+          "rest_apis": [],
+          "graphql_endpoints": [],
+          "swagger_endpoints": [],
+          "other_apis": []
+        },
+        "crawl_level": "smart",
+        "crawl_config": {
+          "max_pages": 30,
+          "max_api_endpoints": 100,
+          "use_ai": true
+        }
+      },
+      "execution_info": {
+        "domain": "ars-technica.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/ars-technica_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 0,
+    "total_open_ports": 0,
+    "cdn_detected": false,
+    "technologies_detected": 0,
+    "apis_discovered": 0
+  },
+  "execution_time": 67.99869179725647
+}

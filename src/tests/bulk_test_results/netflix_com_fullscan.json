@@ -1,0 +1,814 @@
+{
+  "target_domain": "netflix.com",
+  "scan_timestamp": "2025-10-01T19:52:38.779882",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "netflix.com",
+      "timestamp": "2025-10-01T19:52:38.780311",
+      "modules": {
+        "passive": {
+          "domain": "netflix.com",
+          "timestamp": 1759328615.2012484,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 56.416948556900024,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "netflix.com",
+          "timestamp": 1759328618.305753,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "3.251.50.149",
+              "54.155.178.5",
+              "54.74.73.31"
+            ],
+            "AAAA": [
+              "2a05:d018:76c:b683:f711:f0cf:5cc7:b815",
+              "2a05:d018:76c:b685:3b38:679d:2640:1ced",
+              "2a05:d018:76c:b684:8e48:47c9:84aa:b34d"
+            ],
+            "MX": [
+              "aspmx.l.google.com",
+              "aspmx2.googlemail.com",
+              "aspmx3.googlemail.com",
+              "alt1.aspmx.l.google.com",
+              "alt2.aspmx.l.google.com"
+            ],
+            "NS": [
+              "ns-1372.awsdns-43.org",
+              "ns-81.awsdns-10.com",
+              "ns-1984.awsdns-56.co.uk",
+              "ns-659.awsdns-18.net"
+            ],
+            "TXT": [
+              "logmein-verification-code=4FVB4FQ17eVMyHCC7RAApS4Zp",
+              "atlassian-domain-verification=TX0Efjn8bXAu0o9GAHyYowM0mcu4oDPHFf10cqaDXFCvU9tRB7R/A9oeQcDmEAD8",
+              "dropbox-domain-verification=htwo11xk2yl1",
+              "klaviyo-site-verification=UM4UEX",
+              "google-site-verification=a8Lak2UwVjIlmH1xRYU3mJ6nSQ7rJnyf2VKWtH4nKZI",
+              "h1-domain-verification=AYCqXFtcqVzAhHLWr58GvY2WrbTfkGeMsijza2jPS2E1qcn1",
+              "1password-site-verification=BXCRTZRWNVG4PFLIYFIBWSYHX4",
+              "google-site-verification=nCi1QdlMabPJOvtQNCo5KaPyDfwog9pDr3d8IN767YA",
+              "asv=4853f01b1e9226ed9d0031284948059f",
+              "apple-domain-verification=U1j_Aj0pS5fid78Cag85YGM14jHrzxM-S2ICXc8rGxg",
+              "docker-verification=5f9a055c-22b9-4d40-be7f-5af4171e1e71",
+              "notion-domain-verification=MHmHAv2mrRGxVuA3rhIRmz6vwrsAEbsqCR6yRIycSoj",
+              "klaviyo-site-verification=WwbqJa",
+              "loom-verification=0004053852",
+              "logmein-verification-code=905b1ed4-1c2e-466f-b24c-756e6ca39eb5",
+              "google-site-verification=9DgwSKXMlFzcnW-HuGWef6aVVHWDCQNehxHTq0Ps9IA",
+              "facebook-domain-verification=k65vedr09b2tp2q144ho1zewp3xsc6",
+              "infoblox-domain-mastery=83433630723145c8e700674aa65ad12bf58d7cd22434a5527c383d131ccc354a77",
+              "lucidlink-verification=26PKTJ9J3ATM2SWV49QRS442K4",
+              "jamf-site-verification=vqjVdHx1f_q52DK-WclChA",
+              "zapier-domain-verification-challenge=d740d03c-47a4-491c-934d-c61bdba6099e",
+              "google-site-verification=Wn4h4x_Gf8Zs5qiw88ZingFRjLUNzga-zJXts2UPics",
+              "anthropic-domain-verification-vxqysx=XDtJHKRTpvy6QvuMuyVMXbMxT",
+              "docusign=f3d36bef-ec7d-42e5-9334-626611acb127",
+              "canva-site-verification=DW6T-OKEapKu9QB9ChMocw",
+              "google-site-verification=VQKoV3pv-QYIDfbQa1N4r97x8W07veRTK6JhWUavIuc",
+              "docusign=f249396f-8150-48f8-8bd2-705be6e03826",
+              "8cd468d7d5994fcc9d350683a8cb07a1",
+              "unity-sso-verification=46eb4cbd-e316-4691-84c2-4f4bce784d84",
+              "v=spf1 include:_spf_ipv4.netflix.com include:_spf.google.com include:amazonses.com include:servers.mcsv.net include:_spf.salesforce.com include:_spf.createsend.com -all",
+              "miro-verification=9ac407d6774b2ec4313b004d40204399e37f3b48",
+              "google-site-verification=YVxAf7gFR4vFk1RkUwiYt3pzl2AVUP6aPdBgV1qtwcw",
+              "apple-domain-verification=Ohlo8qLyb9N4JaIm",
+              "smartsheet-site-validation=zZPtdlBFlbl-n54tmRUUcd6Bd8lllpAR"
+            ],
+            "SOA": [
+              "ns-81.awsdns-10.com. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 1800"
+            ]
+          },
+          "subdomains": [],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 include:_spf_ipv4.netflix.com include:_spf.google.com include:amazonses.com include:servers.mcsv.net include:_spf.salesforce.com include:_spf.createsend.com -all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=a8Lak2UwVjIlmH1xRYU3mJ6nSQ7rJnyf2VKWtH4nKZI",
+                "google-site-verification=nCi1QdlMabPJOvtQNCo5KaPyDfwog9pDr3d8IN767YA",
+                "google-site-verification=9DgwSKXMlFzcnW-HuGWef6aVVHWDCQNehxHTq0Ps9IA",
+                "facebook-domain-verification=k65vedr09b2tp2q144ho1zewp3xsc6",
+                "google-site-verification=Wn4h4x_Gf8Zs5qiw88ZingFRjLUNzga-zJXts2UPics",
+                "google-site-verification=VQKoV3pv-QYIDfbQa1N4r97x8W07veRTK6JhWUavIuc",
+                "google-site-verification=YVxAf7gFR4vFk1RkUwiYt3pzl2AVUP6aPdBgV1qtwcw"
+              ],
+              "other": [
+                "logmein-verification-code=4FVB4FQ17eVMyHCC7RAApS4Zp",
+                "atlassian-domain-verification=TX0Efjn8bXAu0o9GAHyYowM0mcu4oDPHFf10cqaDXFCvU9tRB7R/A9oeQcDmEAD8",
+                "dropbox-domain-verification=htwo11xk2yl1",
+                "klaviyo-site-verification=UM4UEX",
+                "h1-domain-verification=AYCqXFtcqVzAhHLWr58GvY2WrbTfkGeMsijza2jPS2E1qcn1",
+                "1password-site-verification=BXCRTZRWNVG4PFLIYFIBWSYHX4",
+                "asv=4853f01b1e9226ed9d0031284948059f",
+                "apple-domain-verification=U1j_Aj0pS5fid78Cag85YGM14jHrzxM-S2ICXc8rGxg",
+                "docker-verification=5f9a055c-22b9-4d40-be7f-5af4171e1e71",
+                "notion-domain-verification=MHmHAv2mrRGxVuA3rhIRmz6vwrsAEbsqCR6yRIycSoj",
+                "klaviyo-site-verification=WwbqJa",
+                "loom-verification=0004053852",
+                "logmein-verification-code=905b1ed4-1c2e-466f-b24c-756e6ca39eb5",
+                "infoblox-domain-mastery=83433630723145c8e700674aa65ad12bf58d7cd22434a5527c383d131ccc354a77",
+                "lucidlink-verification=26PKTJ9J3ATM2SWV49QRS442K4",
+                "jamf-site-verification=vqjVdHx1f_q52DK-WclChA",
+                "zapier-domain-verification-challenge=d740d03c-47a4-491c-934d-c61bdba6099e",
+                "anthropic-domain-verification-vxqysx=XDtJHKRTpvy6QvuMuyVMXbMxT",
+                "docusign=f3d36bef-ec7d-42e5-9334-626611acb127",
+                "canva-site-verification=DW6T-OKEapKu9QB9ChMocw",
+                "docusign=f249396f-8150-48f8-8bd2-705be6e03826",
+                "8cd468d7d5994fcc9d350683a8cb07a1",
+                "unity-sso-verification=46eb4cbd-e316-4691-84c2-4f4bce784d84",
+                "miro-verification=9ac407d6774b2ec4313b004d40204399e37f3b48",
+                "apple-domain-verification=Ohlo8qLyb9N4JaIm",
+                "smartsheet-site-validation=zZPtdlBFlbl-n54tmRUUcd6Bd8lllpAR"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 1.8029985427856445,
+            "total_records": 50,
+            "total_subdomains": 0,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "netflix.com",
+          "timestamp": 1759328706.3033776,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://www.netflix.com": {
+              "url": "http://www.netflix.com",
+              "timestamp": 1759328618.3301654,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 104363,
+                "url": "https://www.netflix.com/lk/",
+                "redirect_chain": [
+                  "http://www.netflix.com/",
+                  "https://www.netflix.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.netflix.com/lk/",
+                "content_preview": "<!doctype html><html lang=\"en-LK\" class=\"\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/><meta charSet=\"utf-8\"/><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"/><meta ...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Netflix",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "envoy",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "DENY",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=31536000; includeSubDomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "1; mode=block; report=https://www.netflix.com/ichnaea/log/freeform/xssreport",
+                "set_cookie": "flwssn=368b0b25-a818-4ecf-aa12-8a02d480bb9f; Max-Age=10800; Domain=.netflix.com; Path=/",
+                "cache_control": "Not found",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "envoy",
+                  "components": [
+                    "envoy"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Envoy",
+                  "Zipkin",
+                  "OneTrust"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "DENY",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "1; mode=block; report=https://www.netflix.com/ichnaea/log/freeform/xssreport",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 25.09995698928833,
+                "content_length": 104363,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://netflix.com": {
+              "url": "http://netflix.com",
+              "timestamp": 1759328643.4305844,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 104363,
+                "url": "https://www.netflix.com/lk/",
+                "redirect_chain": [
+                  "http://netflix.com/",
+                  "https://netflix.com/",
+                  "https://www.netflix.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.netflix.com/lk/",
+                "content_preview": "<!doctype html><html lang=\"en-LK\" class=\"\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/><meta charSet=\"utf-8\"/><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"/><meta ...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Netflix",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "envoy",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "DENY",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=31536000; includeSubDomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "1; mode=block; report=https://www.netflix.com/ichnaea/log/freeform/xssreport",
+                "set_cookie": "flwssn=368b0b25-a818-4ecf-aa12-8a02d480bb9f; Max-Age=10800; Domain=.netflix.com; Path=/",
+                "cache_control": "Not found",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "envoy",
+                  "components": [
+                    "envoy"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Envoy",
+                  "Zipkin",
+                  "OneTrust"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "DENY",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "1; mode=block; report=https://www.netflix.com/ichnaea/log/freeform/xssreport",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 20.46234130859375,
+                "content_length": 104363,
+                "status_code": 200,
+                "redirect_count": 3
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://netflix.com": {
+              "url": "https://netflix.com",
+              "timestamp": 1759328663.8937387,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 104363,
+                "url": "https://www.netflix.com/lk/",
+                "redirect_chain": [
+                  "https://netflix.com/",
+                  "https://www.netflix.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.netflix.com/lk/",
+                "content_preview": "<!doctype html><html lang=\"en-LK\" class=\"\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/><meta charSet=\"utf-8\"/><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"/><meta ...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Netflix",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "envoy",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "DENY",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=31536000; includeSubDomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "1; mode=block; report=https://www.netflix.com/ichnaea/log/freeform/xssreport",
+                "set_cookie": "flwssn=368b0b25-a818-4ecf-aa12-8a02d480bb9f; Max-Age=10800; Domain=.netflix.com; Path=/",
+                "cache_control": "Not found",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "envoy",
+                  "components": [
+                    "envoy"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Envoy",
+                  "Zipkin",
+                  "OneTrust"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "DENY",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "1; mode=block; report=https://www.netflix.com/ichnaea/log/freeform/xssreport",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 21.171552658081055,
+                "content_length": 104363,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.netflix.com": {
+              "url": "https://www.netflix.com",
+              "timestamp": 1759328685.0657823,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 104363,
+                "url": "https://www.netflix.com/lk/",
+                "redirect_chain": [
+                  "https://www.netflix.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.netflix.com/lk/",
+                "content_preview": "<!doctype html><html lang=\"en-LK\" class=\"\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/><meta charSet=\"utf-8\"/><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"/><meta ...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Netflix",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "envoy",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "DENY",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=31536000; includeSubDomains",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "1; mode=block; report=https://www.netflix.com/ichnaea/log/freeform/xssreport",
+                "set_cookie": "flwssn=368b0b25-a818-4ecf-aa12-8a02d480bb9f; Max-Age=10800; Domain=.netflix.com; Path=/",
+                "cache_control": "Not found",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "envoy",
+                  "components": [
+                    "envoy"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Envoy",
+                  "Zipkin",
+                  "OneTrust"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "DENY",
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "1; mode=block; report=https://www.netflix.com/ichnaea/log/freeform/xssreport",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 57.14285714285714,
+                "missing_headers": [
+                  "Content-Security-Policy",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 21.231473684310913,
+                "content_length": 104363,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Envoy",
+              "Zipkin",
+              "OneTrust"
+            ],
+            "security_score_avg": 57.14285714285714,
+            "common_issues": [
+              "Content-Security-Policy",
+              "Referrer-Policy",
+              "Permissions-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 87.98631644248962,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 0,
+          "records_found": 50,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 3
+        }
+      },
+      "all_subdomains": [
+        "www.netflix.com"
+      ],
+      "statistics": {
+        "total_subdomains": 1,
+        "unique_subdomains": 1,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 147.52,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 3,
+        "security_issues_found": 3,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "netflix.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 19:55 +0530\nNmap scan report for netflix.com (54.170.196.176)\nHost is up (0.17s latency).\nOther addresses for netflix.com (not scanned): 52.214.181.141 54.246.79.9 2a05:d018:76c:b683:e1fe:9fbf:c403:57f1 2a05:d018:76c:b685:c898:aa3a:42c7:9d21 2a05:d018:76c:b684:b233:ac1f:be1f:7\nrDNS record for 54.170.196.176: ec2-54-170-196-176.eu-west-1.compute.amazonaws.com\nNot shown: 998 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 13.50 seconds\n",
+        "scan_duration": 13.5
+      },
+      "service_results": {
+        "target": "netflix.com",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.0 404 Not Found\r\nContent-Length: 7\r\nConnection: close\r\n\r\nBLOCKED",
+            "version": "1.0",
+            "ssl": false,
+            "protocol_info": {}
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": null,
+            "version": null,
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 13.5
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Google CDN",
+        "detection_method": "content",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "netflix.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/netflix_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 1,
+    "total_open_ports": 2,
+    "cdn_detected": true,
+    "technologies_detected": 3,
+    "apis_discovered": 0
+  },
+  "execution_time": 171.97018790245056
+}

@@ -1,0 +1,892 @@
+{
+  "target_domain": "edx.org",
+  "scan_timestamp": "2025-10-01T21:13:23.872273",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "edx.org",
+      "timestamp": "2025-10-01T21:13:23.872820",
+      "modules": {
+        "passive": {
+          "domain": "edx.org",
+          "timestamp": 1759333449.879165,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 45.99827241897583,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "edx.org",
+          "timestamp": 1759333452.5533817,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "13.35.202.122",
+              "13.35.202.94",
+              "13.35.202.21",
+              "13.35.202.36"
+            ],
+            "MX": [
+              "aspmx.l.google.com",
+              "aspmx2.googlemail.com",
+              "aspmx3.googlemail.com",
+              "alt1.aspmx.l.google.com",
+              "alt2.aspmx.l.google.com"
+            ],
+            "NS": [
+              "ns-1472.awsdns-56.org",
+              "ns-73.awsdns-09.com",
+              "ns-828.awsdns-39.net",
+              "ns-1753.awsdns-27.co.uk"
+            ],
+            "TXT": [
+              "pardot1059723=4defac72d9323b4f44f80b440e6eb91a8958b1f3b98bc585c494a8a5af62483e",
+              "smartsheet-site-validation=bxOSD4ibPoym5apZEnln5bh2ckPn2Z1M",
+              "amazonses:0rz9BauM6+L1fwnDKUmS4nofo+8gZvTReGo5q/EliHY=",
+              "adobe-idp-site-verification=3f2215d19f499a970c4305a59755a6a1eb0f9850d7777a297a46db1e644e71c7",
+              "hj-ownership=pzm3zqe*fhj7RQR3cpj",
+              "segment-site-verification=2ZGPEbxZ025BzXh516qCWeQ7sGFFltDx",
+              "atlassian-domain-verification=HN7ngRpg8qAazURti1cdbKGDap2uVfm7uvUYF/m9UkSHtwZM2P5Ub6muuhN47h1w",
+              "dropbox-domain-verification=9dvz1ju53nbf",
+              "MS=ms89770774",
+              "facebook-domain-verification=h2gg5zwnyax0dj0jyo4aafdtkpiiyu",
+              "apple-domain-verification=6VfkC2MXgvez6NHJ",
+              "adobe-idp-site-verification=0614d0e44da9d4b72a75d19e9138eb0052991fb2acb9d62cfd048eee75c7f24b",
+              "atlassian-domain-verification=xpq-aB5aXpxCKMr7r3eDPHyz+H8uPB16jIppdmlCIloVrhEtCrKucpx/Nnqr1xJg",
+              "google-site-verification=tVFyMKACOBTnEVoW-XJ0jbunNP7bDxPLxUZpGs9j9go",
+              "v=spf1 include:_spf.google.com include:_spf.salesforce.com include:spf.cphosts.net include:_spf.atlassian.net -all",
+              "google-site-verification=-_Eevdy8NShzLkex28P2wC3zjbfVweCs0k5z5f6gm_k",
+              "atlassian-sending-domain-verification=5c0c6ccf-f137-44f4-8b59-90f8c09ba730",
+              "google-site-verification=S98FBFJqeURQhHxBtC_UG84orCIkl7msuarSO5NoIPc",
+              "google-site-verification=VmJhKMomzXGRq96pOMWst3QD0KvnurTNsPHNhv8qt1k",
+              "google-site-verification=3wMRITKQ9E2388ON5mfWt98s48OBDMVzPO-7xY3U6H4",
+              "ZOOM_verify_L9I5Fxqkv63ZPy63F1sHvK"
+            ],
+            "SOA": [
+              "ns-73.awsdns-09.com. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 300"
+            ]
+          },
+          "subdomains": [],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 include:_spf.google.com include:_spf.salesforce.com include:spf.cphosts.net include:_spf.atlassian.net -all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "facebook-domain-verification=h2gg5zwnyax0dj0jyo4aafdtkpiiyu",
+                "google-site-verification=tVFyMKACOBTnEVoW-XJ0jbunNP7bDxPLxUZpGs9j9go",
+                "google-site-verification=-_Eevdy8NShzLkex28P2wC3zjbfVweCs0k5z5f6gm_k",
+                "google-site-verification=S98FBFJqeURQhHxBtC_UG84orCIkl7msuarSO5NoIPc",
+                "google-site-verification=VmJhKMomzXGRq96pOMWst3QD0KvnurTNsPHNhv8qt1k",
+                "google-site-verification=3wMRITKQ9E2388ON5mfWt98s48OBDMVzPO-7xY3U6H4"
+              ],
+              "other": [
+                "pardot1059723=4defac72d9323b4f44f80b440e6eb91a8958b1f3b98bc585c494a8a5af62483e",
+                "smartsheet-site-validation=bxOSD4ibPoym5apZEnln5bh2ckPn2Z1M",
+                "amazonses:0rz9BauM6+L1fwnDKUmS4nofo+8gZvTReGo5q/EliHY=",
+                "adobe-idp-site-verification=3f2215d19f499a970c4305a59755a6a1eb0f9850d7777a297a46db1e644e71c7",
+                "hj-ownership=pzm3zqe*fhj7RQR3cpj",
+                "segment-site-verification=2ZGPEbxZ025BzXh516qCWeQ7sGFFltDx",
+                "atlassian-domain-verification=HN7ngRpg8qAazURti1cdbKGDap2uVfm7uvUYF/m9UkSHtwZM2P5Ub6muuhN47h1w",
+                "dropbox-domain-verification=9dvz1ju53nbf",
+                "MS=ms89770774",
+                "apple-domain-verification=6VfkC2MXgvez6NHJ",
+                "adobe-idp-site-verification=0614d0e44da9d4b72a75d19e9138eb0052991fb2acb9d62cfd048eee75c7f24b",
+                "atlassian-domain-verification=xpq-aB5aXpxCKMr7r3eDPHyz+H8uPB16jIppdmlCIloVrhEtCrKucpx/Nnqr1xJg",
+                "atlassian-sending-domain-verification=5c0c6ccf-f137-44f4-8b59-90f8c09ba730",
+                "ZOOM_verify_L9I5Fxqkv63ZPy63F1sHvK"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 1.904026985168457,
+            "total_records": 35,
+            "total_subdomains": 0,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "edx.org",
+          "timestamp": 1759333477.8603392,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://edx.org": {
+              "url": "http://edx.org",
+              "timestamp": 1759333452.7351708,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 1842738,
+                "url": "https://www.edx.org/",
+                "redirect_chain": [
+                  "http://edx.org/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.edx.org/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/css/afed01e5a59cf782.css\" da...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "WP Engine Headless Platform",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "frame-ancestors 'none'",
+                "strict_transport_security": "max-age=31536000",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "1; mode=block",
+                "set_cookie": "__cf_bm=KBRngBHttzuGLflkW5VC81qbYRzLTPKnbTJUC07QBlA-1759333453-1.0.1.1-8GD9uH3k30Vme0FnA_L1EkaPJa2_M6CuENvuYyeJs6QamVCw.mRbfFlNfKUhzrqGPeEtgexkhySMtSBBHgI73gTZ1xpkfOMu_AmQw3kWjZI; path=/; expires=Wed, 01-Oct-25 16:14:13 GMT; domain=.h97m1sqokqgvsbw1eiqol1oc6.js.wpenginepowered.com; HttpOnly; Secure; SameSite=None, authx_coin_flip=true; Expires=Fri, 31 Oct 2025 15:44:13 GMT;Path=/;SameSite=Lax;Secure",
+                "cache_control": "private, no-cache, no-store, max-age=0, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Wed, 01 Oct 2025 15:26:16 GMT",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "raw_header": "WP Engine Headless Platform"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Google Tag Manager",
+                  "MySQL",
+                  "Envoy",
+                  "PHP",
+                  "WP Engine",
+                  "Amazon Cloudfront",
+                  "WordPress",
+                  "Cloudflare"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [
+                  "Angular",
+                  "Google Analytics",
+                  "React",
+                  "Bootstrap"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "Google Services",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "frame-ancestors 'none'",
+                  "Strict-Transport-Security": "max-age=31536000",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "1; mode=block",
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": true,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 85.71428571428571,
+                "missing_headers": [
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 5.378787517547607,
+                "content_length": 1842738,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [
+                    "PHP"
+                  ],
+                  "framework": [],
+                  "cms": [
+                    "WordPress"
+                  ],
+                  "javascript_libraries": [
+                    "Angular",
+                    "React"
+                  ],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.edx.org": {
+              "url": "https://www.edx.org",
+              "timestamp": 1759333458.114481,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 1842738,
+                "url": "https://www.edx.org/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://www.edx.org/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/css/afed01e5a59cf782.css\" da...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "WP Engine Headless Platform",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "frame-ancestors 'none'",
+                "strict_transport_security": "max-age=31536000",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "1; mode=block",
+                "set_cookie": "__cf_bm=feCBbv32NDCEyOqrf1Z9TVSyqyM2dT311u_1k7dWTNE-1759333458-1.0.1.1-VqSo1GpwtcN9cfcDr5fssj3EYLRvr5HPPnDV57M8C6vebQ9aLfXiCEqzHtvbcRD.casev4ttCFs995IyzujTXx7uNG20wNPdshLdZ17YEa4; path=/; expires=Wed, 01-Oct-25 16:14:18 GMT; domain=.h97m1sqokqgvsbw1eiqol1oc6.js.wpenginepowered.com; HttpOnly; Secure; SameSite=None",
+                "cache_control": "private, no-cache, no-store, max-age=0, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Wed, 01 Oct 2025 15:26:16 GMT",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "raw_header": "WP Engine Headless Platform"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Google Tag Manager",
+                  "MySQL",
+                  "Envoy",
+                  "PHP",
+                  "WP Engine",
+                  "Amazon Cloudfront",
+                  "WordPress",
+                  "Cloudflare"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [
+                  "Angular",
+                  "Google Analytics",
+                  "React",
+                  "Bootstrap"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "Google Services",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "frame-ancestors 'none'",
+                  "Strict-Transport-Security": "max-age=31536000",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "1; mode=block",
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": true,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 85.71428571428571,
+                "missing_headers": [
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 4.831480503082275,
+                "content_length": 1842738,
+                "status_code": 200,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [
+                    "PHP"
+                  ],
+                  "framework": [],
+                  "cms": [
+                    "WordPress"
+                  ],
+                  "javascript_libraries": [
+                    "Angular",
+                    "React"
+                  ],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://edx.org": {
+              "url": "https://edx.org",
+              "timestamp": 1759333462.9464993,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 1842738,
+                "url": "https://www.edx.org/",
+                "redirect_chain": [
+                  "https://edx.org/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.edx.org/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/css/afed01e5a59cf782.css\" da...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "WP Engine Headless Platform",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "frame-ancestors 'none'",
+                "strict_transport_security": "max-age=31536000",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "1; mode=block",
+                "set_cookie": "__cf_bm=PVYJ1bbxv7kCtNCTWUvGmXrMZYxLr_3Iw_nJN_W1OfI-1759333463-1.0.1.1-Fpdt8iIUQeU1HJFgqKI.n0sjpkrCNgGFFlGcj65qAoCNsSx_BGQJLntvpEqrUvJ.RXltdxphz37500zrXwJcKt1xEfR2uZlEa0h8GSK7Zw4; path=/; expires=Wed, 01-Oct-25 16:14:23 GMT; domain=.h97m1sqokqgvsbw1eiqol1oc6.js.wpenginepowered.com; HttpOnly; Secure; SameSite=None",
+                "cache_control": "private, no-cache, no-store, max-age=0, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Wed, 01 Oct 2025 15:26:16 GMT",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "raw_header": "WP Engine Headless Platform"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Google Tag Manager",
+                  "MySQL",
+                  "Envoy",
+                  "PHP",
+                  "WP Engine",
+                  "Amazon Cloudfront",
+                  "WordPress",
+                  "Cloudflare"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [
+                  "Angular",
+                  "Google Analytics",
+                  "React",
+                  "Bootstrap"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "Google Services",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "frame-ancestors 'none'",
+                  "Strict-Transport-Security": "max-age=31536000",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "1; mode=block",
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": true,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 85.71428571428571,
+                "missing_headers": [
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 5.281562566757202,
+                "content_length": 1842738,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [
+                    "PHP"
+                  ],
+                  "framework": [],
+                  "cms": [
+                    "WordPress"
+                  ],
+                  "javascript_libraries": [
+                    "Angular",
+                    "React"
+                  ],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://www.edx.org": {
+              "url": "http://www.edx.org",
+              "timestamp": 1759333468.2287085,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 1842738,
+                "url": "https://www.edx.org/",
+                "redirect_chain": [
+                  "http://www.edx.org/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.edx.org/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/css/afed01e5a59cf782.css\" da...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "WP Engine Headless Platform",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "frame-ancestors 'none'",
+                "strict_transport_security": "max-age=31536000",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "1; mode=block",
+                "set_cookie": "__cf_bm=a6MDLvwW86nAvehILyXpEcqKK9sQ2_IcKas2TcUwo90-1759333468-1.0.1.1-FnzljhgK6itxOV9g1l1Hu5gbow70A1lejQWOByhJyOPRFHZ8_.5XrtzqK_PxJFT7zYsS8fWyv3wpjvNwyRvJFFpX76UR8k_jJYlqnbynseM; path=/; expires=Wed, 01-Oct-25 16:14:28 GMT; domain=.h97m1sqokqgvsbw1eiqol1oc6.js.wpenginepowered.com; HttpOnly; Secure; SameSite=None",
+                "cache_control": "private, no-cache, no-store, max-age=0, must-revalidate",
+                "expires": "Not found",
+                "last_modified": "Wed, 01 Oct 2025 15:26:16 GMT",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "raw_header": "WP Engine Headless Platform"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Google Tag Manager",
+                  "MySQL",
+                  "Envoy",
+                  "PHP",
+                  "WP Engine",
+                  "Amazon Cloudfront",
+                  "WordPress",
+                  "Cloudflare"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [
+                  "Angular",
+                  "Google Analytics",
+                  "React",
+                  "Bootstrap"
+                ],
+                "url_patterns": [
+                  "Bootstrap",
+                  "Google Services",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "frame-ancestors 'none'",
+                  "Strict-Transport-Security": "max-age=31536000",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "1; mode=block",
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": true,
+                  "has_samesite": true,
+                  "recommendations": []
+                },
+                "security_score": 85.71428571428571,
+                "missing_headers": [
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 9.624116659164429,
+                "content_length": 1842738,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [
+                    "PHP"
+                  ],
+                  "framework": [],
+                  "cms": [
+                    "WordPress"
+                  ],
+                  "javascript_libraries": [
+                    "Angular",
+                    "React"
+                  ],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Amazon Web Services",
+              "Google Tag Manager",
+              "Bootstrap",
+              "Angular",
+              "MySQL",
+              "Google Analytics",
+              "Envoy",
+              "PHP",
+              "WP Engine",
+              "Amazon Cloudfront",
+              "WordPress",
+              "React",
+              "Google Services",
+              "CDN",
+              "Cloudflare"
+            ],
+            "security_score_avg": 85.71428571428571,
+            "common_issues": [
+              "Permissions-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 25.29399275779724,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 0,
+          "records_found": 35,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 15
+        }
+      },
+      "all_subdomains": [
+        "www.edx.org"
+      ],
+      "statistics": {
+        "total_subdomains": 1,
+        "unique_subdomains": 1,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 73.99,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 15,
+        "security_issues_found": 1,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "edx.org",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 21:14 +0530\nNmap scan report for edx.org (13.35.202.21)\nHost is up (0.045s latency).\nOther addresses for edx.org (not scanned): 13.35.202.122 13.35.202.94 13.35.202.36\nrDNS record for 13.35.202.21: server-13-35-202-21.sin2.r.cloudfront.net\nNot shown: 998 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 9.99 seconds\n",
+        "scan_duration": 9.99
+      },
+      "service_results": {
+        "target": "edx.org",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 400 Bad Request\r\nServer: CloudFront\r\nDate: Wed, 01 Oct 2025 15:44:48 GMT\r\nContent-Type: text/html\r\nContent-Length: 915\r\nConnection: close\r\nX-Cache: Error from cloudfront\r\nVia: 1.1 35832f70aacef404de9af9d249f07c96.cloudfront.net (CloudFront)\r\nX-Amz-Cf-Pop: SIN2-P7\r\nX-Amz-Cf-Id: KmW-xKdCqGl4OtGEVKip8K-Y7B-9BWj_UumYSARSN53lVrwS-aADtg==\r\n\r\n<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n<HTML><HEAD><META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n<TITLE>ERROR: The request could not be satisfied</TITLE>\n</HEAD><BODY>\n<H1>400 ERROR</H1>\n<H2>The request could not be satisfied.</H2>\n<HR noshade size=\"1px\">\nBad request.\nWe can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner.\n<BR clear=\"all\">\nIf you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error",
+            "version": "1.1",
+            "ssl": false,
+            "protocol_info": {}
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "HTTP/1.1 400 Bad Request\r\nServer: CloudFront\r\nDate: Wed, 01 Oct 2025 15:44:48 GMT\r\nContent-Type: text/html\r\nContent-Length: 915\r\nConnection: close\r\nX-Cache: Error from cloudfront\r\nVia: 1.1 a2c2ae15e1030d0678971e68a40255b6.cloudfront.net (CloudFront)\r\nX-Amz-Cf-Pop: SIN2-P7\r\nX-Amz-Cf-Id: cmADkUrP0cF7vlUzvZ-g034zT6H9kfUbDZaf8eYqBCl0pCNDnUeihA==\r\n\r\n<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n<HTML><HEAD><META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n<TITLE>ERROR: The request could not be satisfied</TITLE>\n</HEAD><BODY>\n<H1>400 ERROR</H1>\n<H2>The request could not be satisfied.</H2>\n<HR noshade size=\"1px\">\nBad request.\nWe can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner.\n<BR clear=\"all\">\nIf you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error",
+            "version": "1.1",
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_128_GCM_SHA256"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 9.99
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Cloudflare",
+        "detection_method": "headers",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "edx.org",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/edx_org_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 1,
+    "total_open_ports": 2,
+    "cdn_detected": true,
+    "technologies_detected": 15,
+    "apis_discovered": 0
+  },
+  "execution_time": 86.18660950660706
+}

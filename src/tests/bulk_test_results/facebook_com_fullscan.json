@@ -1,0 +1,724 @@
+{
+  "target_domain": "facebook.com",
+  "scan_timestamp": "2025-10-01T19:38:15.431829",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "facebook.com",
+      "timestamp": "2025-10-01T19:38:15.432715",
+      "modules": {
+        "passive": {
+          "domain": "facebook.com",
+          "timestamp": 1759327751.9255095,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 56.4850378036499,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "facebook.com",
+          "timestamp": 1759327753.010784,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "57.144.144.1"
+            ],
+            "AAAA": [
+              "2a03:2880:f348:1:face:b00c:0:25de"
+            ],
+            "MX": [
+              "smtpin.vvv.facebook.com"
+            ],
+            "NS": [
+              "b.ns.facebook.com",
+              "c.ns.facebook.com",
+              "a.ns.facebook.com",
+              "d.ns.facebook.com"
+            ],
+            "TXT": [
+              "google-site-verification=sK6uY9x7eaMoEMfn3OILqwTFYgaNp4llmguKI-C3_iA",
+              "google-site-verification=wdH5DTJTc9AYNwVunSVFeK0hYDGUIEOGb-RReU6pJlY",
+              "zoom-domain-verification=4b2ef4e1-6dee-4483-9869-9bef353fd147",
+              "google-site-verification=A2WZWCNQHrGV_TWwKh6KHY90tY0SHZo_RnyMJoDaG0s",
+              "v=spf1 redirect=_spf.facebook.com"
+            ],
+            "SOA": [
+              "a.ns.facebook.com. dns.facebook.com. 4207849484 14400 1800 604800 300"
+            ]
+          },
+          "subdomains": [
+            "b.ns.facebook.com",
+            "smtpin.vvv.facebook.com",
+            "c.ns.facebook.com",
+            "a.ns.facebook.com",
+            "d.ns.facebook.com"
+          ],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 redirect=_spf.facebook.com"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=sK6uY9x7eaMoEMfn3OILqwTFYgaNp4llmguKI-C3_iA",
+                "google-site-verification=wdH5DTJTc9AYNwVunSVFeK0hYDGUIEOGb-RReU6pJlY",
+                "google-site-verification=A2WZWCNQHrGV_TWwKh6KHY90tY0SHZo_RnyMJoDaG0s"
+              ],
+              "other": [
+                "zoom-domain-verification=4b2ef4e1-6dee-4483-9869-9bef353fd147"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 0.37281322479248047,
+            "total_records": 13,
+            "total_subdomains": 5,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "facebook.com",
+          "timestamp": 1759327758.867918,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://facebook.com": {
+              "url": "http://facebook.com",
+              "timestamp": 1759327753.034435,
+              "response_analysis": {
+                "status_code": 400,
+                "reason": "Bad Request",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=\"utf-8\"",
+                "content_length": 1542,
+                "url": "https://www.facebook.com/",
+                "redirect_chain": [
+                  "http://facebook.com/",
+                  "https://facebook.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.facebook.com/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en\" id=\"facebook\"><head><title>Error</title><meta charset=\"utf-8\" /><meta http-equiv=\"Cache-Control\" content=\"no-cache\" /><meta name=\"robots\" content=\"noindex,nofollow\" /><s...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "Error",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "Not found",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "DENY",
+                "content_security_policy": "default-src blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;script-src *.facebook.com *.fbcdn.net *.facebook.net 127.0.0.1:* 'nonce-9Tw2ITT1' blob: 'self' connect.facebook.net 'unsafe-eval' https://*.google-analytics.com *.google.com;style-src *.fbcdn.net data: *.facebook.com 'unsafe-inline' https://fonts.googleapis.com;connect-src *.facebook.com facebook.com *.fbcdn.net *.facebook.net wss://*.facebook.com:* wss://*.whatsapp.com:* wss://*.fbcdn.net attachment.fbsbx.com ws://localhost:* blob: *.cdninstagram.com 'self' http://localhost:3103 wss://gateway.facebook.com wss://edge-chat.facebook.com wss://snaptu-d.facebook.com wss://kaios-d.facebook.com/ v.whatsapp.net *.fbsbx.com *.fb.com https://*.google-analytics.com;font-src data: *.facebook.com *.fbcdn.net *.fbsbx.com https://fonts.gstatic.com;img-src *.fbcdn.net *.facebook.com data: https://*.fbsbx.com facebook.com *.cdninstagram.com fbsbx.com fbcdn.net connect.facebook.net *.carriersignal.info blob: android-webview-video-poster: *.whatsapp.net *.fb.com *.oculuscdn.com *.tenor.co *.tenor.com *.giphy.com https://trustly.one/ https://*.trustly.one/ https://paywithmybank.com/ https://*.paywithmybank.com/ https://www.googleadservices.com https://googleads.g.doubleclick.net https://*.google-analytics.com;media-src *.cdninstagram.com blob: *.fbcdn.net *.fbsbx.com www.facebook.com *.facebook.com data: *.tenor.co *.tenor.com https://*.giphy.com;child-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;frame-src *.facebook.com *.fbsbx.com fbsbx.com data: www.instagram.com *.fbcdn.net accounts.meta.com *.accounts.meta.com https://trustly.one/ https://*.trustly.one/ https://paywithmybank.com/ https://*.paywithmybank.com/ https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://td.doubleclick.net *.google.com *.doubleclick.net;manifest-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;object-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;worker-src blob: *.facebook.com data:;block-all-mixed-content;upgrade-insecure-requests;",
+                "strict_transport_security": "max-age=15552000; preload",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "0",
+                "set_cookie": "Not found",
+                "cache_control": "private, no-cache, no-store, must-revalidate",
+                "expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "version": "Unknown",
+                  "components": []
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "DENY",
+                  "Content-Security-Policy": "default-src blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;script-src *.facebook.com *.fbcdn.net *.facebook.net 127.0.0.1:* 'nonce-9Tw2ITT1' blob: 'self' connect.facebook.net 'unsafe-eval' https://*.google-analytics.com *.google.com;style-src *.fbcdn.net data: *.facebook.com 'unsafe-inline' https://fonts.googleapis.com;connect-src *.facebook.com facebook.com *.fbcdn.net *.facebook.net wss://*.facebook.com:* wss://*.whatsapp.com:* wss://*.fbcdn.net attachment.fbsbx.com ws://localhost:* blob: *.cdninstagram.com 'self' http://localhost:3103 wss://gateway.facebook.com wss://edge-chat.facebook.com wss://snaptu-d.facebook.com wss://kaios-d.facebook.com/ v.whatsapp.net *.fbsbx.com *.fb.com https://*.google-analytics.com;font-src data: *.facebook.com *.fbcdn.net *.fbsbx.com https://fonts.gstatic.com;img-src *.fbcdn.net *.facebook.com data: https://*.fbsbx.com facebook.com *.cdninstagram.com fbsbx.com fbcdn.net connect.facebook.net *.carriersignal.info blob: android-webview-video-poster: *.whatsapp.net *.fb.com *.oculuscdn.com *.tenor.co *.tenor.com *.giphy.com https://trustly.one/ https://*.trustly.one/ https://paywithmybank.com/ https://*.paywithmybank.com/ https://www.googleadservices.com https://googleads.g.doubleclick.net https://*.google-analytics.com;media-src *.cdninstagram.com blob: *.fbcdn.net *.fbsbx.com www.facebook.com *.facebook.com data: *.tenor.co *.tenor.com https://*.giphy.com;child-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;frame-src *.facebook.com *.fbsbx.com fbsbx.com data: www.instagram.com *.fbcdn.net accounts.meta.com *.accounts.meta.com https://trustly.one/ https://*.trustly.one/ https://paywithmybank.com/ https://*.paywithmybank.com/ https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://td.doubleclick.net *.google.com *.doubleclick.net;manifest-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;object-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;worker-src blob: *.facebook.com data:;block-all-mixed-content;upgrade-insecure-requests;",
+                  "Strict-Transport-Security": "max-age=15552000; preload",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 1.8686001300811768,
+                "content_length": 1542,
+                "status_code": 400,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://www.facebook.com": {
+              "url": "http://www.facebook.com",
+              "timestamp": 1759327754.903519,
+              "response_analysis": {
+                "status_code": 400,
+                "reason": "Bad Request",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=\"utf-8\"",
+                "content_length": 1542,
+                "url": "https://www.facebook.com/",
+                "redirect_chain": [
+                  "http://www.facebook.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.facebook.com/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en\" id=\"facebook\"><head><title>Error</title><meta charset=\"utf-8\" /><meta http-equiv=\"Cache-Control\" content=\"no-cache\" /><meta name=\"robots\" content=\"noindex,nofollow\" /><s...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "Error",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "Not found",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "DENY",
+                "content_security_policy": "default-src blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;script-src *.facebook.com *.fbcdn.net *.facebook.net 127.0.0.1:* 'nonce-qD5X1NfZ' blob: 'self' connect.facebook.net 'unsafe-eval' https://*.google-analytics.com *.google.com;style-src *.fbcdn.net data: *.facebook.com 'unsafe-inline' https://fonts.googleapis.com;connect-src *.facebook.com facebook.com *.fbcdn.net *.facebook.net wss://*.facebook.com:* wss://*.whatsapp.com:* wss://*.fbcdn.net attachment.fbsbx.com ws://localhost:* blob: *.cdninstagram.com 'self' http://localhost:3103 wss://gateway.facebook.com wss://edge-chat.facebook.com wss://snaptu-d.facebook.com wss://kaios-d.facebook.com/ v.whatsapp.net *.fbsbx.com *.fb.com https://*.google-analytics.com;font-src data: *.facebook.com *.fbcdn.net *.fbsbx.com https://fonts.gstatic.com;img-src *.fbcdn.net *.facebook.com data: https://*.fbsbx.com facebook.com *.cdninstagram.com fbsbx.com fbcdn.net connect.facebook.net *.carriersignal.info blob: android-webview-video-poster: *.whatsapp.net *.fb.com *.oculuscdn.com *.tenor.co *.tenor.com *.giphy.com https://trustly.one/ https://*.trustly.one/ https://paywithmybank.com/ https://*.paywithmybank.com/ https://www.googleadservices.com https://googleads.g.doubleclick.net https://*.google-analytics.com;media-src *.cdninstagram.com blob: *.fbcdn.net *.fbsbx.com www.facebook.com *.facebook.com data: *.tenor.co *.tenor.com https://*.giphy.com;child-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;frame-src *.facebook.com *.fbsbx.com fbsbx.com data: www.instagram.com *.fbcdn.net accounts.meta.com *.accounts.meta.com https://trustly.one/ https://*.trustly.one/ https://paywithmybank.com/ https://*.paywithmybank.com/ https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://td.doubleclick.net *.google.com *.doubleclick.net;manifest-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;object-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;worker-src blob: *.facebook.com data:;block-all-mixed-content;upgrade-insecure-requests;",
+                "strict_transport_security": "max-age=15552000; preload",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "0",
+                "set_cookie": "Not found",
+                "cache_control": "private, no-cache, no-store, must-revalidate",
+                "expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "version": "Unknown",
+                  "components": []
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "DENY",
+                  "Content-Security-Policy": "default-src blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;script-src *.facebook.com *.fbcdn.net *.facebook.net 127.0.0.1:* 'nonce-qD5X1NfZ' blob: 'self' connect.facebook.net 'unsafe-eval' https://*.google-analytics.com *.google.com;style-src *.fbcdn.net data: *.facebook.com 'unsafe-inline' https://fonts.googleapis.com;connect-src *.facebook.com facebook.com *.fbcdn.net *.facebook.net wss://*.facebook.com:* wss://*.whatsapp.com:* wss://*.fbcdn.net attachment.fbsbx.com ws://localhost:* blob: *.cdninstagram.com 'self' http://localhost:3103 wss://gateway.facebook.com wss://edge-chat.facebook.com wss://snaptu-d.facebook.com wss://kaios-d.facebook.com/ v.whatsapp.net *.fbsbx.com *.fb.com https://*.google-analytics.com;font-src data: *.facebook.com *.fbcdn.net *.fbsbx.com https://fonts.gstatic.com;img-src *.fbcdn.net *.facebook.com data: https://*.fbsbx.com facebook.com *.cdninstagram.com fbsbx.com fbcdn.net connect.facebook.net *.carriersignal.info blob: android-webview-video-poster: *.whatsapp.net *.fb.com *.oculuscdn.com *.tenor.co *.tenor.com *.giphy.com https://trustly.one/ https://*.trustly.one/ https://paywithmybank.com/ https://*.paywithmybank.com/ https://www.googleadservices.com https://googleads.g.doubleclick.net https://*.google-analytics.com;media-src *.cdninstagram.com blob: *.fbcdn.net *.fbsbx.com www.facebook.com *.facebook.com data: *.tenor.co *.tenor.com https://*.giphy.com;child-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;frame-src *.facebook.com *.fbsbx.com fbsbx.com data: www.instagram.com *.fbcdn.net accounts.meta.com *.accounts.meta.com https://trustly.one/ https://*.trustly.one/ https://paywithmybank.com/ https://*.paywithmybank.com/ https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://td.doubleclick.net *.google.com *.doubleclick.net;manifest-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;object-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;worker-src blob: *.facebook.com data:;block-all-mixed-content;upgrade-insecure-requests;",
+                  "Strict-Transport-Security": "max-age=15552000; preload",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 1.2899930477142334,
+                "content_length": 1542,
+                "status_code": 400,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.facebook.com": {
+              "url": "https://www.facebook.com",
+              "timestamp": 1759327756.1940742,
+              "response_analysis": {
+                "status_code": 400,
+                "reason": "Bad Request",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=\"utf-8\"",
+                "content_length": 1542,
+                "url": "https://www.facebook.com/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://www.facebook.com/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en\" id=\"facebook\"><head><title>Error</title><meta charset=\"utf-8\" /><meta http-equiv=\"Cache-Control\" content=\"no-cache\" /><meta name=\"robots\" content=\"noindex,nofollow\" /><s...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "Error",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "Not found",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "DENY",
+                "content_security_policy": "default-src blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;script-src *.facebook.com *.fbcdn.net *.facebook.net 127.0.0.1:* 'nonce-8lHqB7bK' blob: 'self' connect.facebook.net 'unsafe-eval' https://*.google-analytics.com *.google.com;style-src *.fbcdn.net data: *.facebook.com 'unsafe-inline' https://fonts.googleapis.com;connect-src *.facebook.com facebook.com *.fbcdn.net *.facebook.net wss://*.facebook.com:* wss://*.whatsapp.com:* wss://*.fbcdn.net attachment.fbsbx.com ws://localhost:* blob: *.cdninstagram.com 'self' http://localhost:3103 wss://gateway.facebook.com wss://edge-chat.facebook.com wss://snaptu-d.facebook.com wss://kaios-d.facebook.com/ v.whatsapp.net *.fbsbx.com *.fb.com https://*.google-analytics.com;font-src data: *.facebook.com *.fbcdn.net *.fbsbx.com https://fonts.gstatic.com;img-src *.fbcdn.net *.facebook.com data: https://*.fbsbx.com facebook.com *.cdninstagram.com fbsbx.com fbcdn.net connect.facebook.net *.carriersignal.info blob: android-webview-video-poster: *.whatsapp.net *.fb.com *.oculuscdn.com *.tenor.co *.tenor.com *.giphy.com https://trustly.one/ https://*.trustly.one/ https://paywithmybank.com/ https://*.paywithmybank.com/ https://www.googleadservices.com https://googleads.g.doubleclick.net https://*.google-analytics.com;media-src *.cdninstagram.com blob: *.fbcdn.net *.fbsbx.com www.facebook.com *.facebook.com data: *.tenor.co *.tenor.com https://*.giphy.com;child-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;frame-src *.facebook.com *.fbsbx.com fbsbx.com data: www.instagram.com *.fbcdn.net accounts.meta.com *.accounts.meta.com https://trustly.one/ https://*.trustly.one/ https://paywithmybank.com/ https://*.paywithmybank.com/ https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://td.doubleclick.net *.google.com *.doubleclick.net;manifest-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;object-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;worker-src blob: *.facebook.com data:;block-all-mixed-content;upgrade-insecure-requests;",
+                "strict_transport_security": "max-age=15552000; preload",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "0",
+                "set_cookie": "Not found",
+                "cache_control": "private, no-cache, no-store, must-revalidate",
+                "expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "version": "Unknown",
+                  "components": []
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "DENY",
+                  "Content-Security-Policy": "default-src blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;script-src *.facebook.com *.fbcdn.net *.facebook.net 127.0.0.1:* 'nonce-8lHqB7bK' blob: 'self' connect.facebook.net 'unsafe-eval' https://*.google-analytics.com *.google.com;style-src *.fbcdn.net data: *.facebook.com 'unsafe-inline' https://fonts.googleapis.com;connect-src *.facebook.com facebook.com *.fbcdn.net *.facebook.net wss://*.facebook.com:* wss://*.whatsapp.com:* wss://*.fbcdn.net attachment.fbsbx.com ws://localhost:* blob: *.cdninstagram.com 'self' http://localhost:3103 wss://gateway.facebook.com wss://edge-chat.facebook.com wss://snaptu-d.facebook.com wss://kaios-d.facebook.com/ v.whatsapp.net *.fbsbx.com *.fb.com https://*.google-analytics.com;font-src data: *.facebook.com *.fbcdn.net *.fbsbx.com https://fonts.gstatic.com;img-src *.fbcdn.net *.facebook.com data: https://*.fbsbx.com facebook.com *.cdninstagram.com fbsbx.com fbcdn.net connect.facebook.net *.carriersignal.info blob: android-webview-video-poster: *.whatsapp.net *.fb.com *.oculuscdn.com *.tenor.co *.tenor.com *.giphy.com https://trustly.one/ https://*.trustly.one/ https://paywithmybank.com/ https://*.paywithmybank.com/ https://www.googleadservices.com https://googleads.g.doubleclick.net https://*.google-analytics.com;media-src *.cdninstagram.com blob: *.fbcdn.net *.fbsbx.com www.facebook.com *.facebook.com data: *.tenor.co *.tenor.com https://*.giphy.com;child-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;frame-src *.facebook.com *.fbsbx.com fbsbx.com data: www.instagram.com *.fbcdn.net accounts.meta.com *.accounts.meta.com https://trustly.one/ https://*.trustly.one/ https://paywithmybank.com/ https://*.paywithmybank.com/ https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://td.doubleclick.net *.google.com *.doubleclick.net;manifest-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;object-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;worker-src blob: *.facebook.com data:;block-all-mixed-content;upgrade-insecure-requests;",
+                  "Strict-Transport-Security": "max-age=15552000; preload",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 1.0155487060546875,
+                "content_length": 1542,
+                "status_code": 400,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://facebook.com": {
+              "url": "https://facebook.com",
+              "timestamp": 1759327757.2100377,
+              "response_analysis": {
+                "status_code": 400,
+                "reason": "Bad Request",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=\"utf-8\"",
+                "content_length": 1542,
+                "url": "https://www.facebook.com/",
+                "redirect_chain": [
+                  "https://facebook.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.facebook.com/",
+                "content_preview": "<!DOCTYPE html><html lang=\"en\" id=\"facebook\"><head><title>Error</title><meta charset=\"utf-8\" /><meta http-equiv=\"Cache-Control\" content=\"no-cache\" /><meta name=\"robots\" content=\"noindex,nofollow\" /><s...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": true,
+                "title": "Error",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "Not found",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "DENY",
+                "content_security_policy": "default-src blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;script-src *.facebook.com *.fbcdn.net *.facebook.net 127.0.0.1:* 'nonce-Uj01Bkfh' blob: 'self' connect.facebook.net 'unsafe-eval' https://*.google-analytics.com *.google.com;style-src *.fbcdn.net data: *.facebook.com 'unsafe-inline' https://fonts.googleapis.com;connect-src *.facebook.com facebook.com *.fbcdn.net *.facebook.net wss://*.facebook.com:* wss://*.whatsapp.com:* wss://*.fbcdn.net attachment.fbsbx.com ws://localhost:* blob: *.cdninstagram.com 'self' http://localhost:3103 wss://gateway.facebook.com wss://edge-chat.facebook.com wss://snaptu-d.facebook.com wss://kaios-d.facebook.com/ v.whatsapp.net *.fbsbx.com *.fb.com https://*.google-analytics.com;font-src data: *.facebook.com *.fbcdn.net *.fbsbx.com https://fonts.gstatic.com;img-src *.fbcdn.net *.facebook.com data: https://*.fbsbx.com facebook.com *.cdninstagram.com fbsbx.com fbcdn.net connect.facebook.net *.carriersignal.info blob: android-webview-video-poster: *.whatsapp.net *.fb.com *.oculuscdn.com *.tenor.co *.tenor.com *.giphy.com https://trustly.one/ https://*.trustly.one/ https://paywithmybank.com/ https://*.paywithmybank.com/ https://www.googleadservices.com https://googleads.g.doubleclick.net https://*.google-analytics.com;media-src *.cdninstagram.com blob: *.fbcdn.net *.fbsbx.com www.facebook.com *.facebook.com data: *.tenor.co *.tenor.com https://*.giphy.com;child-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;frame-src *.facebook.com *.fbsbx.com fbsbx.com data: www.instagram.com *.fbcdn.net accounts.meta.com *.accounts.meta.com https://trustly.one/ https://*.trustly.one/ https://paywithmybank.com/ https://*.paywithmybank.com/ https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://td.doubleclick.net *.google.com *.doubleclick.net;manifest-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;object-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;worker-src blob: *.facebook.com data:;block-all-mixed-content;upgrade-insecure-requests;",
+                "strict_transport_security": "max-age=15552000; preload",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "0",
+                "set_cookie": "Not found",
+                "cache_control": "private, no-cache, no-store, must-revalidate",
+                "expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "version": "Unknown",
+                  "components": []
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "DENY",
+                  "Content-Security-Policy": "default-src blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;script-src *.facebook.com *.fbcdn.net *.facebook.net 127.0.0.1:* 'nonce-Uj01Bkfh' blob: 'self' connect.facebook.net 'unsafe-eval' https://*.google-analytics.com *.google.com;style-src *.fbcdn.net data: *.facebook.com 'unsafe-inline' https://fonts.googleapis.com;connect-src *.facebook.com facebook.com *.fbcdn.net *.facebook.net wss://*.facebook.com:* wss://*.whatsapp.com:* wss://*.fbcdn.net attachment.fbsbx.com ws://localhost:* blob: *.cdninstagram.com 'self' http://localhost:3103 wss://gateway.facebook.com wss://edge-chat.facebook.com wss://snaptu-d.facebook.com wss://kaios-d.facebook.com/ v.whatsapp.net *.fbsbx.com *.fb.com https://*.google-analytics.com;font-src data: *.facebook.com *.fbcdn.net *.fbsbx.com https://fonts.gstatic.com;img-src *.fbcdn.net *.facebook.com data: https://*.fbsbx.com facebook.com *.cdninstagram.com fbsbx.com fbcdn.net connect.facebook.net *.carriersignal.info blob: android-webview-video-poster: *.whatsapp.net *.fb.com *.oculuscdn.com *.tenor.co *.tenor.com *.giphy.com https://trustly.one/ https://*.trustly.one/ https://paywithmybank.com/ https://*.paywithmybank.com/ https://www.googleadservices.com https://googleads.g.doubleclick.net https://*.google-analytics.com;media-src *.cdninstagram.com blob: *.fbcdn.net *.fbsbx.com www.facebook.com *.facebook.com data: *.tenor.co *.tenor.com https://*.giphy.com;child-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;frame-src *.facebook.com *.fbsbx.com fbsbx.com data: www.instagram.com *.fbcdn.net accounts.meta.com *.accounts.meta.com https://trustly.one/ https://*.trustly.one/ https://paywithmybank.com/ https://*.paywithmybank.com/ https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://td.doubleclick.net *.google.com *.doubleclick.net;manifest-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;object-src data: blob: 'self' https://*.fbsbx.com *.facebook.com *.fbcdn.net;worker-src blob: *.facebook.com data:;block-all-mixed-content;upgrade-insecure-requests;",
+                  "Strict-Transport-Security": "max-age=15552000; preload",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "0",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 1.6512699127197266,
+                "content_length": 1542,
+                "status_code": 400,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [],
+            "security_score_avg": 71.42857142857143,
+            "common_issues": [
+              "Referrer-Policy",
+              "Permissions-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 5.845178842544556,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 5,
+          "records_found": 13,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 0
+        }
+      },
+      "all_subdomains": [
+        "a.ns.facebook.com",
+        "b.ns.facebook.com",
+        "c.ns.facebook.com",
+        "d.ns.facebook.com",
+        "smtpin.vvv.facebook.com",
+        "www.facebook.com"
+      ],
+      "statistics": {
+        "total_subdomains": 6,
+        "unique_subdomains": 6,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 63.44,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 0,
+        "security_issues_found": 2,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "facebook.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 19:39 +0530\nNmap scan report for facebook.com (57.144.144.1)\nHost is up (0.048s latency).\nOther addresses for facebook.com (not scanned): 2a03:2880:f348:1:face:b00c:0:25de\nrDNS record for 57.144.144.1: 1.144.144.57.in-addr.arpa\nNot shown: 998 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT    STATE SERVICE\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 8.22 seconds\n",
+        "scan_duration": 8.22
+      },
+      "service_results": {
+        "target": "facebook.com",
+        "scan_type": "quick",
+        "open_ports_count": 2,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 301 Moved Permanently\r\nLocation: https:///\r\nContent-Type: text/plain\r\nServer: proxygen-bolt\r\nDate: Wed, 01 Oct 2025 14:09:27 GMT\r\nConnection: close\r\nContent-Length: 0",
+            "version": "1.1",
+            "ssl": false,
+            "protocol_info": {
+              "http": {
+                "status_code": 200,
+                "server": "Unknown",
+                "content_type": "text/html; charset=\"utf-8\""
+              }
+            }
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "\u0015\u0003\u0003\u0000\u0002\u00022",
+            "version": null,
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_CHACHA20_POLY1305_SHA256"
+              },
+              "http": {
+                "status_code": 200,
+                "server": "Unknown",
+                "content_type": "text/html; charset=\"utf-8\""
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 2
+        }
+      },
+      "summary": {
+        "open_ports_count": 2,
+        "services_identified": 2,
+        "scan_duration": 8.22
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Cloudflare",
+        "detection_method": "content",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "facebook.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/facebook_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 6,
+    "total_open_ports": 2,
+    "cdn_detected": true,
+    "technologies_detected": 0,
+    "apis_discovered": 0
+  },
+  "execution_time": 76.33091306686401
+}

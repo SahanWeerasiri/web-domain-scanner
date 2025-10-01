@@ -1,0 +1,871 @@
+{
+  "target_domain": "amazon.com",
+  "scan_timestamp": "2025-10-01T19:50:53.948122",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "amazon.com",
+      "timestamp": "2025-10-01T19:50:53.948547",
+      "modules": {
+        "passive": {
+          "domain": "amazon.com",
+          "timestamp": 1759328505.419922,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 51.463496685028076,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "amazon.com",
+          "timestamp": 1759328508.5247931,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "52.94.236.248",
+              "205.251.242.103",
+              "54.239.28.85"
+            ],
+            "MX": [
+              "amazon-smtp.amazon.com"
+            ],
+            "NS": [
+              "ns2.amzndns.co.uk",
+              "ns1.amzndns.net",
+              "ns1.amzndns.com",
+              "ns1.amzndns.org",
+              "ns1.amzndns.co.uk",
+              "ns2.amzndns.com",
+              "ns2.amzndns.org",
+              "ns2.amzndns.net"
+            ],
+            "TXT": [
+              "canva-site-verification=WhUvTbfe6tUQWmIXnQifGA",
+              "google-site-verification=D0RwRb_QApkpApKTFaFlRwbm_yrkey0uokKw0wQUIdk",
+              "apple-domain-verification=4wbNaeWvAH0pU1yi",
+              "sending_domain949422=99a7b44052aefc4dec2abf56189160824664d2fdac00ca962f4455be62b51d56",
+              "stripe-verification=79C640ED20153B836A623F16A3DCF65E2072948FB80C42D19300514DADF94EC5",
+              "autodesk-domain-verification=dmryiygGOGBJFJFVo5Bl",
+              "google-site-verification=14WGW2MdNMxchG8PlinF7LgqqE0OwwHqOq0HKhb7rDQ",
+              "stripe-verification=B0AD8DC1918B8A717E5B6A29C2E04594A9872AB05F8DA24CB762BBA0A0487BC6",
+              "pardot326621=b26a7b44d7c73d119ef9dfd1a24d93c77d583ac50ba4ecedd899a9134734403b",
+              "lucidlink-verification=QG752KJ3CMZAZTZ3ERMX1AXMCG",
+              "apple-domain-verification=_j3fIZD8uuYetbG64YKTEpz-8mwyvYrLRqM5CoVZVTk",
+              "stripe-verification=65883709F0B36AB2B73FFC870338AE9F817315DDBB1CAB28910F074F4A8DE1EC",
+              "stripe-verification=26EFABF97D624D7F4F3C062366A04C4B1399841F23F275DD81E58D00A981979C",
+              "sending_domain197572=555e96ed2e576ced81c89f7001740cb72f9c66aeb136d0d05734aad625766bc1",
+              "sending_domain1014172=003846595520e80ec84e8cc47c07e3a71afb855fc743bb92cdec93f88c7a4029",
+              "sending_domain608861=d33a88e8540c33a1217138cf8a25879734bd35673bb7cfbd639f95c550b33ec4",
+              "sending_domain229492=7cde83fbc5246557c64d9d9ba79f0d11f7ba9eb6127f60451a9aa6f8dead4381",
+              "cisco-ci-domain-verification=1b256bd11daa486ba2fa405d2d5de70f75feb6757dd8993ca8de685a7dfea1df",
+              "sending_domain949422=43d714838567583460e7720e6049505edb8e25c1ef4321419d41bc5255db7ba5",
+              "wrike-verification=MzI3NzM2ODo2NDk5MjE4NjQ2MWJmOTEwMGMxM2MzNzJmNWJlY2U5ZDU4MmVlNzQ2NWU4MTY5OWJjMjlmYjQ4Mjc5M2JiMzky",
+              "dell-technologies-domain-verification=amazon.com_2dc4b285-482d-4948-bf92-16e698f2cab9_1738858526",
+              "docker-verification=1779f74e-699a-4d8b-acdc-ce242d73559f",
+              "ZOOM_verify_6OUC1znUonKMCoyMMGyFfX",
+              "sending_domain1003771=f1303d8ee3b86e39db2703b11feb83e1e8b712a9ffc64c3d56505192e5b3bf4f",
+              "stripe-verification=a5c01aa4d732f4b93154d67983d77982ef1a2db73fecfd4bcd64e224d3ab4075",
+              "v=spf1 include:spf1.amazon.com include:spf2.amazon.com include:amazonses.com -all",
+              "facebook-domain-verification=d9u57u52gylohx845ogo1axzpywpmq",
+              "uber-domain-verification=5f5cc242-4dbe-4871-b726-bbbe085ff053",
+              "stripe-verification=6a5d107aa37465eac2101bb1c725b02072689a4fa7bd38b455970baac4979a17",
+              "google-site-verification=G_-mXb0ZYjjGkQVGjpOOB2deSOaVdxVj4i4vozJTREs",
+              "brevo-code:9be7f7c39958d253a31de6593fa831bc",
+              "stripe-verification=1D421397AAEC571CCBD9F25DDC90F00EDEBC3E74F4047270EC9A13B784579E34",
+              "neat-pulse-domain-verification-QgvLWLN=f37f2998-0bb3-493b-a3aa-c4ff8f3dce08",
+              "sending_domain229492=341509a116ea4311fcb2e489303bf09a139b10ce9b90e5029d2677055cb4dc89",
+              "uber-domain-verification=01e9f567-7b84-45dd-9326-53992a028b40",
+              "canva-site-verification=Hksh9WEUPWP13_SEU1mPMA",
+              "TS1760027",
+              "box-domain-verification=ffea95cd0e0d61c302198367155b07e74fd534fa1d867662dc9bf9969b6f535d",
+              "apple-domain-verification=dVkKZnu17XS0EN2X",
+              "MS=4B600B22799EB2CAC0D8FF0A3A3CAECA5EE2BF3A",
+              "sending_domain1003771=199bc63a54ace5d8d5c5d08286af86d7049b4afacb5ef7decd6b22cf9e8d5efb",
+              "google-site-verification=NV91qEfNgqDZOPzwlhXE-KtDUfCBSNgAsdxaFebyh80",
+              "stripe-verification=45f746e3b195198f419af3f685fdf217532ce552b4b47070b3caefe325559a67",
+              "uber-domain-verification=7a35217f-6956-41a0-be5c-a28ea2646964",
+              "stripe-verification=C7ABA7B41F5AC26E3C397015A34CD46ACD2130DC8DAAFA7F59AAEFEDBC3FA517",
+              "stripe-verification=76924B623B7105057C67D4F5EAE19F65EE8BD92635581BCACA2CCACA4D38FE1B",
+              "liveramp-site-verification=jZJKgMEQ_1mdjMhKj02iqNACZ-NJHRWhCEQdQ_OuCMo",
+              "pendo-domain-verification=ecbe1a51-954d-4202-ab86-d15e04b96769",
+              "00DcX000002xu6h=1TBcX00000000Xt",
+              "stripe-verification=a27edc0da55836ea6bb7eac592bf2ca8e246eb652608d54493119df7df005afc",
+              "ZOOM_verify_ARI4AiKALCcjulAUZNwR8S",
+              "sending_domain608861=81b0d52095dae60d604e7cbea5e58e1d842f7d950d6673a43feae339b664ca31",
+              "atlassian-domain-verification=ZT4AapXgobCpXIWoNcd7gtMjZyOUdr4EDFMnFUWrqqqgdaQVbDvoGpRaIwj/tgPH",
+              "spf2.0/pra include:spf1.amazon.com include:spf2.amazon.com include:amazonses.com -all"
+            ],
+            "SOA": [
+              "dns-external-master.amazon.com. hostmaster.amazon.com. 2010196496 180 60 604800 900"
+            ]
+          },
+          "subdomains": [
+            "amazon-smtp.amazon.com"
+          ],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 include:spf1.amazon.com include:spf2.amazon.com include:amazonses.com -all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=D0RwRb_QApkpApKTFaFlRwbm_yrkey0uokKw0wQUIdk",
+                "google-site-verification=14WGW2MdNMxchG8PlinF7LgqqE0OwwHqOq0HKhb7rDQ",
+                "facebook-domain-verification=d9u57u52gylohx845ogo1axzpywpmq",
+                "google-site-verification=G_-mXb0ZYjjGkQVGjpOOB2deSOaVdxVj4i4vozJTREs",
+                "google-site-verification=NV91qEfNgqDZOPzwlhXE-KtDUfCBSNgAsdxaFebyh80"
+              ],
+              "other": [
+                "canva-site-verification=WhUvTbfe6tUQWmIXnQifGA",
+                "apple-domain-verification=4wbNaeWvAH0pU1yi",
+                "sending_domain949422=99a7b44052aefc4dec2abf56189160824664d2fdac00ca962f4455be62b51d56",
+                "stripe-verification=79C640ED20153B836A623F16A3DCF65E2072948FB80C42D19300514DADF94EC5",
+                "autodesk-domain-verification=dmryiygGOGBJFJFVo5Bl",
+                "stripe-verification=B0AD8DC1918B8A717E5B6A29C2E04594A9872AB05F8DA24CB762BBA0A0487BC6",
+                "pardot326621=b26a7b44d7c73d119ef9dfd1a24d93c77d583ac50ba4ecedd899a9134734403b",
+                "lucidlink-verification=QG752KJ3CMZAZTZ3ERMX1AXMCG",
+                "apple-domain-verification=_j3fIZD8uuYetbG64YKTEpz-8mwyvYrLRqM5CoVZVTk",
+                "stripe-verification=65883709F0B36AB2B73FFC870338AE9F817315DDBB1CAB28910F074F4A8DE1EC",
+                "stripe-verification=26EFABF97D624D7F4F3C062366A04C4B1399841F23F275DD81E58D00A981979C",
+                "sending_domain197572=555e96ed2e576ced81c89f7001740cb72f9c66aeb136d0d05734aad625766bc1",
+                "sending_domain1014172=003846595520e80ec84e8cc47c07e3a71afb855fc743bb92cdec93f88c7a4029",
+                "sending_domain608861=d33a88e8540c33a1217138cf8a25879734bd35673bb7cfbd639f95c550b33ec4",
+                "sending_domain229492=7cde83fbc5246557c64d9d9ba79f0d11f7ba9eb6127f60451a9aa6f8dead4381",
+                "cisco-ci-domain-verification=1b256bd11daa486ba2fa405d2d5de70f75feb6757dd8993ca8de685a7dfea1df",
+                "sending_domain949422=43d714838567583460e7720e6049505edb8e25c1ef4321419d41bc5255db7ba5",
+                "wrike-verification=MzI3NzM2ODo2NDk5MjE4NjQ2MWJmOTEwMGMxM2MzNzJmNWJlY2U5ZDU4MmVlNzQ2NWU4MTY5OWJjMjlmYjQ4Mjc5M2JiMzky",
+                "dell-technologies-domain-verification=amazon.com_2dc4b285-482d-4948-bf92-16e698f2cab9_1738858526",
+                "docker-verification=1779f74e-699a-4d8b-acdc-ce242d73559f",
+                "ZOOM_verify_6OUC1znUonKMCoyMMGyFfX",
+                "sending_domain1003771=f1303d8ee3b86e39db2703b11feb83e1e8b712a9ffc64c3d56505192e5b3bf4f",
+                "stripe-verification=a5c01aa4d732f4b93154d67983d77982ef1a2db73fecfd4bcd64e224d3ab4075",
+                "uber-domain-verification=5f5cc242-4dbe-4871-b726-bbbe085ff053",
+                "stripe-verification=6a5d107aa37465eac2101bb1c725b02072689a4fa7bd38b455970baac4979a17",
+                "brevo-code:9be7f7c39958d253a31de6593fa831bc",
+                "stripe-verification=1D421397AAEC571CCBD9F25DDC90F00EDEBC3E74F4047270EC9A13B784579E34",
+                "neat-pulse-domain-verification-QgvLWLN=f37f2998-0bb3-493b-a3aa-c4ff8f3dce08",
+                "sending_domain229492=341509a116ea4311fcb2e489303bf09a139b10ce9b90e5029d2677055cb4dc89",
+                "uber-domain-verification=01e9f567-7b84-45dd-9326-53992a028b40",
+                "canva-site-verification=Hksh9WEUPWP13_SEU1mPMA",
+                "TS1760027",
+                "box-domain-verification=ffea95cd0e0d61c302198367155b07e74fd534fa1d867662dc9bf9969b6f535d",
+                "apple-domain-verification=dVkKZnu17XS0EN2X",
+                "MS=4B600B22799EB2CAC0D8FF0A3A3CAECA5EE2BF3A",
+                "sending_domain1003771=199bc63a54ace5d8d5c5d08286af86d7049b4afacb5ef7decd6b22cf9e8d5efb",
+                "stripe-verification=45f746e3b195198f419af3f685fdf217532ce552b4b47070b3caefe325559a67",
+                "uber-domain-verification=7a35217f-6956-41a0-be5c-a28ea2646964",
+                "stripe-verification=C7ABA7B41F5AC26E3C397015A34CD46ACD2130DC8DAAFA7F59AAEFEDBC3FA517",
+                "stripe-verification=76924B623B7105057C67D4F5EAE19F65EE8BD92635581BCACA2CCACA4D38FE1B",
+                "liveramp-site-verification=jZJKgMEQ_1mdjMhKj02iqNACZ-NJHRWhCEQdQ_OuCMo",
+                "pendo-domain-verification=ecbe1a51-954d-4202-ab86-d15e04b96769",
+                "00DcX000002xu6h=1TBcX00000000Xt",
+                "stripe-verification=a27edc0da55836ea6bb7eac592bf2ca8e246eb652608d54493119df7df005afc",
+                "ZOOM_verify_ARI4AiKALCcjulAUZNwR8S",
+                "sending_domain608861=81b0d52095dae60d604e7cbea5e58e1d842f7d950d6673a43feae339b664ca31",
+                "atlassian-domain-verification=ZT4AapXgobCpXIWoNcd7gtMjZyOUdr4EDFMnFUWrqqqgdaQVbDvoGpRaIwj/tgPH",
+                "spf2.0/pra include:spf1.amazon.com include:spf2.amazon.com include:amazonses.com -all"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 1.3031692504882812,
+            "total_records": 67,
+            "total_subdomains": 1,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "amazon.com",
+          "timestamp": 1759328525.1688185,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "http://amazon.com": {
+              "url": "http://amazon.com",
+              "timestamp": 1759328508.5444837,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "UTF-8",
+                "content_type": "text/html;charset=UTF-8",
+                "content_length": 738069,
+                "url": "https://www.amazon.com/",
+                "redirect_chain": [
+                  "http://amazon.com/",
+                  "https://amazon.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.amazon.com/",
+                "content_preview": "<!doctype html><html lang=\"en-us\" class=\"a-no-js\" data-19ax5a9jf=\"dingo\"><!-- sp:feature:head-start -->\n<head><script>var aPageStart = (new Date()).getTime();</script><meta charset=\"utf-8\"/>\n<!-- sp:e...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": false,
+                "title": "Not found",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "Server",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "upgrade-insecure-requests;report-uri https://metrics.media-amazon.com/",
+                "strict_transport_security": "max-age=47474747; includeSubDomains; preload",
+                "x_content_type_options": "nosniff",
+                "x_xss_protection": "1;",
+                "set_cookie": "session-id=140-8814059-3418235; Domain=.amazon.com; Expires=Thu, 01-Oct-2026 14:21:57 GMT; Path=/; Secure, session-id-time=2082787201l; Domain=.amazon.com; Expires=Thu, 01-Oct-2026 14:21:57 GMT; Path=/; Secure, i18n-prefs=USD; Domain=.amazon.com; Expires=Thu, 01-Oct-2026 14:21:57 GMT; Path=/, lc-main=en_US; Domain=.amazon.com; Expires=Thu, 01-Oct-2026 14:21:57 GMT; Path=/, sp-cdn=\"L5Z9:LK\"; Version=1; Domain=.amazon.com; Max-Age=31536000; Expires=Thu, 01-Oct-2026 14:21:57 GMT; Path=/; Secure; HttpOnly, skin=noskin; path=/; domain=.amazon.com",
+                "cache_control": "no-cache",
+                "expires": "-1",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "Server",
+                  "components": [
+                    "Server"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Amazon Cloudfront"
+                ],
+                "header_detected": [],
+                "content_detected": [
+                  "Google Analytics"
+                ],
+                "url_patterns": [
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "upgrade-insecure-requests;report-uri https://metrics.media-amazon.com/",
+                  "Strict-Transport-Security": "max-age=47474747; includeSubDomains; preload",
+                  "X-Content-Type-Options": "nosniff",
+                  "X-XSS-Protection": "1;",
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Good"
+                },
+                "cookie_security": {
+                  "has_secure": true,
+                  "has_httponly": true,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 71.42857142857143,
+                "missing_headers": [
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 12.038376569747925,
+                "content_length": 738069,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://www.amazon.com": {
+              "url": "http://www.amazon.com",
+              "timestamp": 1759328520.5834835,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "ISO-8859-1",
+                "content_type": "text/html",
+                "content_length": 5070,
+                "url": "https://www.amazon.com/",
+                "redirect_chain": [
+                  "http://www.amazon.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.amazon.com/",
+                "content_preview": "<!DOCTYPE html>\n<!--[if lt IE 7]> <html lang=\"en-us\" class=\"a-no-js a-lt-ie9 a-lt-ie8 a-lt-ie7\"> <![endif]-->\n<!--[if IE 7]>    <html lang=\"en-us\" class=\"a-no-js a-lt-ie9 a-lt-ie8\"> <![endif]-->\n<!--[...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": true,
+                "title": "Amazon.com",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "Server",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=47474747; includeSubDomains; preload",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "Not found",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "Server",
+                  "components": [
+                    "Server"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Amazon Cloudfront"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=47474747; includeSubDomains; preload",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 14.285714285714285,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Content-Security-Policy",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking",
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 1.3806705474853516,
+                "content_length": 5070,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://amazon.com": {
+              "url": "https://amazon.com",
+              "timestamp": 1759328521.9644887,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "ISO-8859-1",
+                "content_type": "text/html",
+                "content_length": 5070,
+                "url": "https://www.amazon.com/",
+                "redirect_chain": [
+                  "https://amazon.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://www.amazon.com/",
+                "content_preview": "<!DOCTYPE html>\n<!--[if lt IE 7]> <html lang=\"en-us\" class=\"a-no-js a-lt-ie9 a-lt-ie8 a-lt-ie7\"> <![endif]-->\n<!--[if IE 7]>    <html lang=\"en-us\" class=\"a-no-js a-lt-ie9 a-lt-ie8\"> <![endif]-->\n<!--[...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": true,
+                "title": "Amazon.com",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "Server",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=47474747; includeSubDomains; preload",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "Not found",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "Server",
+                  "components": [
+                    "Server"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Amazon Cloudfront"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=47474747; includeSubDomains; preload",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 14.285714285714285,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Content-Security-Policy",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking",
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 2.1099681854248047,
+                "content_length": 5070,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://www.amazon.com": {
+              "url": "https://www.amazon.com",
+              "timestamp": 1759328524.0748808,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "ISO-8859-1",
+                "content_type": "text/html",
+                "content_length": 5070,
+                "url": "https://www.amazon.com/",
+                "redirect_chain": [],
+                "is_redirect": false,
+                "final_url": "https://www.amazon.com/",
+                "content_preview": "<!DOCTYPE html>\n<!--[if lt IE 7]> <html lang=\"en-us\" class=\"a-no-js a-lt-ie9 a-lt-ie8 a-lt-ie7\"> <![endif]-->\n<!--[if IE 7]>    <html lang=\"en-us\" class=\"a-no-js a-lt-ie9 a-lt-ie8\"> <![endif]-->\n<!--[...",
+                "has_html": true,
+                "has_javascript": true,
+                "has_css": true,
+                "title": "Amazon.com",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "Server",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "Not found",
+                "content_security_policy": "Not found",
+                "strict_transport_security": "max-age=47474747; includeSubDomains; preload",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "Not found",
+                "cache_control": "Not found",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Unknown",
+                  "raw_header": "Server",
+                  "components": [
+                    "Server"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Amazon Web Services",
+                  "Amazon Cloudfront"
+                ],
+                "header_detected": [],
+                "content_detected": [],
+                "url_patterns": []
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": null,
+                  "Content-Security-Policy": null,
+                  "Strict-Transport-Security": "max-age=47474747; includeSubDomains; preload",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 14.285714285714285,
+                "missing_headers": [
+                  "X-Frame-Options",
+                  "Content-Security-Policy",
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": [
+                  "Add X-Frame-Options header to prevent clickjacking",
+                  "Implement Content-Security-Policy to prevent XSS"
+                ]
+              },
+              "performance_metrics": {
+                "response_time": 1.0811405181884766,
+                "content_length": 5070,
+                "status_code": 200,
+                "redirect_count": 0
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [],
+                  "programming_language": [],
+                  "framework": [],
+                  "cms": [],
+                  "javascript_libraries": [],
+                  "cdn": [],
+                  "analytics": []
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Amazon Web Services",
+              "Google Analytics",
+              "CDN",
+              "Amazon Cloudfront"
+            ],
+            "security_score_avg": 28.57142857142857,
+            "common_issues": [
+              "X-Frame-Options",
+              "X-Content-Type-Options",
+              "X-XSS-Protection",
+              "Content-Security-Policy",
+              "Referrer-Policy",
+              "Permissions-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 16.62901759147644,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 1,
+          "records_found": 67,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 4
+        }
+      },
+      "all_subdomains": [
+        "amazon-smtp.amazon.com",
+        "www.amazon.com"
+      ],
+      "statistics": {
+        "total_subdomains": 2,
+        "unique_subdomains": 2,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 71.22,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 4,
+        "security_issues_found": 6,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "amazon.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 19:52 +0530\nNmap scan report for amazon.com (52.94.236.248)\nHost is up (0.26s latency).\nOther addresses for amazon.com (not scanned): 54.239.28.85 205.251.242.103\nNot shown: 997 closed tcp ports (reset)\nPORT    STATE SERVICE\n25/tcp  open  smtp\n80/tcp  open  http\n443/tcp open  https\n\nNmap done: 1 IP address (1 host up) scanned in 7.00 seconds\n",
+        "scan_duration": 7.0
+      },
+      "service_results": {
+        "target": "amazon.com",
+        "scan_type": "quick",
+        "open_ports_count": 3,
+        "services": {
+          "25": {
+            "port": 25,
+            "service": "SMTP",
+            "banner": "No banner (timeout)",
+            "version": null,
+            "ssl": false,
+            "protocol_info": {}
+          },
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 301 Moved Permanently\r\nServer: Server\r\nDate: Wed, 01 Oct 2025 14:22:32 GMT\r\nContent-Type: text/html\r\nContent-Length: 163\r\nConnection: keep-alive\r\nLocation: https:///\r\n\r\n<html>\r\n<head><title>301 Moved Permanently</title></head>\r\n<body>\r\n<center><h1>301 Moved Permanently</h1></center>\r\n<hr><center>Server</center>\r\n</body>\r\n</html>",
+            "version": "1.1",
+            "ssl": false,
+            "protocol_info": {}
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "HTTP/1.1 400 Bad Request\r\nServer: Server\r\nDate: Wed, 01 Oct 2025 14:22:35 GMT\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n<html>\r\n<head><title>400 The plain HTTP request was sent to HTTPS port</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<center>The plain HTTP request was sent to HTTPS port</center>\r\n<hr><center>Server</center>\r\n</body>\r\n</html>",
+            "version": "1.1",
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_128_GCM_SHA256"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "SMTP": 1,
+            "HTTP": 1,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)"
+          ],
+          "total_services": 3
+        }
+      },
+      "summary": {
+        "open_ports_count": 3,
+        "services_identified": 3,
+        "scan_duration": 7.0
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Amazon CloudFront",
+        "detection_method": "headers",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 503
+      },
+      "execution_info": {
+        "domain": "amazon.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/amazon_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 2,
+    "total_open_ports": 3,
+    "cdn_detected": true,
+    "technologies_detected": 4,
+    "apis_discovered": 0
+  },
+  "execution_time": 104.82097315788269
+}

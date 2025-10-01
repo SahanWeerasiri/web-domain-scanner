@@ -1,0 +1,959 @@
+{
+  "target_domain": "stackoverflow.com",
+  "scan_timestamp": "2025-10-01T19:44:12.544901",
+  "enabled_modules": [
+    "domain_enumeration",
+    "service_discovery",
+    "web_analysis"
+  ],
+  "modules": {
+    "domain_enumeration": {
+      "domain": "stackoverflow.com",
+      "timestamp": "2025-10-01T19:44:12.545100",
+      "modules": {
+        "passive": {
+          "domain": "stackoverflow.com",
+          "timestamp": 1759328093.068429,
+          "configuration": {
+            "enabled_sources": [
+              "certificate_transparency"
+            ],
+            "ct_sources": [
+              "crt_sh"
+            ],
+            "concurrent_requests": 5,
+            "timeout": 5
+          },
+          "sources": {
+            "certificate_transparency": {
+              "crt_sh": {
+                "subdomains": [],
+                "certificates": {},
+                "source": "crt.sh",
+                "error": "No certificates found"
+              }
+            }
+          },
+          "certificates": {},
+          "subdomains": [],
+          "statistics": {
+            "total_duration": 40.51963186264038,
+            "total_subdomains": 0,
+            "certificates_analyzed": 0,
+            "ct_logs_processed": 0,
+            "successful_sources": 1,
+            "success_rate": 0.0
+          },
+          "errors": {}
+        },
+        "dns": {
+          "domain": "stackoverflow.com",
+          "timestamp": 1759328094.668294,
+          "configuration": {
+            "dns_servers": null,
+            "timeout": 3,
+            "record_types": [
+              "A",
+              "AAAA",
+              "MX",
+              "NS",
+              "TXT",
+              "CNAME",
+              "SOA"
+            ],
+            "analysis_enabled": true
+          },
+          "dns_records": {
+            "A": [
+              "104.18.32.7",
+              "172.64.155.249"
+            ],
+            "MX": [
+              "alt3.aspmx.l.google.com",
+              "aspmx.l.google.com",
+              "alt4.aspmx.l.google.com",
+              "alt1.aspmx.l.google.com",
+              "alt2.aspmx.l.google.com"
+            ],
+            "NS": [
+              "damian.ns.cloudflare.com",
+              "sureena.ns.cloudflare.com"
+            ],
+            "TXT": [
+              "atlassian-domain-verification=byLeZgl3MIcfOqwWuMhq8Fhr/1zem/jIaouJegvDZbBKUU5OqhwDjdpkyYg5CTzm",
+              "ibmid=4e7cbbb3-5f12-40b4-96c7-5b064347b822",
+              "docker-verification=d65aee54-9091-4ceb-b792-61f5d5804050",
+              "apple-domain-verification=O9jlnJXAQ7sNSZqC",
+              "adobe-idp-site-verification=25ba5203f3687c9cd6ee3223ee5de1528917828d1da3ebd3bd9a44094cbfc4ac",
+              "v=spf1 ip4:52.38.191.241 include:_spf1.stackoverflow.com ~all",
+              "google-site-verification=o3EMam8yBGo1yEjyybIiZcOunGHOQKpo8JmOtp9n1BU",
+              "ZOOM_verify_AbkNwz5bBl0eurcDKyhhuk",
+              "openai-domain-verification=dv-GLNufzbWDzAq0fDXHD6jxeCK",
+              "google-site-verification=rdWtMbplKjbRHGr2dNONfwkqithlUvjr3u6i8QEz_mo",
+              "cursor-domain-verification-sb0ayf=Pk6AyptQuTpzpcuSlfYGWloxv",
+              "google-site-verification=2Bi6SYw5skkRexdtdLPL2gpxeIhLxnYVqITVP9Htl3w",
+              "MS=ms52592611",
+              "google-site-verification=ctogLnZNAdc_CXq8yOhODMLpmugGynjxKecKHDz4oL8",
+              "onetrust-domain-verification=e445562296a64c649ae3d520230b8c4c",
+              "make-domain-verification=eec31159-f381-4f38-9d89-e59123dd023e",
+              "onetrust-domain-verification=0d9d67f856334905a54256085a5768b3",
+              "docusign=4262531d-29f4-4a62-9f33-ae9f66f5247b"
+            ],
+            "SOA": [
+              "damian.ns.cloudflare.com. dns.cloudflare.com. 2384733579 10000 2400 604800 1800"
+            ]
+          },
+          "subdomains": [],
+          "analysis": {
+            "infrastructure": {},
+            "security_records": {},
+            "txt_analysis": {
+              "spf": [
+                "v=spf1 ip4:52.38.191.241 include:_spf1.stackoverflow.com ~all"
+              ],
+              "dmarc": [],
+              "dkim": [],
+              "verification": [
+                "google-site-verification=o3EMam8yBGo1yEjyybIiZcOunGHOQKpo8JmOtp9n1BU",
+                "google-site-verification=rdWtMbplKjbRHGr2dNONfwkqithlUvjr3u6i8QEz_mo",
+                "google-site-verification=2Bi6SYw5skkRexdtdLPL2gpxeIhLxnYVqITVP9Htl3w",
+                "google-site-verification=ctogLnZNAdc_CXq8yOhODMLpmugGynjxKecKHDz4oL8"
+              ],
+              "other": [
+                "atlassian-domain-verification=byLeZgl3MIcfOqwWuMhq8Fhr/1zem/jIaouJegvDZbBKUU5OqhwDjdpkyYg5CTzm",
+                "ibmid=4e7cbbb3-5f12-40b4-96c7-5b064347b822",
+                "docker-verification=d65aee54-9091-4ceb-b792-61f5d5804050",
+                "apple-domain-verification=O9jlnJXAQ7sNSZqC",
+                "adobe-idp-site-verification=25ba5203f3687c9cd6ee3223ee5de1528917828d1da3ebd3bd9a44094cbfc4ac",
+                "ZOOM_verify_AbkNwz5bBl0eurcDKyhhuk",
+                "openai-domain-verification=dv-GLNufzbWDzAq0fDXHD6jxeCK",
+                "cursor-domain-verification-sb0ayf=Pk6AyptQuTpzpcuSlfYGWloxv",
+                "MS=ms52592611",
+                "onetrust-domain-verification=e445562296a64c649ae3d520230b8c4c",
+                "make-domain-verification=eec31159-f381-4f38-9d89-e59123dd023e",
+                "onetrust-domain-verification=0d9d67f856334905a54256085a5768b3",
+                "docusign=4262531d-29f4-4a62-9f33-ae9f66f5247b"
+              ]
+            }
+          },
+          "statistics": {
+            "total_duration": 1.1259174346923828,
+            "total_records": 28,
+            "total_subdomains": 0,
+            "queries_performed": 0,
+            "successful_queries": 0,
+            "failed_queries": 0
+          },
+          "errors": {}
+        },
+        "fingerprinting": {
+          "domain": "stackoverflow.com",
+          "timestamp": 1759328104.2576256,
+          "configuration": {
+            "detection_methods": [
+              "headers",
+              "content",
+              "url_patterns",
+              "wappalyzer"
+            ],
+            "timeout": 30,
+            "include_www": true,
+            "security_analysis": true
+          },
+          "targets": {
+            "https://www.stackoverflow.com": {
+              "url": "https://www.stackoverflow.com",
+              "timestamp": 1759328094.6875546,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 210340,
+                "url": "https://stackoverflow.com/questions",
+                "redirect_chain": [
+                  "https://www.stackoverflow.com/",
+                  "https://stackoverflow.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://stackoverflow.com/questions",
+                "content_preview": "\n<!DOCTYPE html>\n\n\n    <html class=\"html__responsive \" lang=\"en\">\n\n    <head>\n\n        <title>Newest Questions - Stack Overflow</title>\n        <link rel=\"shortcut icon\" href=\"https://cdn.sstatic.net/...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Newest Questions - Stack Overflow",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "upgrade-insecure-requests; frame-ancestors 'self' https://stackexchange.com",
+                "strict_transport_security": "max-age=31536000; includeSubDomains",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "prov=e8825900-168b-4d98-962e-b75fefb12666; expires=Thu, 01 Oct 2026 14:14:55 GMT; domain=.stackoverflow.com; path=/; secure; samesite=none; httponly",
+                "cache_control": "private",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Gravatar",
+                  "Stimulus",
+                  "MySQL",
+                  "PHP",
+                  "OneTrust",
+                  "WordPress",
+                  "Elementor",
+                  "Cloudflare",
+                  "jQuery"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [
+                  "Bootstrap",
+                  "Angular",
+                  "Google Analytics",
+                  "Vue",
+                  "Jquery",
+                  "React",
+                  "Wordpress"
+                ],
+                "url_patterns": [
+                  "jQuery",
+                  "Bootstrap",
+                  "Google Services",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "upgrade-insecure-requests; frame-ancestors 'self' https://stackexchange.com",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 42.857142857142854,
+                "missing_headers": [
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 2.688185453414917,
+                "content_length": 210340,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [
+                    "PHP"
+                  ],
+                  "framework": [],
+                  "cms": [
+                    "WordPress",
+                    "Wordpress"
+                  ],
+                  "javascript_libraries": [
+                    "Jquery",
+                    "Angular",
+                    "React",
+                    "Vue",
+                    "jQuery"
+                  ],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://www.stackoverflow.com": {
+              "url": "http://www.stackoverflow.com",
+              "timestamp": 1759328097.3761616,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 210405,
+                "url": "https://stackoverflow.com/questions",
+                "redirect_chain": [
+                  "http://www.stackoverflow.com/",
+                  "https://stackoverflow.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://stackoverflow.com/questions",
+                "content_preview": "\n<!DOCTYPE html>\n\n\n    <html class=\"html__responsive \" lang=\"en\">\n\n    <head>\n\n        <title>Newest Questions - Stack Overflow</title>\n        <link rel=\"shortcut icon\" href=\"https://cdn.sstatic.net/...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Newest Questions - Stack Overflow",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "upgrade-insecure-requests; frame-ancestors 'self' https://stackexchange.com",
+                "strict_transport_security": "max-age=31536000; includeSubDomains",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "prov=e8825900-168b-4d98-962e-b75fefb12666; expires=Thu, 01 Oct 2026 14:14:58 GMT; domain=.stackoverflow.com; path=/; secure; samesite=none; httponly",
+                "cache_control": "private",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Gravatar",
+                  "Stimulus",
+                  "MySQL",
+                  "PHP",
+                  "OneTrust",
+                  "WordPress",
+                  "Elementor",
+                  "Cloudflare",
+                  "jQuery"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [
+                  "Bootstrap",
+                  "Angular",
+                  "Google Analytics",
+                  "Vue",
+                  "Jquery",
+                  "React",
+                  "Wordpress"
+                ],
+                "url_patterns": [
+                  "jQuery",
+                  "Bootstrap",
+                  "Google Services",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "upgrade-insecure-requests; frame-ancestors 'self' https://stackexchange.com",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 42.857142857142854,
+                "missing_headers": [
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 2.2711563110351562,
+                "content_length": 210405,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [
+                    "PHP"
+                  ],
+                  "framework": [],
+                  "cms": [
+                    "WordPress",
+                    "Wordpress"
+                  ],
+                  "javascript_libraries": [
+                    "Jquery",
+                    "Angular",
+                    "React",
+                    "Vue",
+                    "jQuery"
+                  ],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "https://stackoverflow.com": {
+              "url": "https://stackoverflow.com",
+              "timestamp": 1759328099.6477854,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 210203,
+                "url": "https://stackoverflow.com/questions",
+                "redirect_chain": [
+                  "https://stackoverflow.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://stackoverflow.com/questions",
+                "content_preview": "\n<!DOCTYPE html>\n\n\n    <html class=\"html__responsive \" lang=\"en\">\n\n    <head>\n\n        <title>Newest Questions - Stack Overflow</title>\n        <link rel=\"shortcut icon\" href=\"https://cdn.sstatic.net/...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Newest Questions - Stack Overflow",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "upgrade-insecure-requests; frame-ancestors 'self' https://stackexchange.com",
+                "strict_transport_security": "max-age=31536000; includeSubDomains",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "prov=e8825900-168b-4d98-962e-b75fefb12666; expires=Thu, 01 Oct 2026 14:15:00 GMT; domain=.stackoverflow.com; path=/; secure; samesite=none; httponly",
+                "cache_control": "private",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Gravatar",
+                  "Stimulus",
+                  "MySQL",
+                  "PHP",
+                  "OneTrust",
+                  "WordPress",
+                  "Elementor",
+                  "Cloudflare",
+                  "jQuery"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [
+                  "Bootstrap",
+                  "Angular",
+                  "Google Analytics",
+                  "Vue",
+                  "Jquery",
+                  "React",
+                  "Wordpress"
+                ],
+                "url_patterns": [
+                  "jQuery",
+                  "Bootstrap",
+                  "Google Services",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "upgrade-insecure-requests; frame-ancestors 'self' https://stackexchange.com",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 42.857142857142854,
+                "missing_headers": [
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 2.5218148231506348,
+                "content_length": 210203,
+                "status_code": 200,
+                "redirect_count": 1
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [
+                    "PHP"
+                  ],
+                  "framework": [],
+                  "cms": [
+                    "WordPress",
+                    "Wordpress"
+                  ],
+                  "javascript_libraries": [
+                    "Jquery",
+                    "Angular",
+                    "React",
+                    "Vue",
+                    "jQuery"
+                  ],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            },
+            "http://stackoverflow.com": {
+              "url": "http://stackoverflow.com",
+              "timestamp": 1759328102.1699295,
+              "response_analysis": {
+                "status_code": 200,
+                "reason": "OK",
+                "encoding": "utf-8",
+                "content_type": "text/html; charset=utf-8",
+                "content_length": 210273,
+                "url": "https://stackoverflow.com/questions",
+                "redirect_chain": [
+                  "http://stackoverflow.com/",
+                  "https://stackoverflow.com/"
+                ],
+                "is_redirect": true,
+                "final_url": "https://stackoverflow.com/questions",
+                "content_preview": "\n<!DOCTYPE html>\n\n\n    <html class=\"html__responsive \" lang=\"en\">\n\n    <head>\n\n        <title>Newest Questions - Stack Overflow</title>\n        <link rel=\"shortcut icon\" href=\"https://cdn.sstatic.net/...",
+                "has_html": true,
+                "has_javascript": false,
+                "has_css": false,
+                "title": "Newest Questions - Stack Overflow",
+                "meta_info": {
+                  "generator": "Not found",
+                  "description": "Not found",
+                  "keywords": "Not found"
+                }
+              },
+              "header_analysis": {
+                "server": "cloudflare",
+                "x_powered_by": "Not found",
+                "x_generator": "Not found",
+                "x_frame_options": "SAMEORIGIN",
+                "content_security_policy": "upgrade-insecure-requests; frame-ancestors 'self' https://stackexchange.com",
+                "strict_transport_security": "max-age=31536000; includeSubDomains",
+                "x_content_type_options": "Not found",
+                "x_xss_protection": "Not found",
+                "set_cookie": "prov=e8825900-168b-4d98-962e-b75fefb12666; expires=Thu, 01 Oct 2026 14:15:02 GMT; domain=.stackoverflow.com; path=/; secure; samesite=none; httponly",
+                "cache_control": "private",
+                "expires": "Not found",
+                "last_modified": "Not found",
+                "etag": "Not found",
+                "server_info": {
+                  "name": "Cloudflare",
+                  "raw_header": "cloudflare",
+                  "components": [
+                    "cloudflare"
+                  ]
+                },
+                "framework_info": {
+                  "framework": "Unknown",
+                  "version": "Unknown"
+                }
+              },
+              "technology_detection": {
+                "wappalyzer_detected": [
+                  "Gravatar",
+                  "Stimulus",
+                  "MySQL",
+                  "PHP",
+                  "OneTrust",
+                  "WordPress",
+                  "Elementor",
+                  "Cloudflare",
+                  "jQuery"
+                ],
+                "header_detected": [
+                  "Cloudflare"
+                ],
+                "content_detected": [
+                  "Bootstrap",
+                  "Angular",
+                  "Google Analytics",
+                  "Vue",
+                  "Jquery",
+                  "React",
+                  "Wordpress"
+                ],
+                "url_patterns": [
+                  "jQuery",
+                  "Bootstrap",
+                  "Google Services",
+                  "CDN"
+                ]
+              },
+              "security_analysis": {
+                "security_headers": {
+                  "X-Frame-Options": "SAMEORIGIN",
+                  "Content-Security-Policy": "upgrade-insecure-requests; frame-ancestors 'self' https://stackexchange.com",
+                  "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+                  "X-Content-Type-Options": null,
+                  "X-XSS-Protection": null,
+                  "Referrer-Policy": null,
+                  "Permissions-Policy": null
+                },
+                "ssl_info": {
+                  "uses_ssl": true,
+                  "url_scheme": "https",
+                  "ssl_grade": "Needs Improvement"
+                },
+                "cookie_security": {
+                  "has_secure": false,
+                  "has_httponly": false,
+                  "has_samesite": false,
+                  "recommendations": []
+                },
+                "security_score": 42.857142857142854,
+                "missing_headers": [
+                  "X-Content-Type-Options",
+                  "X-XSS-Protection",
+                  "Referrer-Policy",
+                  "Permissions-Policy"
+                ],
+                "recommendations": []
+              },
+              "performance_metrics": {
+                "response_time": 2.08444881439209,
+                "content_length": 210273,
+                "status_code": 200,
+                "redirect_count": 2
+              },
+              "technology_insights": {
+                "technology_stack": {
+                  "web_server": [
+                    "Cloudflare"
+                  ],
+                  "programming_language": [
+                    "PHP"
+                  ],
+                  "framework": [],
+                  "cms": [
+                    "WordPress",
+                    "Wordpress"
+                  ],
+                  "javascript_libraries": [
+                    "Jquery",
+                    "Angular",
+                    "React",
+                    "Vue",
+                    "jQuery"
+                  ],
+                  "cdn": [
+                    "Cloudflare"
+                  ],
+                  "analytics": [
+                    "Google Analytics"
+                  ]
+                },
+                "security_implications": [],
+                "performance_notes": []
+              }
+            }
+          },
+          "summary": {
+            "total_targets": 4,
+            "successful_scans": 4,
+            "unique_technologies": [
+              "Gravatar",
+              "Bootstrap",
+              "Stimulus",
+              "Jquery",
+              "Angular",
+              "MySQL",
+              "Google Analytics",
+              "PHP",
+              "OneTrust",
+              "WordPress",
+              "React",
+              "Vue",
+              "Wordpress",
+              "Google Services",
+              "CDN",
+              "Elementor",
+              "Cloudflare",
+              "jQuery"
+            ],
+            "security_score_avg": 42.857142857142854,
+            "common_issues": [
+              "X-XSS-Protection",
+              "X-Content-Type-Options",
+              "Referrer-Policy",
+              "Permissions-Policy"
+            ]
+          },
+          "statistics": {
+            "total_duration": 9.584533214569092,
+            "success_rate": 100.0
+          },
+          "errors": {}
+        }
+      },
+      "summary": {
+        "passive": {
+          "status": "success",
+          "subdomains_found": 0,
+          "certificates_analyzed": 0,
+          "ct_logs_processed": 0
+        },
+        "dns": {
+          "status": "success",
+          "subdomains_found": 0,
+          "records_found": 28,
+          "queries_performed": 0
+        },
+        "fingerprinting": {
+          "status": "success",
+          "subdomains_found": 0,
+          "targets_analyzed": 4,
+          "technologies_identified": 18
+        }
+      },
+      "all_subdomains": [
+        "www.stackoverflow.com"
+      ],
+      "statistics": {
+        "total_subdomains": 1,
+        "unique_subdomains": 1,
+        "modules_executed": 3,
+        "modules_failed": 0,
+        "total_execution_time": 51.71,
+        "certificates_analyzed": 0,
+        "dns_queries": 0,
+        "http_requests": 4,
+        "technologies_detected": 18,
+        "security_issues_found": 4,
+        "enabled_modules": [
+          "passive",
+          "dns",
+          "fingerprinting"
+        ]
+      }
+    },
+    "service_discovery": {
+      "success": true,
+      "target": "stackoverflow.com",
+      "scan_mode": "quick",
+      "ports_scanned": "80,443,22,21,25,53,110,143,993,995",
+      "scan_results": {
+        "method": "quick",
+        "raw_output": "Starting Nmap 7.97 ( https://nmap.org ) at 2025-10-01 19:45 +0530\nNmap scan report for stackoverflow.com (104.18.32.7)\nHost is up (0.0096s latency).\nOther addresses for stackoverflow.com (not scanned): 172.64.155.249\nNot shown: 996 filtered tcp ports (no-response)\nSome closed ports may be reported as filtered due to --defeat-rst-ratelimit\nPORT     STATE SERVICE\n80/tcp   open  http\n443/tcp  open  https\n8080/tcp open  http-proxy\n8443/tcp open  https-alt\n\nNmap done: 1 IP address (1 host up) scanned in 5.63 seconds\n",
+        "scan_duration": 5.63
+      },
+      "service_results": {
+        "target": "stackoverflow.com",
+        "scan_type": "quick",
+        "open_ports_count": 4,
+        "services": {
+          "80": {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 400 Bad Request\r\nDate: Wed, 01 Oct 2025 14:15:10 GMT\r\nContent-Length: 68\r\nConnection: close\r\nCache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0\r\nReferrer-Policy: same-origin\r\nExpires: Thu, 01 Jan 1970 00:00:01 GMT\r\nProxy-Status: Cloudflare-Proxy;error=http_request_error\r\nCF-RAY: 987c92101a82513a-CMB\r\n\r\nCloudflare encountered an error processing this request: Bad Request",
+            "version": "1.1",
+            "ssl": false,
+            "protocol_info": {}
+          },
+          "443": {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "HTTP/1.1 400 Bad Request\r\nServer: cloudflare\r\nDate: Wed, 01 Oct 2025 14:15:10 GMT\r\nContent-Type: text/html\r\nContent-Length: 253\r\nConnection: close\r\nCF-RAY: -\r\n\r\n<html>\r\n<head><title>400 The plain HTTP request was sent to HTTPS port</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<center>The plain HTTP request was sent to HTTPS port</center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>",
+            "version": "1.1",
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384"
+              }
+            }
+          },
+          "8080": {
+            "port": 8080,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 400 Bad Request\r\nDate: Wed, 01 Oct 2025 14:15:10 GMT\r\nContent-Length: 68\r\nConnection: close\r\nCache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0\r\nReferrer-Policy: same-origin\r\nExpires: Thu, 01 Jan 1970 00:00:01 GMT\r\nProxy-Status: Cloudflare-Proxy;error=http_request_error\r\nCF-RAY: 987c9211ad005138-CMB\r\n\r\nCloudflare encountered an error processing this request: Bad Request",
+            "version": "1.1",
+            "ssl": false,
+            "protocol_info": {}
+          },
+          "8443": {
+            "port": 8443,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 400 Bad Request\r\nServer: cloudflare\r\nDate: Wed, 01 Oct 2025 14:15:10 GMT\r\nContent-Type: text/html\r\nContent-Length: 253\r\nConnection: close\r\nCF-RAY: -\r\n\r\n<html>\r\n<head><title>400 The plain HTTP request was sent to HTTPS port</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<center>The plain HTTP request was sent to HTTPS port</center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>",
+            "version": "1.1",
+            "ssl": true,
+            "protocol_info": {
+              "ssl": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384"
+              }
+            }
+          }
+        },
+        "summary": {
+          "service_distribution": {
+            "HTTP": 3,
+            "HTTPS": 1
+          },
+          "ssl_services": [
+            "HTTPS (port 443)",
+            "HTTP (port 8443)"
+          ],
+          "total_services": 4
+        }
+      },
+      "summary": {
+        "open_ports_count": 4,
+        "services_identified": 4,
+        "scan_duration": 5.63
+      }
+    },
+    "web_analysis": {
+      "cdn_detection": {
+        "cdn_detected": true,
+        "cdn_name": "Cloudflare",
+        "detection_method": "headers",
+        "bypass_attempted": false,
+        "bypass_successful": false,
+        "content": null
+      },
+      "blocking_check": {
+        "is_blocked": false,
+        "blocked_phrases": [],
+        "status_code": 200
+      },
+      "execution_info": {
+        "domain": "stackoverflow.com",
+        "bypass_cdn": false,
+        "deep_crawl": false,
+        "output_dir": "bulk_test_results",
+        "save_to_file": true
+      },
+      "output_file": "bulk_test_results/stackoverflow_com_recon.json",
+      "success": true
+    }
+  },
+  "summary": {
+    "total_modules_run": 3,
+    "successful_modules": 3,
+    "failed_modules": 0,
+    "total_subdomains": 1,
+    "total_open_ports": 4,
+    "cdn_detected": true,
+    "technologies_detected": 18,
+    "apis_discovered": 0
+  },
+  "execution_time": 59.321011781692505
+}
